@@ -36,6 +36,22 @@ object PopTipConst {
     const val ALIGN_CENTER = 2
 
     // ==========
+    // = 主题明暗 =
+    // ==========
+
+    // 默认主题明暗 ( 跟随全局 )
+    const val THEME_DEFAULT = -1
+
+    // 亮色主题
+    const val THEME_LIGHT = 0
+
+    // 暗色主题
+    const val THEME_DARK = 1
+
+    // 自动 ( 跟随系统 )
+    const val THEME_AUTO = 2
+
+    // ==========
     // = 实现模式 =
     // ==========
 

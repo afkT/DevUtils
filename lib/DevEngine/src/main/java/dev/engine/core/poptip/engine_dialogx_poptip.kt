@@ -1,12 +1,12 @@
 package dev.engine.core.poptip
 
 import android.app.Activity
+import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import com.kongzue.dialogx.DialogX
 import com.kongzue.dialogx.dialogs.PopTip
-import com.kongzue.dialogx.interfaces.DialogLifecycleCallback
-import com.kongzue.dialogx.interfaces.DialogXStyle
-import com.kongzue.dialogx.interfaces.OnBindView
-import com.kongzue.dialogx.interfaces.OnDialogButtonClickListener
+import com.kongzue.dialogx.interfaces.*
+import com.kongzue.dialogx.util.TextInfo
 import dev.engine.poptip.IPopTipEngine
 
 /**
@@ -51,6 +51,38 @@ open class DialogXPopTipEngineImpl(
                 DialogX.implIMPLMode = mode
             }
         }
+    }
+
+    // ============
+    // = 构建 PopTip =
+    // ============
+
+    /**
+     * 构建 PopTip ( 不显示 )
+     * @return [PopTip]
+     */
+    override fun build(): PopTip {
+        return PopTip.build()
+    }
+
+    /**
+     * 构建 PopTip ( 不显示 )
+     * @param item PopTip 参数
+     * @return [PopTip]
+     */
+    override fun build(item: PopTipItem?): PopTip {
+        return buildPopTip(item)
+    }
+
+    /**
+     * 构建 PopTip ( 不显示 )
+     * @param onBindView 自定义布局
+     * @return [PopTip]
+     */
+    override fun buildView(onBindView: Any?): PopTip {
+        @Suppress("UNCHECKED_CAST")
+        val bindView = onBindView as? OnBindView<PopTip>
+        return if (bindView != null) PopTip.build(bindView) else PopTip.build()
     }
 
     // ==============
@@ -164,10 +196,6 @@ open class DialogXPopTipEngineImpl(
         return popTip
     }
 
-    // ==========
-    // = 状态操作 =
-    // ==========
-
     /**
      * 单例 PopTip 是否正在显示
      * @return `true` yes, `false` no
@@ -188,6 +216,29 @@ open class DialogXPopTipEngineImpl(
     }
 
     /**
+     * 隐藏单例 PopTip
+     */
+    override fun hide() {
+        try {
+            mSinglePopTip?.hide()
+        } catch (_: Exception) {
+        }
+    }
+
+    // ==================
+    // = PopTip 句柄操作 =
+    // ==================
+
+    /**
+     * 指定 PopTip 是否正在显示
+     * @param popTip [PopTip]
+     * @return `true` yes, `false` no
+     */
+    override fun isShow(popTip: Any?): Boolean {
+        return (popTip as? PopTip)?.isShow ?: false
+    }
+
+    /**
      * 关闭指定 PopTip
      * @param popTip [PopTip]
      */
@@ -199,13 +250,1027 @@ open class DialogXPopTipEngineImpl(
     }
 
     /**
-     * 隐藏单例 PopTip
+     * 关闭指定 PopTip ( 动画 )
+     * @param popTip [PopTip]
      */
-    override fun hide() {
+    override fun hide(popTip: Any?) {
         try {
-            mSinglePopTip?.hide()
+            (popTip as? PopTip)?.hide()
         } catch (_: Exception) {
         }
+    }
+
+    /**
+     * 刷新指定 PopTip 界面
+     * @param popTip [PopTip]
+     */
+    override fun refreshUI(popTip: Any?) {
+        (popTip as? PopTip)?.refreshUI()
+    }
+
+    /**
+     * 设置指定 PopTip 自动消失时长
+     * @param popTip [PopTip]
+     * @param delay 自动消失时长 ( ms )
+     * @return [PopTip]
+     */
+    override fun autoDismiss(
+        popTip: Any?,
+        delay: Long
+    ): Any? {
+        (popTip as? PopTip)?.autoDismiss(delay)
+        return popTip
+    }
+
+    /**
+     * 重置指定 PopTip 自动消失计时器
+     * @param popTip [PopTip]
+     */
+    override fun resetAutoDismissTimer(popTip: Any?) {
+        (popTip as? PopTip)?.resetAutoDismissTimer()
+    }
+
+    /**
+     * 指定 PopTip 短时间显示
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun showShort(popTip: Any?): Any? {
+        (popTip as? PopTip)?.showShort()
+        return popTip
+    }
+
+    /**
+     * 指定 PopTip 长时间显示
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun showLong(popTip: Any?): Any? {
+        (popTip as? PopTip)?.showLong()
+        return popTip
+    }
+
+    /**
+     * 指定 PopTip 常驻显示 ( 不自动消失 )
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun showAlways(popTip: Any?): Any? {
+        (popTip as? PopTip)?.showAlways()
+        return popTip
+    }
+
+    /**
+     * 指定 PopTip 取消自动消失
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun noAutoDismiss(popTip: Any?): Any? {
+        (popTip as? PopTip)?.noAutoDismiss()
+        return popTip
+    }
+
+    /**
+     * 指定 PopTip 置顶显示
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun bringToFront(popTip: Any?): Any? {
+        (popTip as? PopTip)?.bringToFront()
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 显示层级
+     * @param popTip [PopTip]
+     * @param orderIndex 显示层级
+     * @return [PopTip]
+     */
+    override fun setThisOrderIndex(
+        popTip: Any?,
+        orderIndex: Int
+    ): Any? {
+        (popTip as? PopTip)?.setThisOrderIndex(orderIndex)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 主题样式
+     * @param popTip [PopTip]
+     * @param style 主题样式对象
+     * @return [PopTip]
+     */
+    override fun setStyle(
+        popTip: Any?,
+        style: Any?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        (style as? DialogXStyle)?.let {
+            popTipObj.setStyle(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 明暗主题
+     * @param popTip [PopTip]
+     * @param theme 明暗主题 ( [PopTipConst.THEME_DEFAULT] 等 )
+     * @return [PopTip]
+     */
+    override fun setTheme(
+        popTip: Any?,
+        theme: Int
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        getTheme(theme)?.let {
+            popTipObj.setTheme(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 自定义布局
+     * @param popTip [PopTip]
+     * @param onBindView 自定义布局
+     * @return [PopTip]
+     */
+    override fun setCustomView(
+        popTip: Any?,
+        onBindView: Any?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        @Suppress("UNCHECKED_CAST")
+        (onBindView as? OnBindView<PopTip>)?.let {
+            popTipObj.setCustomView(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 自定义布局 View
+     * @param popTip [PopTip]
+     * @return 自定义布局 [View]
+     */
+    override fun getCustomView(popTip: Any?): View? {
+        return (popTip as? PopTip)?.customView
+    }
+
+    /**
+     * 移除指定 PopTip 自定义布局
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun removeCustomView(popTip: Any?): Any? {
+        (popTip as? PopTip)?.removeCustomView()
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 对齐方式
+     * @param popTip [PopTip]
+     * @return 对齐方式 ( [PopTipConst.ALIGN_DEFAULT] 等 )
+     */
+    override fun getAlign(popTip: Any?): Int {
+        return getAlignValue((popTip as? PopTip)?.align)
+    }
+
+    /**
+     * 设置指定 PopTip 对齐方式
+     * @param popTip [PopTip]
+     * @param align 对齐方式 ( [PopTipConst.ALIGN_DEFAULT] 等 )
+     * @return [PopTip]
+     */
+    override fun setAlign(
+        popTip: Any?,
+        align: Int
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        getAlign(align)?.let {
+            popTipObj.setAlign(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 图标资源 id
+     * @param popTip [PopTip]
+     * @return 图标资源 id
+     */
+    override fun getIconResId(popTip: Any?): Int {
+        return (popTip as? PopTip)?.iconResId ?: PopTipConst.UNSET
+    }
+
+    /**
+     * 设置指定 PopTip 图标资源 id
+     * @param popTip [PopTip]
+     * @param iconResId 图标资源 id
+     * @return [PopTip]
+     */
+    override fun setIconResId(
+        popTip: Any?,
+        iconResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setIconResId(iconResId)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 提示文本
+     * @param popTip [PopTip]
+     * @return 提示文本
+     */
+    override fun getMessage(popTip: Any?): CharSequence? {
+        return (popTip as? PopTip)?.message
+    }
+
+    /**
+     * 设置指定 PopTip 提示文本
+     * @param popTip [PopTip]
+     * @param message 提示文本
+     * @return [PopTip]
+     */
+    override fun setMessage(
+        popTip: Any?,
+        message: CharSequence?
+    ): Any? {
+        (popTip as? PopTip)?.message = message
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 提示文本
+     * @param popTip [PopTip]
+     * @param messageResId 提示文本资源 id
+     * @return [PopTip]
+     */
+    override fun setMessage(
+        popTip: Any?,
+        messageResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setMessage(messageResId)
+        return popTip
+    }
+
+    /**
+     * 追加指定 PopTip 提示文本
+     * @param popTip [PopTip]
+     * @param message 追加文本
+     * @return [PopTip]
+     */
+    override fun appendMessage(
+        popTip: Any?,
+        message: CharSequence?
+    ): Any? {
+        (popTip as? PopTip)?.appendMessage(message)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 按钮文本
+     * @param popTip [PopTip]
+     * @return 按钮文本
+     */
+    override fun getButtonText(popTip: Any?): CharSequence? {
+        return (popTip as? PopTip)?.buttonText
+    }
+
+    /**
+     * 设置指定 PopTip 按钮文本
+     * @param popTip [PopTip]
+     * @param buttonText 按钮文本
+     * @return [PopTip]
+     */
+    override fun setButton(
+        popTip: Any?,
+        buttonText: CharSequence?
+    ): Any? {
+        (popTip as? PopTip)?.setButton(buttonText)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 按钮文本
+     * @param popTip [PopTip]
+     * @param buttonTextResId 按钮文本资源 id
+     * @return [PopTip]
+     */
+    override fun setButton(
+        popTip: Any?,
+        buttonTextResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setButton(buttonTextResId)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 按钮点击事件
+     * @param popTip [PopTip]
+     * @param listener 按钮点击事件
+     * @return [PopTip]
+     */
+    override fun setButton(
+        popTip: Any?,
+        listener: IPopTipEngine.OnButtonClickListener?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        wrapButtonClick(listener)?.let {
+            popTipObj.setButton(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 按钮文本及点击事件
+     * @param popTip [PopTip]
+     * @param buttonText 按钮文本
+     * @param listener 按钮点击事件
+     * @return [PopTip]
+     */
+    override fun setButton(
+        popTip: Any?,
+        buttonText: CharSequence?,
+        listener: IPopTipEngine.OnButtonClickListener?
+    ): Any? {
+        (popTip as? PopTip)?.setButton(buttonText, wrapButtonClick(listener))
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 按钮文本及点击事件
+     * @param popTip [PopTip]
+     * @param buttonTextResId 按钮文本资源 id
+     * @param listener 按钮点击事件
+     * @return [PopTip]
+     */
+    override fun setButton(
+        popTip: Any?,
+        buttonTextResId: Int,
+        listener: IPopTipEngine.OnButtonClickListener?
+    ): Any? {
+        (popTip as? PopTip)?.setButton(buttonTextResId, wrapButtonClick(listener))
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 提示文本样式
+     * @param popTip [PopTip]
+     * @return 提示文本样式对象 [TextInfo]
+     */
+    override fun getMessageTextInfo(popTip: Any?): Any? {
+        return (popTip as? PopTip)?.messageTextInfo
+    }
+
+    /**
+     * 设置指定 PopTip 提示文本样式
+     * @param popTip [PopTip]
+     * @param messageTextInfo 提示文本样式对象 [TextInfo]
+     * @return [PopTip]
+     */
+    override fun setMessageTextInfo(
+        popTip: Any?,
+        messageTextInfo: Any?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        (messageTextInfo as? TextInfo)?.let {
+            popTipObj.setMessageTextInfo(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 按钮文本样式
+     * @param popTip [PopTip]
+     * @return 按钮文本样式对象 [TextInfo]
+     */
+    override fun getButtonTextInfo(popTip: Any?): Any? {
+        return (popTip as? PopTip)?.buttonTextInfo
+    }
+
+    /**
+     * 设置指定 PopTip 按钮文本样式
+     * @param popTip [PopTip]
+     * @param buttonTextInfo 按钮文本样式对象 [TextInfo]
+     * @return [PopTip]
+     */
+    override fun setButtonTextInfo(
+        popTip: Any?,
+        buttonTextInfo: Any?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        (buttonTextInfo as? TextInfo)?.let {
+            popTipObj.setButtonTextInfo(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 按钮点击事件
+     * @param popTip [PopTip]
+     * @param listener 按钮点击事件
+     * @return [PopTip]
+     */
+    override fun setOnButtonClickListener(
+        popTip: Any?,
+        listener: IPopTipEngine.OnButtonClickListener?
+    ): Any? {
+        (popTip as? PopTip)?.setOnButtonClickListener(wrapButtonClick(listener))
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 自身点击事件
+     * @param popTip [PopTip]
+     * @param listener 点击事件
+     * @return [PopTip]
+     */
+    override fun setOnPopTipClickListener(
+        popTip: Any?,
+        listener: IPopTipEngine.OnButtonClickListener?
+    ): Any? {
+        (popTip as? PopTip)?.setOnPopTipClickListener(wrapButtonClick(listener))
+        return popTip
+    }
+
+    /**
+     * 指定 PopTip 图标是否随明暗模式自动染色
+     * @param popTip [PopTip]
+     * @return `true` yes, `false` no
+     */
+    @Suppress("DEPRECATION")
+    override fun isAutoTintIconInLightOrDarkMode(popTip: Any?): Boolean {
+        return (popTip as? PopTip)?.isAutoTintIconInLightOrDarkMode ?: false
+    }
+
+    /**
+     * 设置指定 PopTip 图标是否随明暗模式自动染色
+     * @param popTip [PopTip]
+     * @param autoTint 是否自动染色
+     * @return [PopTip]
+     */
+    @Suppress("DEPRECATION")
+    override fun setAutoTintIconInLightOrDarkMode(
+        popTip: Any?,
+        autoTint: Boolean
+    ): Any? {
+        (popTip as? PopTip)?.setAutoTintIconInLightOrDarkMode(autoTint)
+        return popTip
+    }
+
+    /**
+     * 指定 PopTip 图标是否染色
+     * @param popTip [PopTip]
+     * @return `true` yes, `false` no
+     */
+    override fun isTintIcon(popTip: Any?): Boolean {
+        return (popTip as? PopTip)?.isTintIcon ?: false
+    }
+
+    /**
+     * 设置指定 PopTip 图标是否染色
+     * @param popTip [PopTip]
+     * @param tintIcon 是否染色
+     * @return [PopTip]
+     */
+    override fun setTintIcon(
+        popTip: Any?,
+        tintIcon: Boolean
+    ): Any? {
+        (popTip as? PopTip)?.setTintIcon(tintIcon)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 成功状态图标
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun iconSuccess(popTip: Any?): Any? {
+        (popTip as? PopTip)?.iconSuccess()
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 警告状态图标
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun iconWarning(popTip: Any?): Any? {
+        (popTip as? PopTip)?.iconWarning()
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 错误状态图标
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun iconError(popTip: Any?): Any? {
+        (popTip as? PopTip)?.iconError()
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 背景色
+     * @param popTip [PopTip]
+     * @return 背景色 ( ColorInt )
+     */
+    override fun getBackgroundColor(popTip: Any?): Int {
+        return (popTip as? PopTip)?.backgroundColor ?: PopTipConst.UNSET
+    }
+
+    /**
+     * 设置指定 PopTip 背景色
+     * @param popTip [PopTip]
+     * @param backgroundColor 背景色 ( ColorInt )
+     * @return [PopTip]
+     */
+    override fun setBackgroundColor(
+        popTip: Any?,
+        backgroundColor: Int
+    ): Any? {
+        (popTip as? PopTip)?.setBackgroundColor(backgroundColor)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 背景色
+     * @param popTip [PopTip]
+     * @param backgroundColorResId 背景色资源 id ( ColorRes )
+     * @return [PopTip]
+     */
+    override fun setBackgroundColorRes(
+        popTip: Any?,
+        backgroundColorResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setBackgroundColorRes(backgroundColorResId)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 圆角 ( px )
+     * @param popTip [PopTip]
+     * @return 圆角 ( px )
+     */
+    override fun getRadius(popTip: Any?): Float {
+        return (popTip as? PopTip)?.radius ?: PopTipConst.UNSET_FLOAT
+    }
+
+    /**
+     * 设置指定 PopTip 圆角 ( px )
+     * @param popTip [PopTip]
+     * @param radiusPx 圆角 ( px )
+     * @return [PopTip]
+     */
+    override fun setRadius(
+        popTip: Any?,
+        radiusPx: Float
+    ): Any? {
+        (popTip as? PopTip)?.setRadius(radiusPx)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 进入动画时长 ( ms )
+     * @param popTip [PopTip]
+     * @return 进入动画时长 ( ms )
+     */
+    override fun getEnterAnimDuration(popTip: Any?): Long {
+        return (popTip as? PopTip)?.enterAnimDuration ?: PopTipConst.UNSET_LONG
+    }
+
+    /**
+     * 设置指定 PopTip 进入动画时长 ( ms )
+     * @param popTip [PopTip]
+     * @param enterAnimDuration 进入动画时长 ( ms )
+     * @return [PopTip]
+     */
+    override fun setEnterAnimDuration(
+        popTip: Any?,
+        enterAnimDuration: Long
+    ): Any? {
+        (popTip as? PopTip)?.setEnterAnimDuration(enterAnimDuration)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 退出动画时长 ( ms )
+     * @param popTip [PopTip]
+     * @return 退出动画时长 ( ms )
+     */
+    override fun getExitAnimDuration(popTip: Any?): Long {
+        return (popTip as? PopTip)?.exitAnimDuration ?: PopTipConst.UNSET_LONG
+    }
+
+    /**
+     * 设置指定 PopTip 退出动画时长 ( ms )
+     * @param popTip [PopTip]
+     * @param exitAnimDuration 退出动画时长 ( ms )
+     * @return [PopTip]
+     */
+    override fun setExitAnimDuration(
+        popTip: Any?,
+        exitAnimDuration: Long
+    ): Any? {
+        (popTip as? PopTip)?.setExitAnimDuration(exitAnimDuration)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 进出场动画资源
+     * @param popTip [PopTip]
+     * @param enterResId 进入动画资源 id
+     * @param exitResId 退出动画资源 id
+     * @return [PopTip]
+     */
+    override fun setAnimResId(
+        popTip: Any?,
+        enterResId: Int,
+        exitResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setAnimResId(enterResId, exitResId)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 进入动画资源
+     * @param popTip [PopTip]
+     * @param enterResId 进入动画资源 id
+     * @return [PopTip]
+     */
+    override fun setEnterAnimResId(
+        popTip: Any?,
+        enterResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setEnterAnimResId(enterResId)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 退出动画资源
+     * @param popTip [PopTip]
+     * @param exitResId 退出动画资源 id
+     * @return [PopTip]
+     */
+    override fun setExitAnimResId(
+        popTip: Any?,
+        exitResId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setExitAnimResId(exitResId)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 动画实现
+     * @param popTip [PopTip]
+     * @return 动画实现对象 [DialogXAnimInterface]
+     */
+    override fun getDialogXAnimImpl(popTip: Any?): Any? {
+        return (popTip as? PopTip)?.dialogXAnimImpl
+    }
+
+    /**
+     * 设置指定 PopTip 动画实现
+     * @param popTip [PopTip]
+     * @param animImpl 动画实现对象 [DialogXAnimInterface]
+     * @return [PopTip]
+     */
+    override fun setDialogXAnimImpl(
+        popTip: Any?,
+        animImpl: Any?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        @Suppress("UNCHECKED_CAST")
+        (animImpl as? DialogXAnimInterface<PopTip>)?.let {
+            popTipObj.setDialogXAnimImpl(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 是否启用振动反馈
+     * @param popTip [PopTip]
+     * @param enabled 是否启用振动反馈
+     * @return [PopTip]
+     */
+    override fun setHapticFeedbackEnabled(
+        popTip: Any?,
+        enabled: Boolean
+    ): Any? {
+        (popTip as? PopTip)?.setHapticFeedbackEnabled(enabled)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 实现模式
+     * @param popTip [PopTip]
+     * @param dialogImplMode 实现模式 ( [PopTipConst.IMPL_MODE_DEFAULT] 等 )
+     * @return [PopTip]
+     */
+    override fun setDialogImplMode(
+        popTip: Any?,
+        dialogImplMode: Int
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        getImplMode(dialogImplMode)?.let {
+            popTipObj.setDialogImplMode(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 外边距
+     * @param popTip [PopTip]
+     * @param left 左边距
+     * @param top 上边距
+     * @param right 右边距
+     * @param bottom 下边距
+     * @return [PopTip]
+     */
+    override fun setMargin(
+        popTip: Any?,
+        left: Int,
+        top: Int,
+        right: Int,
+        bottom: Int
+    ): Any? {
+        (popTip as? PopTip)?.setMargin(left, top, right, bottom)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 左外边距
+     * @param popTip [PopTip]
+     * @return 左外边距
+     */
+    override fun getMarginLeft(popTip: Any?): Int {
+        return (popTip as? PopTip)?.marginLeft ?: PopTipConst.UNSET
+    }
+
+    /**
+     * 设置指定 PopTip 左外边距
+     * @param popTip [PopTip]
+     * @param left 左边距
+     * @return [PopTip]
+     */
+    override fun setMarginLeft(
+        popTip: Any?,
+        left: Int
+    ): Any? {
+        (popTip as? PopTip)?.setMarginLeft(left)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 上外边距
+     * @param popTip [PopTip]
+     * @return 上外边距
+     */
+    override fun getMarginTop(popTip: Any?): Int {
+        return (popTip as? PopTip)?.marginTop ?: PopTipConst.UNSET
+    }
+
+    /**
+     * 设置指定 PopTip 上外边距
+     * @param popTip [PopTip]
+     * @param top 上边距
+     * @return [PopTip]
+     */
+    override fun setMarginTop(
+        popTip: Any?,
+        top: Int
+    ): Any? {
+        (popTip as? PopTip)?.setMarginTop(top)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 右外边距
+     * @param popTip [PopTip]
+     * @return 右外边距
+     */
+    override fun getMarginRight(popTip: Any?): Int {
+        return (popTip as? PopTip)?.marginRight ?: PopTipConst.UNSET
+    }
+
+    /**
+     * 设置指定 PopTip 右外边距
+     * @param popTip [PopTip]
+     * @param right 右边距
+     * @return [PopTip]
+     */
+    override fun setMarginRight(
+        popTip: Any?,
+        right: Int
+    ): Any? {
+        (popTip as? PopTip)?.setMarginRight(right)
+        return popTip
+    }
+
+    /**
+     * 获取指定 PopTip 下外边距
+     * @param popTip [PopTip]
+     * @return 下外边距
+     */
+    override fun getMarginBottom(popTip: Any?): Int {
+        return (popTip as? PopTip)?.marginBottom ?: PopTipConst.UNSET
+    }
+
+    /**
+     * 设置指定 PopTip 下外边距
+     * @param popTip [PopTip]
+     * @param bottom 下边距
+     * @return [PopTip]
+     */
+    override fun setMarginBottom(
+        popTip: Any?,
+        bottom: Int
+    ): Any? {
+        (popTip as? PopTip)?.setMarginBottom(bottom)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 根布局内边距
+     * @param popTip [PopTip]
+     * @param padding 内边距
+     * @return [PopTip]
+     */
+    override fun setRootPadding(
+        popTip: Any?,
+        padding: Int
+    ): Any? {
+        (popTip as? PopTip)?.setRootPadding(padding)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 根布局内边距
+     * @param popTip [PopTip]
+     * @param paddingLeft 左内边距
+     * @param paddingTop 上内边距
+     * @param paddingRight 右内边距
+     * @param paddingBottom 下内边距
+     * @return [PopTip]
+     */
+    override fun setRootPadding(
+        popTip: Any?,
+        paddingLeft: Int,
+        paddingTop: Int,
+        paddingRight: Int,
+        paddingBottom: Int
+    ): Any? {
+        (popTip as? PopTip)?.setRootPadding(
+            paddingLeft, paddingTop, paddingRight, paddingBottom
+        )
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 显示生命周期监听
+     * @param popTip [PopTip]
+     * @param listener 显示生命周期监听
+     * @return [PopTip]
+     */
+    override fun setLifecycleListener(
+        popTip: Any?,
+        listener: IPopTipEngine.OnPopTipLifecycleListener?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        wrapLifecycle(listener)?.let {
+            popTipObj.dialogLifecycleCallback = it
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 显示回调
+     * @param popTip [PopTip]
+     * @param runnable 显示回调
+     * @return [PopTip]
+     */
+    override fun onShow(
+        popTip: Any?,
+        runnable: IPopTipEngine.OnPopTipRunnable?
+    ): Any? {
+        (popTip as? PopTip)?.onShow(wrapRunnable(runnable))
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 关闭回调
+     * @param popTip [PopTip]
+     * @param runnable 关闭回调
+     * @return [PopTip]
+     */
+    override fun onDismiss(
+        popTip: Any?,
+        runnable: IPopTipEngine.OnPopTipRunnable?
+    ): Any? {
+        (popTip as? PopTip)?.onDismiss(wrapRunnable(runnable))
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 快捷功能键动作
+     * @param popTip [PopTip]
+     * @param actionId 动作 id
+     * @param runnable 动作执行体
+     * @return [PopTip]
+     */
+    override fun setActionRunnable(
+        popTip: Any?,
+        actionId: Int,
+        runnable: IPopTipEngine.OnPopTipRunnable?
+    ): Any? {
+        (popTip as? PopTip)?.setActionRunnable(actionId, wrapRunnable(runnable))
+        return popTip
+    }
+
+    /**
+     * 清除指定 PopTip 快捷功能键动作
+     * @param popTip [PopTip]
+     * @param actionId 动作 id
+     * @return [PopTip]
+     */
+    override fun cleanAction(
+        popTip: Any?,
+        actionId: Int
+    ): Any? {
+        (popTip as? PopTip)?.cleanAction(actionId)
+        return popTip
+    }
+
+    /**
+     * 清除指定 PopTip 全部快捷功能键动作
+     * @param popTip [PopTip]
+     * @return [PopTip]
+     */
+    override fun cleanAllAction(popTip: Any?): Any? {
+        (popTip as? PopTip)?.cleanAllAction()
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 临时储物柜数据
+     * @param popTip [PopTip]
+     * @param key 数据 key
+     * @param obj 数据值
+     * @return [PopTip]
+     */
+    override fun setData(
+        popTip: Any?,
+        key: String?,
+        obj: Any?
+    ): Any? {
+        (popTip as? PopTip)?.setData(key, obj)
+        return popTip
+    }
+
+    /**
+     * 绑定指定 PopTip 随 LifecycleOwner 关闭
+     * @param popTip [PopTip]
+     * @param owner LifecycleOwner 对象
+     * @return [PopTip]
+     */
+    override fun bindDismissWithLifecycleOwner(
+        popTip: Any?,
+        owner: Any?
+    ): Any? {
+        val popTipObj = popTip as? PopTip ?: return popTip
+        (owner as? LifecycleOwner)?.let {
+            popTipObj.bindDismissWithLifecycleOwner(it)
+        }
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 自定义弹窗布局资源 id
+     * @param popTip [PopTip]
+     * @param customDialogLayoutId 自定义弹窗布局资源 id
+     * @return [PopTip]
+     */
+    override fun setCustomDialogLayoutResId(
+        popTip: Any?,
+        customDialogLayoutId: Int
+    ): Any? {
+        (popTip as? PopTip)?.setCustomDialogLayoutResId(customDialogLayoutId)
+        return popTip
+    }
+
+    /**
+     * 设置指定 PopTip 自定义弹窗布局资源 id
+     * @param popTip [PopTip]
+     * @param customDialogLayoutId 自定义弹窗布局资源 id
+     * @param isLightTheme 是否亮色主题布局
+     * @return [PopTip]
+     */
+    override fun setCustomDialogLayoutResId(
+        popTip: Any?,
+        customDialogLayoutId: Int,
+        isLightTheme: Boolean
+    ): Any? {
+        (popTip as? PopTip)?.setCustomDialogLayoutResId(customDialogLayoutId, isLightTheme)
+        return popTip
     }
 
     // ==========
@@ -270,17 +1335,7 @@ open class DialogXPopTipEngineImpl(
         }
         // 生命周期监听
         item.lifecycleListener()?.let { listener ->
-            popTip.setDialogLifecycleCallback(object : DialogLifecycleCallback<PopTip>() {
-                override fun onShow(dialog: PopTip) {
-                    super.onShow(dialog)
-                    listener.onShow(dialog)
-                }
-
-                override fun onDismiss(dialog: PopTip) {
-                    super.onDismiss(dialog)
-                    listener.onDismiss(dialog)
-                }
-            })
+            popTip.dialogLifecycleCallback = wrapLifecycle(listener)
         }
         return popTip
     }
@@ -347,6 +1402,20 @@ open class DialogXPopTipEngineImpl(
     }
 
     /**
+     * 获取 PopTip 对齐方式常量值
+     * @param align [DialogXStyle.PopTipSettings.ALIGN]
+     * @return 对齐方式 ( [PopTipConst.ALIGN_DEFAULT] 等 )
+     */
+    protected open fun getAlignValue(align: DialogXStyle.PopTipSettings.ALIGN?): Int {
+        return when (align) {
+            DialogXStyle.PopTipSettings.ALIGN.TOP -> PopTipConst.ALIGN_TOP
+            DialogXStyle.PopTipSettings.ALIGN.BOTTOM -> PopTipConst.ALIGN_BOTTOM
+            DialogXStyle.PopTipSettings.ALIGN.CENTER -> PopTipConst.ALIGN_CENTER
+            else -> PopTipConst.ALIGN_DEFAULT
+        }
+    }
+
+    /**
      * 获取 PopTip 实现模式
      * @param dialogImplMode 实现模式
      * @return [DialogX.IMPL_MODE]
@@ -363,6 +1432,70 @@ open class DialogXPopTipEngineImpl(
             PopTipConst.IMPL_MODE_DIALOG_FRAGMENT -> DialogX.IMPL_MODE.DIALOG_FRAGMENT
             PopTipConst.IMPL_MODE_FLOATING_ACTIVITY -> DialogX.IMPL_MODE.FLOATING_ACTIVITY
             else -> null
+        }
+    }
+
+    /**
+     * 获取 PopTip 明暗主题
+     * @param theme 明暗主题
+     * @return [DialogX.THEME]
+     */
+    protected open fun getTheme(theme: Int): DialogX.THEME? {
+        return when (theme) {
+            PopTipConst.THEME_LIGHT -> DialogX.THEME.LIGHT
+            PopTipConst.THEME_DARK -> DialogX.THEME.DARK
+            PopTipConst.THEME_AUTO -> DialogX.THEME.AUTO
+            else -> null
+        }
+    }
+
+    /**
+     * 包装按钮点击事件
+     * @param listener PopTip 按钮点击事件
+     * @return [OnDialogButtonClickListener]
+     */
+    protected open fun wrapButtonClick(
+        listener: IPopTipEngine.OnButtonClickListener?
+    ): OnDialogButtonClickListener<PopTip>? {
+        listener ?: return null
+        return OnDialogButtonClickListener<PopTip> { dialog, view ->
+            listener.onClick(dialog, view)
+        }
+    }
+
+    /**
+     * 包装显示生命周期监听
+     * @param listener PopTip 显示生命周期监听
+     * @return [DialogLifecycleCallback]
+     */
+    protected open fun wrapLifecycle(
+        listener: IPopTipEngine.OnPopTipLifecycleListener?
+    ): DialogLifecycleCallback<PopTip>? {
+        listener ?: return null
+        return object : DialogLifecycleCallback<PopTip>() {
+            override fun onShow(dialog: PopTip) {
+                super.onShow(dialog)
+                listener.onShow(dialog)
+            }
+
+            override fun onDismiss(dialog: PopTip) {
+                super.onDismiss(dialog)
+                listener.onDismiss(dialog)
+            }
+        }
+    }
+
+    /**
+     * 包装通用执行体
+     * @param runnable PopTip 通用执行体
+     * @return [DialogXRunnable]
+     */
+    protected open fun wrapRunnable(
+        runnable: IPopTipEngine.OnPopTipRunnable?
+    ): DialogXRunnable<PopTip>? {
+        runnable ?: return null
+        return DialogXRunnable<PopTip> { dialog ->
+            runnable.run(dialog)
         }
     }
 }
