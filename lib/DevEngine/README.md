@@ -21,6 +21,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - log             | Log Engine 日志打印
       - media           | Media Selector Engine 多媒体资源选择
       - permission      | Permission Engine 权限申请
+      - poptip          | PopTip Engine 非阻断式文本提示
       - refresh         | Refresh Engine 下拉刷新、上拉加载 View
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
@@ -38,6 +39,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - log             | Log Engine 日志打印
       - media           | Media Selector Engine 多媒体资源选择
       - permission      | Permission Engine 权限申请
+      - poptip          | PopTip Engine 非阻断式文本提示
       - push            | Push Engine 推送平台处理
       - refresh         | Refresh Engine 下拉刷新、上拉加载 View
       - share           | Share Engine 分享平台处理
@@ -71,6 +73,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * **Log 日志打印**
 * **Media Selector 多媒体资源选择**
 * **Permission 权限申请**
+* **PopTip Engine 非阻断式文本提示**
 * **Refresh Engine 下拉刷新、上拉加载 View**
 * **Storage Engine 外部、内部文件存储**
 * **Toast Engine 吐司提示**
@@ -167,6 +170,14 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 * 依赖 [XXPermissions 权限请求框架](https://github.com/getActivity/XXPermissions)
   实现 [XXPermissionsEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/permission/engine_xxpermissions.kt)
+
+
+### PopTip Engine 非阻断式文本提示 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/poptip)
+
+可选实现方案：
+
+* 依赖 [DialogX 弹窗框架](https://github.com/kongzue/DialogX)
+  实现 [DialogXPopTipEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/poptip/engine_dialogx_poptip.kt)
 
 
 ### Refresh Engine 下拉刷新、上拉加载 View - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/refresh)

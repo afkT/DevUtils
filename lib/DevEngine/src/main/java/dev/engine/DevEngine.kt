@@ -30,6 +30,8 @@ import dev.engine.core.log.DevLoggerEngineImpl
 import dev.engine.core.log.TimberEngineImpl
 import dev.engine.core.media.PictureSelectorEngineImpl
 import dev.engine.core.permission.XXPermissionsEngineImpl
+import dev.engine.core.poptip.DialogXPopTipEngineImpl
+import dev.engine.core.poptip.PopTipConfig
 import dev.engine.core.refresh.RefreshConfig
 import dev.engine.core.refresh.SmartRefreshLayoutEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
@@ -51,6 +53,8 @@ import dev.engine.media.DevMediaEngine
 import dev.engine.media.IMediaEngine
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
+import dev.engine.poptip.DevPopTipEngine
+import dev.engine.poptip.IPopTipEngine
 import dev.engine.push.DevPushEngine
 import dev.engine.push.IPushEngine
 import dev.engine.refresh.DevRefreshEngine
@@ -180,6 +184,7 @@ object DevEngine {
      * @param barCodeConfig BarCode Config
      * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
+     * @param popTipConfig PopTip Config
      * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
@@ -191,28 +196,25 @@ object DevEngine {
         barCodeConfig: BarCodeConfig? = null,
         eventBusConfig: EventBusConfig? = EventBusConfig.create(),
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
+        popTipConfig: PopTipConfig? = PopTipConfig.create(),
         webConfig: WebConfig? = WebConfig.default(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
         defaultMMKVInitialize(context)
-
-        if (keyValueConfig == null) {
+        // Key-Value Engine Config
+        var _keyValueConfig = keyValueConfig
+        if (_keyValueConfig == null) {
             try {
                 // 如果 MMKV 不为 null 则进行初始化
                 val mmkv = MMKVUtils.defaultHolder().mmkv
-                initializeDefaultEngines(
-                    context, cacheConfig,
-                    createMMKVConfig(cipher = null, mmkv = mmkv!!),
-                    logConfig, barCodeConfig, eventBusConfig,
-                    refreshConfig, webConfig
-                )
-                return
+                _keyValueConfig = createMMKVConfig(cipher = null, mmkv = mmkv!!)
             } catch (_: Exception) {
             }
         }
         initializeDefaultEngines(
-            context, cacheConfig, keyValueConfig, logConfig,
-            barCodeConfig, eventBusConfig, refreshConfig, webConfig
+            context, cacheConfig, _keyValueConfig, logConfig,
+            barCodeConfig, eventBusConfig, refreshConfig,
+            popTipConfig, webConfig
         )
     }
 
@@ -225,6 +227,7 @@ object DevEngine {
      * @param barCodeConfig BarCode Config
      * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
+     * @param popTipConfig PopTip Config
      * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
@@ -236,6 +239,7 @@ object DevEngine {
         barCodeConfig: BarCodeConfig?,
         eventBusConfig: EventBusConfig?,
         refreshConfig: RefreshConfig?,
+        popTipConfig: PopTipConfig?,
         webConfig: WebConfig?,
     ) {
         // ========================
@@ -332,6 +336,15 @@ object DevEngine {
             initializeSmartRefreshLayout()
             // 初始化 SmartRefreshLayout Refresh Engine 实现
             defaultSmartRefreshLayoutEngineImpl(config)
+        }
+
+        // ===============================
+        // = PopTip Engine 非阻断式文本提示 =
+        // ===============================
+
+        popTipConfig?.let { config ->
+            // 初始化 DialogX PopTip Engine 实现
+            defaultDialogXPopTipEngineImpl(config)
         }
 
         // =================================
@@ -580,6 +593,23 @@ object DevEngine {
         }
     }
 
+    // ===============================
+    // = PopTip Engine 非阻断式文本提示 =
+    // ===============================
+
+    /**
+     * 默认初始化 DialogX PopTip Engine 实现
+     * @param config PopTip Config
+     * @return DialogXPopTipEngineImpl
+     */
+    fun defaultDialogXPopTipEngineImpl(
+        config: PopTipConfig
+    ): DialogXPopTipEngineImpl {
+        return newDialogXPopTipEngineImpl(config).apply {
+            DevPopTipEngine.setEngine(this)
+        }
+    }
+
     // =================================
     // = Storage Engine 外部、内部文件存储 =
     // =================================
@@ -762,6 +792,18 @@ object DevEngine {
     }
 
     /**
+     * 设置 PopTip Engine
+     * @param key    key
+     * @param engine {@link IPopTipEngine}
+     */
+    fun <Config : IPopTipEngine.EngineConfig, Item : IPopTipEngine.EngineItem> setPopTipEngine(
+        key: String,
+        engine: IPopTipEngine<Config, Item>
+    ) {
+        DevPopTipEngine.setEngine(key, engine)
+    }
+
+    /**
      * 设置 Push Engine
      * @param key    key
      * @param engine {@link IPushEngine}
@@ -914,6 +956,12 @@ object DevEngine {
     fun getPermission() = DevPermissionEngine.getEngine()
 
     /**
+     * 获取 PopTip Engine
+     * @return PopTip Engine
+     */
+    fun getPopTip() = DevPopTipEngine.getEngine()
+
+    /**
      * 获取 Push Engine
      * @return Push Engine
      */
@@ -1026,6 +1074,12 @@ object DevEngine {
     fun getPermission(key: String?) = DevPermissionEngine.getEngine(key)
 
     /**
+     * 获取 PopTip Engine
+     * @return PopTip Engine
+     */
+    fun getPopTip(key: String?) = DevPopTipEngine.getEngine(key)
+
+    /**
      * 获取 Push Engine
      * @return Push Engine
      */
@@ -1136,6 +1190,12 @@ object DevEngine {
      * @return Permission Engine Generic Assist
      */
     fun getPermissionAssist() = DevPermissionEngine.getAssist()
+
+    /**
+     * 获取 PopTip Engine Generic Assist
+     * @return PopTip Engine Generic Assist
+     */
+    fun getPopTipAssist() = DevPopTipEngine.getAssist()
 
     /**
      * 获取 Push Engine Generic Assist
@@ -1383,6 +1443,21 @@ object DevEngine {
         config: RefreshConfig
     ): SmartRefreshLayoutEngineImpl {
         return SmartRefreshLayoutEngineImpl(config)
+    }
+
+    // ===============================
+    // = PopTip Engine 非阻断式文本提示 =
+    // ===============================
+
+    /**
+     * 创建 DialogX PopTip Engine 实现
+     * @param config PopTip Config
+     * @return DialogX PopTip Engine 实现
+     */
+    fun newDialogXPopTipEngineImpl(
+        config: PopTipConfig
+    ): DialogXPopTipEngineImpl {
+        return DialogXPopTipEngineImpl(config)
     }
 
     // =================================
