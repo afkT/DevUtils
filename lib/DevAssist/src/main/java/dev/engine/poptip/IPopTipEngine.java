@@ -263,9 +263,9 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
      */
     void setConfig(Config config);
 
-    // ============
+    // ==============
     // = 构建 PopTip =
-    // ============
+    // ==============
 
     /**
      * 构建 PopTip ( 不显示 )
@@ -345,9 +345,9 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
             Item item
     );
 
-    // ==================
+    // =================
     // = PopTip 句柄操作 =
-    // ==================
+    // =================
 
     // 以下方法对齐 com.kongzue.dialogx.dialogs.PopTip 实例方法
     // 统一以 Object popTip 作为操作句柄, 链式方法返回该句柄便于继续调用

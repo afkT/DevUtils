@@ -83,9 +83,9 @@ open class DialogXPopTipEngineImpl(
         }
     }
 
-    // ============
+    // ==============
     // = 构建 PopTip =
-    // ============
+    // ==============
 
     /**
      * 构建 PopTip ( 不显示 )
@@ -187,9 +187,9 @@ open class DialogXPopTipEngineImpl(
         return popTip
     }
 
-    // ==================
+    // =================
     // = PopTip 句柄操作 =
-    // ==================
+    // =================
 
     /**
      * 指定 PopTip 是否正在显示
