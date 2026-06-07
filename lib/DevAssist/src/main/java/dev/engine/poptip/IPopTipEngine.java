@@ -3,6 +3,8 @@ package dev.engine.poptip;
 import android.app.Activity;
 import android.view.View;
 
+import java.util.Map;
+
 /**
  * detail: PopTip Engine 接口
  * @author Ttt
@@ -42,6 +44,30 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
 
         // 默认圆角 ( px )
         int radiusPx();
+
+        // 默认主题样式对象 ( 映射全局 globalStyle )
+        Object style();
+
+        // 默认明暗主题 ( PopTipConst.THEME_*, 映射全局 globalTheme )
+        int theme();
+
+        // 默认提示文本样式对象 ( 映射全局 popTextInfo )
+        Object messageTextInfo();
+
+        // 默认按钮文本样式对象 ( 映射全局 buttonTextInfo )
+        Object buttonTextInfo();
+
+        // 默认是否启用振动反馈 ( 映射全局 useHaptic )
+        Boolean useHaptic();
+
+        // 默认进入动画时长 ( ms, 映射全局 enterAnimDuration )
+        long enterAnimDuration();
+
+        // 默认退出动画时长 ( ms, 映射全局 exitAnimDuration )
+        long exitAnimDuration();
+
+        // 默认背景色 ( ColorInt, 映射全局 backgroundColor )
+        Integer backgroundColor();
     }
 
     /**
@@ -88,6 +114,81 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
 
         // 显示生命周期监听
         OnPopTipLifecycleListener lifecycleListener();
+
+        // 主题样式对象
+        Object style();
+
+        // 明暗主题 ( PopTipConst.THEME_* )
+        int theme();
+
+        // 提示文本样式对象
+        Object messageTextInfo();
+
+        // 按钮文本样式对象
+        Object buttonTextInfo();
+
+        // 状态预置图标 ( PopTipConst.ICON_* )
+        int iconState();
+
+        // PopTip 自身点击事件
+        OnButtonClickListener onPopTipClickListener();
+
+        // 背景色资源 id ( ColorRes )
+        int backgroundColorRes();
+
+        // 图标是否随明暗模式自动染色 ( null 不设置 )
+        Boolean autoTintIcon();
+
+        // 图标是否染色 ( null 不设置 )
+        Boolean tintIcon();
+
+        // 进入动画时长 ( ms )
+        long enterAnimDuration();
+
+        // 退出动画时长 ( ms )
+        long exitAnimDuration();
+
+        // 进入动画资源 id
+        int enterAnimResId();
+
+        // 退出动画资源 id
+        int exitAnimResId();
+
+        // 自定义动画实现对象
+        Object dialogXAnimImpl();
+
+        // 是否启用振动反馈 ( null 不设置 )
+        Boolean hapticFeedbackEnabled();
+
+        // 左外边距 ( px )
+        int marginLeft();
+
+        // 上外边距 ( px )
+        int marginTop();
+
+        // 右外边距 ( px )
+        int marginRight();
+
+        // 下外边距 ( px )
+        int marginBottom();
+
+        // 根布局内边距 ( px )
+        int rootPadding();
+
+        // 临时储物柜数据
+        Map<String, Object> data();
+
+        // 显示层级
+        int thisOrderIndex();
+
+        // 绑定关闭的 LifecycleOwner 对象
+        Object lifecycleOwner();
+
+        // 自定义弹窗布局资源 id
+        int customDialogLayoutResId();
+
+        // 自定义弹窗布局是否亮色主题 ( null 使用单参方法 )
+        Boolean customDialogLayoutLightTheme();
     }
 
     /**

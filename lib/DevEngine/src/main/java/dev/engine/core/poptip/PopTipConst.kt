@@ -36,6 +36,22 @@ object PopTipConst {
     const val ALIGN_CENTER = 2
 
     // ==========
+    // = 状态图标 =
+    // ==========
+
+    // 默认 ( 不使用状态预置图标 )
+    const val ICON_DEFAULT = -1
+
+    // 成功状态图标
+    const val ICON_SUCCESS = 0
+
+    // 警告状态图标
+    const val ICON_WARNING = 1
+
+    // 错误状态图标
+    const val ICON_ERROR = 2
+
+    // ==========
     // = 主题明暗 =
     // ==========
 

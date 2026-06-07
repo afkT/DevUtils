@@ -50,6 +50,40 @@ open class DialogXPopTipEngineImpl(
             getImplMode(it.dialogImplMode())?.let { mode ->
                 DialogX.implIMPLMode = mode
             }
+            // 主题样式
+            (it.style() as? DialogXStyle)?.let { style ->
+                DialogX.globalStyle = style
+            }
+            // 明暗主题
+            getTheme(it.theme())?.let { theme ->
+                DialogX.globalTheme = theme
+            }
+            // 提示文本样式
+            (it.messageTextInfo() as? TextInfo)?.let { textInfo ->
+                DialogX.popTextInfo = textInfo
+            }
+            // 按钮文本样式
+            (it.buttonTextInfo() as? TextInfo)?.let { textInfo ->
+                DialogX.buttonTextInfo = textInfo
+            }
+            // 振动反馈
+            it.useHaptic()?.let { useHaptic ->
+                DialogX.useHaptic = useHaptic
+            }
+            // 进入动画时长
+            val enterAnimDuration = it.enterAnimDuration()
+            if (enterAnimDuration >= 0) {
+                DialogX.enterAnimDuration = enterAnimDuration
+            }
+            // 退出动画时长
+            val exitAnimDuration = it.exitAnimDuration()
+            if (exitAnimDuration >= 0) {
+                DialogX.exitAnimDuration = exitAnimDuration
+            }
+            // 背景色
+            it.backgroundColor()?.let { backgroundColor ->
+                DialogX.backgroundColor = backgroundColor
+            }
         }
     }
 
@@ -1282,6 +1316,7 @@ open class DialogXPopTipEngineImpl(
      * @param item PopTip 参数
      * @return [PopTip]
      */
+    @Suppress("DEPRECATION", "UNCHECKED_CAST")
     protected open fun buildPopTip(item: PopTipItem?): PopTip {
         val popTip = PopTip.build()
         item ?: return popTip
@@ -1336,6 +1371,115 @@ open class DialogXPopTipEngineImpl(
         // 生命周期监听
         item.lifecycleListener()?.let { listener ->
             popTip.dialogLifecycleCallback = wrapLifecycle(listener)
+        }
+        // 主题样式
+        (item.style() as? DialogXStyle)?.let {
+            popTip.setStyle(it)
+        }
+        // 明暗主题
+        getTheme(item.theme())?.let {
+            popTip.setTheme(it)
+        }
+        // 提示文本样式
+        (item.messageTextInfo() as? TextInfo)?.let {
+            popTip.setMessageTextInfo(it)
+        }
+        // 按钮文本样式
+        (item.buttonTextInfo() as? TextInfo)?.let {
+            popTip.setButtonTextInfo(it)
+        }
+        // 状态预置图标
+        when (item.iconState()) {
+            PopTipConst.ICON_SUCCESS -> popTip.iconSuccess()
+            PopTipConst.ICON_WARNING -> popTip.iconWarning()
+            PopTipConst.ICON_ERROR -> popTip.iconError()
+        }
+        // PopTip 自身点击事件
+        item.onPopTipClickListener()?.let { listener ->
+            popTip.setOnPopTipClickListener(wrapButtonClick(listener))
+        }
+        // 背景色资源 id
+        val backgroundColorRes = item.backgroundColorRes()
+        if (backgroundColorRes > 0) {
+            popTip.setBackgroundColorRes(backgroundColorRes)
+        }
+        // 图标染色
+        item.autoTintIcon()?.let {
+            popTip.setAutoTintIconInLightOrDarkMode(it)
+        }
+        item.tintIcon()?.let {
+            popTip.setTintIcon(it)
+        }
+        // 动画时长
+        val enterAnimDuration = item.enterAnimDuration()
+        if (enterAnimDuration >= 0) {
+            popTip.setEnterAnimDuration(enterAnimDuration)
+        }
+        val exitAnimDuration = item.exitAnimDuration()
+        if (exitAnimDuration >= 0) {
+            popTip.setExitAnimDuration(exitAnimDuration)
+        }
+        // 动画资源
+        val enterAnimResId = item.enterAnimResId()
+        if (enterAnimResId > 0) {
+            popTip.setEnterAnimResId(enterAnimResId)
+        }
+        val exitAnimResId = item.exitAnimResId()
+        if (exitAnimResId > 0) {
+            popTip.setExitAnimResId(exitAnimResId)
+        }
+        // 自定义动画实现
+        (item.dialogXAnimImpl() as? DialogXAnimInterface<PopTip>)?.let {
+            popTip.setDialogXAnimImpl(it)
+        }
+        // 振动反馈
+        item.hapticFeedbackEnabled()?.let {
+            popTip.setHapticFeedbackEnabled(it)
+        }
+        // 外边距
+        val marginLeft = item.marginLeft()
+        if (marginLeft != PopTipConst.UNSET) {
+            popTip.setMarginLeft(marginLeft)
+        }
+        val marginTop = item.marginTop()
+        if (marginTop != PopTipConst.UNSET) {
+            popTip.setMarginTop(marginTop)
+        }
+        val marginRight = item.marginRight()
+        if (marginRight != PopTipConst.UNSET) {
+            popTip.setMarginRight(marginRight)
+        }
+        val marginBottom = item.marginBottom()
+        if (marginBottom != PopTipConst.UNSET) {
+            popTip.setMarginBottom(marginBottom)
+        }
+        // 根布局内边距
+        val rootPadding = item.rootPadding()
+        if (rootPadding != PopTipConst.UNSET) {
+            popTip.setRootPadding(rootPadding)
+        }
+        // 临时储物柜数据
+        item.data()?.forEach { (key, value) ->
+            popTip.setData(key, value)
+        }
+        // 显示层级
+        val thisOrderIndex = item.thisOrderIndex()
+        if (thisOrderIndex != PopTipConst.UNSET) {
+            popTip.setThisOrderIndex(thisOrderIndex)
+        }
+        // 绑定关闭的 LifecycleOwner
+        (item.lifecycleOwner() as? LifecycleOwner)?.let {
+            popTip.bindDismissWithLifecycleOwner(it)
+        }
+        // 自定义弹窗布局
+        val customDialogLayoutResId = item.customDialogLayoutResId()
+        if (customDialogLayoutResId > 0) {
+            val isLightTheme = item.customDialogLayoutLightTheme()
+            if (isLightTheme == null) {
+                popTip.setCustomDialogLayoutResId(customDialogLayoutResId)
+            } else {
+                popTip.setCustomDialogLayoutResId(customDialogLayoutResId, isLightTheme)
+            }
         }
         return popTip
     }
