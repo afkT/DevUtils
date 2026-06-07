@@ -18,10 +18,6 @@ open class DialogXPopTipEngineImpl(
     @JvmField protected val mConfig: PopTipConfig
 ) : IPopTipEngine<PopTipConfig?, PopTipItem?> {
 
-    // 单例 PopTip
-    @JvmField
-    protected var mSinglePopTip: PopTip? = null
-
     // =============
     // = 对外公开方法 =
     // =============
@@ -189,74 +185,6 @@ open class DialogXPopTipEngineImpl(
         val popTip = buildPopTip(item)
         showPopTip(popTip, activity, item)
         return popTip
-    }
-
-    // ==============
-    // = 单例 PopTip =
-    // ==============
-
-    /**
-     * 显示单例 PopTip
-     * @param text 提示文本
-     * @return [PopTip]
-     */
-    override fun showSingle(text: CharSequence?): PopTip {
-        return showSingle(PopTipItem.create(text))
-    }
-
-    /**
-     * 显示单例 PopTip
-     * @param item PopTip 参数
-     * @return [PopTip]
-     */
-    override fun showSingle(item: PopTipItem?): PopTip {
-        return showSingle(null, item)
-    }
-
-    /**
-     * 显示单例 PopTip
-     * @param activity 显示的 Activity
-     * @param item PopTip 参数
-     * @return [PopTip]
-     */
-    override fun showSingle(
-        activity: Activity?,
-        item: PopTipItem?
-    ): PopTip {
-        dismiss()
-        val popTip = buildPopTip(item)
-        mSinglePopTip = popTip
-        showPopTip(popTip, activity, item)
-        return popTip
-    }
-
-    /**
-     * 单例 PopTip 是否正在显示
-     * @return `true` yes, `false` no
-     */
-    override fun isShow(): Boolean {
-        return mSinglePopTip?.isShow ?: false
-    }
-
-    /**
-     * 关闭单例 PopTip
-     */
-    override fun dismiss() {
-        try {
-            mSinglePopTip?.dismiss()
-        } catch (_: Exception) {
-        }
-        mSinglePopTip = null
-    }
-
-    /**
-     * 隐藏单例 PopTip
-     */
-    override fun hide() {
-        try {
-            mSinglePopTip?.hide()
-        } catch (_: Exception) {
-        }
     }
 
     // ==================

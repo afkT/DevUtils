@@ -345,51 +345,6 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
             Item item
     );
 
-    // ==============
-    // = 单例 PopTip =
-    // ==============
-
-    /**
-     * 显示单例 PopTip
-     * @param text 提示文本
-     * @return PopTip 对象
-     */
-    Object showSingle(CharSequence text);
-
-    /**
-     * 显示单例 PopTip
-     * @param item PopTip 参数
-     * @return PopTip 对象
-     */
-    Object showSingle(Item item);
-
-    /**
-     * 显示单例 PopTip
-     * @param activity 显示的 Activity
-     * @param item     PopTip 参数
-     * @return PopTip 对象
-     */
-    Object showSingle(
-            Activity activity,
-            Item item
-    );
-
-    /**
-     * 单例 PopTip 是否正在显示
-     * @return {@code true} yes, {@code false} no
-     */
-    boolean isShow();
-
-    /**
-     * 关闭单例 PopTip
-     */
-    void dismiss();
-
-    /**
-     * 隐藏单例 PopTip
-     */
-    void hide();
-
     // ==================
     // = PopTip 句柄操作 =
     // ==================
