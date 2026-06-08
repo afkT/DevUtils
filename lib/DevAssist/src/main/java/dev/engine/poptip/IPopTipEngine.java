@@ -352,6 +352,12 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
     // 以下方法直接操作 Engine 内部维护的单例 PopTip ( onlyOne 时记录 )
 
     /**
+     * 是否使用单例 PopTip
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isSinglePopTip();
+
+    /**
      * 获取单例 PopTip
      * @return 单例 PopTip 对象
      */

@@ -204,6 +204,14 @@ open class DialogXPopTipEngineImpl(
     // =====================
 
     /**
+     * 是否使用单例 PopTip
+     * @return `true` yes, `false` no
+     */
+    override fun isSinglePopTip(): Boolean {
+        return mOnlyOnePopTip
+    }
+
+    /**
      * 获取单例 PopTip
      * @return 单例 [PopTip]
      */

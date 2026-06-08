@@ -188,6 +188,17 @@ fun <Item : IPopTipEngine.EngineItem> Item?.poptip_show(
 // 以下方法直接操作 Engine 内部维护的单例 PopTip ( onlyOne 时记录 )
 
 /**
+ * 是否使用单例 PopTip
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun poptip_isSinglePopTip(
+    engine: String? = null
+): Boolean {
+    return engine.getPopTipEngine()?.isSinglePopTip ?: false
+}
+
+/**
  * 获取单例 PopTip
  * @param engine String?
  * @return 单例 PopTip 对象
