@@ -1501,9 +1501,11 @@ open class DialogXPopTipEngineImpl(
             align
         }
         return when (value) {
+            PopTipConst.ALIGN_CENTER -> DialogXStyle.PopTipSettings.ALIGN.CENTER
             PopTipConst.ALIGN_TOP -> DialogXStyle.PopTipSettings.ALIGN.TOP
             PopTipConst.ALIGN_BOTTOM -> DialogXStyle.PopTipSettings.ALIGN.BOTTOM
-            PopTipConst.ALIGN_CENTER -> DialogXStyle.PopTipSettings.ALIGN.CENTER
+            PopTipConst.ALIGN_TOP_INSIDE -> DialogXStyle.PopTipSettings.ALIGN.TOP_INSIDE
+            PopTipConst.ALIGN_BOTTOM_INSIDE -> DialogXStyle.PopTipSettings.ALIGN.BOTTOM_INSIDE
             else -> null
         }
     }
@@ -1515,9 +1517,11 @@ open class DialogXPopTipEngineImpl(
      */
     protected open fun getAlignValue(align: DialogXStyle.PopTipSettings.ALIGN?): Int {
         return when (align) {
+            DialogXStyle.PopTipSettings.ALIGN.CENTER -> PopTipConst.ALIGN_CENTER
             DialogXStyle.PopTipSettings.ALIGN.TOP -> PopTipConst.ALIGN_TOP
             DialogXStyle.PopTipSettings.ALIGN.BOTTOM -> PopTipConst.ALIGN_BOTTOM
-            DialogXStyle.PopTipSettings.ALIGN.CENTER -> PopTipConst.ALIGN_CENTER
+            DialogXStyle.PopTipSettings.ALIGN.TOP_INSIDE -> PopTipConst.ALIGN_TOP_INSIDE
+            DialogXStyle.PopTipSettings.ALIGN.BOTTOM_INSIDE -> PopTipConst.ALIGN_BOTTOM_INSIDE
             else -> PopTipConst.ALIGN_DEFAULT
         }
     }

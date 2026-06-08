@@ -26,14 +26,20 @@ object PopTipConst {
     // 默认对齐方式
     const val ALIGN_DEFAULT = -1
 
+    // 居中对齐
+    const val ALIGN_CENTER = 0
+
     // 顶部对齐
-    const val ALIGN_TOP = 0
+    const val ALIGN_TOP = 1
 
     // 底部对齐
-    const val ALIGN_BOTTOM = 1
+    const val ALIGN_BOTTOM = 2
 
-    // 居中对齐
-    const val ALIGN_CENTER = 2
+    // 顶部内侧对齐
+    const val ALIGN_TOP_INSIDE = 3
+
+    // 底部内侧对齐
+    const val ALIGN_BOTTOM_INSIDE = 4
 
     // ==========
     // = 状态图标 =
