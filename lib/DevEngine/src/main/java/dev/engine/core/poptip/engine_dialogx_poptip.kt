@@ -18,6 +18,14 @@ open class DialogXPopTipEngineImpl(
     @JvmField protected val mConfig: PopTipConfig
 ) : IPopTipEngine<PopTipConfig?, PopTipItem?> {
 
+    // 单例 PopTip
+    @JvmField
+    protected var mSinglePopTip: PopTip? = null
+
+    // 是否单例 PopTip
+    @JvmField
+    protected var mOnlyOnePopTip: Boolean = false
+
     // =============
     // = 对外公开方法 =
     // =============
@@ -37,12 +45,17 @@ open class DialogXPopTipEngineImpl(
     override fun setConfig(config: PopTipConfig?) {
         config?.let {
             it.onlyOne()?.let { onlyOne ->
-                DialogX.onlyOnePopTip = onlyOne
+//                // 是否单个 PopTip
+//                DialogX.onlyOnePopTip = onlyOne
+                // 不通过 DialogX.onlyOnePopTip 实现，避免影响全局
+                mOnlyOnePopTip = onlyOne
             }
+            // 圆角 ( px )
             val radiusPx = it.radiusPx()
             if (radiusPx >= 0) {
                 DialogX.defaultPopTipBackgroundRadius = radiusPx
             }
+            // 实现模式
             getImplMode(it.dialogImplMode())?.let { mode ->
                 DialogX.implIMPLMode = mode
             }
@@ -227,10 +240,8 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun show(popTip: Any?): Any? {
-        try {
-            getPopTip(popTip)?.show()
-        } catch (_: Exception) {
-        }
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        showPopTip(popTipObj, null, null)
         return popTip
     }
 
@@ -244,15 +255,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         activity: Activity?
     ): Any? {
-        try {
-            val popTipObj = getPopTip(popTip) ?: return popTip
-            if (activity != null) {
-                popTipObj.show(activity)
-            } else {
-                popTipObj.show()
-            }
-        } catch (_: Exception) {
-        }
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        showPopTip(popTipObj, activity, null)
         return popTip
     }
 
@@ -1455,12 +1459,18 @@ open class DialogXPopTipEngineImpl(
      * @param popTip [PopTip]
      * @param activity 显示的 Activity
      * @param item PopTip 参数
+     * @param onlyOnePopTip 是否单例 PopTip
      */
     protected open fun showPopTip(
         popTip: PopTip,
         activity: Activity?,
-        item: PopTipItem?
+        item: PopTipItem?,
+        onlyOnePopTip: Boolean = mOnlyOnePopTip
     ) {
+        // 关闭单例 PopTip
+        dismissSinglePopTip()
+        // 设置单例 PopTip
+        setSinglePopTip(popTip, onlyOnePopTip)
         try {
             if (activity != null) {
                 popTip.show(activity)
@@ -1469,8 +1479,9 @@ open class DialogXPopTipEngineImpl(
             }
         } catch (_: Exception) {
         }
+        item ?: return
         // 常驻显示
-        if (item != null && item.noAutoDismiss()) {
+        if (item.noAutoDismiss()) {
             popTip.noAutoDismiss()
             return
         }
@@ -1667,5 +1678,40 @@ open class DialogXPopTipEngineImpl(
      */
     protected open fun getLifecycleOwner(owner: Any?): LifecycleOwner? {
         return owner as? LifecycleOwner
+    }
+
+    // ==============
+    // = 单例 PopTip =
+    // ==============
+
+    /**
+     * 获取单例 PopTip
+     * @return [PopTip]
+     */
+    protected open fun singlePopTip(): PopTip? = mSinglePopTip
+
+    /**
+     * 关闭单例 PopTip
+     */
+    protected open fun dismissSinglePopTip() {
+        try {
+            mSinglePopTip?.dismiss()
+        } catch (_: Exception) {
+        }
+        mSinglePopTip = null
+    }
+
+    /**
+     * 设置单例 PopTip
+     * @param popTip [PopTip]
+     * @param onlyOnePopTip 是否单例 PopTip
+     */
+    protected open fun setSinglePopTip(
+        popTip: PopTip?,
+        onlyOnePopTip: Boolean
+    ) {
+        if (onlyOnePopTip) {
+            mSinglePopTip = popTip
+        }
     }
 }
