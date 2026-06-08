@@ -345,6 +345,34 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
             Item item
     );
 
+    // =====================
+    // = 单例 PopTip 句柄操作 =
+    // =====================
+
+    // 以下方法直接操作 Engine 内部维护的单例 PopTip ( onlyOne 时记录 )
+
+    /**
+     * 获取单例 PopTip
+     * @return 单例 PopTip 对象
+     */
+    Object getSinglePopTip();
+
+    /**
+     * 单例 PopTip 是否正在显示
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isShowSinglePopTip();
+
+    /**
+     * 关闭单例 PopTip
+     */
+    void dismissSinglePopTip();
+
+    /**
+     * 关闭单例 PopTip ( 动画 )
+     */
+    void hideSinglePopTip();
+
     // =================
     // = PopTip 句柄操作 =
     // =================

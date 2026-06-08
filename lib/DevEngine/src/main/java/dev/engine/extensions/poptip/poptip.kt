@@ -181,6 +181,54 @@ fun <Item : IPopTipEngine.EngineItem> Item?.poptip_show(
     return engine.getPopTipEngine()?.show(activity, this)
 }
 
+// =====================
+// = 单例 PopTip 句柄操作 =
+// =====================
+
+// 以下方法直接操作 Engine 内部维护的单例 PopTip ( onlyOne 时记录 )
+
+/**
+ * 获取单例 PopTip
+ * @param engine String?
+ * @return 单例 PopTip 对象
+ */
+fun poptip_getSinglePopTip(
+    engine: String? = null
+): Any? {
+    return engine.getPopTipEngine()?.singlePopTip
+}
+
+/**
+ * 单例 PopTip 是否正在显示
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun poptip_isShowSinglePopTip(
+    engine: String? = null
+): Boolean {
+    return engine.getPopTipEngine()?.isShowSinglePopTip ?: false
+}
+
+/**
+ * 关闭单例 PopTip
+ * @param engine String?
+ */
+fun poptip_dismissSinglePopTip(
+    engine: String? = null
+) {
+    engine.getPopTipEngine()?.dismissSinglePopTip()
+}
+
+/**
+ * 关闭单例 PopTip ( 动画 )
+ * @param engine String?
+ */
+fun poptip_hideSinglePopTip(
+    engine: String? = null
+) {
+    engine.getPopTipEngine()?.hideSinglePopTip()
+}
+
 // =================
 // = PopTip 句柄操作 =
 // =================

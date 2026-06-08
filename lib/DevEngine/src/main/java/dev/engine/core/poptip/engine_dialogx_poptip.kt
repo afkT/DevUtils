@@ -199,6 +199,47 @@ open class DialogXPopTipEngineImpl(
         return popTip
     }
 
+    // =====================
+    // = 单例 PopTip 句柄操作 =
+    // =====================
+
+    /**
+     * 获取单例 PopTip
+     * @return 单例 [PopTip]
+     */
+    override fun getSinglePopTip(): PopTip? {
+        return mSinglePopTip
+    }
+
+    /**
+     * 单例 PopTip 是否正在显示
+     * @return `true` yes, `false` no
+     */
+    override fun isShowSinglePopTip(): Boolean {
+        return mSinglePopTip?.isShow ?: false
+    }
+
+    /**
+     * 关闭单例 PopTip
+     */
+    override fun dismissSinglePopTip() {
+        try {
+            mSinglePopTip?.dismiss()
+        } catch (_: Exception) {
+        }
+        mSinglePopTip = null
+    }
+
+    /**
+     * 关闭单例 PopTip ( 动画 )
+     */
+    override fun hideSinglePopTip() {
+        try {
+            mSinglePopTip?.hide()
+        } catch (_: Exception) {
+        }
+    }
+
     // =================
     // = PopTip 句柄操作 =
     // =================
@@ -1683,23 +1724,6 @@ open class DialogXPopTipEngineImpl(
     // ==============
     // = 单例 PopTip =
     // ==============
-
-    /**
-     * 获取单例 PopTip
-     * @return [PopTip]
-     */
-    protected open fun singlePopTip(): PopTip? = mSinglePopTip
-
-    /**
-     * 关闭单例 PopTip
-     */
-    protected open fun dismissSinglePopTip() {
-        try {
-            mSinglePopTip?.dismiss()
-        } catch (_: Exception) {
-        }
-        mSinglePopTip = null
-    }
 
     /**
      * 设置单例 PopTip
