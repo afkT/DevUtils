@@ -47,7 +47,7 @@ open class DialogXPopTipEngineImpl(
                 DialogX.implIMPLMode = mode
             }
             // 主题样式
-            (it.style() as? DialogXStyle)?.let { style ->
+            getDialogXStyle(it.style())?.let { style ->
                 DialogX.globalStyle = style
             }
             // 明暗主题
@@ -55,11 +55,11 @@ open class DialogXPopTipEngineImpl(
                 DialogX.globalTheme = theme
             }
             // 提示文本样式
-            (it.messageTextInfo() as? TextInfo)?.let { textInfo ->
+            getTextInfo(it.messageTextInfo())?.let { textInfo ->
                 DialogX.popTextInfo = textInfo
             }
             // 按钮文本样式
-            (it.buttonTextInfo() as? TextInfo)?.let { textInfo ->
+            getTextInfo(it.buttonTextInfo())?.let { textInfo ->
                 DialogX.buttonTextInfo = textInfo
             }
             // 振动反馈
@@ -110,8 +110,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun buildView(onBindView: Any?): PopTip {
-        @Suppress("UNCHECKED_CAST")
-        val bindView = onBindView as? OnBindView<PopTip>
+        val bindView = getOnBindView(onBindView)
         return if (bindView != null) PopTip.build(bindView) else PopTip.build()
     }
 
@@ -197,7 +196,7 @@ open class DialogXPopTipEngineImpl(
      * @return `true` yes, `false` no
      */
     override fun isShow(popTip: Any?): Boolean {
-        return (popTip as? PopTip)?.isShow ?: false
+        return getPopTip(popTip)?.isShow ?: false
     }
 
     /**
@@ -206,7 +205,7 @@ open class DialogXPopTipEngineImpl(
      */
     override fun dismiss(popTip: Any?) {
         try {
-            (popTip as? PopTip)?.dismiss()
+            getPopTip(popTip)?.dismiss()
         } catch (_: Exception) {
         }
     }
@@ -217,7 +216,7 @@ open class DialogXPopTipEngineImpl(
      */
     override fun hide(popTip: Any?) {
         try {
-            (popTip as? PopTip)?.hide()
+            getPopTip(popTip)?.hide()
         } catch (_: Exception) {
         }
     }
@@ -229,7 +228,7 @@ open class DialogXPopTipEngineImpl(
      */
     override fun show(popTip: Any?): Any? {
         try {
-            (popTip as? PopTip)?.show()
+            getPopTip(popTip)?.show()
         } catch (_: Exception) {
         }
         return popTip
@@ -246,7 +245,7 @@ open class DialogXPopTipEngineImpl(
         activity: Activity?
     ): Any? {
         try {
-            val popTipObj = popTip as? PopTip ?: return popTip
+            val popTipObj = getPopTip(popTip) ?: return popTip
             if (activity != null) {
                 popTipObj.show(activity)
             } else {
@@ -262,7 +261,7 @@ open class DialogXPopTipEngineImpl(
      * @param popTip [PopTip]
      */
     override fun refreshUI(popTip: Any?) {
-        (popTip as? PopTip)?.refreshUI()
+        getPopTip(popTip)?.refreshUI()
     }
 
     /**
@@ -275,7 +274,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         delay: Long
     ): Any? {
-        (popTip as? PopTip)?.autoDismiss(delay)
+        getPopTip(popTip)?.autoDismiss(delay)
         return popTip
     }
 
@@ -284,7 +283,7 @@ open class DialogXPopTipEngineImpl(
      * @param popTip [PopTip]
      */
     override fun resetAutoDismissTimer(popTip: Any?) {
-        (popTip as? PopTip)?.resetAutoDismissTimer()
+        getPopTip(popTip)?.resetAutoDismissTimer()
     }
 
     /**
@@ -293,7 +292,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun showShort(popTip: Any?): Any? {
-        (popTip as? PopTip)?.showShort()
+        getPopTip(popTip)?.showShort()
         return popTip
     }
 
@@ -303,7 +302,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun showLong(popTip: Any?): Any? {
-        (popTip as? PopTip)?.showLong()
+        getPopTip(popTip)?.showLong()
         return popTip
     }
 
@@ -313,7 +312,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun showAlways(popTip: Any?): Any? {
-        (popTip as? PopTip)?.showAlways()
+        getPopTip(popTip)?.showAlways()
         return popTip
     }
 
@@ -323,7 +322,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun noAutoDismiss(popTip: Any?): Any? {
-        (popTip as? PopTip)?.noAutoDismiss()
+        getPopTip(popTip)?.noAutoDismiss()
         return popTip
     }
 
@@ -333,7 +332,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun bringToFront(popTip: Any?): Any? {
-        (popTip as? PopTip)?.bringToFront()
+        getPopTip(popTip)?.bringToFront()
         return popTip
     }
 
@@ -347,7 +346,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         orderIndex: Int
     ): Any? {
-        (popTip as? PopTip)?.setThisOrderIndex(orderIndex)
+        getPopTip(popTip)?.setThisOrderIndex(orderIndex)
         return popTip
     }
 
@@ -361,8 +360,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         style: Any?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
-        (style as? DialogXStyle)?.let {
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        getDialogXStyle(style)?.let {
             popTipObj.setStyle(it)
         }
         return popTip
@@ -378,7 +377,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         theme: Int
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
+        val popTipObj = getPopTip(popTip) ?: return popTip
         getTheme(theme)?.let {
             popTipObj.setTheme(it)
         }
@@ -395,9 +394,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         onBindView: Any?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
-        @Suppress("UNCHECKED_CAST")
-        (onBindView as? OnBindView<PopTip>)?.let {
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        getOnBindView(onBindView)?.let {
             popTipObj.setCustomView(it)
         }
         return popTip
@@ -409,7 +407,7 @@ open class DialogXPopTipEngineImpl(
      * @return 自定义布局 [View]
      */
     override fun getCustomView(popTip: Any?): View? {
-        return (popTip as? PopTip)?.customView
+        return getPopTip(popTip)?.customView
     }
 
     /**
@@ -418,7 +416,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun removeCustomView(popTip: Any?): Any? {
-        (popTip as? PopTip)?.removeCustomView()
+        getPopTip(popTip)?.removeCustomView()
         return popTip
     }
 
@@ -428,7 +426,7 @@ open class DialogXPopTipEngineImpl(
      * @return 对齐方式 ( [PopTipConst.ALIGN_DEFAULT] 等 )
      */
     override fun getAlign(popTip: Any?): Int {
-        return getAlignValue((popTip as? PopTip)?.align)
+        return getAlignValue(getPopTip(popTip)?.align)
     }
 
     /**
@@ -441,7 +439,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         align: Int
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
+        val popTipObj = getPopTip(popTip) ?: return popTip
         getAlign(align)?.let {
             popTipObj.setAlign(it)
         }
@@ -454,7 +452,7 @@ open class DialogXPopTipEngineImpl(
      * @return 图标资源 id
      */
     override fun getIconResId(popTip: Any?): Int {
-        return (popTip as? PopTip)?.iconResId ?: PopTipConst.UNSET
+        return getPopTip(popTip)?.iconResId ?: PopTipConst.UNSET
     }
 
     /**
@@ -467,7 +465,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         iconResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setIconResId(iconResId)
+        getPopTip(popTip)?.setIconResId(iconResId)
         return popTip
     }
 
@@ -477,7 +475,7 @@ open class DialogXPopTipEngineImpl(
      * @return 提示文本
      */
     override fun getMessage(popTip: Any?): CharSequence? {
-        return (popTip as? PopTip)?.message
+        return getPopTip(popTip)?.message
     }
 
     /**
@@ -490,7 +488,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         message: CharSequence?
     ): Any? {
-        (popTip as? PopTip)?.message = message
+        getPopTip(popTip)?.message = message
         return popTip
     }
 
@@ -504,7 +502,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         messageResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setMessage(messageResId)
+        getPopTip(popTip)?.setMessage(messageResId)
         return popTip
     }
 
@@ -518,7 +516,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         message: CharSequence?
     ): Any? {
-        (popTip as? PopTip)?.appendMessage(message)
+        getPopTip(popTip)?.appendMessage(message)
         return popTip
     }
 
@@ -528,7 +526,7 @@ open class DialogXPopTipEngineImpl(
      * @return 按钮文本
      */
     override fun getButtonText(popTip: Any?): CharSequence? {
-        return (popTip as? PopTip)?.buttonText
+        return getPopTip(popTip)?.buttonText
     }
 
     /**
@@ -541,7 +539,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         buttonText: CharSequence?
     ): Any? {
-        (popTip as? PopTip)?.setButton(buttonText)
+        getPopTip(popTip)?.setButton(buttonText)
         return popTip
     }
 
@@ -555,7 +553,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         buttonTextResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setButton(buttonTextResId)
+        getPopTip(popTip)?.setButton(buttonTextResId)
         return popTip
     }
 
@@ -569,7 +567,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         listener: IPopTipEngine.OnButtonClickListener?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
+        val popTipObj = getPopTip(popTip) ?: return popTip
         wrapButtonClick(listener)?.let {
             popTipObj.setButton(it)
         }
@@ -588,7 +586,7 @@ open class DialogXPopTipEngineImpl(
         buttonText: CharSequence?,
         listener: IPopTipEngine.OnButtonClickListener?
     ): Any? {
-        (popTip as? PopTip)?.setButton(buttonText, wrapButtonClick(listener))
+        getPopTip(popTip)?.setButton(buttonText, wrapButtonClick(listener))
         return popTip
     }
 
@@ -604,7 +602,7 @@ open class DialogXPopTipEngineImpl(
         buttonTextResId: Int,
         listener: IPopTipEngine.OnButtonClickListener?
     ): Any? {
-        (popTip as? PopTip)?.setButton(buttonTextResId, wrapButtonClick(listener))
+        getPopTip(popTip)?.setButton(buttonTextResId, wrapButtonClick(listener))
         return popTip
     }
 
@@ -614,7 +612,7 @@ open class DialogXPopTipEngineImpl(
      * @return 提示文本样式对象 [TextInfo]
      */
     override fun getMessageTextInfo(popTip: Any?): Any? {
-        return (popTip as? PopTip)?.messageTextInfo
+        return getPopTip(popTip)?.messageTextInfo
     }
 
     /**
@@ -627,8 +625,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         messageTextInfo: Any?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
-        (messageTextInfo as? TextInfo)?.let {
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        getTextInfo(messageTextInfo)?.let {
             popTipObj.setMessageTextInfo(it)
         }
         return popTip
@@ -640,7 +638,7 @@ open class DialogXPopTipEngineImpl(
      * @return 按钮文本样式对象 [TextInfo]
      */
     override fun getButtonTextInfo(popTip: Any?): Any? {
-        return (popTip as? PopTip)?.buttonTextInfo
+        return getPopTip(popTip)?.buttonTextInfo
     }
 
     /**
@@ -653,8 +651,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         buttonTextInfo: Any?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
-        (buttonTextInfo as? TextInfo)?.let {
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        getTextInfo(buttonTextInfo)?.let {
             popTipObj.setButtonTextInfo(it)
         }
         return popTip
@@ -670,7 +668,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         listener: IPopTipEngine.OnButtonClickListener?
     ): Any? {
-        (popTip as? PopTip)?.setOnButtonClickListener(wrapButtonClick(listener))
+        getPopTip(popTip)?.setOnButtonClickListener(wrapButtonClick(listener))
         return popTip
     }
 
@@ -684,7 +682,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         listener: IPopTipEngine.OnButtonClickListener?
     ): Any? {
-        (popTip as? PopTip)?.setOnPopTipClickListener(wrapButtonClick(listener))
+        getPopTip(popTip)?.setOnPopTipClickListener(wrapButtonClick(listener))
         return popTip
     }
 
@@ -695,7 +693,7 @@ open class DialogXPopTipEngineImpl(
      */
     @Suppress("DEPRECATION")
     override fun isAutoTintIconInLightOrDarkMode(popTip: Any?): Boolean {
-        return (popTip as? PopTip)?.isAutoTintIconInLightOrDarkMode ?: false
+        return getPopTip(popTip)?.isAutoTintIconInLightOrDarkMode ?: false
     }
 
     /**
@@ -709,7 +707,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         autoTint: Boolean
     ): Any? {
-        (popTip as? PopTip)?.setAutoTintIconInLightOrDarkMode(autoTint)
+        getPopTip(popTip)?.setAutoTintIconInLightOrDarkMode(autoTint)
         return popTip
     }
 
@@ -719,7 +717,7 @@ open class DialogXPopTipEngineImpl(
      * @return `true` yes, `false` no
      */
     override fun isTintIcon(popTip: Any?): Boolean {
-        return (popTip as? PopTip)?.isTintIcon ?: false
+        return getPopTip(popTip)?.isTintIcon ?: false
     }
 
     /**
@@ -732,7 +730,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         tintIcon: Boolean
     ): Any? {
-        (popTip as? PopTip)?.setTintIcon(tintIcon)
+        getPopTip(popTip)?.setTintIcon(tintIcon)
         return popTip
     }
 
@@ -742,7 +740,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun iconSuccess(popTip: Any?): Any? {
-        (popTip as? PopTip)?.iconSuccess()
+        getPopTip(popTip)?.iconSuccess()
         return popTip
     }
 
@@ -752,7 +750,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun iconWarning(popTip: Any?): Any? {
-        (popTip as? PopTip)?.iconWarning()
+        getPopTip(popTip)?.iconWarning()
         return popTip
     }
 
@@ -762,7 +760,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun iconError(popTip: Any?): Any? {
-        (popTip as? PopTip)?.iconError()
+        getPopTip(popTip)?.iconError()
         return popTip
     }
 
@@ -772,7 +770,7 @@ open class DialogXPopTipEngineImpl(
      * @return 背景色 ( ColorInt )
      */
     override fun getBackgroundColor(popTip: Any?): Int {
-        return (popTip as? PopTip)?.backgroundColor ?: PopTipConst.UNSET
+        return getPopTip(popTip)?.backgroundColor ?: PopTipConst.UNSET
     }
 
     /**
@@ -785,7 +783,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         backgroundColor: Int
     ): Any? {
-        (popTip as? PopTip)?.setBackgroundColor(backgroundColor)
+        getPopTip(popTip)?.setBackgroundColor(backgroundColor)
         return popTip
     }
 
@@ -799,7 +797,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         backgroundColorResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setBackgroundColorRes(backgroundColorResId)
+        getPopTip(popTip)?.setBackgroundColorRes(backgroundColorResId)
         return popTip
     }
 
@@ -809,7 +807,7 @@ open class DialogXPopTipEngineImpl(
      * @return 圆角 ( px )
      */
     override fun getRadius(popTip: Any?): Float {
-        return (popTip as? PopTip)?.radius ?: PopTipConst.UNSET_FLOAT
+        return getPopTip(popTip)?.radius ?: PopTipConst.UNSET_FLOAT
     }
 
     /**
@@ -822,7 +820,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         radiusPx: Float
     ): Any? {
-        (popTip as? PopTip)?.setRadius(radiusPx)
+        getPopTip(popTip)?.setRadius(radiusPx)
         return popTip
     }
 
@@ -832,7 +830,7 @@ open class DialogXPopTipEngineImpl(
      * @return 进入动画时长 ( ms )
      */
     override fun getEnterAnimDuration(popTip: Any?): Long {
-        return (popTip as? PopTip)?.enterAnimDuration ?: PopTipConst.UNSET_LONG
+        return getPopTip(popTip)?.enterAnimDuration ?: PopTipConst.UNSET_LONG
     }
 
     /**
@@ -845,7 +843,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         enterAnimDuration: Long
     ): Any? {
-        (popTip as? PopTip)?.setEnterAnimDuration(enterAnimDuration)
+        getPopTip(popTip)?.setEnterAnimDuration(enterAnimDuration)
         return popTip
     }
 
@@ -855,7 +853,7 @@ open class DialogXPopTipEngineImpl(
      * @return 退出动画时长 ( ms )
      */
     override fun getExitAnimDuration(popTip: Any?): Long {
-        return (popTip as? PopTip)?.exitAnimDuration ?: PopTipConst.UNSET_LONG
+        return getPopTip(popTip)?.exitAnimDuration ?: PopTipConst.UNSET_LONG
     }
 
     /**
@@ -868,7 +866,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         exitAnimDuration: Long
     ): Any? {
-        (popTip as? PopTip)?.setExitAnimDuration(exitAnimDuration)
+        getPopTip(popTip)?.setExitAnimDuration(exitAnimDuration)
         return popTip
     }
 
@@ -884,7 +882,7 @@ open class DialogXPopTipEngineImpl(
         enterResId: Int,
         exitResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setAnimResId(enterResId, exitResId)
+        getPopTip(popTip)?.setAnimResId(enterResId, exitResId)
         return popTip
     }
 
@@ -898,7 +896,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         enterResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setEnterAnimResId(enterResId)
+        getPopTip(popTip)?.setEnterAnimResId(enterResId)
         return popTip
     }
 
@@ -912,7 +910,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         exitResId: Int
     ): Any? {
-        (popTip as? PopTip)?.setExitAnimResId(exitResId)
+        getPopTip(popTip)?.setExitAnimResId(exitResId)
         return popTip
     }
 
@@ -922,7 +920,7 @@ open class DialogXPopTipEngineImpl(
      * @return 动画实现对象 [DialogXAnimInterface]
      */
     override fun getDialogXAnimImpl(popTip: Any?): Any? {
-        return (popTip as? PopTip)?.dialogXAnimImpl
+        return getPopTip(popTip)?.dialogXAnimImpl
     }
 
     /**
@@ -935,9 +933,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         animImpl: Any?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
-        @Suppress("UNCHECKED_CAST")
-        (animImpl as? DialogXAnimInterface<PopTip>)?.let {
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        getDialogXAnimInterface(animImpl)?.let {
             popTipObj.setDialogXAnimImpl(it)
         }
         return popTip
@@ -953,7 +950,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         enabled: Boolean
     ): Any? {
-        (popTip as? PopTip)?.setHapticFeedbackEnabled(enabled)
+        getPopTip(popTip)?.setHapticFeedbackEnabled(enabled)
         return popTip
     }
 
@@ -967,7 +964,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         dialogImplMode: Int
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
+        val popTipObj = getPopTip(popTip) ?: return popTip
         getImplMode(dialogImplMode)?.let {
             popTipObj.setDialogImplMode(it)
         }
@@ -990,7 +987,7 @@ open class DialogXPopTipEngineImpl(
         right: Int,
         bottom: Int
     ): Any? {
-        (popTip as? PopTip)?.setMargin(left, top, right, bottom)
+        getPopTip(popTip)?.setMargin(left, top, right, bottom)
         return popTip
     }
 
@@ -1000,7 +997,7 @@ open class DialogXPopTipEngineImpl(
      * @return 左外边距
      */
     override fun getMarginLeft(popTip: Any?): Int {
-        return (popTip as? PopTip)?.marginLeft ?: PopTipConst.UNSET
+        return getPopTip(popTip)?.marginLeft ?: PopTipConst.UNSET
     }
 
     /**
@@ -1013,7 +1010,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         left: Int
     ): Any? {
-        (popTip as? PopTip)?.setMarginLeft(left)
+        getPopTip(popTip)?.setMarginLeft(left)
         return popTip
     }
 
@@ -1023,7 +1020,7 @@ open class DialogXPopTipEngineImpl(
      * @return 上外边距
      */
     override fun getMarginTop(popTip: Any?): Int {
-        return (popTip as? PopTip)?.marginTop ?: PopTipConst.UNSET
+        return getPopTip(popTip)?.marginTop ?: PopTipConst.UNSET
     }
 
     /**
@@ -1036,7 +1033,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         top: Int
     ): Any? {
-        (popTip as? PopTip)?.setMarginTop(top)
+        getPopTip(popTip)?.setMarginTop(top)
         return popTip
     }
 
@@ -1046,7 +1043,7 @@ open class DialogXPopTipEngineImpl(
      * @return 右外边距
      */
     override fun getMarginRight(popTip: Any?): Int {
-        return (popTip as? PopTip)?.marginRight ?: PopTipConst.UNSET
+        return getPopTip(popTip)?.marginRight ?: PopTipConst.UNSET
     }
 
     /**
@@ -1059,7 +1056,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         right: Int
     ): Any? {
-        (popTip as? PopTip)?.setMarginRight(right)
+        getPopTip(popTip)?.setMarginRight(right)
         return popTip
     }
 
@@ -1069,7 +1066,7 @@ open class DialogXPopTipEngineImpl(
      * @return 下外边距
      */
     override fun getMarginBottom(popTip: Any?): Int {
-        return (popTip as? PopTip)?.marginBottom ?: PopTipConst.UNSET
+        return getPopTip(popTip)?.marginBottom ?: PopTipConst.UNSET
     }
 
     /**
@@ -1082,7 +1079,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         bottom: Int
     ): Any? {
-        (popTip as? PopTip)?.setMarginBottom(bottom)
+        getPopTip(popTip)?.setMarginBottom(bottom)
         return popTip
     }
 
@@ -1096,7 +1093,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         padding: Int
     ): Any? {
-        (popTip as? PopTip)?.setRootPadding(padding)
+        getPopTip(popTip)?.setRootPadding(padding)
         return popTip
     }
 
@@ -1116,7 +1113,7 @@ open class DialogXPopTipEngineImpl(
         paddingRight: Int,
         paddingBottom: Int
     ): Any? {
-        (popTip as? PopTip)?.setRootPadding(
+        getPopTip(popTip)?.setRootPadding(
             paddingLeft, paddingTop, paddingRight, paddingBottom
         )
         return popTip
@@ -1132,7 +1129,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         listener: IPopTipEngine.OnPopTipLifecycleListener?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
+        val popTipObj = getPopTip(popTip) ?: return popTip
         wrapLifecycle(listener)?.let {
             popTipObj.dialogLifecycleCallback = it
         }
@@ -1149,7 +1146,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         runnable: IPopTipEngine.OnPopTipRunnable?
     ): Any? {
-        (popTip as? PopTip)?.onShow(wrapRunnable(runnable))
+        getPopTip(popTip)?.onShow(wrapRunnable(runnable))
         return popTip
     }
 
@@ -1163,7 +1160,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         runnable: IPopTipEngine.OnPopTipRunnable?
     ): Any? {
-        (popTip as? PopTip)?.onDismiss(wrapRunnable(runnable))
+        getPopTip(popTip)?.onDismiss(wrapRunnable(runnable))
         return popTip
     }
 
@@ -1179,7 +1176,7 @@ open class DialogXPopTipEngineImpl(
         actionId: Int,
         runnable: IPopTipEngine.OnPopTipRunnable?
     ): Any? {
-        (popTip as? PopTip)?.setActionRunnable(actionId, wrapRunnable(runnable))
+        getPopTip(popTip)?.setActionRunnable(actionId, wrapRunnable(runnable))
         return popTip
     }
 
@@ -1193,7 +1190,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         actionId: Int
     ): Any? {
-        (popTip as? PopTip)?.cleanAction(actionId)
+        getPopTip(popTip)?.cleanAction(actionId)
         return popTip
     }
 
@@ -1203,7 +1200,7 @@ open class DialogXPopTipEngineImpl(
      * @return [PopTip]
      */
     override fun cleanAllAction(popTip: Any?): Any? {
-        (popTip as? PopTip)?.cleanAllAction()
+        getPopTip(popTip)?.cleanAllAction()
         return popTip
     }
 
@@ -1219,7 +1216,7 @@ open class DialogXPopTipEngineImpl(
         key: String?,
         obj: Any?
     ): Any? {
-        (popTip as? PopTip)?.setData(key, obj)
+        getPopTip(popTip)?.setData(key, obj)
         return popTip
     }
 
@@ -1233,8 +1230,8 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         owner: Any?
     ): Any? {
-        val popTipObj = popTip as? PopTip ?: return popTip
-        (owner as? LifecycleOwner)?.let {
+        val popTipObj = getPopTip(popTip) ?: return popTip
+        getLifecycleOwner(owner)?.let {
             popTipObj.bindDismissWithLifecycleOwner(it)
         }
         return popTip
@@ -1250,7 +1247,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         customDialogLayoutId: Int
     ): Any? {
-        (popTip as? PopTip)?.setCustomDialogLayoutResId(customDialogLayoutId)
+        getPopTip(popTip)?.setCustomDialogLayoutResId(customDialogLayoutId)
         return popTip
     }
 
@@ -1266,7 +1263,7 @@ open class DialogXPopTipEngineImpl(
         customDialogLayoutId: Int,
         isLightTheme: Boolean
     ): Any? {
-        (popTip as? PopTip)?.setCustomDialogLayoutResId(customDialogLayoutId, isLightTheme)
+        getPopTip(popTip)?.setCustomDialogLayoutResId(customDialogLayoutId, isLightTheme)
         return popTip
     }
 
@@ -1279,7 +1276,7 @@ open class DialogXPopTipEngineImpl(
      * @param item PopTip 参数
      * @return [PopTip]
      */
-    @Suppress("DEPRECATION", "UNCHECKED_CAST")
+    @Suppress("DEPRECATION")
     protected open fun buildPopTip(item: PopTipItem?): PopTip {
         val popTip = PopTip.build()
         item ?: return popTip
@@ -1331,7 +1328,7 @@ open class DialogXPopTipEngineImpl(
             popTip.setRadius(radius)
         }
         // 自定义布局
-        (item.customView() as? OnBindView<PopTip>)?.let {
+        getOnBindView(item.customView())?.let {
             popTip.setCustomView(it)
         }
         // 生命周期监听
@@ -1339,7 +1336,7 @@ open class DialogXPopTipEngineImpl(
             popTip.dialogLifecycleCallback = wrapLifecycle(listener)
         }
         // 主题样式
-        (item.style() as? DialogXStyle)?.let {
+        getDialogXStyle(item.style())?.let {
             popTip.setStyle(it)
         }
         // 明暗主题
@@ -1347,11 +1344,11 @@ open class DialogXPopTipEngineImpl(
             popTip.setTheme(it)
         }
         // 提示文本样式
-        (item.messageTextInfo() as? TextInfo)?.let {
+        getTextInfo(item.messageTextInfo())?.let {
             popTip.setMessageTextInfo(it)
         }
         // 按钮文本样式
-        (item.buttonTextInfo() as? TextInfo)?.let {
+        getTextInfo(item.buttonTextInfo())?.let {
             popTip.setButtonTextInfo(it)
         }
         // 状态预置图标
@@ -1395,7 +1392,7 @@ open class DialogXPopTipEngineImpl(
             popTip.setExitAnimResId(exitAnimResId)
         }
         // 自定义动画实现
-        (item.dialogXAnimImpl() as? DialogXAnimInterface<PopTip>)?.let {
+        getDialogXAnimInterface(item.dialogXAnimImpl())?.let {
             popTip.setDialogXAnimImpl(it)
         }
         // 振动反馈
@@ -1434,7 +1431,7 @@ open class DialogXPopTipEngineImpl(
             popTip.setThisOrderIndex(thisOrderIndex)
         }
         // 绑定关闭的 LifecycleOwner
-        (item.lifecycleOwner() as? LifecycleOwner)?.let {
+        getLifecycleOwner(item.lifecycleOwner())?.let {
             popTip.bindDismissWithLifecycleOwner(it)
         }
         // 自定义弹窗布局
@@ -1607,5 +1604,61 @@ open class DialogXPopTipEngineImpl(
         return DialogXRunnable<PopTip> { dialog ->
             runnable.run(dialog)
         }
+    }
+
+    /**
+     * 获取 PopTip
+     * @param popTip PopTip Item
+     * @return [PopTip]
+     */
+    protected open fun getPopTip(popTip: Any?): PopTip? {
+        return popTip as? PopTip
+    }
+
+    /**
+     * 获取自定义布局
+     * @param onBindView OnBindView Item
+     * @return [OnBindView]
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected open fun getOnBindView(onBindView: Any?): OnBindView<PopTip>? {
+        return onBindView as? OnBindView<PopTip>
+    }
+
+    /**
+     * 获取主题样式
+     * @param style Style Item
+     * @return [DialogXStyle]
+     */
+    protected open fun getDialogXStyle(style: Any?): DialogXStyle? {
+        return style as? DialogXStyle
+    }
+
+    /**
+     * 获取文本样式
+     * @param textInfo TextInfo Item
+     * @return [TextInfo]
+     */
+    protected open fun getTextInfo(textInfo: Any?): TextInfo? {
+        return textInfo as? TextInfo
+    }
+
+    /**
+     * 获取动画实现
+     * @param animImpl Anim Impl Item
+     * @return [DialogXAnimInterface]
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected open fun getDialogXAnimInterface(animImpl: Any?): DialogXAnimInterface<PopTip>? {
+        return animImpl as? DialogXAnimInterface<PopTip>
+    }
+
+    /**
+     * 获取 LifecycleOwner
+     * @param owner LifecycleOwner Item
+     * @return [LifecycleOwner]
+     */
+    protected open fun getLifecycleOwner(owner: Any?): LifecycleOwner? {
+        return owner as? LifecycleOwner
     }
 }
