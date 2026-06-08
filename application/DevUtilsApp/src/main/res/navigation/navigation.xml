@@ -88,6 +88,11 @@
         android:label="PermissionFragment" />
 
     <fragment
+        android:id="@+id/PopTipFragment"
+        android:name="afkt.project.features.dev_engine.PopTipFragment"
+        android:label="PopTipFragment" />
+
+    <fragment
         android:id="@+id/PushFragment"
         android:name="afkt.project.features.dev_engine.PushFragment"
         android:label="PushFragment" />
@@ -106,6 +111,11 @@
         android:id="@+id/ToastFragment"
         android:name="afkt.project.features.dev_engine.ToastFragment"
         android:label="ToastFragment" />
+
+    <fragment
+        android:id="@+id/WebFragment"
+        android:name="afkt.project.features.dev_engine.WebFragment"
+        android:label="WebFragment" />
 
     <!-- DevWidget -->
 

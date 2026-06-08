@@ -151,6 +151,8 @@ enum class ButtonEnum(
 
     BTN_DEV_ASSIST_ENGINE_PERMISSION("Permission Engine 权限申请", R.id.PermissionFragment),
 
+    BTN_DEV_ASSIST_ENGINE_POP_TIP("PopTip Engine 非阻断式文本提示", R.id.PopTipFragment),
+
     BTN_DEV_ASSIST_ENGINE_PUSH("Push Engine 推送平台处理", R.id.PushFragment),
 
     BTN_DEV_ASSIST_ENGINE_REFRESH("Refresh Engine 下拉刷新", R.id.RefreshFragment),
@@ -160,6 +162,8 @@ enum class ButtonEnum(
     BTN_DEV_ASSIST_ENGINE_STORAGE("Storage Engine 外部、内部文件存储", R.id.StorageFragment),
 
     BTN_DEV_ASSIST_ENGINE_TOAST("Toast Engine 吐司提示", R.id.ToastFragment),
+
+    BTN_DEV_ASSIST_ENGINE_WEB("WebView Engine 网页加载、JS 交互等", R.id.WebFragment),
 
     // =============
     // = UI Effect =

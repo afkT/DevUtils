@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="afkt.project.features.dev_engine.WebViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/ViewTheme.Padding.LR_DP_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Button.Single"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{viewModel.clickLoadUrl}"
+                    android:text="loadUrl 加载网页" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Button.Single"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{viewModel.clickLoadData}"
+                    android:text="loadData 加载 Html" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Button.Single"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{viewModel.clickReload}"
+                    android:text="reload 刷新" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Button.Single"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{viewModel.clickGoBack}"
+                    android:text="goBack 后退" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/ViewTheme.Button.Single"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{viewModel.clickClearCache}"
+                    android:text="clearCache 清除缓存" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <WebView
+            android:id="@+id/vid_web"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</layout>
