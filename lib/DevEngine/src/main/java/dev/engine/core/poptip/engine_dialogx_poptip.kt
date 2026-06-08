@@ -707,7 +707,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         autoTint: Boolean
     ): Any? {
-        getPopTip(popTip)?.setAutoTintIconInLightOrDarkMode(autoTint)
+        getPopTip(popTip)?.isAutoTintIconInLightOrDarkMode = autoTint
         return popTip
     }
 
@@ -730,7 +730,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         tintIcon: Boolean
     ): Any? {
-        getPopTip(popTip)?.setTintIcon(tintIcon)
+        getPopTip(popTip)?.isTintIcon = tintIcon
         return popTip
     }
 
@@ -820,7 +820,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         radiusPx: Float
     ): Any? {
-        getPopTip(popTip)?.setRadius(radiusPx)
+        getPopTip(popTip)?.radius = radiusPx
         return popTip
     }
 
@@ -1010,7 +1010,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         left: Int
     ): Any? {
-        getPopTip(popTip)?.setMarginLeft(left)
+        getPopTip(popTip)?.marginLeft = left
         return popTip
     }
 
@@ -1033,7 +1033,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         top: Int
     ): Any? {
-        getPopTip(popTip)?.setMarginTop(top)
+        getPopTip(popTip)?.marginTop = top
         return popTip
     }
 
@@ -1056,7 +1056,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         right: Int
     ): Any? {
-        getPopTip(popTip)?.setMarginRight(right)
+        getPopTip(popTip)?.marginRight = right
         return popTip
     }
 
@@ -1079,7 +1079,7 @@ open class DialogXPopTipEngineImpl(
         popTip: Any?,
         bottom: Int
     ): Any? {
-        getPopTip(popTip)?.setMarginBottom(bottom)
+        getPopTip(popTip)?.marginBottom = bottom
         return popTip
     }
 
@@ -1205,7 +1205,7 @@ open class DialogXPopTipEngineImpl(
     }
 
     /**
-     * 设置指定 PopTip 临时储物柜数据
+     * 设置指定 PopTip 临时存储数据
      * @param popTip [PopTip]
      * @param key 数据 key
      * @param obj 数据值
@@ -1284,6 +1284,7 @@ open class DialogXPopTipEngineImpl(
         item.message()?.let {
             popTip.message = it
         }
+        // 文本资源
         val messageResId = item.messageResId()
         if (messageResId > 0) {
             popTip.setMessage(messageResId)
@@ -1294,7 +1295,9 @@ open class DialogXPopTipEngineImpl(
             popTip.setIconResId(iconResId)
         }
         // 按钮 ( 文本优先, 其次文本资源 id )
-        val buttonClick = wrapButtonClick(item.onButtonClickListener())
+        val buttonClick = wrapButtonClick(
+            item.onButtonClickListener()
+        )
         val buttonText = item.buttonText()
         val buttonTextResId = item.buttonTextResId()
         if (buttonText != null) {
@@ -1325,7 +1328,7 @@ open class DialogXPopTipEngineImpl(
         // 圆角
         val radius = item.radius()
         if (radius >= 0) {
-            popTip.setRadius(radius)
+            popTip.radius = radius
         }
         // 自定义布局
         getOnBindView(item.customView())?.let {
@@ -1402,26 +1405,26 @@ open class DialogXPopTipEngineImpl(
         // 外边距
         val marginLeft = item.marginLeft()
         if (marginLeft != PopTipConst.UNSET) {
-            popTip.setMarginLeft(marginLeft)
+            popTip.marginLeft = marginLeft
         }
         val marginTop = item.marginTop()
         if (marginTop != PopTipConst.UNSET) {
-            popTip.setMarginTop(marginTop)
+            popTip.marginTop = marginTop
         }
         val marginRight = item.marginRight()
         if (marginRight != PopTipConst.UNSET) {
-            popTip.setMarginRight(marginRight)
+            popTip.marginRight = marginRight
         }
         val marginBottom = item.marginBottom()
         if (marginBottom != PopTipConst.UNSET) {
-            popTip.setMarginBottom(marginBottom)
+            popTip.marginBottom = marginBottom
         }
         // 根布局内边距
         val rootPadding = item.rootPadding()
         if (rootPadding != PopTipConst.UNSET) {
             popTip.setRootPadding(rootPadding)
         }
-        // 临时储物柜数据
+        // 临时存储数据
         item.data()?.forEach { (key, value) ->
             popTip.setData(key, value)
         }

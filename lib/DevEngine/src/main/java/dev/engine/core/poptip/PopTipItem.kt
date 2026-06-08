@@ -119,7 +119,7 @@ open class PopTipItem private constructor(
     // 根布局内边距 ( px )
     private var mRootPadding = PopTipConst.UNSET
 
-    // 临时储物柜数据
+    // 临时存储数据
     private var mData: MutableMap<String, Any?>? = null
 
     // 显示层级
@@ -670,7 +670,7 @@ open class PopTipItem private constructor(
     }
 
     /**
-     * 临时储物柜数据
+     * 临时存储数据
      */
     override fun data(): Map<String, Any?>? {
         return mData
@@ -682,7 +682,7 @@ open class PopTipItem private constructor(
     }
 
     /**
-     * 追加临时储物柜数据
+     * 追加临时存储数据
      * @param key 数据 key
      * @param obj 数据值
      * @return [PopTipItem]

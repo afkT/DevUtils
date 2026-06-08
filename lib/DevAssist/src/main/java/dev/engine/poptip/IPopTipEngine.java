@@ -178,7 +178,7 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
         // 根布局内边距 ( px )
         int rootPadding();
 
-        // 临时储物柜数据
+        // 临时存储数据
         Map<String, Object> data();
 
         // 显示层级
@@ -1102,7 +1102,7 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
     Object cleanAllAction(Object popTip);
 
     /**
-     * 设置指定 PopTip 临时储物柜数据
+     * 设置指定 PopTip 临时存储数据
      * @param popTip PopTip 对象
      * @param key    数据 key
      * @param obj    数据值

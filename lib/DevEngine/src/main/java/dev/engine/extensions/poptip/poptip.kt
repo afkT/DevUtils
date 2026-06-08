@@ -1323,7 +1323,7 @@ fun Any?.poptip_cleanAllAction(
 }
 
 /**
- * 设置指定 PopTip 临时储物柜数据
+ * 设置指定 PopTip 临时存储数据
  * @receiver PopTip 对象
  * @param engine String?
  * @param key 数据 key
