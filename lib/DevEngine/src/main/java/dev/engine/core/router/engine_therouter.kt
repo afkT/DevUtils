@@ -909,7 +909,7 @@ open class TheRouterEngineImpl(
      * @param navigator Navigator 对象
      * @return Fragment 实例
      */
-    override fun <T : Any> createFragment(navigator: Any?): T? {
+    override fun <T : Fragment> createFragment(navigator: Any?): T? {
         val navigatorObj = getNavigator(navigator) ?: return null
         return try {
             navigatorObj.createFragment()

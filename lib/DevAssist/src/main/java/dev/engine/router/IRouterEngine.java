@@ -870,7 +870,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      * @param <T>       Fragment 类型
      * @return Fragment 实例
      */
-    <T> T createFragment(Object navigator);
+    <T extends Fragment> T createFragment(Object navigator);
 
     /**
      * 异步创建 Fragment

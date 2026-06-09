@@ -1,9 +1,12 @@
 package dev.engine.extensions.router
 
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.fragment.app.Fragment
 import dev.engine.DevEngine
 import dev.engine.router.IRouterEngine
 import java.io.Serializable
@@ -192,6 +195,34 @@ fun router_setDefaultNavigationCallback(
     callback: IRouterEngine.OnNavigationCallback?
 ) {
     engine.getRouterEngine()?.setDefaultNavigationCallback(callback)
+}
+
+/**
+ * 手动初始化 Router Engine
+ * @param engine String?
+ * @param context Context 对象
+ * @return `true` success, `false` fail
+ */
+fun router_init(
+    engine: String? = null,
+    context: Context?
+): Boolean {
+    return engine.getRouterEngine()?.init(context) ?: false
+}
+
+/**
+ * 手动初始化 Router Engine
+ * @param engine String?
+ * @param context Context 对象
+ * @param asyncInitRouterInject 是否异步初始化 Autowired 注入表
+ * @return `true` success, `false` fail
+ */
+fun router_init(
+    engine: String? = null,
+    context: Context?,
+    asyncInitRouterInject: Boolean
+): Boolean {
+    return engine.getRouterEngine()?.init(context, asyncInitRouterInject) ?: false
 }
 
 // =================
@@ -541,6 +572,58 @@ fun Any?.router_withOutAnimation(
 }
 
 /**
+ * 设置 Intent Data
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param uri Uri 对象
+ * @return Navigator 对象
+ */
+fun Any?.router_setData(
+    engine: String? = null,
+    uri: Uri?
+): Any? {
+    return engine.getRouterEngine()?.setData(this, uri)
+}
+
+/**
+ * 设置 Intent ClipData
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param clipData ClipData 对象
+ * @return Navigator 对象
+ */
+fun Any?.router_setClipData(
+    engine: String? = null,
+    clipData: ClipData?
+): Any? {
+    return engine.getRouterEngine()?.setClipData(this, clipData)
+}
+
+/**
+ * 获取 Navigator 参数 Bundle
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return 参数 Bundle
+ */
+fun Any?.router_getNavigatorExtras(
+    engine: String? = null
+): Bundle? {
+    return engine.getRouterEngine()?.getNavigatorExtras(this)
+}
+
+/**
+ * 获取 Navigator 关联 Intent
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return Intent
+ */
+fun Any?.router_getNavigatorIntent(
+    engine: String? = null
+): Intent? {
+    return engine.getRouterEngine()?.getNavigatorIntent(this)
+}
+
+/**
  * 创建 Intent
  * @receiver Navigator 对象
  * @param engine String?
@@ -555,15 +638,43 @@ fun Any?.router_createIntent(
 }
 
 /**
+ * 异步创建 Intent
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param context Context 对象
+ * @param callback Intent 创建回调
+ */
+fun Any?.router_createIntentWithCallback(
+    engine: String? = null,
+    context: Context?,
+    callback: IRouterEngine.OnIntentCallback?
+) {
+    engine.getRouterEngine()?.createIntentWithCallback(this, context, callback)
+}
+
+/**
  * 创建 Fragment
  * @receiver Navigator 对象
  * @param engine String?
  * @return Fragment 实例
  */
-fun <T : Any> Any?.router_createFragment(
+fun <T : Fragment> Any?.router_createFragment(
     engine: String? = null
 ): T? {
     return engine.getRouterEngine()?.createFragment(this)
+}
+
+/**
+ * 异步创建 Fragment
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param callback Fragment 创建回调
+ */
+fun Any?.router_createFragmentWithCallback(
+    engine: String? = null,
+    callback: IRouterEngine.OnFragmentCallback?
+) {
+    engine.getRouterEngine()?.createFragmentWithCallback(this, callback)
 }
 
 /**
