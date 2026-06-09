@@ -36,6 +36,8 @@ import dev.engine.core.poptip.DialogXPopTipEngineImpl
 import dev.engine.core.poptip.PopTipConfig
 import dev.engine.core.refresh.RefreshConfig
 import dev.engine.core.refresh.SmartRefreshLayoutEngineImpl
+import dev.engine.core.router.RouterConfig
+import dev.engine.core.router.TheRouterEngineImpl
 import dev.engine.core.storage.DevMediaStoreEngineImpl
 import dev.engine.core.toast.ToasterEngineImpl
 import dev.engine.core.web.WebConfig
@@ -63,6 +65,8 @@ import dev.engine.push.DevPushEngine
 import dev.engine.push.IPushEngine
 import dev.engine.refresh.DevRefreshEngine
 import dev.engine.refresh.IRefreshEngine
+import dev.engine.router.DevRouterEngine
+import dev.engine.router.IRouterEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.share.IShareEngine
 import dev.engine.storage.DevStorageEngine
@@ -190,6 +194,7 @@ object DevEngine {
      * @param refreshConfig Refresh Config
      * @param popTipConfig PopTip Config
      * @param popNotificationConfig PopNotification Config
+     * @param routerConfig Router Config
      * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
@@ -203,6 +208,7 @@ object DevEngine {
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
         popTipConfig: PopTipConfig? = PopTipConfig.create(),
         popNotificationConfig: PopNotificationConfig? = PopNotificationConfig.create(),
+        routerConfig: RouterConfig? = RouterConfig.create(),
         webConfig: WebConfig? = WebConfig.default(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
@@ -220,7 +226,7 @@ object DevEngine {
         initializeDefaultEngines(
             context, cacheConfig, _keyValueConfig, logConfig,
             barCodeConfig, eventBusConfig, refreshConfig,
-            popTipConfig, popNotificationConfig, webConfig
+            popTipConfig, popNotificationConfig, routerConfig, webConfig
         )
     }
 
@@ -235,6 +241,7 @@ object DevEngine {
      * @param refreshConfig Refresh Config
      * @param popTipConfig PopTip Config
      * @param popNotificationConfig PopNotification Config
+     * @param routerConfig Router Config
      * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
@@ -248,6 +255,7 @@ object DevEngine {
         refreshConfig: RefreshConfig?,
         popTipConfig: PopTipConfig?,
         popNotificationConfig: PopNotificationConfig?,
+        routerConfig: RouterConfig?,
         webConfig: WebConfig?,
     ) {
         // ========================
@@ -362,6 +370,15 @@ object DevEngine {
         popNotificationConfig?.let { config ->
             // 初始化 DialogX PopNotification Engine 实现
             defaultDialogXPopNotificationEngineImpl(config)
+        }
+
+        // =======================
+        // = Router Engine 页面路由 =
+        // =======================
+
+        routerConfig?.let { config ->
+            // 初始化 TheRouter Router Engine 实现
+            defaultTheRouterEngineImpl(config).initialize(config)
         }
 
         // =================================
@@ -644,6 +661,23 @@ object DevEngine {
         }
     }
 
+    // =======================
+    // = Router Engine 页面路由 =
+    // =======================
+
+    /**
+     * 默认初始化 TheRouter Router Engine 实现
+     * @param config Router Config
+     * @return TheRouterEngineImpl
+     */
+    fun defaultTheRouterEngineImpl(
+        config: RouterConfig
+    ): TheRouterEngineImpl {
+        return newTheRouterEngineImpl(config).apply {
+            DevRouterEngine.setEngine(this)
+        }
+    }
+
     // =================================
     // = Storage Engine 外部、内部文件存储 =
     // =================================
@@ -874,6 +908,18 @@ object DevEngine {
     }
 
     /**
+     * 设置 Router Engine
+     * @param key    key
+     * @param engine {@link IRouterEngine}
+     */
+    fun <Config : IRouterEngine.EngineConfig, Item : IRouterEngine.EngineItem> setRouterEngine(
+        key: String,
+        engine: IRouterEngine<Config, Item>
+    ) {
+        DevRouterEngine.setEngine(key, engine)
+    }
+
+    /**
      * 设置 Share Engine
      * @param key    key
      * @param engine {@link IShareEngine}
@@ -1026,6 +1072,12 @@ object DevEngine {
     fun getRefresh() = DevRefreshEngine.getEngine()
 
     /**
+     * 获取 Router Engine
+     * @return Router Engine
+     */
+    fun getRouter() = DevRouterEngine.getEngine()
+
+    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -1150,6 +1202,12 @@ object DevEngine {
     fun getRefresh(key: String?) = DevRefreshEngine.getEngine(key)
 
     /**
+     * 获取 Router Engine
+     * @return Router Engine
+     */
+    fun getRouter(key: String?) = DevRouterEngine.getEngine(key)
+
+    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -1272,6 +1330,12 @@ object DevEngine {
      * @return Refresh Engine Generic Assist
      */
     fun getRefreshAssist() = DevRefreshEngine.getAssist()
+
+    /**
+     * 获取 Router Engine Generic Assist
+     * @return Router Engine Generic Assist
+     */
+    fun getRouterAssist() = DevRouterEngine.getAssist()
 
     /**
      * 获取 Share Engine Generic Assist
@@ -1537,6 +1601,21 @@ object DevEngine {
         config: PopNotificationConfig
     ): DialogXPopNotificationEngineImpl {
         return DialogXPopNotificationEngineImpl(config)
+    }
+
+    // =======================
+    // = Router Engine 页面路由 =
+    // =======================
+
+    /**
+     * 创建 TheRouter Router Engine 实现
+     * @param config Router Config
+     * @return TheRouter Router Engine 实现
+     */
+    fun newTheRouterEngineImpl(
+        config: RouterConfig = RouterConfig.create()
+    ): TheRouterEngineImpl {
+        return TheRouterEngineImpl(config)
     }
 
     // =================================

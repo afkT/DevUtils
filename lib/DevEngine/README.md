@@ -24,6 +24,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - popnotification | PopNotification Engine 简单通知提示
       - poptip          | PopTip Engine 非阻断式文本提示
       - refresh         | Refresh Engine 下拉刷新、上拉加载 View
+      - router          | Router Engine 页面路由
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
       - web             | WebView Engine 网页加载、配置、JS 交互
@@ -44,6 +45,7 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
       - poptip          | PopTip Engine 非阻断式文本提示
       - push            | Push Engine 推送平台处理
       - refresh         | Refresh Engine 下拉刷新、上拉加载 View
+      - router          | Router Engine 页面路由
       - share           | Share Engine 分享平台处理
       - storage         | Storage Engine 外部、内部文件存储
       - toast           | Toast Engine 吐司提示
@@ -78,6 +80,7 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 * **PopNotification Engine 简单通知提示**
 * **PopTip Engine 非阻断式文本提示**
 * **Refresh Engine 下拉刷新、上拉加载 View**
+* **Router Engine 页面路由**
 * **Storage Engine 外部、内部文件存储**
 * **Toast Engine 吐司提示**
 * **WebView Engine 网页加载、配置、JS 交互**
@@ -197,6 +200,14 @@ DevEngine（基于 [DevAssist Engine 模块](https://github.com/afkT/DevUtils/bl
 
 * 依赖 [SmartRefreshLayout 下拉刷新框架](https://github.com/scwang90/SmartRefreshLayout)
   实现 [SmartRefreshLayoutEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/refresh/engine_smart_refresh_layout.kt)
+
+
+### Router Engine 页面路由 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/router)
+
+可选实现方案：
+
+* 依赖 [TheRouter 动态路由框架](https://github.com/HuolalaTech/hll-wp-therouter-android)
+  实现 [TheRouterEngineImpl](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/router/engine_therouter.kt)
 
 
 ### Storage Engine 外部、内部文件存储 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/src/main/java/dev/engine/core/storage)

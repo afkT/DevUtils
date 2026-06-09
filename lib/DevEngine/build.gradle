@@ -56,6 +56,8 @@ dependencies {
     api deps_lib.feature_lib.zxing_code
     // 日志输出库 https://github.com/JakeWharton/timber
     api deps_lib.profiler.timber
+    // TheRouter 路由 https://github.com/HuolalaTech/hll-wp-therouter-android
+    api deps_lib.router.therouter_router
     // WebView Jetpack 组件 https://developer.android.com/jetpack/androidx/releases/webkit
     api deps_androidx.webkit
 
