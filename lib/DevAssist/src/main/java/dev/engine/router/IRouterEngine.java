@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.Map;
+
 /**
  * detail: Router Engine 接口
  * @author Ttt
@@ -91,7 +93,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
         Bundle extras();
 
         // Object 类型参数 ( 映射 Navigator.withObject )
-        java.util.Map<String, Object> objectParams();
+        Map<String, Object> objectParams();
     }
 
     /**
@@ -430,7 +432,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
 
     /**
      * 手动初始化 TheRouter
-     * @param context              Context 对象
+     * @param context               Context 对象
      * @param asyncInitRouterInject 是否异步初始化 Autowired 注入表
      * @return {@code true} success, {@code false} fail
      */
@@ -495,7 +497,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
 
     /**
      * 获取带参数的完整 url
-     * @param navigator      Navigator 对象
+     * @param navigator       Navigator 对象
      * @param paramsFixHandle NavigatorParamsFixHandle 对象
      * @return 完整 url
      */
