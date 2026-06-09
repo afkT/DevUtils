@@ -30,6 +30,8 @@ import dev.engine.core.log.DevLoggerEngineImpl
 import dev.engine.core.log.TimberEngineImpl
 import dev.engine.core.media.PictureSelectorEngineImpl
 import dev.engine.core.permission.XXPermissionsEngineImpl
+import dev.engine.core.popnotification.DialogXPopNotificationEngineImpl
+import dev.engine.core.popnotification.PopNotificationConfig
 import dev.engine.core.poptip.DialogXPopTipEngineImpl
 import dev.engine.core.poptip.PopTipConfig
 import dev.engine.core.refresh.RefreshConfig
@@ -53,6 +55,8 @@ import dev.engine.media.DevMediaEngine
 import dev.engine.media.IMediaEngine
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
+import dev.engine.popnotification.DevPopNotificationEngine
+import dev.engine.popnotification.IPopNotificationEngine
 import dev.engine.poptip.DevPopTipEngine
 import dev.engine.poptip.IPopTipEngine
 import dev.engine.push.DevPushEngine
@@ -185,6 +189,7 @@ object DevEngine {
      * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
      * @param popTipConfig PopTip Config
+     * @param popNotificationConfig PopNotification Config
      * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize] 默认使用 MMKV
      */
@@ -197,6 +202,7 @@ object DevEngine {
         eventBusConfig: EventBusConfig? = EventBusConfig.create(),
         refreshConfig: RefreshConfig? = RefreshConfig.create(),
         popTipConfig: PopTipConfig? = PopTipConfig.create(),
+        popNotificationConfig: PopNotificationConfig? = PopNotificationConfig.create(),
         webConfig: WebConfig? = WebConfig.default(),
     ) {
         // 使用 DevEngine 库内部默认实现 MMKV 初始化
@@ -214,7 +220,7 @@ object DevEngine {
         initializeDefaultEngines(
             context, cacheConfig, _keyValueConfig, logConfig,
             barCodeConfig, eventBusConfig, refreshConfig,
-            popTipConfig, webConfig
+            popTipConfig, popNotificationConfig, webConfig
         )
     }
 
@@ -228,6 +234,7 @@ object DevEngine {
      * @param eventBusConfig EventBus Config
      * @param refreshConfig Refresh Config
      * @param popTipConfig PopTip Config
+     * @param popNotificationConfig PopNotification Config
      * @param webConfig WebView Config
      * 如果使用 MMKV 必须先调用 [defaultMMKVInitialize]
      */
@@ -240,6 +247,7 @@ object DevEngine {
         eventBusConfig: EventBusConfig?,
         refreshConfig: RefreshConfig?,
         popTipConfig: PopTipConfig?,
+        popNotificationConfig: PopNotificationConfig?,
         webConfig: WebConfig?,
     ) {
         // ========================
@@ -345,6 +353,15 @@ object DevEngine {
         popTipConfig?.let { config ->
             // 初始化 DialogX PopTip Engine 实现
             defaultDialogXPopTipEngineImpl(config)
+        }
+
+        // ====================================
+        // = PopNotification Engine 简单通知提示 =
+        // ====================================
+
+        popNotificationConfig?.let { config ->
+            // 初始化 DialogX PopNotification Engine 实现
+            defaultDialogXPopNotificationEngineImpl(config)
         }
 
         // =================================
@@ -610,6 +627,23 @@ object DevEngine {
         }
     }
 
+    // ====================================
+    // = PopNotification Engine 简单通知提示 =
+    // ====================================
+
+    /**
+     * 默认初始化 DialogX PopNotification Engine 实现
+     * @param config PopNotification Config
+     * @return DialogXPopNotificationEngineImpl
+     */
+    fun defaultDialogXPopNotificationEngineImpl(
+        config: PopNotificationConfig
+    ): DialogXPopNotificationEngineImpl {
+        return newDialogXPopNotificationEngineImpl(config).apply {
+            DevPopNotificationEngine.setEngine(this)
+        }
+    }
+
     // =================================
     // = Storage Engine 外部、内部文件存储 =
     // =================================
@@ -804,6 +838,18 @@ object DevEngine {
     }
 
     /**
+     * 设置 PopNotification Engine
+     * @param key    key
+     * @param engine {@link IPopNotificationEngine}
+     */
+    fun <Config : IPopNotificationEngine.EngineConfig, Item : IPopNotificationEngine.EngineItem> setPopNotificationEngine(
+        key: String,
+        engine: IPopNotificationEngine<Config, Item>
+    ) {
+        DevPopNotificationEngine.setEngine(key, engine)
+    }
+
+    /**
      * 设置 Push Engine
      * @param key    key
      * @param engine {@link IPushEngine}
@@ -962,6 +1008,12 @@ object DevEngine {
     fun getPopTip() = DevPopTipEngine.getEngine()
 
     /**
+     * 获取 PopNotification Engine
+     * @return PopNotification Engine
+     */
+    fun getPopNotification() = DevPopNotificationEngine.getEngine()
+
+    /**
      * 获取 Push Engine
      * @return Push Engine
      */
@@ -1080,6 +1132,12 @@ object DevEngine {
     fun getPopTip(key: String?) = DevPopTipEngine.getEngine(key)
 
     /**
+     * 获取 PopNotification Engine
+     * @return PopNotification Engine
+     */
+    fun getPopNotification(key: String?) = DevPopNotificationEngine.getEngine(key)
+
+    /**
      * 获取 Push Engine
      * @return Push Engine
      */
@@ -1196,6 +1254,12 @@ object DevEngine {
      * @return PopTip Engine Generic Assist
      */
     fun getPopTipAssist() = DevPopTipEngine.getAssist()
+
+    /**
+     * 获取 PopNotification Engine Generic Assist
+     * @return PopNotification Engine Generic Assist
+     */
+    fun getPopNotificationAssist() = DevPopNotificationEngine.getAssist()
 
     /**
      * 获取 Push Engine Generic Assist
@@ -1458,6 +1522,21 @@ object DevEngine {
         config: PopTipConfig
     ): DialogXPopTipEngineImpl {
         return DialogXPopTipEngineImpl(config)
+    }
+
+    // ====================================
+    // = PopNotification Engine 简单通知提示 =
+    // ====================================
+
+    /**
+     * 创建 DialogX PopNotification Engine 实现
+     * @param config PopNotification Config
+     * @return DialogX PopNotification Engine 实现
+     */
+    fun newDialogXPopNotificationEngineImpl(
+        config: PopNotificationConfig
+    ): DialogXPopNotificationEngineImpl {
+        return DialogXPopNotificationEngineImpl(config)
     }
 
     // =================================
