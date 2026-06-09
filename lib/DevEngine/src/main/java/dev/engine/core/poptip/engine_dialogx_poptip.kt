@@ -93,6 +93,35 @@ open class DialogXPopTipEngineImpl(
             it.backgroundColor()?.let { backgroundColor ->
                 DialogX.backgroundColor = backgroundColor
             }
+            // 最大同时显示数量
+            val maxShowCount = it.maxShowCount()
+            if (maxShowCount > 0) {
+                PopTip.maxShowCount = maxShowCount
+            }
+            // 覆盖进入动画时长
+            val overrideEnterDuration = it.overrideEnterDuration()
+            if (overrideEnterDuration >= 0) {
+                PopTip.overrideEnterDuration = overrideEnterDuration
+            }
+            // 覆盖退出动画时长
+            val overrideExitDuration = it.overrideExitDuration()
+            if (overrideExitDuration >= 0) {
+                PopTip.overrideExitDuration = overrideExitDuration
+            }
+            // 覆盖进入动画资源
+            val overrideEnterAnimRes = it.overrideEnterAnimRes()
+            if (overrideEnterAnimRes > 0) {
+                PopTip.overrideEnterAnimRes = overrideEnterAnimRes
+            }
+            // 覆盖退出动画资源
+            val overrideExitAnimRes = it.overrideExitAnimRes()
+            if (overrideExitAnimRes > 0) {
+                PopTip.overrideExitAnimRes = overrideExitAnimRes
+            }
+            // 多 PopTip 位移拦截器
+            getMoveDisplacementInterceptor(it.moveDisplacementInterceptor())?.let { interceptor ->
+                PopTip.moveDisplacementInterceptor = interceptor
+            }
         }
     }
 
@@ -1727,6 +1756,18 @@ open class DialogXPopTipEngineImpl(
      */
     protected open fun getLifecycleOwner(owner: Any?): LifecycleOwner? {
         return owner as? LifecycleOwner
+    }
+
+    /**
+     * 获取多 PopTip 位移拦截器
+     * @param interceptor Move Displacement Interceptor Item
+     * @return [PopMoveDisplacementInterceptor]
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected open fun getMoveDisplacementInterceptor(
+        interceptor: Any?
+    ): PopMoveDisplacementInterceptor<PopTip>? {
+        return interceptor as? PopMoveDisplacementInterceptor<PopTip>
     }
 
     // ==============

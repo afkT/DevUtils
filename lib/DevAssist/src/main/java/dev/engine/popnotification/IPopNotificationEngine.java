@@ -76,6 +76,21 @@ public interface IPopNotificationEngine<Config extends IPopNotificationEngine.En
 
         // 默认背景色 ( ColorInt, 映射全局 backgroundColor )
         Integer backgroundColor();
+
+        // 覆盖进入动画时长 ( ms, 映射全局 overrideEnterDuration )
+        long overrideEnterDuration();
+
+        // 覆盖退出动画时长 ( ms, 映射全局 overrideExitDuration )
+        long overrideExitDuration();
+
+        // 覆盖进入动画资源 id ( 映射全局 overrideEnterAnimRes )
+        int overrideEnterAnimRes();
+
+        // 覆盖退出动画资源 id ( 映射全局 overrideExitAnimRes )
+        int overrideExitAnimRes();
+
+        // 多 PopNotification 位移拦截器对象 ( 映射全局 moveDisplacementInterceptor )
+        Object moveDisplacementInterceptor();
     }
 
     /**

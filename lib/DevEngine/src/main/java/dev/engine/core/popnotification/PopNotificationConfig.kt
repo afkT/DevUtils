@@ -1,6 +1,8 @@
 package dev.engine.core.popnotification
 
+import com.kongzue.dialogx.dialogs.PopNotification
 import com.kongzue.dialogx.interfaces.DialogXStyle
+import com.kongzue.dialogx.interfaces.PopMoveDisplacementInterceptor
 import com.kongzue.dialogx.util.TextInfo
 import dev.engine.popnotification.IPopNotificationEngine
 
@@ -57,6 +59,21 @@ open class PopNotificationConfig private constructor(
     // 默认背景色 ( ColorInt )
     private var mBackgroundColor: Int? = null
 
+    // 覆盖进入动画时长 ( ms )
+    private var mOverrideEnterDuration = PopNotificationConst.UNSET_LONG
+
+    // 覆盖退出动画时长 ( ms )
+    private var mOverrideExitDuration = PopNotificationConst.UNSET_LONG
+
+    // 覆盖进入动画资源 id
+    private var mOverrideEnterAnimRes = PopNotificationConst.UNSET
+
+    // 覆盖退出动画资源 id
+    private var mOverrideExitAnimRes = PopNotificationConst.UNSET
+
+    // 多 PopNotification 位移拦截器对象
+    private var mMoveDisplacementInterceptor: Any? = null
+
     companion object {
 
         /**
@@ -94,6 +111,11 @@ open class PopNotificationConfig private constructor(
             this.mEnterAnimDuration = it.mEnterAnimDuration
             this.mExitAnimDuration = it.mExitAnimDuration
             this.mBackgroundColor = it.mBackgroundColor
+            this.mOverrideEnterDuration = it.mOverrideEnterDuration
+            this.mOverrideExitDuration = it.mOverrideExitDuration
+            this.mOverrideEnterAnimRes = it.mOverrideEnterAnimRes
+            this.mOverrideExitAnimRes = it.mOverrideExitAnimRes
+            this.mMoveDisplacementInterceptor = it.mMoveDisplacementInterceptor
         }
     }
 
@@ -330,6 +352,78 @@ open class PopNotificationConfig private constructor(
 
     open fun setBackgroundColor(backgroundColor: Int?): PopNotificationConfig {
         mBackgroundColor = backgroundColor
+        return this
+    }
+
+    /**
+     * 覆盖进入动画时长 ( ms )
+     */
+    override fun overrideEnterDuration(): Long {
+        return mOverrideEnterDuration
+    }
+
+    open fun setOverrideEnterDuration(overrideEnterDuration: Long): PopNotificationConfig {
+        mOverrideEnterDuration = overrideEnterDuration
+        return this
+    }
+
+    /**
+     * 覆盖退出动画时长 ( ms )
+     */
+    override fun overrideExitDuration(): Long {
+        return mOverrideExitDuration
+    }
+
+    open fun setOverrideExitDuration(overrideExitDuration: Long): PopNotificationConfig {
+        mOverrideExitDuration = overrideExitDuration
+        return this
+    }
+
+    /**
+     * 覆盖进入动画资源 id
+     */
+    override fun overrideEnterAnimRes(): Int {
+        return mOverrideEnterAnimRes
+    }
+
+    open fun setOverrideEnterAnimRes(overrideEnterAnimRes: Int): PopNotificationConfig {
+        mOverrideEnterAnimRes = overrideEnterAnimRes
+        return this
+    }
+
+    /**
+     * 覆盖退出动画资源 id
+     */
+    override fun overrideExitAnimRes(): Int {
+        return mOverrideExitAnimRes
+    }
+
+    open fun setOverrideExitAnimRes(overrideExitAnimRes: Int): PopNotificationConfig {
+        mOverrideExitAnimRes = overrideExitAnimRes
+        return this
+    }
+
+    /**
+     * 多 PopNotification 位移拦截器对象
+     */
+    override fun moveDisplacementInterceptor(): Any? {
+        return mMoveDisplacementInterceptor
+    }
+
+    open fun setMoveDisplacementInterceptor(
+        interceptor: PopMoveDisplacementInterceptor<PopNotification>?
+    ): PopNotificationConfig {
+        mMoveDisplacementInterceptor = interceptor
+        return this
+    }
+
+    /**
+     * 设置多 PopNotification 位移拦截器对象 ( Object 重载 )
+     * @param interceptor 多 PopNotification 位移拦截器对象
+     * @return [PopNotificationConfig]
+     */
+    open fun setMoveDisplacementInterceptor(interceptor: Any?): PopNotificationConfig {
+        mMoveDisplacementInterceptor = interceptor
         return this
     }
 }

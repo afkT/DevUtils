@@ -105,6 +105,30 @@ open class DialogXPopNotificationEngineImpl(
             it.backgroundColor()?.let { backgroundColor ->
                 DialogX.backgroundColor = backgroundColor
             }
+            // 覆盖进入动画时长
+            val overrideEnterDuration = it.overrideEnterDuration()
+            if (overrideEnterDuration >= 0) {
+                PopNotification.overrideEnterDuration = overrideEnterDuration
+            }
+            // 覆盖退出动画时长
+            val overrideExitDuration = it.overrideExitDuration()
+            if (overrideExitDuration >= 0) {
+                PopNotification.overrideExitDuration = overrideExitDuration
+            }
+            // 覆盖进入动画资源
+            val overrideEnterAnimRes = it.overrideEnterAnimRes()
+            if (overrideEnterAnimRes > 0) {
+                PopNotification.overrideEnterAnimRes = overrideEnterAnimRes
+            }
+            // 覆盖退出动画资源
+            val overrideExitAnimRes = it.overrideExitAnimRes()
+            if (overrideExitAnimRes > 0) {
+                PopNotification.overrideExitAnimRes = overrideExitAnimRes
+            }
+            // 多 PopNotification 位移拦截器
+            getMoveDisplacementInterceptor(it.moveDisplacementInterceptor())?.let { interceptor ->
+                PopNotification.moveDisplacementInterceptor = interceptor
+            }
         }
     }
 
@@ -1913,6 +1937,18 @@ open class DialogXPopNotificationEngineImpl(
      */
     protected open fun getLifecycleOwner(owner: Any?): LifecycleOwner? {
         return owner as? LifecycleOwner
+    }
+
+    /**
+     * 获取多 PopNotification 位移拦截器
+     * @param interceptor Move Displacement Interceptor Item
+     * @return [PopMoveDisplacementInterceptor]
+     */
+    @Suppress("UNCHECKED_CAST")
+    protected open fun getMoveDisplacementInterceptor(
+        interceptor: Any?
+    ): PopMoveDisplacementInterceptor<PopNotification>? {
+        return interceptor as? PopMoveDisplacementInterceptor<PopNotification>
     }
 
     // =======================

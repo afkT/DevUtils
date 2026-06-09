@@ -1,6 +1,8 @@
 package dev.engine.core.poptip
 
+import com.kongzue.dialogx.dialogs.PopTip
 import com.kongzue.dialogx.interfaces.DialogXStyle
+import com.kongzue.dialogx.interfaces.PopMoveDisplacementInterceptor
 import com.kongzue.dialogx.util.TextInfo
 import dev.engine.poptip.IPopTipEngine
 
@@ -51,6 +53,24 @@ open class PopTipConfig private constructor(
     // 默认背景色 ( ColorInt )
     private var mBackgroundColor: Int? = null
 
+    // 最大同时显示数量
+    private var mMaxShowCount = PopTipConst.UNSET
+
+    // 覆盖进入动画时长 ( ms )
+    private var mOverrideEnterDuration = PopTipConst.UNSET_LONG
+
+    // 覆盖退出动画时长 ( ms )
+    private var mOverrideExitDuration = PopTipConst.UNSET_LONG
+
+    // 覆盖进入动画资源 id
+    private var mOverrideEnterAnimRes = PopTipConst.UNSET
+
+    // 覆盖退出动画资源 id
+    private var mOverrideExitAnimRes = PopTipConst.UNSET
+
+    // 多 PopTip 位移拦截器对象
+    private var mMoveDisplacementInterceptor: Any? = null
+
     companion object {
 
         /**
@@ -86,6 +106,12 @@ open class PopTipConfig private constructor(
             this.mEnterAnimDuration = it.mEnterAnimDuration
             this.mExitAnimDuration = it.mExitAnimDuration
             this.mBackgroundColor = it.mBackgroundColor
+            this.mMaxShowCount = it.mMaxShowCount
+            this.mOverrideEnterDuration = it.mOverrideEnterDuration
+            this.mOverrideExitDuration = it.mOverrideExitDuration
+            this.mOverrideEnterAnimRes = it.mOverrideEnterAnimRes
+            this.mOverrideExitAnimRes = it.mOverrideExitAnimRes
+            this.mMoveDisplacementInterceptor = it.mMoveDisplacementInterceptor
         }
     }
 
@@ -288,6 +314,90 @@ open class PopTipConfig private constructor(
 
     open fun setBackgroundColor(backgroundColor: Int?): PopTipConfig {
         mBackgroundColor = backgroundColor
+        return this
+    }
+
+    /**
+     * 最大同时显示数量
+     */
+    override fun maxShowCount(): Int {
+        return mMaxShowCount
+    }
+
+    open fun setMaxShowCount(maxShowCount: Int): PopTipConfig {
+        mMaxShowCount = maxShowCount
+        return this
+    }
+
+    /**
+     * 覆盖进入动画时长 ( ms )
+     */
+    override fun overrideEnterDuration(): Long {
+        return mOverrideEnterDuration
+    }
+
+    open fun setOverrideEnterDuration(overrideEnterDuration: Long): PopTipConfig {
+        mOverrideEnterDuration = overrideEnterDuration
+        return this
+    }
+
+    /**
+     * 覆盖退出动画时长 ( ms )
+     */
+    override fun overrideExitDuration(): Long {
+        return mOverrideExitDuration
+    }
+
+    open fun setOverrideExitDuration(overrideExitDuration: Long): PopTipConfig {
+        mOverrideExitDuration = overrideExitDuration
+        return this
+    }
+
+    /**
+     * 覆盖进入动画资源 id
+     */
+    override fun overrideEnterAnimRes(): Int {
+        return mOverrideEnterAnimRes
+    }
+
+    open fun setOverrideEnterAnimRes(overrideEnterAnimRes: Int): PopTipConfig {
+        mOverrideEnterAnimRes = overrideEnterAnimRes
+        return this
+    }
+
+    /**
+     * 覆盖退出动画资源 id
+     */
+    override fun overrideExitAnimRes(): Int {
+        return mOverrideExitAnimRes
+    }
+
+    open fun setOverrideExitAnimRes(overrideExitAnimRes: Int): PopTipConfig {
+        mOverrideExitAnimRes = overrideExitAnimRes
+        return this
+    }
+
+    /**
+     * 多 PopTip 位移拦截器对象
+     */
+    override fun moveDisplacementInterceptor(): Any? {
+        return mMoveDisplacementInterceptor
+    }
+
+    open fun setMoveDisplacementInterceptor(
+        interceptor: PopMoveDisplacementInterceptor<PopTip>?
+    ): PopTipConfig {
+        mMoveDisplacementInterceptor = interceptor
+        return this
+    }
+
+    /**
+     * 设置多 PopTip 位移拦截器对象 ( Object 重载 )
+     * @param interceptor 多 PopTip 位移拦截器对象
+     * @return [PopTipConfig]
+     */
+    open fun setMoveDisplacementInterceptor(interceptor: Any?): PopTipConfig {
+        mMoveDisplacementInterceptor = interceptor
         return this
     }
 }
