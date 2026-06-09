@@ -11,13 +11,23 @@ import androidx.fragment.app.Fragment
 import com.therouter.TheRouter
 import com.therouter.getApplicationContext
 import com.therouter.router.Navigator
+import com.therouter.router.RouteItem
 import com.therouter.router.action.interceptor.ActionInterceptor
-import com.therouter.router.defaultNavigationCallback
+import com.therouter.router.arguments
 import com.therouter.router.interceptor.*
 import com.therouter.theRouterInited
 import com.therouter.theRouterUseAutoInit
 import dev.engine.router.IRouterEngine
 import java.io.Serializable
+import com.therouter.router.addNavigatorPathFixHandle as therouterAddNavigatorPathFixHandle
+import com.therouter.router.addPathReplaceInterceptor as therouterAddPathReplaceInterceptor
+import com.therouter.router.addRouterReplaceInterceptor as therouterAddRouterReplaceInterceptor
+import com.therouter.router.defaultNavigationCallback as therouterDefaultNavigationCallback
+import com.therouter.router.removeNavigatorPathFixHandle as therouterRemoveNavigatorPathFixHandle
+import com.therouter.router.removePathReplaceInterceptor as therouterRemovePathReplaceInterceptor
+import com.therouter.router.removeRouterReplaceInterceptor as therouterRemoveRouterReplaceInterceptor
+import com.therouter.router.sendPendingNavigator as therouterSendPendingNavigator
+import com.therouter.router.setRouterInterceptor as therouterSetRouterInterceptor
 
 /**
  * detail: TheRouter Router Engine 实现
@@ -158,7 +168,7 @@ open class TheRouterEngineImpl(
      */
     override fun setDefaultNavigationCallback(callback: IRouterEngine.OnNavigationCallback?) {
         wrapNavigationCallback(callback)?.let {
-            defaultNavigationCallback(it)
+            therouterDefaultNavigationCallback(it)
         }
     }
 
@@ -168,7 +178,7 @@ open class TheRouterEngineImpl(
      */
     override fun addNavigatorPathFixHandle(handle: Any?) {
         getNavigatorPathFixHandle(handle)?.let {
-            addNavigatorPathFixHandle(it)
+            therouterAddNavigatorPathFixHandle(it)
         }
     }
 
@@ -179,7 +189,7 @@ open class TheRouterEngineImpl(
      */
     override fun removeNavigatorPathFixHandle(handle: Any?): Boolean {
         val fixHandle = getNavigatorPathFixHandle(handle) ?: return false
-        return removeNavigatorPathFixHandle(fixHandle)
+        return therouterRemoveNavigatorPathFixHandle(fixHandle)
     }
 
     /**
@@ -188,7 +198,7 @@ open class TheRouterEngineImpl(
      */
     override fun addPathReplaceInterceptor(interceptor: Any?) {
         getPathReplaceInterceptor(interceptor)?.let {
-            addPathReplaceInterceptor(it)
+            therouterAddPathReplaceInterceptor(it)
         }
     }
 
@@ -199,7 +209,7 @@ open class TheRouterEngineImpl(
      */
     override fun removePathReplaceInterceptor(interceptor: Any?): Boolean {
         val pathInterceptor = getPathReplaceInterceptor(interceptor) ?: return false
-        return removePathReplaceInterceptor(pathInterceptor)
+        return therouterRemovePathReplaceInterceptor(pathInterceptor)
     }
 
     /**
@@ -208,7 +218,7 @@ open class TheRouterEngineImpl(
      */
     override fun addRouterReplaceInterceptor(interceptor: Any?) {
         getRouterReplaceInterceptor(interceptor)?.let {
-            addRouterReplaceInterceptor(it)
+            therouterAddRouterReplaceInterceptor(it)
         }
     }
 
@@ -219,7 +229,7 @@ open class TheRouterEngineImpl(
      */
     override fun removeRouterReplaceInterceptor(interceptor: Any?): Boolean {
         val routerInterceptor = getRouterReplaceInterceptor(interceptor) ?: return false
-        return removeRouterReplaceInterceptor(routerInterceptor)
+        return therouterRemoveRouterReplaceInterceptor(routerInterceptor)
     }
 
     /**
@@ -272,6 +282,86 @@ open class TheRouterEngineImpl(
         }
     }
 
+    /**
+     * 手动初始化 TheRouter
+     * @param context Context 对象
+     * @return `true` success, `false` fail
+     */
+    override fun init(context: Any?): Boolean {
+        return init(context, true)
+    }
+
+    /**
+     * 手动初始化 TheRouter
+     * @param context Context 对象
+     * @param asyncInitRouterInject 是否异步初始化 Autowired 注入表
+     * @return `true` success, `false` fail
+     */
+    override fun init(
+        context: Any?,
+        asyncInitRouterInject: Boolean
+    ): Boolean {
+        return try {
+            TheRouter.init(getContext(context), asyncInitRouterInject)
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    /**
+     * 设置路由 AOP 拦截器
+     * @param interceptor 路由 AOP 拦截器对象
+     */
+    override fun setRouterInterceptor(interceptor: Any?) {
+        interceptor ?: return
+        when (interceptor) {
+            is RouterInterceptor -> therouterSetRouterInterceptor(interceptor)
+            is IRouterEngine.OnRouterInterceptor -> {
+                therouterSetRouterInterceptor(object : RouterInterceptor {
+                    override fun process(
+                        routeItem: RouteItem,
+                        callback: InterceptorCallback
+                    ) {
+                        interceptor.process(
+                            routeItem,
+                            object : IRouterEngine.OnRouterContinueCallback {
+                                override fun onContinue(continuedRouteItem: Any?) {
+                                    val continued = continuedRouteItem as? RouteItem ?: routeItem
+                                    callback.onContinue(continued)
+                                }
+                            }
+                        )
+                    }
+                })
+            }
+        }
+    }
+
+    /**
+     * 恢复 pending 状态的 Navigator 跳转
+     */
+    override fun sendPendingNavigator() {
+        try {
+            therouterSendPendingNavigator()
+        } catch (_: Exception) {
+        }
+    }
+
+    /**
+     * 获取 Navigator 全局 Object 参数
+     * @param key 参数 key
+     * @return 参数值
+     */
+    override fun optGlobalObject(key: String?): Any? {
+        if (key.isNullOrEmpty()) return null
+        return try {
+            arguments[key]?.get()
+        } catch (_: Exception) {
+            null
+        }
+    }
+
     // =================
     // = 构建 Navigator =
     // =================
@@ -316,6 +406,90 @@ open class TheRouterEngineImpl(
      */
     override fun getUrlWithParams(navigator: Any?): String? {
         return getNavigator(navigator)?.getUrlWithParams()
+    }
+
+    /**
+     * 获取带参数的完整 url
+     * @param navigator Navigator 对象
+     * @param paramsFixHandle NavigatorParamsFixHandle 对象
+     * @return 完整 url
+     */
+    override fun getUrlWithParams(
+        navigator: Any?,
+        paramsFixHandle: Any?
+    ): String? {
+        val handle = getNavigatorParamsFixHandle(paramsFixHandle) ?: return null
+        return getNavigator(navigator)?.getUrlWithParams(handle)
+    }
+
+    /**
+     * 获取带参数的完整 url
+     * @param navigator Navigator 对象
+     * @param listener Url 参数拼接修正
+     * @return 完整 url
+     */
+    override fun getUrlWithParams(
+        navigator: Any?,
+        listener: IRouterEngine.OnUrlParamsFixListener?
+    ): String? {
+        listener ?: return getUrlWithParams(navigator)
+        return getNavigator(navigator)?.getUrlWithParams { key, value ->
+            listener.fix(key, value)
+        }
+    }
+
+    /**
+     * 获取 Navigator 当前 url
+     * @param navigator Navigator 对象
+     * @return url
+     */
+    override fun getNavigatorUrl(navigator: Any?): String? {
+        return getNavigator(navigator)?.url
+    }
+
+    /**
+     * 获取 Navigator 原始 url
+     * @param navigator Navigator 对象
+     * @return 原始 url
+     */
+    override fun getOriginalUrl(navigator: Any?): String? {
+        return getNavigator(navigator)?.originalUrl
+    }
+
+    /**
+     * 获取 Navigator PathFix 后的原始 url
+     * @param navigator Navigator 对象
+     * @return PathFix 后的原始 url
+     */
+    override fun getPathFixOriginalUrl(navigator: Any?): String? {
+        return getNavigator(navigator)?.pathFixOriginalUrl
+    }
+
+    /**
+     * 获取 Navigator 简化 url ( 不含 query )
+     * @param navigator Navigator 对象
+     * @return 简化 url
+     */
+    override fun getSimpleUrl(navigator: Any?): String? {
+        return getNavigator(navigator)?.simpleUrl
+    }
+
+    /**
+     * 获取 Navigator 参数 Bundle
+     * @param navigator Navigator 对象
+     * @return 参数 Bundle
+     */
+    override fun getNavigatorExtras(navigator: Any?): Bundle? {
+        return getNavigator(navigator)?.extras
+    }
+
+    /**
+     * 获取 Navigator 关联 Intent
+     * @param navigator Navigator 对象
+     * @return Intent
+     */
+    override fun getNavigatorIntent(navigator: Any?): Intent? {
+        return getNavigator(navigator)?.intent
     }
 
     /**
@@ -536,6 +710,84 @@ open class TheRouterEngineImpl(
     }
 
     /**
+     * 批量填充 Navigator 参数 Bundle
+     * @param navigator Navigator 对象
+     * @param listener 参数填充监听
+     * @return Navigator 对象
+     */
+    override fun fillParams(
+        navigator: Any?,
+        listener: IRouterEngine.OnFillParamsListener?
+    ): Any? {
+        val navigatorObj = getNavigator(navigator) ?: return navigator
+        listener ?: return navigator
+        navigatorObj.fillParams { extras ->
+            listener.fill(extras)
+        }
+        return navigator
+    }
+
+    /**
+     * 设置 Intent Data
+     * @param navigator Navigator 对象
+     * @param uri Uri 对象
+     * @return Navigator 对象
+     */
+    override fun setData(
+        navigator: Any?,
+        uri: Any?
+    ): Any? {
+        getUri(uri)?.let {
+            getNavigator(navigator)?.setData(it)
+        }
+        return navigator
+    }
+
+    /**
+     * 设置 Intent Identifier
+     * @param navigator Navigator 对象
+     * @param identifier Identifier
+     * @return Navigator 对象
+     */
+    override fun setIdentifier(
+        navigator: Any?,
+        identifier: String?
+    ): Any? {
+        getNavigator(navigator)?.setIdentifier(identifier)
+        return navigator
+    }
+
+    /**
+     * 设置 Intent ClipData
+     * @param navigator Navigator 对象
+     * @param clipData ClipData 对象
+     * @return Navigator 对象
+     */
+    override fun setClipData(
+        navigator: Any?,
+        clipData: Any?
+    ): Any? {
+        getClipData(clipData)?.let {
+            getNavigator(navigator)?.setClipData(it)
+        }
+        return navigator
+    }
+
+    /**
+     * 获取 Navigator Object 参数
+     * @param navigator Navigator 对象
+     * @param key 参数 key
+     * @return 参数值
+     */
+    override fun optObject(
+        navigator: Any?,
+        key: String?
+    ): Any? {
+        if (key.isNullOrEmpty()) return null
+        return getNavigator(navigator)?.optObject(key)
+    }
+
+    /**
      * 追加 Intent Flags
      * @param navigator Navigator 对象
      * @param flags Intent Flags
@@ -624,6 +876,27 @@ open class TheRouterEngineImpl(
     }
 
     /**
+     * 异步创建 Intent
+     * @param navigator Navigator 对象
+     * @param context Context 对象
+     * @param callback Intent 创建回调
+     */
+    override fun createIntentWithCallback(
+        navigator: Any?,
+        context: Any?,
+        callback: IRouterEngine.OnIntentCallback?
+    ) {
+        val navigatorObj = getNavigator(navigator) ?: return
+        callback ?: return
+        try {
+            navigatorObj.createIntentWithCallback(getContext(context)) { intent ->
+                callback.onIntent(intent)
+            }
+        } catch (_: Exception) {
+        }
+    }
+
+    /**
      * 创建 Fragment
      * @param navigator Navigator 对象
      * @return Fragment 实例
@@ -634,6 +907,25 @@ open class TheRouterEngineImpl(
             navigatorObj.createFragment()
         } catch (_: Exception) {
             null
+        }
+    }
+
+    /**
+     * 异步创建 Fragment
+     * @param navigator Navigator 对象
+     * @param callback Fragment 创建回调
+     */
+    override fun createFragmentWithCallback(
+        navigator: Any?,
+        callback: IRouterEngine.OnFragmentCallback?
+    ) {
+        val navigatorObj = getNavigator(navigator) ?: return
+        callback ?: return
+        try {
+            navigatorObj.createFragmentWithCallback<Fragment> { fragment ->
+                callback.onFragment(fragment)
+            }
+        } catch (_: Exception) {
         }
     }
 
@@ -693,6 +985,21 @@ open class TheRouterEngineImpl(
     /**
      * 执行 Action
      * @param navigator Navigator 对象
+     * @return `true` success, `false` fail
+     */
+    override fun action(navigator: Any?): Boolean {
+        val navigatorObj = getNavigator(navigator) ?: return false
+        return try {
+            navigatorObj.action()
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    /**
+     * 执行 Action
+     * @param navigator Navigator 对象
      * @param context Context 对象
      * @return `true` success, `false` fail
      */
@@ -701,9 +1008,8 @@ open class TheRouterEngineImpl(
         context: Any?
     ): Boolean {
         val navigatorObj = getNavigator(navigator) ?: return false
-        val ctx = getContext(context) ?: return false
         return try {
-            navigatorObj.action(ctx)
+            navigatorObj.action(getContext(context))
             true
         } catch (_: Exception) {
             false
@@ -776,6 +1082,15 @@ open class TheRouterEngineImpl(
         getClipData(item.intentClipData())?.let {
             navigator.setClipData(it)
         }
+    }
+
+    /**
+     * 获取 NavigatorParamsFixHandle
+     * @param handle NavigatorParamsFixHandle Item
+     * @return [NavigatorParamsFixHandle]
+     */
+    protected open fun getNavigatorParamsFixHandle(handle: Any?): NavigatorParamsFixHandle? {
+        return handle as? NavigatorParamsFixHandle
     }
 
     /**

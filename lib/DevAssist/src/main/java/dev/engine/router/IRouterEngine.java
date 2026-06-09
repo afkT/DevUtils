@@ -148,6 +148,105 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
         );
     }
 
+    /**
+     * detail: 路由参数填充
+     * @author Ttt
+     * <p></p>
+     * 对齐 Navigator.fillParams
+     */
+    interface OnFillParamsListener {
+
+        /**
+         * 填充路由参数 Bundle
+         * @param extras 参数 Bundle
+         */
+        void fill(Bundle extras);
+    }
+
+    /**
+     * detail: Intent 创建回调
+     * @author Ttt
+     * <p></p>
+     * 对齐 Navigator.createIntentWithCallback
+     */
+    interface OnIntentCallback {
+
+        /**
+         * Intent 创建完成
+         * @param intent Intent
+         */
+        void onIntent(Intent intent);
+    }
+
+    /**
+     * detail: Fragment 创建回调
+     * @author Ttt
+     * <p></p>
+     * 对齐 Navigator.createFragmentWithCallback
+     */
+    interface OnFragmentCallback {
+
+        /**
+         * Fragment 创建完成
+         * @param fragment Fragment 对象
+         */
+        void onFragment(Object fragment);
+    }
+
+    /**
+     * detail: Url 参数拼接修正
+     * @author Ttt
+     * <p></p>
+     * 对齐 Navigator.getUrlWithParams key-value fix 回调
+     */
+    interface OnUrlParamsFixListener {
+
+        /**
+         * 修正单个 key-value 拼接
+         * @param key   参数 key
+         * @param value 参数 value
+         * @return 拼接后的片段
+         */
+        String fix(
+                String key,
+                String value
+        );
+    }
+
+    /**
+     * detail: 路由 AOP 拦截继续回调
+     * @author Ttt
+     * <p></p>
+     * 对齐 RouterInterceptor.InterceptorCallback
+     */
+    interface OnRouterContinueCallback {
+
+        /**
+         * 继续路由
+         * @param routeItem 路由项对象
+         */
+        void onContinue(Object routeItem);
+    }
+
+    /**
+     * detail: 路由 AOP 拦截器
+     * @author Ttt
+     * <p></p>
+     * 对齐 RouterInterceptor, 用于 setRouterInterceptor 解耦包装
+     */
+    interface OnRouterInterceptor {
+
+        /**
+         * 路由 AOP 处理
+         * @param routeItem 路由项对象
+         * @param callback  继续回调
+         */
+        void process(
+                Object routeItem,
+                OnRouterContinueCallback callback
+        );
+    }
+
     // =============
     // = 对外公开方法 =
     // =============
@@ -310,6 +409,42 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      */
     void addAutowiredParser(Object parser);
 
+    /**
+     * 手动初始化 TheRouter
+     * @param context Context 对象
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean init(Object context);
+
+    /**
+     * 手动初始化 TheRouter
+     * @param context              Context 对象
+     * @param asyncInitRouterInject 是否异步初始化 Autowired 注入表
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean init(
+            Object context,
+            boolean asyncInitRouterInject
+    );
+
+    /**
+     * 设置路由 AOP 拦截器
+     * @param interceptor 路由 AOP 拦截器对象 ( RouterInterceptor 或 OnRouterInterceptor )
+     */
+    void setRouterInterceptor(Object interceptor);
+
+    /**
+     * 恢复 pending 状态的 Navigator 跳转
+     */
+    void sendPendingNavigator();
+
+    /**
+     * 获取 Navigator 全局 Object 参数
+     * @param key 参数 key
+     * @return 参数值
+     */
+    Object optGlobalObject(String key);
+
     // =================
     // = 构建 Navigator =
     // =================
@@ -345,6 +480,70 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      * @return 完整 url
      */
     String getUrlWithParams(Object navigator);
+
+    /**
+     * 获取带参数的完整 url
+     * @param navigator      Navigator 对象
+     * @param paramsFixHandle NavigatorParamsFixHandle 对象
+     * @return 完整 url
+     */
+    String getUrlWithParams(
+            Object navigator,
+            Object paramsFixHandle
+    );
+
+    /**
+     * 获取带参数的完整 url
+     * @param navigator Navigator 对象
+     * @param listener  Url 参数拼接修正
+     * @return 完整 url
+     */
+    String getUrlWithParams(
+            Object navigator,
+            OnUrlParamsFixListener listener
+    );
+
+    /**
+     * 获取 Navigator 当前 url
+     * @param navigator Navigator 对象
+     * @return url
+     */
+    String getNavigatorUrl(Object navigator);
+
+    /**
+     * 获取 Navigator 原始 url
+     * @param navigator Navigator 对象
+     * @return 原始 url
+     */
+    String getOriginalUrl(Object navigator);
+
+    /**
+     * 获取 Navigator PathFix 后的原始 url
+     * @param navigator Navigator 对象
+     * @return PathFix 后的原始 url
+     */
+    String getPathFixOriginalUrl(Object navigator);
+
+    /**
+     * 获取 Navigator 简化 url ( 不含 query )
+     * @param navigator Navigator 对象
+     * @return 简化 url
+     */
+    String getSimpleUrl(Object navigator);
+
+    /**
+     * 获取 Navigator 参数 Bundle
+     * @param navigator Navigator 对象
+     * @return 参数 Bundle
+     */
+    Bundle getNavigatorExtras(Object navigator);
+
+    /**
+     * 获取 Navigator 关联 Intent
+     * @param navigator Navigator 对象
+     * @return Intent
+     */
+    Intent getNavigatorIntent(Object navigator);
 
     /**
      * 设置 pending 等待路由表初始化
@@ -521,6 +720,61 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
     );
 
     /**
+     * 批量填充 Navigator 参数 Bundle
+     * @param navigator Navigator 对象
+     * @param listener  参数填充监听
+     * @return Navigator 对象
+     */
+    Object fillParams(
+            Object navigator,
+            OnFillParamsListener listener
+    );
+
+    /**
+     * 设置 Intent Data
+     * @param navigator Navigator 对象
+     * @param uri       Uri 对象
+     * @return Navigator 对象
+     */
+    Object setData(
+            Object navigator,
+            Object uri
+    );
+
+    /**
+     * 设置 Intent Identifier
+     * @param navigator  Navigator 对象
+     * @param identifier Identifier
+     * @return Navigator 对象
+     */
+    Object setIdentifier(
+            Object navigator,
+            String identifier
+    );
+
+    /**
+     * 设置 Intent ClipData
+     * @param navigator Navigator 对象
+     * @param clipData  ClipData 对象
+     * @return Navigator 对象
+     */
+    Object setClipData(
+            Object navigator,
+            Object clipData
+    );
+
+    /**
+     * 获取 Navigator Object 参数
+     * @param navigator Navigator 对象
+     * @param key       参数 key
+     * @return 参数值
+     */
+    Object optObject(
+            Object navigator,
+            String key
+    );
+
+    /**
      * 追加 Intent Flags
      * @param navigator Navigator 对象
      * @param flags     Intent Flags
@@ -587,12 +841,34 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
     );
 
     /**
+     * 异步创建 Intent
+     * @param navigator Navigator 对象
+     * @param context   Context 对象
+     * @param callback  Intent 创建回调
+     */
+    void createIntentWithCallback(
+            Object navigator,
+            Object context,
+            OnIntentCallback callback
+    );
+
+    /**
      * 创建 Fragment
      * @param navigator Navigator 对象
      * @param <T>       Fragment 类型
      * @return Fragment 实例
      */
     <T> T createFragment(Object navigator);
+
+    /**
+     * 异步创建 Fragment
+     * @param navigator Navigator 对象
+     * @param callback  Fragment 创建回调
+     */
+    void createFragmentWithCallback(
+            Object navigator,
+            OnFragmentCallback callback
+    );
 
     /**
      * 执行路由跳转
@@ -603,6 +879,13 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
             Object navigator,
             Item item
     );
+
+    /**
+     * 执行 Action
+     * @param navigator Navigator 对象
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean action(Object navigator);
 
     /**
      * 执行 Action
