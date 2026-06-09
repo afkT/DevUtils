@@ -93,6 +93,11 @@
         android:label="PopTipFragment" />
 
     <fragment
+        android:id="@+id/PopNotificationFragment"
+        android:name="afkt.project.features.dev_engine.PopNotificationFragment"
+        android:label="PopNotificationFragment" />
+
+    <fragment
         android:id="@+id/PushFragment"
         android:name="afkt.project.features.dev_engine.PushFragment"
         android:label="PushFragment" />

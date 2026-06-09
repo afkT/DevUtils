@@ -803,7 +803,9 @@ open class DialogXPopNotificationEngineImpl(
         buttonText: CharSequence?,
         listener: IPopNotificationEngine.OnButtonClickListener?
     ): Any? {
-        getPopNotification(popNotification)?.setButton(buttonText, wrapButtonClick(listener))
+        getPopNotification(popNotification)?.setButton(
+            buttonText, wrapButtonClick(listener)
+        )
         return popNotification
     }
 
@@ -819,7 +821,9 @@ open class DialogXPopNotificationEngineImpl(
         buttonTextResId: Int,
         listener: IPopNotificationEngine.OnButtonClickListener?
     ): Any? {
-        getPopNotification(popNotification)?.setButton(buttonTextResId, wrapButtonClick(listener))
+        getPopNotification(popNotification)?.setButton(
+            buttonTextResId, wrapButtonClick(listener)
+        )
         return popNotification
     }
 
@@ -1677,18 +1681,18 @@ open class DialogXPopNotificationEngineImpl(
         }
         // 外边距
         val marginLeft = item.marginLeft()
-        val marginTop = item.marginTop()
-        val marginRight = item.marginRight()
-        val marginBottom = item.marginBottom()
         if (marginLeft != PopNotificationConst.UNSET) {
             popNotification.marginLeft = marginLeft
         }
+        val marginTop = item.marginTop()
         if (marginTop != PopNotificationConst.UNSET) {
             popNotification.marginTop = marginTop
         }
+        val marginRight = item.marginRight()
         if (marginRight != PopNotificationConst.UNSET) {
             popNotification.marginRight = marginRight
         }
+        val marginBottom = item.marginBottom()
         if (marginBottom != PopNotificationConst.UNSET) {
             popNotification.marginBottom = marginBottom
         }
@@ -1717,7 +1721,9 @@ open class DialogXPopNotificationEngineImpl(
             if (isLightTheme == null) {
                 popNotification.setCustomDialogLayoutResId(customDialogLayoutResId)
             } else {
-                popNotification.setCustomDialogLayoutResId(customDialogLayoutResId, isLightTheme)
+                popNotification.setCustomDialogLayoutResId(
+                    customDialogLayoutResId, isLightTheme
+                )
             }
         }
         return popNotification

@@ -1536,7 +1536,9 @@ open class DialogXPopTipEngineImpl(
             if (isLightTheme == null) {
                 popTip.setCustomDialogLayoutResId(customDialogLayoutResId)
             } else {
-                popTip.setCustomDialogLayoutResId(customDialogLayoutResId, isLightTheme)
+                popTip.setCustomDialogLayoutResId(
+                    customDialogLayoutResId, isLightTheme
+                )
             }
         }
         return popTip

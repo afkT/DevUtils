@@ -153,6 +153,10 @@ enum class ButtonEnum(
 
     BTN_DEV_ASSIST_ENGINE_POP_TIP("PopTip Engine 非阻断式文本提示", R.id.PopTipFragment),
 
+    BTN_DEV_ASSIST_ENGINE_POP_NOTIFICATION(
+        "PopNotification Engine 非阻断式通知提示", R.id.PopNotificationFragment
+    ),
+
     BTN_DEV_ASSIST_ENGINE_PUSH("Push Engine 推送平台处理", R.id.PushFragment),
 
     BTN_DEV_ASSIST_ENGINE_REFRESH("Refresh Engine 下拉刷新", R.id.RefreshFragment),
