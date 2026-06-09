@@ -1474,10 +1474,10 @@ open class DialogXPopNotificationEngineImpl(
      */
     override fun bindDismissWithLifecycleOwner(
         popNotification: Any?,
-        owner: Any?
+        owner: LifecycleOwner?
     ): Any? {
         val popNotificationObj = getPopNotification(popNotification) ?: return popNotification
-        getLifecycleOwner(owner)?.let {
+        owner?.let {
             popNotificationObj.bindDismissWithLifecycleOwner(it)
         }
         return popNotification
@@ -1711,7 +1711,7 @@ open class DialogXPopNotificationEngineImpl(
             popNotification.setThisOrderIndex(thisOrderIndex)
         }
         // 绑定关闭的 LifecycleOwner
-        getLifecycleOwner(item.lifecycleOwner())?.let {
+        item.lifecycleOwner()?.let {
             popNotification.bindDismissWithLifecycleOwner(it)
         }
         // 自定义弹窗布局
@@ -1944,15 +1944,6 @@ open class DialogXPopNotificationEngineImpl(
     @Suppress("UNCHECKED_CAST")
     protected open fun getDialogXAnimInterface(animImpl: Any?): DialogXAnimInterface<PopNotification>? {
         return animImpl as? DialogXAnimInterface<PopNotification>
-    }
-
-    /**
-     * 获取 LifecycleOwner
-     * @param owner LifecycleOwner Item
-     * @return [LifecycleOwner]
-     */
-    protected open fun getLifecycleOwner(owner: Any?): LifecycleOwner? {
-        return owner as? LifecycleOwner
     }
 
     /**

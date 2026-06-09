@@ -3,6 +3,8 @@ package dev.engine.poptip;
 import android.app.Activity;
 import android.view.View;
 
+import androidx.lifecycle.LifecycleOwner;
+
 import java.util.Map;
 
 /**
@@ -211,7 +213,7 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
         int thisOrderIndex();
 
         // 绑定关闭的 LifecycleOwner 对象
-        Object lifecycleOwner();
+        LifecycleOwner lifecycleOwner();
 
         // 自定义弹窗布局资源 id
         int customDialogLayoutResId();
@@ -1182,7 +1184,7 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
      */
     Object bindDismissWithLifecycleOwner(
             Object popTip,
-            Object owner
+            LifecycleOwner owner
     );
 
     /**

@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import androidx.lifecycle.LifecycleOwner;
+
 import java.util.Map;
 
 /**
@@ -237,7 +239,7 @@ public interface IPopNotificationEngine<Config extends IPopNotificationEngine.En
         int thisOrderIndex();
 
         // 绑定关闭的 LifecycleOwner 对象
-        Object lifecycleOwner();
+        LifecycleOwner lifecycleOwner();
 
         // 自定义弹窗布局资源 id
         int customDialogLayoutResId();
@@ -1316,7 +1318,7 @@ public interface IPopNotificationEngine<Config extends IPopNotificationEngine.En
      */
     Object bindDismissWithLifecycleOwner(
             Object popNotification,
-            Object owner
+            LifecycleOwner owner
     );
 
     /**

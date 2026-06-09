@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import dev.engine.DevEngine
 import dev.engine.popnotification.IPopNotificationEngine
 
@@ -1488,7 +1489,7 @@ fun Any?.popnotification_onDismiss(
  */
 fun Any?.popnotification_bindDismissWithLifecycleOwner(
     engine: String? = null,
-    owner: Any?
+    owner: LifecycleOwner?
 ): Any? {
     return engine.getPopNotificationEngine()?.bindDismissWithLifecycleOwner(this, owner)
 }

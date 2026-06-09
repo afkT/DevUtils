@@ -2,6 +2,7 @@ package dev.engine.extensions.poptip
 
 import android.app.Activity
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import dev.engine.DevEngine
 import dev.engine.poptip.IPopTipEngine
 
@@ -1330,7 +1331,7 @@ fun Any?.poptip_onDismiss(
  */
 fun Any?.poptip_bindDismissWithLifecycleOwner(
     engine: String? = null,
-    owner: Any?
+    owner: LifecycleOwner?
 ): Any? {
     return engine.getPopTipEngine()?.bindDismissWithLifecycleOwner(this, owner)
 }

@@ -126,7 +126,7 @@ open class PopTipItem private constructor(
     private var mThisOrderIndex = PopTipConst.UNSET
 
     // 绑定关闭的 LifecycleOwner 对象
-    private var mLifecycleOwner: Any? = null
+    private var mLifecycleOwner: LifecycleOwner? = null
 
     // 自定义弹窗布局资源 id
     private var mCustomDialogLayoutResId = PopTipConst.UNSET
@@ -711,21 +711,11 @@ open class PopTipItem private constructor(
     /**
      * 绑定关闭的 LifecycleOwner 对象
      */
-    override fun lifecycleOwner(): Any? {
+    override fun lifecycleOwner(): LifecycleOwner? {
         return mLifecycleOwner
     }
 
     open fun setLifecycleOwner(lifecycleOwner: LifecycleOwner?): PopTipItem {
-        mLifecycleOwner = lifecycleOwner
-        return this
-    }
-
-    /**
-     * 设置绑定关闭的 LifecycleOwner 对象 ( Object 重载 )
-     * @param lifecycleOwner LifecycleOwner 对象
-     * @return [PopTipItem]
-     */
-    open fun setLifecycleOwner(lifecycleOwner: Any?): PopTipItem {
         mLifecycleOwner = lifecycleOwner
         return this
     }
