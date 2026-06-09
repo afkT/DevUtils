@@ -165,7 +165,7 @@ open class RouterItem private constructor(
         return this
     }
 
-    override fun context(): Any? {
+    override fun context(): Context? {
         return mContext
     }
 
@@ -174,7 +174,7 @@ open class RouterItem private constructor(
         return this
     }
 
-    override fun fragment(): Any? {
+    override fun fragment(): Fragment? {
         return mFragment
     }
 
@@ -183,7 +183,7 @@ open class RouterItem private constructor(
         return this
     }
 
-    override fun optionsCompat(): Any? {
+    override fun optionsCompat(): Bundle? {
         return mOptionsCompat
     }
 
@@ -192,7 +192,7 @@ open class RouterItem private constructor(
         return this
     }
 
-    override fun intentData(): Any? {
+    override fun intentData(): Uri? {
         return mIntentData
     }
 
@@ -210,7 +210,7 @@ open class RouterItem private constructor(
         return this
     }
 
-    override fun intentClipData(): Any? {
+    override fun intentClipData(): ClipData? {
         return mIntentClipData
     }
 

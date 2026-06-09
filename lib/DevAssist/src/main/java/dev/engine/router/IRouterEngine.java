@@ -1,7 +1,13 @@
 package dev.engine.router;
 
+import android.app.Activity;
+import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * detail: Router Engine 接口
@@ -61,22 +67,22 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
         int animOut();
 
         // 跳转 Context 对象
-        Object context();
+        Context context();
 
         // 跳转 Fragment 对象
-        Object fragment();
+        Fragment fragment();
 
         // Activity Options Bundle 对象
-        Object optionsCompat();
+        Bundle optionsCompat();
 
         // Intent Data ( Uri ) 对象
-        Object intentData();
+        Uri intentData();
 
         // Intent Identifier
         String intentIdentifier();
 
         // Intent ClipData 对象
-        Object intentClipData();
+        ClipData intentClipData();
 
         // 跳转结果回调
         OnNavigationCallback navigationCallback();
@@ -125,7 +131,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
          */
         void onActivityCreated(
                 Object navigator,
-                Object activity
+                Activity activity
         );
     }
 
@@ -190,7 +196,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
          * Fragment 创建完成
          * @param fragment Fragment 对象
          */
-        void onFragment(Object fragment);
+        void onFragment(Fragment fragment);
     }
 
     /**
@@ -281,6 +287,12 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      * @param debug 是否为 Debug 环境
      */
     void setDebug(boolean debug);
+
+    /**
+     * 是否为 Debug 环境
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isDebug();
 
     /**
      * 设置日志输出回调
@@ -414,7 +426,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      * @param context Context 对象
      * @return {@code true} success, {@code false} fail
      */
-    boolean init(Object context);
+    boolean init(Context context);
 
     /**
      * 手动初始化 TheRouter
@@ -423,7 +435,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      * @return {@code true} success, {@code false} fail
      */
     boolean init(
-            Object context,
+            Context context,
             boolean asyncInitRouterInject
     );
 
@@ -738,7 +750,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      */
     Object setData(
             Object navigator,
-            Object uri
+            Uri uri
     );
 
     /**
@@ -760,7 +772,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      */
     Object setClipData(
             Object navigator,
-            Object clipData
+            ClipData clipData
     );
 
     /**
@@ -837,7 +849,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      */
     Intent createIntent(
             Object navigator,
-            Object context
+            Context context
     );
 
     /**
@@ -848,7 +860,7 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      */
     void createIntentWithCallback(
             Object navigator,
-            Object context,
+            Context context,
             OnIntentCallback callback
     );
 
@@ -895,6 +907,6 @@ public interface IRouterEngine<Config extends IRouterEngine.EngineConfig,
      */
     boolean action(
             Object navigator,
-            Object context
+            Context context
     );
 }

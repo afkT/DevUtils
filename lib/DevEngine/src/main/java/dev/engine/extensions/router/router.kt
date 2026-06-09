@@ -1,5 +1,6 @@
 package dev.engine.extensions.router
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
@@ -91,6 +92,17 @@ fun router_setDebug(
     debug: Boolean
 ) {
     engine.getRouterEngine()?.setDebug(debug)
+}
+
+/**
+ * 是否为 Debug 环境
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun router_isDebug(
+    engine: String? = null
+): Boolean {
+    return engine.getRouterEngine()?.isDebug ?: false
 }
 
 /**
@@ -537,7 +549,7 @@ fun Any?.router_withOutAnimation(
  */
 fun Any?.router_createIntent(
     engine: String? = null,
-    context: Any?
+    context: Context?
 ): Intent? {
     return engine.getRouterEngine()?.createIntent(this, context)
 }
@@ -576,7 +588,7 @@ fun Any?.router_navigation(
  */
 fun Any?.router_action(
     engine: String? = null,
-    context: Any?
+    context: Context?
 ): Boolean {
     return engine.getRouterEngine()?.action(this, context) ?: false
 }

@@ -85,6 +85,14 @@ open class TheRouterEngineImpl(
     }
 
     /**
+     * 是否为 Debug 环境
+     * @return `true` yes, `false` no
+     */
+    override fun isDebug(): Boolean {
+        return TheRouter.isDebug
+    }
+
+    /**
      * 设置日志输出回调
      * @param callback 日志输出回调
      */
@@ -287,7 +295,7 @@ open class TheRouterEngineImpl(
      * @param context Context 对象
      * @return `true` success, `false` fail
      */
-    override fun init(context: Any?): Boolean {
+    override fun init(context: Context?): Boolean {
         return init(context, true)
     }
 
@@ -298,11 +306,11 @@ open class TheRouterEngineImpl(
      * @return `true` success, `false` fail
      */
     override fun init(
-        context: Any?,
+        context: Context?,
         asyncInitRouterInject: Boolean
     ): Boolean {
         return try {
-            TheRouter.init(getContext(context), asyncInitRouterInject)
+            TheRouter.init(context, asyncInitRouterInject)
             true
         } catch (_: Exception) {
             false
@@ -735,9 +743,9 @@ open class TheRouterEngineImpl(
      */
     override fun setData(
         navigator: Any?,
-        uri: Any?
+        uri: Uri?
     ): Any? {
-        getUri(uri)?.let {
+        uri?.let {
             getNavigator(navigator)?.setData(it)
         }
         return navigator
@@ -765,9 +773,9 @@ open class TheRouterEngineImpl(
      */
     override fun setClipData(
         navigator: Any?,
-        clipData: Any?
+        clipData: ClipData?
     ): Any? {
-        getClipData(clipData)?.let {
+        clipData?.let {
             getNavigator(navigator)?.setClipData(it)
         }
         return navigator
@@ -865,11 +873,11 @@ open class TheRouterEngineImpl(
      */
     override fun createIntent(
         navigator: Any?,
-        context: Any?
+        context: Context?
     ): Intent? {
         val navigatorObj = getNavigator(navigator) ?: return null
         return try {
-            navigatorObj.createIntent(getContext(context))
+            navigatorObj.createIntent(context)
         } catch (_: Exception) {
             null
         }
@@ -883,13 +891,13 @@ open class TheRouterEngineImpl(
      */
     override fun createIntentWithCallback(
         navigator: Any?,
-        context: Any?,
+        context: Context?,
         callback: IRouterEngine.OnIntentCallback?
     ) {
         val navigatorObj = getNavigator(navigator) ?: return
         callback ?: return
         try {
-            navigatorObj.createIntentWithCallback(getContext(context)) { intent ->
+            navigatorObj.createIntentWithCallback(context) { intent ->
                 callback.onIntent(intent)
             }
         } catch (_: Exception) {
@@ -939,8 +947,8 @@ open class TheRouterEngineImpl(
         item: RouterItem?
     ) {
         val navigatorObj = getNavigator(navigator) ?: return
-        val context = getContext(item?.context())
-        val fragment = getFragment(item?.fragment())
+        val context = item?.context()
+        val fragment = item?.fragment()
         val requestCode = item?.requestCode() ?: RouterConst.UNSET
         val callback = wrapNavigationCallback(item?.navigationCallback())
         try {
@@ -1005,11 +1013,11 @@ open class TheRouterEngineImpl(
      */
     override fun action(
         navigator: Any?,
-        context: Any?
+        context: Context?
     ): Boolean {
         val navigatorObj = getNavigator(navigator) ?: return false
         return try {
-            navigatorObj.action(getContext(context))
+            navigatorObj.action(context)
             true
         } catch (_: Exception) {
             false
@@ -1070,16 +1078,16 @@ open class TheRouterEngineImpl(
         if (animOut != RouterConst.UNSET) {
             navigator.withOutAnimation(animOut)
         }
-        getOptionsCompat(item.optionsCompat())?.let {
+        item.optionsCompat()?.let {
             navigator.withOptionsCompat(it)
         }
-        getUri(item.intentData())?.let {
+        item.intentData()?.let {
             navigator.setData(it)
         }
         item.intentIdentifier()?.let {
             navigator.setIdentifier(it)
         }
-        getClipData(item.intentClipData())?.let {
+        item.intentClipData()?.let {
             navigator.setClipData(it)
         }
     }
@@ -1134,51 +1142,6 @@ open class TheRouterEngineImpl(
      */
     protected open fun getNavigator(navigator: Any?): Navigator? {
         return navigator as? Navigator
-    }
-
-    /**
-     * 获取 Context
-     * @param context Context Item
-     * @return [Context]
-     */
-    protected open fun getContext(context: Any?): Context? {
-        return context as? Context
-    }
-
-    /**
-     * 获取 Fragment
-     * @param fragment Fragment Item
-     * @return [Fragment]
-     */
-    protected open fun getFragment(fragment: Any?): Fragment? {
-        return fragment as? Fragment
-    }
-
-    /**
-     * 获取 Uri
-     * @param uri Uri Item
-     * @return [Uri]
-     */
-    protected open fun getUri(uri: Any?): Uri? {
-        return uri as? Uri
-    }
-
-    /**
-     * 获取 ClipData
-     * @param clipData ClipData Item
-     * @return [ClipData]
-     */
-    protected open fun getClipData(clipData: Any?): ClipData? {
-        return clipData as? ClipData
-    }
-
-    /**
-     * 获取 Options Bundle
-     * @param options Options Item
-     * @return [Bundle]
-     */
-    protected open fun getOptionsCompat(options: Any?): Bundle? {
-        return options as? Bundle
     }
 
     /**
