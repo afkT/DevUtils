@@ -39,52 +39,60 @@ public interface IPopTipEngine<Config extends IPopTipEngine.EngineConfig,
         // 默认对齐方式
         int align();
 
-        // 默认实现模式
+        // ===========
+        // = DialogX =
+        // ===========
+
+        // 默认实现模式 ( 映射全局 DialogX implIMPLMode )
         int dialogImplMode();
 
-        // 默认圆角 ( px )
+        // 默认圆角 ( px, 映射全局 DialogX defaultPopTipBackgroundRadius )
         int radiusPx();
 
-        // 默认主题样式对象 ( 映射全局 globalStyle )
+        // 默认主题样式对象 ( 映射全局 DialogX globalStyle )
         Object style();
 
-        // 默认明暗主题 ( PopTipConst.THEME_*, 映射全局 globalTheme )
+        // 默认明暗主题 ( PopTipConst.THEME_*, 映射全局 DialogX globalTheme )
         int theme();
 
-        // 默认提示文本样式对象 ( 映射全局 popTextInfo )
+        // 默认提示文本样式对象 ( 映射全局 DialogX popTextInfo )
         Object messageTextInfo();
 
-        // 默认按钮文本样式对象 ( 映射全局 buttonTextInfo )
+        // 默认按钮文本样式对象 ( 映射全局 DialogX buttonTextInfo )
         Object buttonTextInfo();
 
-        // 默认是否启用振动反馈 ( 映射全局 useHaptic )
+        // 默认是否启用振动反馈 ( 映射全局 DialogX useHaptic )
         Boolean useHaptic();
 
-        // 默认进入动画时长 ( ms, 映射全局 enterAnimDuration )
+        // 默认进入动画时长 ( ms, 映射全局 DialogX enterAnimDuration )
         long enterAnimDuration();
 
-        // 默认退出动画时长 ( ms, 映射全局 exitAnimDuration )
+        // 默认退出动画时长 ( ms, 映射全局 DialogX exitAnimDuration )
         long exitAnimDuration();
 
-        // 默认背景色 ( ColorInt, 映射全局 backgroundColor )
+        // 默认背景色 ( ColorInt, 映射全局 DialogX backgroundColor )
         Integer backgroundColor();
 
-        // 最大同时显示数量 ( 映射全局 maxShowCount )
+        // ==========
+        // = PopTip =
+        // ==========
+
+        // 最大同时显示数量 ( 映射全局 PopTip maxShowCount )
         int maxShowCount();
 
-        // 覆盖进入动画时长 ( ms, 映射全局 overrideEnterDuration )
+        // 覆盖进入动画时长 ( ms, 映射全局 PopTip overrideEnterDuration )
         long overrideEnterDuration();
 
-        // 覆盖退出动画时长 ( ms, 映射全局 overrideExitDuration )
+        // 覆盖退出动画时长 ( ms, 映射全局 PopTip overrideExitDuration )
         long overrideExitDuration();
 
-        // 覆盖进入动画资源 id ( 映射全局 overrideEnterAnimRes )
+        // 覆盖进入动画资源 id ( 映射全局 PopTip overrideEnterAnimRes )
         int overrideEnterAnimRes();
 
-        // 覆盖退出动画资源 id ( 映射全局 overrideExitAnimRes )
+        // 覆盖退出动画资源 id ( 映射全局 PopTip overrideExitAnimRes )
         int overrideExitAnimRes();
 
-        // 多 PopTip 位移拦截器对象 ( 映射全局 moveDisplacementInterceptor )
+        // 多 PopTip 位移拦截器对象 ( 映射全局 PopTip moveDisplacementInterceptor )
         Object moveDisplacementInterceptor();
     }
 

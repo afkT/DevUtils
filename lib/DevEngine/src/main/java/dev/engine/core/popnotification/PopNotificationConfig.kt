@@ -17,61 +17,69 @@ open class PopNotificationConfig private constructor(
     // 是否同时仅显示一个 PopNotification
     private var mOnlyOne: Boolean? = null
 
-    // 最大同时显示数量
-    private var mMaxShowCount = PopNotificationConst.UNSET
-
     // 默认自动消失时长 ( ms )
     private var mAutoDismissDelay = PopNotificationConst.UNSET_LONG
 
     // 默认对齐方式
     private var mAlign = PopNotificationConst.ALIGN_DEFAULT
 
-    // 默认实现模式
+    // ===========
+    // = DialogX =
+    // ===========
+
+    // 默认实现模式 ( 映射全局 DialogX implIMPLMode )
     private var mDialogImplMode = PopNotificationConst.IMPL_MODE_DEFAULT
 
-    // 默认圆角 ( px )
+    // 默认圆角 ( px, 映射全局 DialogX defaultPopNotificationBackgroundRadius )
     private var mRadiusPx = PopNotificationConst.UNSET
 
-    // 默认主题样式对象
+    // 默认主题样式对象 ( 映射全局 DialogX globalStyle )
     private var mStyle: Any? = null
 
-    // 默认明暗主题
+    // 默认明暗主题 ( 映射全局 DialogX globalTheme )
     private var mTheme = PopNotificationConst.THEME_DEFAULT
 
-    // 默认标题文本样式对象
+    // 默认标题文本样式对象 ( 映射全局 DialogX titleTextInfo )
     private var mTitleTextInfo: Any? = null
 
-    // 默认提示文本样式对象
+    // 默认提示文本样式对象 ( 映射全局 DialogX messageTextInfo )
     private var mMessageTextInfo: Any? = null
 
-    // 默认按钮文本样式对象
+    // 默认按钮文本样式对象 ( 映射全局 DialogX buttonTextInfo )
     private var mButtonTextInfo: Any? = null
 
-    // 默认是否启用振动反馈
+    // 默认是否启用振动反馈 ( 映射全局 DialogX useHaptic )
     private var mUseHaptic: Boolean? = null
 
-    // 默认进入动画时长 ( ms )
+    // 默认进入动画时长 ( ms, 映射全局 DialogX enterAnimDuration )
     private var mEnterAnimDuration = PopNotificationConst.UNSET_LONG
 
-    // 默认退出动画时长 ( ms )
+    // 默认退出动画时长 ( ms, 映射全局 DialogX exitAnimDuration )
     private var mExitAnimDuration = PopNotificationConst.UNSET_LONG
 
-    // 默认背景色 ( ColorInt )
+    // 默认背景色 ( ColorInt, 映射全局 DialogX backgroundColor )
     private var mBackgroundColor: Int? = null
 
-    // 覆盖进入动画时长 ( ms )
+    // ==================
+    // = PopNotification =
+    // ==================
+
+    // 最大同时显示数量 ( 映射全局 PopNotification maxShowCount )
+    private var mMaxShowCount = PopNotificationConst.UNSET
+
+    // 覆盖进入动画时长 ( ms, 映射全局 PopNotification overrideEnterDuration )
     private var mOverrideEnterDuration = PopNotificationConst.UNSET_LONG
 
-    // 覆盖退出动画时长 ( ms )
+    // 覆盖退出动画时长 ( ms, 映射全局 PopNotification overrideExitDuration )
     private var mOverrideExitDuration = PopNotificationConst.UNSET_LONG
 
-    // 覆盖进入动画资源 id
+    // 覆盖进入动画资源 id ( 映射全局 PopNotification overrideEnterAnimRes )
     private var mOverrideEnterAnimRes = PopNotificationConst.UNSET
 
-    // 覆盖退出动画资源 id
+    // 覆盖退出动画资源 id ( 映射全局 PopNotification overrideExitAnimRes )
     private var mOverrideExitAnimRes = PopNotificationConst.UNSET
 
-    // 多 PopNotification 位移拦截器对象
+    // 多 PopNotification 位移拦截器对象 ( 映射全局 PopNotification moveDisplacementInterceptor )
     private var mMoveDisplacementInterceptor: Any? = null
 
     companion object {
@@ -97,7 +105,6 @@ open class PopNotificationConfig private constructor(
     init {
         config?.let {
             this.mOnlyOne = it.mOnlyOne
-            this.mMaxShowCount = it.mMaxShowCount
             this.mAutoDismissDelay = it.mAutoDismissDelay
             this.mAlign = it.mAlign
             this.mDialogImplMode = it.mDialogImplMode
@@ -111,6 +118,7 @@ open class PopNotificationConfig private constructor(
             this.mEnterAnimDuration = it.mEnterAnimDuration
             this.mExitAnimDuration = it.mExitAnimDuration
             this.mBackgroundColor = it.mBackgroundColor
+            this.mMaxShowCount = it.mMaxShowCount
             this.mOverrideEnterDuration = it.mOverrideEnterDuration
             this.mOverrideExitDuration = it.mOverrideExitDuration
             this.mOverrideEnterAnimRes = it.mOverrideEnterAnimRes
@@ -148,18 +156,6 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 最大同时显示数量
-     */
-    override fun maxShowCount(): Int {
-        return mMaxShowCount
-    }
-
-    open fun setMaxShowCount(maxShowCount: Int): PopNotificationConfig {
-        mMaxShowCount = maxShowCount
-        return this
-    }
-
-    /**
      * 默认自动消失时长 ( ms )
      */
     override fun autoDismissDelay(): Long {
@@ -183,8 +179,12 @@ open class PopNotificationConfig private constructor(
         return this
     }
 
+    // ===========
+    // = DialogX =
+    // ===========
+
     /**
-     * 默认实现模式
+     * 默认实现模式 ( 映射全局 DialogX implIMPLMode )
      */
     override fun dialogImplMode(): Int {
         return mDialogImplMode
@@ -196,7 +196,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认圆角 ( px )
+     * 默认圆角 ( px, 映射全局 DialogX defaultPopNotificationBackgroundRadius )
      */
     override fun radiusPx(): Int {
         return mRadiusPx
@@ -208,7 +208,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认主题样式对象
+     * 默认主题样式对象 ( 映射全局 DialogX globalStyle )
      */
     override fun style(): Any? {
         return mStyle
@@ -230,7 +230,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认明暗主题
+     * 默认明暗主题 ( 映射全局 DialogX globalTheme )
      */
     override fun theme(): Int {
         return mTheme
@@ -242,7 +242,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认标题文本样式对象
+     * 默认标题文本样式对象 ( 映射全局 DialogX titleTextInfo )
      */
     override fun titleTextInfo(): Any? {
         return mTitleTextInfo
@@ -264,7 +264,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认提示文本样式对象
+     * 默认提示文本样式对象 ( 映射全局 DialogX messageTextInfo )
      */
     override fun messageTextInfo(): Any? {
         return mMessageTextInfo
@@ -286,7 +286,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认按钮文本样式对象
+     * 默认按钮文本样式对象 ( 映射全局 DialogX buttonTextInfo )
      */
     override fun buttonTextInfo(): Any? {
         return mButtonTextInfo
@@ -308,7 +308,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认是否启用振动反馈
+     * 默认是否启用振动反馈 ( 映射全局 DialogX useHaptic )
      */
     override fun useHaptic(): Boolean? {
         return mUseHaptic
@@ -320,7 +320,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认进入动画时长 ( ms )
+     * 默认进入动画时长 ( ms, 映射全局 DialogX enterAnimDuration )
      */
     override fun enterAnimDuration(): Long {
         return mEnterAnimDuration
@@ -332,7 +332,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认退出动画时长 ( ms )
+     * 默认退出动画时长 ( ms, 映射全局 DialogX exitAnimDuration )
      */
     override fun exitAnimDuration(): Long {
         return mExitAnimDuration
@@ -344,7 +344,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 默认背景色 ( ColorInt )
+     * 默认背景色 ( ColorInt, 映射全局 DialogX backgroundColor )
      */
     override fun backgroundColor(): Int? {
         return mBackgroundColor
@@ -355,8 +355,24 @@ open class PopNotificationConfig private constructor(
         return this
     }
 
+    // ==================
+    // = PopNotification =
+    // ==================
+
     /**
-     * 覆盖进入动画时长 ( ms )
+     * 最大同时显示数量 ( 映射全局 PopNotification maxShowCount )
+     */
+    override fun maxShowCount(): Int {
+        return mMaxShowCount
+    }
+
+    open fun setMaxShowCount(maxShowCount: Int): PopNotificationConfig {
+        mMaxShowCount = maxShowCount
+        return this
+    }
+
+    /**
+     * 覆盖进入动画时长 ( ms, 映射全局 PopNotification overrideEnterDuration )
      */
     override fun overrideEnterDuration(): Long {
         return mOverrideEnterDuration
@@ -368,7 +384,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 覆盖退出动画时长 ( ms )
+     * 覆盖退出动画时长 ( ms, 映射全局 PopNotification overrideExitDuration )
      */
     override fun overrideExitDuration(): Long {
         return mOverrideExitDuration
@@ -380,7 +396,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 覆盖进入动画资源 id
+     * 覆盖进入动画资源 id ( 映射全局 PopNotification overrideEnterAnimRes )
      */
     override fun overrideEnterAnimRes(): Int {
         return mOverrideEnterAnimRes
@@ -392,7 +408,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 覆盖退出动画资源 id
+     * 覆盖退出动画资源 id ( 映射全局 PopNotification overrideExitAnimRes )
      */
     override fun overrideExitAnimRes(): Int {
         return mOverrideExitAnimRes
@@ -404,7 +420,7 @@ open class PopNotificationConfig private constructor(
     }
 
     /**
-     * 多 PopNotification 位移拦截器对象
+     * 多 PopNotification 位移拦截器对象 ( 映射全局 PopNotification moveDisplacementInterceptor )
      */
     override fun moveDisplacementInterceptor(): Any? {
         return mMoveDisplacementInterceptor

@@ -50,75 +50,85 @@ open class DialogXPopTipEngineImpl(
                 // 不通过 DialogX.onlyOnePopTip 实现，避免影响全局
                 mOnlyOnePopTip = onlyOne
             }
-            // 圆角 ( px )
+
+            // ===========
+            // = DialogX =
+            // ===========
+
+            // 圆角 ( px, 映射全局 DialogX defaultPopTipBackgroundRadius )
             val radiusPx = it.radiusPx()
             if (radiusPx >= 0) {
                 DialogX.defaultPopTipBackgroundRadius = radiusPx
             }
-            // 实现模式
+            // 实现模式 ( 映射全局 DialogX implIMPLMode )
             getImplMode(it.dialogImplMode())?.let { mode ->
                 DialogX.implIMPLMode = mode
             }
-            // 主题样式
+            // 主题样式 ( 映射全局 DialogX globalStyle )
             getDialogXStyle(it.style())?.let { style ->
                 DialogX.globalStyle = style
             }
-            // 明暗主题
+            // 明暗主题 ( 映射全局 DialogX globalTheme )
             getTheme(it.theme())?.let { theme ->
                 DialogX.globalTheme = theme
             }
-            // 提示文本样式
+            // 提示文本样式 ( 映射全局 DialogX popTextInfo )
             getTextInfo(it.messageTextInfo())?.let { textInfo ->
                 DialogX.popTextInfo = textInfo
             }
-            // 按钮文本样式
+            // 按钮文本样式 ( 映射全局 DialogX buttonTextInfo )
             getTextInfo(it.buttonTextInfo())?.let { textInfo ->
                 DialogX.buttonTextInfo = textInfo
             }
-            // 振动反馈
+            // 振动反馈 ( 映射全局 DialogX useHaptic )
             it.useHaptic()?.let { useHaptic ->
                 DialogX.useHaptic = useHaptic
             }
-            // 进入动画时长
+            // 进入动画时长 ( 映射全局 DialogX enterAnimDuration )
             val enterAnimDuration = it.enterAnimDuration()
             if (enterAnimDuration >= 0) {
                 DialogX.enterAnimDuration = enterAnimDuration
             }
-            // 退出动画时长
+            // 退出动画时长 ( 映射全局 DialogX exitAnimDuration )
             val exitAnimDuration = it.exitAnimDuration()
             if (exitAnimDuration >= 0) {
                 DialogX.exitAnimDuration = exitAnimDuration
             }
-            // 背景色
+            // 背景色 ( 映射全局 DialogX backgroundColor )
             it.backgroundColor()?.let { backgroundColor ->
                 DialogX.backgroundColor = backgroundColor
             }
-            // 最大同时显示数量
+
+            // ==========
+            // = PopTip =
+            // ==========
+
+            // 最大同时显示数量 ( 映射全局 PopTip maxShowCount )
             val maxShowCount = it.maxShowCount()
             if (maxShowCount > 0) {
                 PopTip.maxShowCount = maxShowCount
             }
-            // 覆盖进入动画时长
+            // 覆盖进入动画时长 ( 映射全局 PopTip overrideEnterDuration )
             val overrideEnterDuration = it.overrideEnterDuration()
             if (overrideEnterDuration >= 0) {
                 PopTip.overrideEnterDuration = overrideEnterDuration
             }
-            // 覆盖退出动画时长
+            // 覆盖退出动画时长 ( 映射全局 PopTip overrideExitDuration )
             val overrideExitDuration = it.overrideExitDuration()
             if (overrideExitDuration >= 0) {
                 PopTip.overrideExitDuration = overrideExitDuration
             }
-            // 覆盖进入动画资源
+            // 覆盖进入动画资源 ( 映射全局 PopTip overrideEnterAnimRes )
             val overrideEnterAnimRes = it.overrideEnterAnimRes()
             if (overrideEnterAnimRes > 0) {
                 PopTip.overrideEnterAnimRes = overrideEnterAnimRes
             }
-            // 覆盖退出动画资源
+            // 覆盖退出动画资源 ( 映射全局 PopTip overrideExitAnimRes )
             val overrideExitAnimRes = it.overrideExitAnimRes()
             if (overrideExitAnimRes > 0) {
                 PopTip.overrideExitAnimRes = overrideExitAnimRes
             }
-            // 多 PopTip 位移拦截器
+            // 多 PopTip 位移拦截器 ( 映射全局 PopTip moveDisplacementInterceptor )
             getMoveDisplacementInterceptor(it.moveDisplacementInterceptor())?.let { interceptor ->
                 PopTip.moveDisplacementInterceptor = interceptor
             }

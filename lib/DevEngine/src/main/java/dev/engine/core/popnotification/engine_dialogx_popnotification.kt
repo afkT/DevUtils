@@ -53,79 +53,89 @@ open class DialogXPopNotificationEngineImpl(
                 // 不通过 DialogX.onlyOnePopNotification 实现，避免影响全局
                 mOnlyOnePopNotification = onlyOne
             }
-            // 最大同时显示数量
-            val maxShowCount = it.maxShowCount()
-            if (maxShowCount > 0) {
-                PopNotification.maxShowCount = maxShowCount
-            }
-            // 圆角 ( px )
+
+            // ===========
+            // = DialogX =
+            // ===========
+
+            // 圆角 ( px, 映射全局 DialogX defaultPopNotificationBackgroundRadius )
             val radiusPx = it.radiusPx()
             if (radiusPx >= 0) {
                 DialogX.defaultPopNotificationBackgroundRadius = radiusPx
             }
-            // 实现模式
+            // 实现模式 ( 映射全局 DialogX implIMPLMode )
             getImplMode(it.dialogImplMode())?.let { mode ->
                 DialogX.implIMPLMode = mode
             }
-            // 主题样式
+            // 主题样式 ( 映射全局 DialogX globalStyle )
             getDialogXStyle(it.style())?.let { style ->
                 DialogX.globalStyle = style
             }
-            // 明暗主题
+            // 明暗主题 ( 映射全局 DialogX globalTheme )
             getTheme(it.theme())?.let { theme ->
                 DialogX.globalTheme = theme
             }
-            // 标题文本样式
+            // 标题文本样式 ( 映射全局 DialogX titleTextInfo )
             getTextInfo(it.titleTextInfo())?.let { textInfo ->
                 DialogX.titleTextInfo = textInfo
             }
-            // 提示文本样式
+            // 提示文本样式 ( 映射全局 DialogX messageTextInfo )
             getTextInfo(it.messageTextInfo())?.let { textInfo ->
                 DialogX.messageTextInfo = textInfo
             }
-            // 按钮文本样式
+            // 按钮文本样式 ( 映射全局 DialogX buttonTextInfo )
             getTextInfo(it.buttonTextInfo())?.let { textInfo ->
                 DialogX.buttonTextInfo = textInfo
             }
-            // 振动反馈
+            // 振动反馈 ( 映射全局 DialogX useHaptic )
             it.useHaptic()?.let { useHaptic ->
                 DialogX.useHaptic = useHaptic
             }
-            // 进入动画时长
+            // 进入动画时长 ( 映射全局 DialogX enterAnimDuration )
             val enterAnimDuration = it.enterAnimDuration()
             if (enterAnimDuration >= 0) {
                 DialogX.enterAnimDuration = enterAnimDuration
             }
-            // 退出动画时长
+            // 退出动画时长 ( 映射全局 DialogX exitAnimDuration )
             val exitAnimDuration = it.exitAnimDuration()
             if (exitAnimDuration >= 0) {
                 DialogX.exitAnimDuration = exitAnimDuration
             }
-            // 背景色
+            // 背景色 ( 映射全局 DialogX backgroundColor )
             it.backgroundColor()?.let { backgroundColor ->
                 DialogX.backgroundColor = backgroundColor
             }
-            // 覆盖进入动画时长
+
+            // ==================
+            // = PopNotification =
+            // ==================
+
+            // 最大同时显示数量 ( 映射全局 PopNotification maxShowCount )
+            val maxShowCount = it.maxShowCount()
+            if (maxShowCount > 0) {
+                PopNotification.maxShowCount = maxShowCount
+            }
+            // 覆盖进入动画时长 ( 映射全局 PopNotification overrideEnterDuration )
             val overrideEnterDuration = it.overrideEnterDuration()
             if (overrideEnterDuration >= 0) {
                 PopNotification.overrideEnterDuration = overrideEnterDuration
             }
-            // 覆盖退出动画时长
+            // 覆盖退出动画时长 ( 映射全局 PopNotification overrideExitDuration )
             val overrideExitDuration = it.overrideExitDuration()
             if (overrideExitDuration >= 0) {
                 PopNotification.overrideExitDuration = overrideExitDuration
             }
-            // 覆盖进入动画资源
+            // 覆盖进入动画资源 ( 映射全局 PopNotification overrideEnterAnimRes )
             val overrideEnterAnimRes = it.overrideEnterAnimRes()
             if (overrideEnterAnimRes > 0) {
                 PopNotification.overrideEnterAnimRes = overrideEnterAnimRes
             }
-            // 覆盖退出动画资源
+            // 覆盖退出动画资源 ( 映射全局 PopNotification overrideExitAnimRes )
             val overrideExitAnimRes = it.overrideExitAnimRes()
             if (overrideExitAnimRes > 0) {
                 PopNotification.overrideExitAnimRes = overrideExitAnimRes
             }
-            // 多 PopNotification 位移拦截器
+            // 多 PopNotification 位移拦截器 ( 映射全局 PopNotification moveDisplacementInterceptor )
             getMoveDisplacementInterceptor(it.moveDisplacementInterceptor())?.let { interceptor ->
                 PopNotification.moveDisplacementInterceptor = interceptor
             }
