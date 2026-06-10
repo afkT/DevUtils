@@ -9,38 +9,44 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 ## 目录结构
 
 ```
-- dev                   | 根目录
-   - adapter            | 适配器相关
-   - assist             | 快捷功能辅助类
-   - base               | 实体类基类相关
-      - data            | 数据操作
-      - entry           | KeyValue 实体类
-      - multiselect     | 多选编辑操作
-      - number          | 数值操作
-      - state           | 状态相关
-   - callback           | 接口回调相关
-   - engine             | 兼容 Engine
-      - analytics       | Analytics Engine 数据统计 ( 埋点 )
-      - barcode         | BarCode Engine 条形码、二维码处理
-         - listener     | 条形码、二维码操作回调事件
-      - cache           | Cache Engine 有效期键值对缓存
-      - compress        | Image Compress Engine 图片压缩
-         - listener     | 图片压缩回调事件
-      - debug           | Debug 编译辅助开发 Engine
-      - image           | Image Engine 图片加载、下载、转格式等
-         - listener     | 图片加载监听事件
-      - json            | JSON Engine 映射
-      - keyvalue        | KeyValue Engine 键值对存储
-      - log             | Log Engine 日志打印
-      - media           | Media Selector Engine 多媒体资源选择
-      - permission      | Permission Engine 权限申请
-      - push            | Push Engine 推送平台处理
-      - share           | Share Engine 分享平台处理
-         - listener     | 分享回调事件
-      - storage         | Storage Engine 外部、内部文件存储
-         - listener     | Storage 存储结果事件
-      - toast           | Toast Engine 吐司提示
-   - function           | 快捷方法执行相关
+- dev                           | 根目录
+   - adapter                    | 适配器相关
+   - assist                     | 快捷功能辅助类
+   - base                       | 实体类基类相关
+      - data                    | 数据操作
+      - entry                   | KeyValue 实体类
+      - multiselect             | 多选编辑操作
+      - number                  | 数值操作
+      - state                   | 状态相关
+   - callback                   | 接口回调相关
+   - engine                     | 兼容 Engine
+      - analytics               | Analytics Engine 数据统计 ( 埋点 )
+      - barcode                 | BarCode Engine 条形码、二维码处理
+         - listener             | 条形码、二维码操作回调事件
+      - cache                   | Cache Engine 有效期键值对缓存
+      - compress                | Image Compress Engine 图片压缩
+         - listener             | 图片压缩回调事件
+      - debug                   | Debug 编译辅助开发 Engine
+      - eventbus                | EventBus Engine 事件总线
+      - image                   | Image Engine 图片加载、下载、转格式等
+         - listener             | 图片加载监听事件
+      - json                    | JSON Engine 映射
+      - keyvalue                | KeyValue Engine 键值对存储
+      - log                     | Log Engine 日志打印
+      - media                   | Media Selector Engine 多媒体资源选择
+      - permission              | Permission Engine 权限申请
+      - popnotification         | PopNotification Engine 简单通知提示
+      - poptip                  | PopTip Engine 非阻断式文本提示
+      - push                    | Push Engine 推送平台处理
+      - refresh                 | Refresh Engine 下拉刷新、上拉加载 View
+      - router                  | Router Engine 页面路由
+      - share                   | Share Engine 分享平台处理
+         - listener             | 分享回调事件
+      - storage                 | Storage Engine 外部、内部文件存储
+         - listener             | Storage 存储结果事件
+      - toast                   | Toast Engine 吐司提示
+      - web                     | WebView Engine 网页加载、配置、JS 交互
+   - function                   | 快捷方法执行相关
 ```
 
 
@@ -55,38 +61,44 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 ## API
 
 
-- dev                                                     | 根目录
-   - [adapter](#devadapter)                               | 适配器相关
-   - [assist](#devassist)                                 | 快捷功能辅助类
-   - [base](#devbase)                                     | 实体类基类相关
-      - [data](#devbasedata)                              | 数据操作
-      - [entry](#devbaseentry)                            | KeyValue 实体类
-      - [multiselect](#devbasemultiselect)                | 多选编辑操作
-      - [number](#devbasenumber)                          | 数值操作
-      - [state](#devbasestate)                            | 状态相关
-   - [callback](#devcallback)                             | 接口回调相关
-   - [engine](#devengine)                                 | 兼容 Engine
-      - [analytics](#devengineanalytics)                  | Analytics Engine 数据统计 ( 埋点 )
-      - [barcode](#devenginebarcode)                      | BarCode Engine 条形码、二维码处理
-         - [listener](#devenginebarcodelistener)          | 条形码、二维码操作回调事件
-      - [cache](#devenginecache)                          | Cache Engine 有效期键值对缓存
-      - [compress](#devenginecompress)                    | Image Compress Engine 图片压缩
-         - [listener](#devenginecompresslistener)         | 图片压缩回调事件
-      - [debug](#devenginedebug)                          | Debug 编译辅助开发 Engine
-      - [image](#devengineimage)                          | Image Engine 图片加载、下载、转格式等
-         - [listener](#devengineimagelistener)            | 图片加载监听事件
-      - [json](#devenginejson)                            | JSON Engine 映射
-      - [keyvalue](#devenginekeyvalue)                    | KeyValue Engine 键值对存储
-      - [log](#devenginelog)                              | Log Engine 日志打印
-      - [media](#devenginemedia)                          | Media Selector Engine 多媒体资源选择
-      - [permission](#devenginepermission)                | Permission Engine 权限申请
-      - [push](#devenginepush)                            | Push Engine 推送平台处理
-      - [share](#devengineshare)                          | Share Engine 分享平台处理
-         - [listener](#devenginesharelistener)            | 分享回调事件
-      - [storage](#devenginestorage)                      | Storage Engine 外部、内部文件存储
-         - [listener](#devenginestoragelistener)          | Storage 存储结果事件
-      - [toast](#devenginetoast)                          | Toast Engine 吐司提示
-   - [function](#devfunction)                             | 快捷方法执行相关
+- dev                                                                 | 根目录
+   - [adapter](#devadapter)                                           | 适配器相关
+   - [assist](#devassist)                                             | 快捷功能辅助类
+   - [base](#devbase)                                                 | 实体类基类相关
+      - [data](#devbasedata)                                          | 数据操作
+      - [entry](#devbaseentry)                                        | KeyValue 实体类
+      - [multiselect](#devbasemultiselect)                            | 多选编辑操作
+      - [number](#devbasenumber)                                      | 数值操作
+      - [state](#devbasestate)                                        | 状态相关
+   - [callback](#devcallback)                                         | 接口回调相关
+   - [engine](#devengine)                                             | 兼容 Engine
+      - [analytics](#devengineanalytics)                              | Analytics Engine 数据统计 ( 埋点 )
+      - [barcode](#devenginebarcode)                                  | BarCode Engine 条形码、二维码处理
+         - [listener](#devenginebarcodelistener)                      | 条形码、二维码操作回调事件
+      - [cache](#devenginecache)                                      | Cache Engine 有效期键值对缓存
+      - [compress](#devenginecompress)                                | Image Compress Engine 图片压缩
+         - [listener](#devenginecompresslistener)                     | 图片压缩回调事件
+      - [debug](#devenginedebug)                                      | Debug 编译辅助开发 Engine
+      - [eventbus](#devengineeventbus)                                | EventBus Engine 事件总线
+      - [image](#devengineimage)                                      | Image Engine 图片加载、下载、转格式等
+         - [listener](#devengineimagelistener)                        | 图片加载监听事件
+      - [json](#devenginejson)                                        | JSON Engine 映射
+      - [keyvalue](#devenginekeyvalue)                                | KeyValue Engine 键值对存储
+      - [log](#devenginelog)                                          | Log Engine 日志打印
+      - [media](#devenginemedia)                                      | Media Selector Engine 多媒体资源选择
+      - [permission](#devenginepermission)                            | Permission Engine 权限申请
+      - [popnotification](#devenginepopnotification)                  | PopNotification Engine 简单通知提示
+      - [poptip](#devenginepoptip)                                    | PopTip Engine 非阻断式文本提示
+      - [push](#devenginepush)                                        | Push Engine 推送平台处理
+      - [refresh](#devenginerefresh)                                  | Refresh Engine 下拉刷新、上拉加载 View
+      - [router](#devenginerouter)                                    | Router Engine 页面路由
+      - [share](#devengineshare)                                      | Share Engine 分享平台处理
+         - [listener](#devenginesharelistener)                        | 分享回调事件
+      - [storage](#devenginestorage)                                  | Storage Engine 外部、内部文件存储
+         - [listener](#devenginestoragelistener)                      | Storage 存储结果事件
+      - [toast](#devenginetoast)                                      | Toast Engine 吐司提示
+      - [web](#devengineweb)                                          | WebView Engine 网页加载、配置、JS 交互
+   - [function](#devfunction)                                         | 快捷方法执行相关
 
 
 ## <span id="dev">**`dev`**</span>
@@ -1268,6 +1280,41 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 | updateConfig | 更新 Debug Config |
 
 
+## <span id="devengineeventbus">**`dev.engine.eventbus`**</span>
+
+
+* **EventBus Engine ->** [DevEventBusEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/eventbus/DevEventBusEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **EventBus Engine 接口 ->** [IEventBusEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/eventbus/IEventBusEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| config | 应用事件配置 |
+| post | 发送事件 |
+| postDelay | 发送延迟事件 |
+| postOrderly | 顺序发送事件 |
+| postAcrossProcess | 跨进程发送事件 |
+| postAcrossApp | 跨 App 发送事件 |
+| broadcast | 广播形式发送事件 |
+| observe | 注册生命周期感知观察者 |
+| observeSticky | 注册生命周期感知 Sticky 观察者 |
+| observeForever | 注册永久观察者 |
+| observeStickyForever | 注册永久 Sticky 观察者 |
+| removeObserver | 移除永久观察者 |
+
+
 ## <span id="devengineimage">**`dev.engine.image`**</span>
 
 
@@ -1288,22 +1335,22 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 
 | 方法 | 注释 |
 | :- | :- |
-| pause | pause |
-| resume | resume |
-| preload | preload |
-| clear | clear |
-| clearDiskCache | clearDiskCache |
-| clearMemoryCache | clearMemoryCache |
-| clearAllCache | clearAllCache |
-| lowMemory | lowMemory |
-| display | display |
-| loadImage | loadImage |
-| loadImageThrows | loadImageThrows |
-| loadBitmap | loadBitmap |
-| loadBitmapThrows | loadBitmapThrows |
-| loadDrawable | loadDrawable |
-| loadDrawableThrows | loadDrawableThrows |
-| convertImageFormat | convertImageFormat |
+| pause | 暂停 Fragment 关联的图片加载请求 |
+| resume | 恢复 Fragment 关联的图片加载请求 |
+| preload | 预加载图片资源 |
+| clear | 清除 View 关联的图片加载 |
+| clearDiskCache | 清除磁盘缓存 |
+| clearMemoryCache | 清除内存缓存 |
+| clearAllCache | 清除全部缓存 |
+| lowMemory | 低内存回调处理 |
+| display | 加载图片并显示到 ImageView |
+| loadImage | 加载图片 |
+| loadImageThrows | 加载图片 |
+| loadBitmap | 加载 Bitmap |
+| loadBitmapThrows | 加载 Bitmap |
+| loadDrawable | 加载 Drawable |
+| loadDrawableThrows | 加载 Drawable |
+| convertImageFormat | 转换图片格式 |
 
 
 ## <span id="devengineimagelistener">**`dev.engine.image.listener`**</span>
@@ -1526,6 +1573,334 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 | onResult | 权限请求结果回调 |
 
 
+## <span id="devenginepopnotification">**`dev.engine.popnotification`**</span>
+
+
+* **PopNotification Engine ->** [DevPopNotificationEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/popnotification/DevPopNotificationEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **PopNotification Engine 接口 ->** [IPopNotificationEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/popnotification/IPopNotificationEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 PopNotification Engine Config |
+| setConfig | 设置 PopNotification Engine Config |
+| build | 构建 PopNotification ( 不显示 ) |
+| buildView | 构建 PopNotification ( 不显示 ) |
+| show | 显示 PopNotification |
+| isSinglePopNotification | 是否使用单例 PopNotification |
+| getSinglePopNotification | 获取单例 PopNotification |
+| isShowSinglePopNotification | 单例 PopNotification 是否正在显示 |
+| dismissSinglePopNotification | 关闭单例 PopNotification |
+| hideSinglePopNotification | 关闭单例 PopNotification ( 动画 ) |
+| isShow | 指定 PopNotification 是否正在显示 |
+| dismiss | 关闭指定 PopNotification |
+| hide | 关闭指定 PopNotification ( 动画 ) |
+| refreshUI | 刷新指定 PopNotification 界面 |
+| autoDismiss | 设置指定 PopNotification 自动消失时长 |
+| resetAutoDismissTimer | 重置指定 PopNotification 自动消失计时器 |
+| showShort | 指定 PopNotification 短时间显示 |
+| showLong | 指定 PopNotification 长时间显示 |
+| showAlways | 指定 PopNotification 常驻显示 ( 不自动消失 ) |
+| noAutoDismiss | 指定 PopNotification 取消自动消失 |
+| bringToFront | 指定 PopNotification 置顶显示 |
+| setThisOrderIndex | 设置指定 PopNotification 显示层级 |
+| setStyle | 设置指定 PopNotification 主题样式 |
+| setTheme | 设置指定 PopNotification 明暗主题 |
+| setCustomView | 设置指定 PopNotification 自定义布局 |
+| getCustomView | 获取指定 PopNotification 自定义布局 View |
+| removeCustomView | 移除指定 PopNotification 自定义布局 |
+| getAlign | 获取指定 PopNotification 对齐方式 |
+| setAlign | 设置指定 PopNotification 对齐方式 |
+| getIconResId | 获取指定 PopNotification 图标资源 id |
+| setIconResId | 设置指定 PopNotification 图标资源 id |
+| getIconBitmap | 获取指定 PopNotification 图标 Bitmap |
+| setIcon | 设置指定 PopNotification 图标 Bitmap |
+| getIconDrawable | 获取指定 PopNotification 图标 Drawable |
+| getIconSize | 获取指定 PopNotification 图标尺寸 ( px ) |
+| setIconSize | 设置指定 PopNotification 图标尺寸 ( px ) |
+| getTitle | 获取指定 PopNotification 标题文本 |
+| setTitle | 设置指定 PopNotification 标题文本 |
+| getTitleTextInfo | 获取指定 PopNotification 标题文本样式 |
+| setTitleTextInfo | 设置指定 PopNotification 标题文本样式 |
+| getMessage | 获取指定 PopNotification 提示文本 |
+| setMessage | 设置指定 PopNotification 提示文本 |
+| appendMessage | 追加指定 PopNotification 提示文本 |
+| getButtonText | 获取指定 PopNotification 按钮文本 |
+| setButton | 设置指定 PopNotification 按钮文本 |
+| getMessageTextInfo | 获取指定 PopNotification 提示文本样式 |
+| setMessageTextInfo | 设置指定 PopNotification 提示文本样式 |
+| getButtonTextInfo | 获取指定 PopNotification 按钮文本样式 |
+| setButtonTextInfo | 设置指定 PopNotification 按钮文本样式 |
+| setOnButtonClickListener | 设置指定 PopNotification 按钮点击事件 |
+| setOnPopNotificationClickListener | 设置指定 PopNotification 自身点击事件 |
+| isAutoTintIconInLightOrDarkMode | 指定 PopNotification 图标是否随明暗模式自动染色 |
+| setAutoTintIconInLightOrDarkMode | 设置指定 PopNotification 图标是否随明暗模式自动染色 |
+| getTintIcon | 指定 PopNotification 图标是否染色 |
+| setTintIcon | 设置指定 PopNotification 图标是否染色 |
+| iconSuccess | 设置指定 PopNotification 成功状态图标 |
+| iconWarning | 设置指定 PopNotification 警告状态图标 |
+| iconError | 设置指定 PopNotification 错误状态图标 |
+| getBackgroundColor | 获取指定 PopNotification 背景色 |
+| setBackgroundColor | 设置指定 PopNotification 背景色 |
+| setBackgroundColorRes | 设置指定 PopNotification 背景色 |
+| getRadius | 获取指定 PopNotification 圆角 ( px ) |
+| setRadius | 设置指定 PopNotification 圆角 ( px ) |
+| getEnterAnimDuration | 获取指定 PopNotification 进入动画时长 ( ms ) |
+| setEnterAnimDuration | 设置指定 PopNotification 进入动画时长 ( ms ) |
+| getExitAnimDuration | 获取指定 PopNotification 退出动画时长 ( ms ) |
+| setExitAnimDuration | 设置指定 PopNotification 退出动画时长 ( ms ) |
+| setAnimResId | 设置指定 PopNotification 进出场动画资源 |
+| setEnterAnimResId | 设置指定 PopNotification 进入动画资源 |
+| setExitAnimResId | 设置指定 PopNotification 退出动画资源 |
+| getDialogXAnimImpl | 获取指定 PopNotification 动画实现 |
+| setDialogXAnimImpl | 设置指定 PopNotification 动画实现 |
+| setHapticFeedbackEnabled | 设置指定 PopNotification 是否启用振动反馈 |
+| isSlideToClose | 指定 PopNotification 是否支持滑动关闭 |
+| setSlideToClose | 设置指定 PopNotification 是否支持滑动关闭 |
+| setDialogImplMode | 设置指定 PopNotification 实现模式 |
+| setMargin | 设置指定 PopNotification 外边距 |
+| getMarginLeft | 获取指定 PopNotification 左外边距 |
+| setMarginLeft | 设置指定 PopNotification 左外边距 |
+| getMarginTop | 获取指定 PopNotification 上外边距 |
+| setMarginTop | 设置指定 PopNotification 上外边距 |
+| getMarginRight | 获取指定 PopNotification 右外边距 |
+| setMarginRight | 设置指定 PopNotification 右外边距 |
+| getMarginBottom | 获取指定 PopNotification 下外边距 |
+| setMarginBottom | 设置指定 PopNotification 下外边距 |
+| setRootPadding | 设置指定 PopNotification 根布局内边距 |
+| setLifecycleListener | 设置指定 PopNotification 显示生命周期监听 |
+| onShow | 设置指定 PopNotification 显示回调 |
+| onDismiss | 设置指定 PopNotification 关闭回调 |
+| setActionRunnable | 设置指定 PopNotification 快捷功能键动作 |
+| cleanAction | 清除指定 PopNotification 快捷功能键动作 |
+| cleanAllAction | 清除指定 PopNotification 全部快捷功能键动作 |
+| setData | 设置指定 PopNotification 临时存储数据 |
+| bindDismissWithLifecycleOwner | 绑定指定 PopNotification 随 LifecycleOwner 关闭 |
+| setCustomDialogLayoutResId | 设置指定 PopNotification 自定义弹窗布局资源 id |
+| onlyOne | onlyOne |
+| autoDismissDelay | autoDismissDelay |
+| align | align |
+| dialogImplMode | dialogImplMode |
+| radiusPx | radiusPx |
+| style | style |
+| theme | theme |
+| titleTextInfo | titleTextInfo |
+| messageTextInfo | messageTextInfo |
+| buttonTextInfo | buttonTextInfo |
+| useHaptic | useHaptic |
+| enterAnimDuration | enterAnimDuration |
+| exitAnimDuration | exitAnimDuration |
+| backgroundColor | backgroundColor |
+| maxShowCount | maxShowCount |
+| overrideEnterDuration | overrideEnterDuration |
+| overrideExitDuration | overrideExitDuration |
+| overrideEnterAnimRes | overrideEnterAnimRes |
+| overrideExitAnimRes | overrideExitAnimRes |
+| moveDisplacementInterceptor | moveDisplacementInterceptor |
+| title | title |
+| titleResId | titleResId |
+| message | message |
+| messageResId | messageResId |
+| iconResId | iconResId |
+| iconBitmap | iconBitmap |
+| iconDrawable | iconDrawable |
+| iconSize | iconSize |
+| buttonText | buttonText |
+| buttonTextResId | buttonTextResId |
+| onButtonClickListener | onButtonClickListener |
+| radius | radius |
+| customView | customView |
+| lifecycleListener | lifecycleListener |
+| iconState | iconState |
+| onPopNotificationClickListener | onPopNotificationClickListener |
+| backgroundColorRes | backgroundColorRes |
+| autoTintIcon | autoTintIcon |
+| tintIcon | tintIcon |
+| slideToClose | slideToClose |
+| enterAnimResId | enterAnimResId |
+| exitAnimResId | exitAnimResId |
+| dialogXAnimImpl | dialogXAnimImpl |
+| hapticFeedbackEnabled | hapticFeedbackEnabled |
+| marginLeft | marginLeft |
+| marginTop | marginTop |
+| marginRight | marginRight |
+| marginBottom | marginBottom |
+| rootPadding | rootPadding |
+| data | data |
+| thisOrderIndex | thisOrderIndex |
+| lifecycleOwner | lifecycleOwner |
+| customDialogLayoutResId | customDialogLayoutResId |
+| customDialogLayoutLightTheme | customDialogLayoutLightTheme |
+| onClick | 按钮点击回调 |
+| run | 执行回调 |
+
+
+## <span id="devenginepoptip">**`dev.engine.poptip`**</span>
+
+
+* **PopTip Engine ->** [DevPopTipEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/poptip/DevPopTipEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **PopTip Engine 接口 ->** [IPopTipEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/poptip/IPopTipEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 PopTip Engine Config |
+| setConfig | 设置 PopTip Engine Config |
+| build | 构建 PopTip ( 不显示 ) |
+| buildView | 构建 PopTip ( 不显示 ) |
+| show | 显示 PopTip |
+| isSinglePopTip | 是否使用单例 PopTip |
+| getSinglePopTip | 获取单例 PopTip |
+| isShowSinglePopTip | 单例 PopTip 是否正在显示 |
+| dismissSinglePopTip | 关闭单例 PopTip |
+| hideSinglePopTip | 关闭单例 PopTip ( 动画 ) |
+| isShow | 指定 PopTip 是否正在显示 |
+| dismiss | 关闭指定 PopTip |
+| hide | 关闭指定 PopTip ( 动画 ) |
+| refreshUI | 刷新指定 PopTip 界面 |
+| autoDismiss | 设置指定 PopTip 自动消失时长 |
+| resetAutoDismissTimer | 重置指定 PopTip 自动消失计时器 |
+| showShort | 指定 PopTip 短时间显示 |
+| showLong | 指定 PopTip 长时间显示 |
+| showAlways | 指定 PopTip 常驻显示 ( 不自动消失 ) |
+| noAutoDismiss | 指定 PopTip 取消自动消失 |
+| bringToFront | 指定 PopTip 置顶显示 |
+| setThisOrderIndex | 设置指定 PopTip 显示层级 |
+| setStyle | 设置指定 PopTip 主题样式 |
+| setTheme | 设置指定 PopTip 明暗主题 |
+| setCustomView | 设置指定 PopTip 自定义布局 |
+| getCustomView | 获取指定 PopTip 自定义布局 View |
+| removeCustomView | 移除指定 PopTip 自定义布局 |
+| getAlign | 获取指定 PopTip 对齐方式 |
+| setAlign | 设置指定 PopTip 对齐方式 |
+| getIconResId | 获取指定 PopTip 图标资源 id |
+| setIconResId | 设置指定 PopTip 图标资源 id |
+| getMessage | 获取指定 PopTip 提示文本 |
+| setMessage | 设置指定 PopTip 提示文本 |
+| appendMessage | 追加指定 PopTip 提示文本 |
+| getButtonText | 获取指定 PopTip 按钮文本 |
+| setButton | 设置指定 PopTip 按钮文本 |
+| getMessageTextInfo | 获取指定 PopTip 提示文本样式 |
+| setMessageTextInfo | 设置指定 PopTip 提示文本样式 |
+| getButtonTextInfo | 获取指定 PopTip 按钮文本样式 |
+| setButtonTextInfo | 设置指定 PopTip 按钮文本样式 |
+| setOnButtonClickListener | 设置指定 PopTip 按钮点击事件 |
+| setOnPopTipClickListener | 设置指定 PopTip 自身点击事件 |
+| isAutoTintIconInLightOrDarkMode | 指定 PopTip 图标是否随明暗模式自动染色 |
+| setAutoTintIconInLightOrDarkMode | 设置指定 PopTip 图标是否随明暗模式自动染色 |
+| isTintIcon | 指定 PopTip 图标是否染色 |
+| setTintIcon | 设置指定 PopTip 图标是否染色 |
+| iconSuccess | 设置指定 PopTip 成功状态图标 |
+| iconWarning | 设置指定 PopTip 警告状态图标 |
+| iconError | 设置指定 PopTip 错误状态图标 |
+| getBackgroundColor | 获取指定 PopTip 背景色 |
+| setBackgroundColor | 设置指定 PopTip 背景色 |
+| setBackgroundColorRes | 设置指定 PopTip 背景色 |
+| getRadius | 获取指定 PopTip 圆角 ( px ) |
+| setRadius | 设置指定 PopTip 圆角 ( px ) |
+| getEnterAnimDuration | 获取指定 PopTip 进入动画时长 ( ms ) |
+| setEnterAnimDuration | 设置指定 PopTip 进入动画时长 ( ms ) |
+| getExitAnimDuration | 获取指定 PopTip 退出动画时长 ( ms ) |
+| setExitAnimDuration | 设置指定 PopTip 退出动画时长 ( ms ) |
+| setAnimResId | 设置指定 PopTip 进出场动画资源 |
+| setEnterAnimResId | 设置指定 PopTip 进入动画资源 |
+| setExitAnimResId | 设置指定 PopTip 退出动画资源 |
+| getDialogXAnimImpl | 获取指定 PopTip 动画实现 |
+| setDialogXAnimImpl | 设置指定 PopTip 动画实现 |
+| setHapticFeedbackEnabled | 设置指定 PopTip 是否启用振动反馈 |
+| setDialogImplMode | 设置指定 PopTip 实现模式 |
+| setMargin | 设置指定 PopTip 外边距 |
+| getMarginLeft | 获取指定 PopTip 左外边距 |
+| setMarginLeft | 设置指定 PopTip 左外边距 |
+| getMarginTop | 获取指定 PopTip 上外边距 |
+| setMarginTop | 设置指定 PopTip 上外边距 |
+| getMarginRight | 获取指定 PopTip 右外边距 |
+| setMarginRight | 设置指定 PopTip 右外边距 |
+| getMarginBottom | 获取指定 PopTip 下外边距 |
+| setMarginBottom | 设置指定 PopTip 下外边距 |
+| setRootPadding | 设置指定 PopTip 根布局内边距 |
+| setLifecycleListener | 设置指定 PopTip 显示生命周期监听 |
+| onShow | 设置指定 PopTip 显示回调 |
+| onDismiss | 设置指定 PopTip 关闭回调 |
+| setActionRunnable | 设置指定 PopTip 快捷功能键动作 |
+| cleanAction | 清除指定 PopTip 快捷功能键动作 |
+| cleanAllAction | 清除指定 PopTip 全部快捷功能键动作 |
+| setData | 设置指定 PopTip 临时存储数据 |
+| bindDismissWithLifecycleOwner | 绑定指定 PopTip 随 LifecycleOwner 关闭 |
+| setCustomDialogLayoutResId | 设置指定 PopTip 自定义弹窗布局资源 id |
+| onlyOne | onlyOne |
+| autoDismissDelay | autoDismissDelay |
+| align | align |
+| dialogImplMode | dialogImplMode |
+| radiusPx | radiusPx |
+| style | style |
+| theme | theme |
+| messageTextInfo | messageTextInfo |
+| buttonTextInfo | buttonTextInfo |
+| useHaptic | useHaptic |
+| enterAnimDuration | enterAnimDuration |
+| exitAnimDuration | exitAnimDuration |
+| backgroundColor | backgroundColor |
+| maxShowCount | maxShowCount |
+| overrideEnterDuration | overrideEnterDuration |
+| overrideExitDuration | overrideExitDuration |
+| overrideEnterAnimRes | overrideEnterAnimRes |
+| overrideExitAnimRes | overrideExitAnimRes |
+| moveDisplacementInterceptor | moveDisplacementInterceptor |
+| message | message |
+| messageResId | messageResId |
+| iconResId | iconResId |
+| buttonText | buttonText |
+| buttonTextResId | buttonTextResId |
+| onButtonClickListener | onButtonClickListener |
+| radius | radius |
+| customView | customView |
+| lifecycleListener | lifecycleListener |
+| iconState | iconState |
+| onPopTipClickListener | onPopTipClickListener |
+| backgroundColorRes | backgroundColorRes |
+| autoTintIcon | autoTintIcon |
+| tintIcon | tintIcon |
+| enterAnimResId | enterAnimResId |
+| exitAnimResId | exitAnimResId |
+| dialogXAnimImpl | dialogXAnimImpl |
+| hapticFeedbackEnabled | hapticFeedbackEnabled |
+| marginLeft | marginLeft |
+| marginTop | marginTop |
+| marginRight | marginRight |
+| marginBottom | marginBottom |
+| rootPadding | rootPadding |
+| data | data |
+| thisOrderIndex | thisOrderIndex |
+| lifecycleOwner | lifecycleOwner |
+| customDialogLayoutResId | customDialogLayoutResId |
+| customDialogLayoutLightTheme | customDialogLayoutLightTheme |
+| onClick | 按钮点击回调 |
+| run | 执行回调 |
+
+
 ## <span id="devenginepush">**`dev.engine.push`**</span>
 
 
@@ -1558,6 +1933,266 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 | onNotificationMessageClicked | 推送消息点击通知 |
 | onReceiveMessageData | 透传消息送达通知 |
 | convertMessage | 传入 Object 转换 Engine Message |
+
+
+## <span id="devenginerefresh">**`dev.engine.refresh`**</span>
+
+
+* **Refresh View Engine ->** [DevRefreshEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/refresh/DevRefreshEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **Refresh View Engine 接口 ->** [IRefreshEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/refresh/IRefreshEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 Refresh Engine Config |
+| initialize | 初始化 Refresh View |
+| applyConfig | 应用 Refresh Config |
+| setHeaderHeight | 设置 Header 高度 |
+| setHeaderHeightPx | 设置 Header 高度 |
+| setFooterHeight | 设置 Footer 高度 |
+| setFooterHeightPx | 设置 Footer 高度 |
+| setHeaderInsetStart | 设置 Header 起始偏移量 |
+| setHeaderInsetStartPx | 设置 Header 起始偏移量 |
+| setFooterInsetStart | 设置 Footer 起始偏移量 |
+| setFooterInsetStartPx | 设置 Footer 起始偏移量 |
+| setDragRate | 设置拖拽阻尼比率 |
+| setHeaderMaxDragRate | 设置 Header 最大拖拽高度比率 |
+| setFooterMaxDragRate | 设置 Footer 最大拖拽高度比率 |
+| setHeaderTriggerRate | 设置 Header 触发刷新比率 |
+| setFooterTriggerRate | 设置 Footer 触发加载比率 |
+| setReboundInterpolator | 设置回弹动画插值器 |
+| setReboundDuration | 设置回弹动画时长 |
+| setRefreshHeader | 设置刷新头 |
+| setRefreshFooter | 设置加载尾 |
+| setRefreshContent | 设置内容 View |
+| setEnableRefresh | 是否启用下拉刷新 |
+| setEnableLoadMore | 是否启用上拉加载更多 |
+| setEnableAutoLoadMore | 是否启用滚动到底部自动加载 |
+| setEnableHeaderTranslationContent | 是否启用 Header 移动内容 |
+| setEnableFooterTranslationContent | 是否启用 Footer 移动内容 |
+| setEnableOverScrollBounce | 是否启用越界回弹 |
+| setEnablePureScrollMode | 是否启用纯滚动模式 |
+| setEnableScrollContentWhenLoaded | 加载完成后是否滚动内容显示新数据 |
+| setEnableScrollContentWhenRefreshed | 刷新完成后是否滚动内容显示新数据 |
+| setEnableLoadMoreWhenContentNotFull | 内容不满一页时是否可以加载更多 |
+| setEnableOverScrollDrag | 是否启用越界拖动 |
+| setEnableFooterFollowWhenNoMoreData | 没有更多数据后 Footer 是否跟随内容 |
+| setEnableClipHeaderWhenFixedBehind | Header FixedBehind 时是否裁剪 Header |
+| setEnableClipFooterWhenFixedBehind | Footer FixedBehind 时是否裁剪 Footer |
+| setEnableNestedScroll | 是否启用嵌套滚动 |
+| setFixedHeaderViewId | 设置固定在 Header 下方的视图 id |
+| setFixedFooterViewId | 设置固定在 Footer 上方的视图 id |
+| setHeaderTranslationViewId | 设置 Header 滚动时跟随滚动的视图 id |
+| setFooterTranslationViewId | 设置 Footer 滚动时跟随滚动的视图 id |
+| setDisableContentWhenRefresh | 刷新时是否禁用内容操作 |
+| setDisableContentWhenLoading | 加载时是否禁用内容操作 |
+| setOnRefreshListener | 设置刷新监听器 |
+| setOnLoadMoreListener | 设置加载监听器 |
+| setOnRefreshLoadMoreListener | 设置刷新和加载监听器 |
+| setOnMultiListener | 设置多功能监听器 |
+| setScrollBoundaryDecider | 设置滚动边界判断器 |
+| setPrimaryColors | 设置主题色 |
+| setPrimaryColorsId | 设置主题色资源 id |
+| autoRefresh | 自动触发刷新 |
+| autoRefreshAnimationOnly | 自动触发刷新动画 |
+| autoLoadMore | 自动触发加载 |
+| autoLoadMoreAnimationOnly | 自动触发加载动画 |
+| finishRefresh | 完成刷新 |
+| finishRefreshWithNoMoreData | 完成刷新并标记没有更多数据 |
+| finishLoadMore | 完成加载 |
+| finishLoadMoreWithNoMoreData | 完成加载并标记没有更多数据 |
+| closeHeaderOrFooter | 关闭 Header 或 Footer |
+| setNoMoreData | 设置没有更多数据状态 |
+| resetNoMoreData | 重置没有更多数据状态 |
+| finishRefreshAndLoad | 完成刷新、加载 |
+| finishRefreshOrLoad | 完成刷新或加载 |
+| getRefreshHeader | 获取刷新头 |
+| getRefreshFooter | 获取加载尾 |
+| getState | 获取当前状态 |
+| getLayout | 获取实体布局视图 |
+| isRefreshing | 是否正在刷新 |
+| isLoading | 是否正在加载 |
+| headerHeight | headerHeight |
+| headerHeightPx | headerHeightPx |
+| footerHeight | footerHeight |
+| footerHeightPx | footerHeightPx |
+| headerInsetStart | headerInsetStart |
+| headerInsetStartPx | headerInsetStartPx |
+| footerInsetStart | footerInsetStart |
+| footerInsetStartPx | footerInsetStartPx |
+| dragRate | dragRate |
+| headerMaxDragRate | headerMaxDragRate |
+| footerMaxDragRate | footerMaxDragRate |
+| headerTriggerRate | headerTriggerRate |
+| footerTriggerRate | footerTriggerRate |
+| reboundInterpolator | reboundInterpolator |
+| reboundDuration | reboundDuration |
+| enableRefresh | enableRefresh |
+| enableLoadMore | enableLoadMore |
+| enableAutoLoadMore | enableAutoLoadMore |
+| enableHeaderTranslationContent | enableHeaderTranslationContent |
+| enableFooterTranslationContent | enableFooterTranslationContent |
+| enableOverScrollBounce | enableOverScrollBounce |
+| enablePureScrollMode | enablePureScrollMode |
+| enableScrollContentWhenLoaded | enableScrollContentWhenLoaded |
+| enableScrollContentWhenRefreshed | enableScrollContentWhenRefreshed |
+| enableLoadMoreWhenContentNotFull | enableLoadMoreWhenContentNotFull |
+| enableOverScrollDrag | enableOverScrollDrag |
+| enableFooterFollowWhenNoMoreData | enableFooterFollowWhenNoMoreData |
+| enableClipHeaderWhenFixedBehind | enableClipHeaderWhenFixedBehind |
+| enableClipFooterWhenFixedBehind | enableClipFooterWhenFixedBehind |
+| enableNestedScroll | enableNestedScroll |
+| disableContentWhenRefresh | disableContentWhenRefresh |
+| disableContentWhenLoading | disableContentWhenLoading |
+| primaryColors | primaryColors |
+| primaryColorIds | primaryColorIds |
+| view | view |
+| config | config |
+| content | content |
+| contentWidth | contentWidth |
+| contentHeight | contentHeight |
+| header | header |
+| headerWidth | headerWidth |
+| footer | footer |
+| footerWidth | footerWidth |
+| fixedHeaderViewId | fixedHeaderViewId |
+| fixedFooterViewId | fixedFooterViewId |
+| headerTranslationViewId | headerTranslationViewId |
+| footerTranslationViewId | footerTranslationViewId |
+| scrollBoundaryDecider | scrollBoundaryDecider |
+| onRefreshListener | onRefreshListener |
+| onLoadMoreListener | onLoadMoreListener |
+| onRefreshLoadMoreListener | onRefreshLoadMoreListener |
+| multiListener | multiListener |
+| onRefresh | onRefresh |
+| onLoadMore | onLoadMore |
+
+
+## <span id="devenginerouter">**`dev.engine.router`**</span>
+
+
+* **Router Engine ->** [DevRouterEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/router/DevRouterEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **Router Engine 接口 ->** [IRouterEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/router/IRouterEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 Router Engine Config |
+| setConfig | 设置 Router Engine Config |
+| initialize | 初始化 Router Engine |
+| isInitialized | Router 是否已初始化 |
+| setDebug | 设置是否为 Debug 环境 |
+| isDebug | 是否为 Debug 环境 |
+| setLogCallback | 设置日志输出回调 |
+| inject | 为 Autowired 注解的变量赋值 |
+| isRouterPath | 判断 url 是否为 TheRouter 的路由 Path |
+| isRouterAction | 判断 url 是否为 TheRouter 的 Action |
+| getService | 获取跨模块依赖的服务 |
+| runTask | 执行业务自定义 FlowTask |
+| setDefaultNavigationCallback | 设置全局默认路由跳转结果回调 |
+| addNavigatorPathFixHandle | 新增 Path 修改器 |
+| removeNavigatorPathFixHandle | 移除 Path 修改器 |
+| addPathReplaceInterceptor | 新增 Path 替换拦截器 |
+| removePathReplaceInterceptor | 移除 Path 替换拦截器 |
+| addRouterReplaceInterceptor | 新增路由替换拦截器 |
+| removeRouterReplaceInterceptor | 移除路由替换拦截器 |
+| addActionInterceptor | 新增 Action 拦截器 |
+| removeActionInterceptor | 移除 Action 拦截器 |
+| removeAllInterceptorForKey | 移除指定 Action 的全部拦截器 |
+| removeAllInterceptorForValue | 移除指定拦截器 ( 所有 Action 共用 ) |
+| addAutowiredParser | 新增 Autowired 注解解析器 |
+| init | 手动初始化 TheRouter |
+| setRouterInterceptor | 设置路由 AOP 拦截器 |
+| sendPendingNavigator | 恢复 pending 状态的 Navigator 跳转 |
+| optGlobalObject | 获取 Navigator 全局 Object 参数 |
+| build | 通过 Path 构建 Navigator ( 不跳转 ) |
+| getUrlWithParams | 获取带参数的完整 url |
+| getNavigatorUrl | 获取 Navigator 当前 url |
+| getOriginalUrl | 获取 Navigator 原始 url |
+| getPathFixOriginalUrl | 获取 Navigator PathFix 后的原始 url |
+| getSimpleUrl | 获取 Navigator 简化 url ( 不含 query ) |
+| getNavigatorExtras | 获取 Navigator 参数 Bundle |
+| getNavigatorIntent | 获取 Navigator 关联 Intent |
+| pending | 设置 pending 等待路由表初始化 |
+| withInt | 设置 Int 参数 |
+| withLong | 设置 Long 参数 |
+| withDouble | 设置 Double 参数 |
+| withFloat | 设置 Float 参数 |
+| withChar | 设置 Char 参数 |
+| withByte | 设置 Byte 参数 |
+| withBoolean | 设置 Boolean 参数 |
+| withString | 设置 String 参数 |
+| withSerializable | 设置 Serializable 参数 |
+| withParcelable | 设置 Parcelable 参数 |
+| withObject | 设置 Object 参数 |
+| withBundle | 设置 Bundle 参数 |
+| with | 设置 Bundle 参数 ( 合并到 Navigator ) |
+| fillParams | 批量填充 Navigator 参数 Bundle |
+| setData | 设置 Intent Data |
+| setIdentifier | 设置 Intent Identifier |
+| setClipData | 设置 Intent ClipData |
+| optObject | 获取 Navigator Object 参数 |
+| addFlags | 追加 Intent Flags |
+| withFlags | 设置 Intent Flags |
+| withOptionsCompat | 设置 Activity Options Bundle |
+| withInAnimation | 设置进入动画资源 id |
+| withOutAnimation | 设置退出动画资源 id |
+| createIntent | 创建 Intent |
+| createIntentWithCallback | 异步创建 Intent |
+| createFragment | 创建 Fragment |
+| createFragmentWithCallback | 异步创建 Fragment |
+| navigation | 执行路由跳转 |
+| action | 执行 Action |
+| debug | debug |
+| autoInit | autoInit |
+| asyncInitRouterInject | asyncInitRouterInject |
+| path | path |
+| requestCode | requestCode |
+| flags | flags |
+| animIn | animIn |
+| animOut | animOut |
+| context | context |
+| fragment | fragment |
+| optionsCompat | optionsCompat |
+| intentData | intentData |
+| intentIdentifier | intentIdentifier |
+| intentClipData | intentClipData |
+| navigationCallback | navigationCallback |
+| extras | extras |
+| objectParams | objectParams |
+| onFound | 找到路由 |
+| onLost | 未找到路由 |
+| onArrival | 路由到达 |
+| onActivityCreated | Activity 创建完成 |
+| log | 输出日志 |
+| fill | 填充路由参数 Bundle |
+| onIntent | Intent 创建完成 |
+| onFragment | Fragment 创建完成 |
+| fix | 修正单个 key-value 拼接 |
+| onContinue | 继续路由 |
+| process | 路由 AOP 处理 |
 
 
 ## <span id="devengineshare">**`dev.engine.share`**</span>
@@ -1683,6 +2318,235 @@ implementation 'io.github.afkt:DevAssist:1.4.6'
 | show | 显示 Toast |
 | setView | 给当前 Toast 设置新的布局 |
 | setGravity | 设置 Toast 的位置 |
+
+
+## <span id="devengineweb">**`dev.engine.web`**</span>
+
+
+* **WebView Engine ->** [DevWebEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/web/DevWebEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Engine |
+| setEngine | 设置 Engine |
+| removeEngine | 移除 Engine |
+| getAssist | 获取 DevEngine Generic Assist |
+| getEngineMaps | 获取 Engine Map |
+| contains | 是否存在 Engine |
+| isEmpty | 判断 Engine 是否为 null |
+
+
+* **WebView Engine 接口 ->** [IWebEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/web/IWebEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 WebView Engine Config |
+| initialize | 初始化 WebView ( 应用配置、设置 Client、监听、JS 交互对象 ) |
+| applyConfig | 应用 WebView Config |
+| getWebView | 获取 WebView |
+| isWebViewNotEmpty | WebView 是否不为 null |
+| loadUrl | 加载网页 |
+| loadData | 加载 Html 代码 |
+| loadDataWithBaseURL | 加载 Html 代码 |
+| postUrl | 使用 POST 方法将带有 postData 的 url 加载到 WebView 中 |
+| getSettings | 获取 WebView 配置 ( WebSettings ) |
+| getUserAgentString | 获取浏览器标识 UA |
+| setUserAgentString | 设置浏览器标识 UA |
+| addJavascriptInterface | 添加 JS 交互注入对象 |
+| removeJavascriptInterface | 移除 JS 交互注入对象 |
+| evaluateJavascript | 执行 JS 方法 |
+| setWebViewClient | 设置处理各种通知和请求事件对象 |
+| getWebViewClient | 获取处理各种通知和请求事件对象 |
+| setWebChromeClient | 设置辅助 WebView 处理 Javascript 对话框、标题等对象 |
+| getWebChromeClient | 获取辅助 WebView 处理 Javascript 对话框、标题等对象 |
+| setDownloadListener | 设置下载监听 |
+| setFindListener | 设置查找结果监听 |
+| canGoBack | WebView 是否可以后退 |
+| goBack | WebView 后退 |
+| canGoForward | WebView 是否可以前进 |
+| goForward | WebView 前进 |
+| canGoBackOrForward | WebView 是否可以跳转到当前起始点相距的历史记录 |
+| goBackOrForward | WebView 跳转到当前起始点相距的历史记录 |
+| copyBackForwardList | 获取 WebView 历史记录列表 ( WebBackForwardList ) |
+| reload | 刷新页面 ( 当前页面的所有资源都会重新加载 ) |
+| stopLoading | 停止加载 |
+| clearCache | 清除资源缓存 |
+| clearHistory | 清除当前 WebView 访问的历史记录 |
+| clearFormData | 清除自动完成填充的表单数据 |
+| clearMatches | 清除高亮显示的查找结果 |
+| clearSslPreferences | 清除 SSL 偏好设置 |
+| deleteAllWebStorage | 清除全部 Web 存储数据 ( localStorage、IndexedDB、WebSQL 等, 全局生效 ) |
+| getScale | 获取缩放比例 |
+| getScrollX | 获取当前内容横向滚动距离 |
+| getScrollY | 获取当前可见区域的顶端距整个页面顶端的距离 ( 当前内容滚动的距离 ) |
+| getContentHeight | 获取 HTML 的高度 ( 原始高度, 不包括缩放后的高度 ) |
+| getScaleHeight | 获取缩放高度 |
+| getHeight | 获取 WebView 控件高度 |
+| getUrl | 获取当前 Url |
+| getOriginalUrl | 获取最初请求 Url |
+| getTitle | 获取当前页面标题 |
+| getProgress | 获取当前页面加载进度 |
+| getFavicon | 获取当前页面图标 ( Bitmap ) |
+| getHitTestResult | 获取长按事件类型 ( HitTestResult ) |
+| getCertificate | 获取当前页面 SSL 证书 ( SslCertificate ) |
+| pageDown | 将视图内容向下滚动一半页面大小 |
+| pageUp | 将视图内容向上滚动一半页面大小 |
+| scrollTo | 滚动到指定坐标 |
+| scrollBy | 滚动指定偏移量 |
+| flingScroll | 以给定的速度开始滑动 |
+| zoomBy | 按指定比例缩放 |
+| zoomIn | 放大 |
+| zoomOut | 缩小 |
+| setInitialScale | 设置初始缩放比例 |
+| findAllAsync | 异步查找页面内所有匹配项 |
+| findNext | 跳转到下一个 ( 上一个 ) 查找匹配项 |
+| onPause | 暂停 WebView ( Activity onPause ) |
+| onResume | 恢复 WebView ( Activity onResume ) |
+| pauseTimers | 暂停所有 WebView 的布局、解析、JavaScript 定时器 |
+| resumeTimers | 恢复所有 WebView 的布局、解析、JavaScript 定时器 |
+| freeMemory | 释放内存 |
+| destroy | 销毁处理 ( 避免 WebView 引起的内存泄漏 ) |
+| handlerKeyDown | 处理按键 ( 是否回退 ) |
+| setLayerTypeSoftware | 关闭 WebView 硬件加速功能 ( 解决 WebView 闪烁问题 ) |
+| setLayerType | 设置 WebView 硬件加速类型 |
+| setNetworkAvailable | 设置 WebView 是否处于可联网状态 |
+| saveWebArchive | 保存当前页面为 Web 归档文件 |
+| requestFocusNodeHref | 请求获取长按聚焦节点的超链接信息 |
+| requestImageRef | 请求获取长按聚焦图片的地址信息 |
+| documentHasImages | 查询当前页面是否包含图片资源 |
+| createPrintDocumentAdapter | 创建打印文档适配器 ( PrintDocumentAdapter ) |
+| setRendererPriorityPolicy | 设置渲染进程优先级策略 ( Android 8.0 起支持 ) |
+| postWebMessage | 向网页投递一条 Web 消息 ( HTML5 postMessage ) |
+| createWebMessageChannel | 创建一对 Web 消息端口 ( HTML5 MessageChannel ) |
+| setWebContentsDebuggingEnabled | 设置是否开启 WebView 内容调试 ( Chrome inspect ) |
+| getCurrentWebViewPackage | 获取当前 WebView 内核包信息 ( PackageInfo, Android 8.0 起支持 ) |
+| clearClientCertPreferences | 清除客户端证书选择偏好 |
+| isWebViewFeatureSupported | 判断 AndroidX WebKit 特性是否支持 |
+| addDocumentStartJavaScript | 在文档开始加载时注入 JS ( 需 DOCUMENT_START_SCRIPT 特性 ) |
+| addWebMessageListener | 添加 Web 消息监听 ( 安全 JSBridge, 需 WEB_MESSAGE_LISTENER 特性 ) |
+| removeWebMessageListener | 移除 Web 消息监听 |
+| getWebViewClientCompat | 获取处理各种通知和请求事件对象 ( 兼容版, 需 GET_WEB_VIEW_CLIENT 特性 ) |
+| getWebChromeClientCompat | 获取辅助处理 Javascript 对话框、标题等对象 ( 兼容版, 需 GET_WEB_CHROME_CLIENT 特性 ) |
+| getCurrentWebViewPackageCompat | 获取当前 WebView 内核包信息 ( 兼容版 ) |
+| getWebViewRenderProcess | 获取 WebView 渲染进程 ( 需 GET_WEB_VIEW_RENDERER 特性 ) |
+| setWebViewRenderProcessClient | 设置 WebView 渲染进程客户端 ( 需 WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE 特性 ) |
+| getWebViewRenderProcessClient | 获取 WebView 渲染进程客户端 |
+| isMultiProcessEnabled | 是否启用多进程 ( 需 MULTI_PROCESS 特性 ) |
+| getVariationsHeader | 获取 Variations Header ( 需 GET_VARIATIONS_HEADER 特性 ) |
+| startSafeBrowsing | 启动安全浏览 ( 需 START_SAFE_BROWSING 特性 ) |
+| setSafeBrowsingAllowlist | 设置安全浏览白名单 ( 需 SAFE_BROWSING_ALLOWLIST 特性 ) |
+| getSafeBrowsingPrivacyPolicyUrl | 获取安全浏览隐私政策地址 ( 需 SAFE_BROWSING_PRIVACY_POLICY_URL 特性 ) |
+| setProxyOverride | 设置 WebView 代理 ( 需 PROXY_OVERRIDE 特性 ) |
+| clearProxyOverride | 清除 WebView 代理 ( 需 PROXY_OVERRIDE 特性 ) |
+| setAudioMuted | 静音或取消静音 WebView ( 需 MUTE_AUDIO 特性 ) |
+| isAudioMuted | WebView 是否静音 ( 需 MUTE_AUDIO 特性 ) |
+| postVisualStateCallback | 投递可视状态回调 ( 内容可绘制时触发, 用于规避白屏, 需 VISUAL_STATE_CALLBACK 特性 ) |
+| setWebViewProfile | 设置 WebView 使用的 Profile ( 多 Profile 数据隔离, 需 MULTI_PROFILE 特性 ) |
+| getWebViewProfile | 获取 WebView 使用的 Profile ( 需 MULTI_PROFILE 特性 ) |
+| setUserAgentMetadata | 设置 WebView 用户代理元数据 ( 生成 UA Client Hints, 需 USER_AGENT_METADATA 特性 ) |
+| setWebViewMediaIntegrityApiStatus | 设置 WebView Media Integrity API 权限 ( 需 WEBVIEW_MEDIA_INTEGRITY_API_STATUS 特性 ) |
+| getOrCreateWebProfile | 根据名称获取或创建 Profile ( 需 MULTI_PROFILE 特性 ) |
+| getWebProfile | 根据名称获取 Profile ( 需 MULTI_PROFILE 特性 ) |
+| deleteWebProfile | 根据名称删除 Profile ( 需 MULTI_PROFILE 特性 ) |
+| getAllWebProfileNames | 获取全部 Profile 名称 ( 需 MULTI_PROFILE 特性 ) |
+| setServiceWorkerClient | 设置 ServiceWorker 客户端 ( 需 SERVICE_WORKER_BASIC_USAGE 特性 ) |
+| setServiceWorkerAllowContentAccess | 设置 ServiceWorker 是否允许访问 content:// 资源 ( 需 SERVICE_WORKER_CONTENT_ACCESS 特性 ) |
+| setServiceWorkerAllowFileAccess | 设置 ServiceWorker 是否允许访问文件 ( 需 SERVICE_WORKER_FILE_ACCESS 特性 ) |
+| setServiceWorkerBlockNetworkLoads | 设置 ServiceWorker 是否不从网络加载资源 ( 需 SERVICE_WORKER_BLOCK_NETWORK_LOADS 特性 ) |
+| setServiceWorkerCacheMode | 设置 ServiceWorker 缓存模式 ( 需 SERVICE_WORKER_CACHE_MODE 特性 ) |
+| isWebViewTracing | 是否正在进行性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 ) |
+| startWebViewTracing | 开始性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 ) |
+| stopWebViewTracing | 停止性能跟踪并输出结果 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 ) |
+| getBackForwardCacheSettings | 获取 BackForwardCache 实时配置对象 ( 实验性, 需 BACK_FORWARD_CACHE_SETTINGS_EXPERIMENTAL_V3 特性 ) |
+| setDefaultTrafficStatsTag | 设置 WebView 默认流量统计 TAG ( 需 DEFAULT_TRAFFICSTATS_TAGGING 特性 ) |
+| saveState | 保存 WebView 状态 ( 支持限制大小、是否含前进历史, 需 SAVE_STATE 特性 ) |
+| addNavigationListener | 添加导航监听 ( 回调在主线程, 需 NAVIGATION_LISTENER 特性 ) |
+| removeNavigationListener | 移除导航监听 ( 需 NAVIGATION_LISTENER 特性 ) |
+| restoreState | 恢复 WebView 历史与状态 ( 与 saveState 配对 ) |
+| setActive | 设置 WebView 激活 ( 可见 ) 状态 |
+| getCoreType | 获取内核类型标识 |
+| getCoreVersion | 获取内核版本 |
+| isCoreReady | 内核是否就绪可用 |
+| setCookie | 将 Cookie 设置到 WebView |
+| getCookie | 获取指定 Url 的 Cookie |
+| setAcceptCookie | 设置是否接受 Cookie |
+| acceptCookie | 是否接受 Cookie |
+| setAcceptThirdPartyCookies | 设置指定 WebView 是否接受第三方 Cookie |
+| acceptThirdPartyCookies | 指定 WebView 是否接受第三方 Cookie |
+| hasCookies | 是否存在 Cookie |
+| removeCookie | 移除 Cookie ( Session、All ) |
+| removeSessionCookie | 移除 Session Cookie |
+| removeAllCookie | 移除所有的 Cookie |
+| flushCookie | 同步 ( 刷新 ) Cookie 到本地存储 |
+| getCookieInfo | 获取指定 Url 全部 Cookie 的完整属性 ( 含 Domain、Path、Expires、Secure 等, 需 GET_COOKIE_INFO 特性 ) |
+| javaScriptEnabled | javaScriptEnabled |
+| renderPriority | renderPriority |
+| useWideViewPort | useWideViewPort |
+| loadWithOverviewMode | loadWithOverviewMode |
+| layoutAlgorithm | layoutAlgorithm |
+| supportZoom | supportZoom |
+| builtInZoomControls | builtInZoomControls |
+| displayZoomControls | displayZoomControls |
+| textZoom | textZoom |
+| standardFontFamily | standardFontFamily |
+| defaultFontSize | defaultFontSize |
+| minimumFontSize | minimumFontSize |
+| defaultFixedFontSize | defaultFixedFontSize |
+| minimumLogicalFontSize | minimumLogicalFontSize |
+| fixedFontFamily | fixedFontFamily |
+| sansSerifFontFamily | sansSerifFontFamily |
+| serifFontFamily | serifFontFamily |
+| cursiveFontFamily | cursiveFontFamily |
+| fantasyFontFamily | fantasyFontFamily |
+| mixedContentMode | mixedContentMode |
+| loadsImagesAutomatically | loadsImagesAutomatically |
+| javaScriptCanOpenWindowsAutomatically | javaScriptCanOpenWindowsAutomatically |
+| defaultTextEncodingName | defaultTextEncodingName |
+| geolocationEnabled | geolocationEnabled |
+| userAgentString | userAgentString |
+| allowFileAccess | allowFileAccess |
+| allowFileAccessFromFileURLs | allowFileAccessFromFileURLs |
+| allowUniversalAccessFromFileURLs | allowUniversalAccessFromFileURLs |
+| blockNetworkLoads | blockNetworkLoads |
+| blockNetworkImage | blockNetworkImage |
+| mediaPlaybackRequiresUserGesture | mediaPlaybackRequiresUserGesture |
+| cacheMode | cacheMode |
+| domStorageEnabled | domStorageEnabled |
+| appCacheEnabled | appCacheEnabled |
+| appCachePath | appCachePath |
+| appCacheMaxSize | appCacheMaxSize |
+| databaseEnabled | databaseEnabled |
+| databasePath | databasePath |
+| allowContentAccess | allowContentAccess |
+| supportMultipleWindows | supportMultipleWindows |
+| needInitialFocus | needInitialFocus |
+| safeBrowsingEnabled | safeBrowsingEnabled |
+| offscreenPreRaster | offscreenPreRaster |
+| disabledActionModeMenuItems | disabledActionModeMenuItems |
+| algorithmicDarkeningAllowed | algorithmicDarkeningAllowed |
+| paymentRequestEnabled | paymentRequestEnabled |
+| enterpriseAuthenticationAppLinkPolicyEnabled | enterpriseAuthenticationAppLinkPolicyEnabled |
+| attributionRegistrationBehavior | attributionRegistrationBehavior |
+| backForwardCacheEnabled | backForwardCacheEnabled |
+| speculativeLoadingStatus | speculativeLoadingStatus |
+| hyperlinkContextMenuItems | hyperlinkContextMenuItems |
+| hasEnrolledInstrumentEnabled | hasEnrolledInstrumentEnabled |
+| cookiesIncludedInShouldInterceptRequest | cookiesIncludedInShouldInterceptRequest |
+| webAuthenticationSupport | webAuthenticationSupport |
+| forceUserScalable | forceUserScalable |
+| view | view |
+| config | config |
+| webViewClient | webViewClient |
+| webChromeClient | webChromeClient |
+| downloadListener | downloadListener |
+| findListener | findListener |
+| javascriptInterfaces | javascriptInterfaces |
+| onWebListener | onWebListener |
+| onPageStarted | 页面开始加载 |
+| onPageFinished | 页面加载完成 |
+| onProgressChanged | 加载进度变化 |
+| onReceivedTitle | 接收网页标题 |
+| onReceivedError | 接收加载错误 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>

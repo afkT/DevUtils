@@ -9,47 +9,47 @@ implementation 'io.github.afkt:DevEngine:1.1.8'
 ## 目录结构
 
 ```
-- dev.engine            | 根目录
-   - core               | 核心实现代码
-      - barcode         | BarCode Engine 条形码、二维码处理
-      - cache           | Cache Engine 有效期键值对缓存
-      - compress        | Image Compress Engine 图片压缩
-      - eventbus        | EventBus Engine 事件总线
-      - image           | Image Engine 图片加载、下载、转格式等
-      - json            | JSON Engine 映射
-      - keyvalue        | KeyValue Engine 键值对存储
-      - log             | Log Engine 日志打印
-      - media           | Media Selector Engine 多媒体资源选择
-      - permission      | Permission Engine 权限申请
-      - popnotification | PopNotification Engine 简单通知提示
-      - poptip          | PopTip Engine 非阻断式文本提示
-      - refresh         | Refresh Engine 下拉刷新、上拉加载 View
-      - router          | Router Engine 页面路由
-      - storage         | Storage Engine 外部、内部文件存储
-      - toast           | Toast Engine 吐司提示
-      - web             | WebView Engine 网页加载、配置、JS 交互
-   - extensions         | Kotlin 扩展代码、函数实现
-      - analytics       | Analytics Engine 数据统计 ( 埋点 )
-      - barcode         | BarCode Engine 条形码、二维码处理
-      - cache           | Cache Engine 有效期键值对缓存
-      - compress        | Image Compress Engine 图片压缩
-      - debug           | Debug 编译辅助开发 Engine
-      - eventbus        | EventBus Engine 事件总线
-      - image           | Image Engine 图片加载、下载、转格式等
-      - json            | JSON Engine 映射
-      - keyvalue        | KeyValue Engine 键值对存储
-      - log             | Log Engine 日志打印
-      - media           | Media Selector Engine 多媒体资源选择
-      - permission      | Permission Engine 权限申请
-      - popnotification | PopNotification Engine 简单通知提示
-      - poptip          | PopTip Engine 非阻断式文本提示
-      - push            | Push Engine 推送平台处理
-      - refresh         | Refresh Engine 下拉刷新、上拉加载 View
-      - router          | Router Engine 页面路由
-      - share           | Share Engine 分享平台处理
-      - storage         | Storage Engine 外部、内部文件存储
-      - toast           | Toast Engine 吐司提示
-      - web             | WebView Engine 网页加载、配置、JS 交互
+- dev.engine                    | 根目录
+   - core                       | 核心实现代码
+      - barcode                 | BarCode Engine 条形码、二维码处理
+      - cache                   | Cache Engine 有效期键值对缓存
+      - compress                | Image Compress Engine 图片压缩
+      - eventbus                | EventBus Engine 事件总线
+      - image                   | Image Engine 图片加载、下载、转格式等
+      - json                    | JSON Engine 映射
+      - keyvalue                | KeyValue Engine 键值对存储
+      - log                     | Log Engine 日志打印
+      - media                   | Media Selector Engine 多媒体资源选择
+      - permission              | Permission Engine 权限申请
+      - popnotification         | PopNotification Engine 简单通知提示
+      - poptip                  | PopTip Engine 非阻断式文本提示
+      - refresh                 | Refresh Engine 下拉刷新、上拉加载 View
+      - router                  | Router Engine 页面路由
+      - storage                 | Storage Engine 外部、内部文件存储
+      - toast                   | Toast Engine 吐司提示
+      - web                     | WebView Engine 网页加载、配置、JS 交互
+   - extensions                 | Kotlin 扩展代码、函数实现
+      - analytics               | Analytics Engine 数据统计 ( 埋点 )
+      - barcode                 | BarCode Engine 条形码、二维码处理
+      - cache                   | Cache Engine 有效期键值对缓存
+      - compress                | Image Compress Engine 图片压缩
+      - debug                   | Debug 编译辅助开发 Engine
+      - eventbus                | EventBus Engine 事件总线
+      - image                   | Image Engine 图片加载、下载、转格式等
+      - json                    | JSON Engine 映射
+      - keyvalue                | KeyValue Engine 键值对存储
+      - log                     | Log Engine 日志打印
+      - media                   | Media Selector Engine 多媒体资源选择
+      - permission              | Permission Engine 权限申请
+      - popnotification         | PopNotification Engine 简单通知提示
+      - poptip                  | PopTip Engine 非阻断式文本提示
+      - push                    | Push Engine 推送平台处理
+      - refresh                 | Refresh Engine 下拉刷新、上拉加载 View
+      - router                  | Router Engine 页面路由
+      - share                   | Share Engine 分享平台处理
+      - storage                 | Storage Engine 外部、内部文件存储
+      - toast                   | Toast Engine 吐司提示
+      - web                     | WebView Engine 网页加载、配置、JS 交互
 ```
 
 
@@ -248,11 +248,11 @@ private fun initEngine(appContext: Application) {
     // =========
     // = 初始化 =
     // =========
-    
+
     // =============
     // = 完整版初始化 =
     // =============
-    
+
     // 完整初始化 ( 全面使用该库调用该方法初始化即可 )
     DevEngine.completeInitialize(appContext)
 
@@ -270,7 +270,7 @@ private fun initEngine(appContext: Application) {
     DevEngine.defaultDevLoggerEngineImpl(logConfig)
     // 初始化 Timber Log Engine 实现
     DevEngine.defaultTimberEngineImpl()
-    
+
     // 初始化 Xxx Engine 实现
     DevEngine.defaultXxxEngineImpl()
 
