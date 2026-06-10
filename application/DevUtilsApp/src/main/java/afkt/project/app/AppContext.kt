@@ -99,7 +99,7 @@ class AppContext : BaseApplication() {
                     .append(DevFinal.SYMBOL.NEW_LINE)
                     .append("dateTaken: ").append(dateTaken).append(" ( ")
                     .append(DateUtils.formatTime(dateTaken)).append(" )")
-                log_d(message = builder.toString())
+                builder.toString().log_d()
             }.startListener()
     }
 
@@ -166,7 +166,7 @@ class AppContext : BaseApplication() {
                     webViewAssist: WebViewAssist?,
                     builder: WebViewAssist.Builder
                 ) {
-                    log_d(message = "WebViewAssist Builder onApply")
+                    "WebViewAssist Builder onApply".log_d()
                 }
             })
             // WebViewAssist 构造函数会使用全局配置

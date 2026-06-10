@@ -60,49 +60,43 @@ class EventBusViewModel : AppViewModel() {
      */
     fun initialize(owner: LifecycleOwner) {
         lifecycleOwner = owner
-        eventbus_observe(
+        owner.eventbus_observe(
             type = MockPostEvent::class.java,
-            lifecycle = owner,
             observer = Observer {
                 printEvent("observe", it)
             }
         )
 
-        eventbus_observeSticky(
+        owner.eventbus_observeSticky(
             type = MockDelayEvent::class.java,
-            lifecycle = owner,
             observer = Observer {
                 printEvent("observeSticky", it)
             }
         )
 
-        eventbus_observe(
+        owner.eventbus_observe(
             type = MockLifecycleDelayEvent::class.java,
-            lifecycle = owner,
             observer = Observer {
                 printEvent("observe lifecycle", it)
             }
         )
 
-        eventbus_observe(
+        owner.eventbus_observe(
             type = MockAcrossProcessEvent::class.java,
-            lifecycle = owner,
             observer = Observer {
                 printEvent("observe across process", it)
             }
         )
 
-        eventbus_observe(
+        owner.eventbus_observe(
             type = MockAcrossAppEvent::class.java,
-            lifecycle = owner,
             observer = Observer {
                 printEvent("observe across app", it)
             }
         )
 
-        eventbus_observe(
+        owner.eventbus_observe(
             type = MockBroadcastOptionsEvent::class.java,
-            lifecycle = owner,
             observer = Observer {
                 printEvent("observe broadcast options", it)
             }
@@ -111,108 +105,89 @@ class EventBusViewModel : AppViewModel() {
         if (isObserveForever) return
         isObserveForever = true
 
-        eventbus_observeForever(
-            type = MockOrderlyEvent::class.java,
+        MockOrderlyEvent::class.java.eventbus_observeForever(
             observer = foreverObserver
         )
 
-        eventbus_observeStickyForever(
-            type = MockBroadcastEvent::class.java,
+        MockBroadcastEvent::class.java.eventbus_observeStickyForever(
             observer = stickyForeverObserver
         )
     }
 
     val clickEventBusPost = View.OnClickListener {
-        eventbus_post(
-            value = MockPostEvent(
-                id = 1,
-                name = "DevUtils",
-                timeMillis = System.currentTimeMillis()
-            )
-        )
+        MockPostEvent(
+            id = 1,
+            name = "DevUtils",
+            timeMillis = System.currentTimeMillis()
+        ).eventbus_post()
     }
 
     val clickEventBusPostDelay = View.OnClickListener {
-        eventbus_postDelay(
-            value = MockDelayEvent(
-                taskId = "delay_task",
-                delayMillis = 1000L,
-                retry = true
-            ),
-            delay = 1000L
-        )
+        MockDelayEvent(
+            taskId = "delay_task",
+            delayMillis = 1000L,
+            retry = true
+        ).eventbus_postDelay(delay = 1000L)
     }
 
     val clickEventBusPostDelayLifecycle = View.OnClickListener {
         val owner = lifecycleOwner ?: return@OnClickListener
-        eventbus_postDelay(
+        MockLifecycleDelayEvent(
+            owner = "EventBusFragment",
+            message = "lifecycle postDelay",
+            delayMillis = 1000L
+        ).eventbus_postDelay(
             lifecycle = owner,
-            value = MockLifecycleDelayEvent(
-                owner = "EventBusFragment",
-                message = "lifecycle postDelay",
-                delayMillis = 1000L
-            ),
             delay = 1000L
         )
     }
 
     val clickEventBusPostOrderly = View.OnClickListener {
-        eventbus_postOrderly(
-            value = MockOrderlyEvent(
-                orderNo = 10086L,
-                status = "created",
-                amount = 99.9
-            )
-        )
+        MockOrderlyEvent(
+            orderNo = 10086L,
+            status = "created",
+            amount = 99.9
+        ).eventbus_postOrderly()
     }
 
     val clickEventBusPostAcrossProcess = View.OnClickListener {
-        eventbus_postAcrossProcess(
-            value = MockAcrossProcessEvent(
-                processName = "main",
-                pid = android.os.Process.myPid()
-            )
-        )
+        MockAcrossProcessEvent(
+            processName = "main",
+            pid = android.os.Process.myPid()
+        ).eventbus_postAcrossProcess()
     }
 
     val clickEventBusPostAcrossApp = View.OnClickListener {
-        eventbus_postAcrossApp(
-            value = MockAcrossAppEvent(
-                packageName = "afkt.project",
-                versionName = "mock_1.0.0"
-            )
-        )
+        MockAcrossAppEvent(
+            packageName = "afkt.project",
+            versionName = "mock_1.0.0"
+        ).eventbus_postAcrossApp()
     }
 
     @Suppress("DEPRECATION")
     val clickEventBusBroadcast = View.OnClickListener {
-        eventbus_broadcast(
-            value = MockBroadcastEvent(
-                title = "broadcast",
-                content = "deprecated broadcast event"
-            )
-        )
+        MockBroadcastEvent(
+            title = "broadcast",
+            content = "deprecated broadcast event"
+        ).eventbus_broadcast()
     }
 
     val clickEventBusBroadcastOptions = View.OnClickListener {
-        eventbus_broadcast(
-            value = MockBroadcastOptionsEvent(
-                title = "broadcast options",
-                foreground = true,
-                onlyInApp = true
-            ),
+        MockBroadcastOptionsEvent(
+            title = "broadcast options",
+            foreground = true,
+            onlyInApp = true
+        ).eventbus_broadcast(
             foreground = true,
             onlyInApp = true
         )
     }
 
     override fun onCleared() {
-        eventbus_removeObserver(
-            type = MockOrderlyEvent::class.java,
+        MockOrderlyEvent::class.java.eventbus_removeObserver(
             observer = foreverObserver
         )
-        eventbus_removeObserver(
-            type = MockBroadcastEvent::class.java,
+        MockBroadcastEvent::class.java.eventbus_removeObserver(
             observer = stickyForeverObserver
         )
         isObserveForever = false

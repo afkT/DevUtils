@@ -33,41 +33,39 @@ fun String?.getCompressEngine(): ICompressEngine<in ICompressEngine.EngineConfig
 
 /**
  * 压缩方法
+ * @receiver 待压缩图片
  * @param engine String?
- * @param data 待压缩图片
  * @param config 压缩配置参数
  * @param compressListener 压缩回调接口
  * @return `true` success, `false` fail
  */
-fun <Config : ICompressEngine.EngineConfig> compress_any(
+fun <Config : ICompressEngine.EngineConfig> Any?.compress_any(
     engine: String? = null,
-    data: Any?,
     config: Config?,
     compressListener: OnCompressListener?
 ): Boolean {
-    return engine.getCompressEngine()?.compress(data, config, compressListener) ?: false
+    return engine.getCompressEngine()?.compress(this, config, compressListener) ?: false
 }
 
 /**
  * 压缩方法
+ * @receiver 待压缩图片
  * @param engine String?
- * @param data 待压缩图片
  * @param config 压缩配置参数
  * @param filter 开启压缩条件
  * @param renameListener 压缩前重命名接口
  * @param compressListener 压缩回调接口
  * @return `true` success, `false` fail
  */
-fun <Config : ICompressEngine.EngineConfig> compress_any(
+fun <Config : ICompressEngine.EngineConfig> Any?.compress_any(
     engine: String? = null,
-    data: Any?,
     config: Config?,
     filter: CompressFilter?,
     renameListener: OnRenameListener?,
     compressListener: OnCompressListener?
 ): Boolean {
     return engine.getCompressEngine()?.compress(
-        data, config, filter, renameListener, compressListener
+        this, config, filter, renameListener, compressListener
     ) ?: false
 }
 
@@ -75,42 +73,40 @@ fun <Config : ICompressEngine.EngineConfig> compress_any(
 
 /**
  * 压缩方法
+ * @receiver 待压缩图片集合
  * @param engine String?
- * @param lists 待压缩图片集合
  * @param config 压缩配置参数
  * @param compressListener 压缩回调接口
  * @return `true` success, `false` fail
  */
-fun <Config : ICompressEngine.EngineConfig> compress_list(
+fun <Config : ICompressEngine.EngineConfig> List<*>?.compress_list(
     engine: String? = null,
-    lists: List<*>?,
     config: Config?,
     compressListener: OnCompressListener?
 ): Boolean {
     return engine.getCompressEngine()?.compress(
-        lists, config, compressListener
+        this, config, compressListener
     ) ?: false
 }
 
 /**
  * 压缩方法
+ * @receiver 待压缩图片集合
  * @param engine String?
- * @param lists 待压缩图片集合
  * @param config 压缩配置参数
  * @param filter 开启压缩条件
  * @param renameListener 压缩前重命名接口
  * @param compressListener 压缩回调接口
  * @return `true` success, `false` fail
  */
-fun <Config : ICompressEngine.EngineConfig> compress_list(
+fun <Config : ICompressEngine.EngineConfig> List<*>?.compress_list(
     engine: String? = null,
-    lists: List<*>?,
     config: Config?,
     filter: CompressFilter?,
     renameListener: OnRenameListener?,
     compressListener: OnCompressListener?
 ): Boolean {
     return engine.getCompressEngine()?.compress(
-        lists, config, filter, renameListener, compressListener
+        this, config, filter, renameListener, compressListener
     ) ?: false
 }

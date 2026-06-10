@@ -41,140 +41,130 @@ fun log_isPrintLog(
 
 /**
  * 打印 Log.DEBUG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_d(
+fun String?.log_d(
     engine: String? = null,
-    message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.d(message, *args)
+    engine.getLogEngine()?.d(this, *args)
 }
 
 /**
  * 打印 Log.ERROR
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_e(
+fun String?.log_e(
     engine: String? = null,
-    message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.e(message, *args)
+    engine.getLogEngine()?.e(this, *args)
 }
 
 /**
  * 打印 Log.ERROR
+ * @receiver 异常
  * @param engine String?
- * @param throwable 异常
  */
-fun log_e(
-    engine: String? = null,
-    throwable: Throwable?
+fun Throwable?.log_e(
+    engine: String? = null
 ) {
-    engine.getLogEngine()?.e(throwable)
+    engine.getLogEngine()?.e(this)
 }
 
 /**
  * 打印 Log.ERROR
+ * @receiver 异常
  * @param engine String?
- * @param throwable 异常
  * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_e(
+fun Throwable?.log_e(
     engine: String? = null,
-    throwable: Throwable?,
     message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.e(throwable, message, *args)
+    engine.getLogEngine()?.e(this, message, *args)
 }
 
 /**
  * 打印 Log.WARN
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_w(
+fun String?.log_w(
     engine: String? = null,
-    message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.w(message, *args)
+    engine.getLogEngine()?.w(this, *args)
 }
 
 /**
  * 打印 Log.INFO
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_i(
+fun String?.log_i(
     engine: String? = null,
-    message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.i(message, *args)
+    engine.getLogEngine()?.i(this, *args)
 }
 
 /**
  * 打印 Log.VERBOSE
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_v(
+fun String?.log_v(
     engine: String? = null,
-    message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.v(message, *args)
+    engine.getLogEngine()?.v(this, *args)
 }
 
 /**
  * 打印 Log.ASSERT
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
  * @param args 格式化参数
  */
-fun log_wtf(
+fun String?.log_wtf(
     engine: String? = null,
-    message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.wtf(message, *args)
+    engine.getLogEngine()?.wtf(this, *args)
 }
 
 // =
 
 /**
  * 格式化 JSON 格式数据, 并打印
+ * @receiver JSON 格式字符串
  * @param engine String?
- * @param json JSON 格式字符串
  */
-fun log_json(
-    engine: String? = null,
-    json: String?
+fun String?.log_json(
+    engine: String? = null
 ) {
-    engine.getLogEngine()?.json(json)
+    engine.getLogEngine()?.json(this)
 }
 
 /**
  * 格式化 XML 格式数据, 并打印
+ * @receiver XML 格式字符串
  * @param engine String?
- * @param xml XML 格式字符串
  */
-fun log_xml(
-    engine: String? = null,
-    xml: String?
+fun String?.log_xml(
+    engine: String? = null
 ) {
-    engine.getLogEngine()?.xml(xml)
+    engine.getLogEngine()?.xml(this)
 }
 
 // ==============================

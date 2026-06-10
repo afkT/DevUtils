@@ -40,8 +40,7 @@ class ImageCompressViewModel : AppViewModel() {
         val targetDir = File(context.cacheDir, "dev_engine_compress_out")
         FileUtils.createFolder(targetDir.absolutePath)
 
-        val result = compress_list(
-            lists = listOf(srcFile),
+        val result = listOf(srcFile).compress_list(
             config = CompressConfig(100, targetDir.absolutePath),
             compressListener = object : OnCompressListener {
                 override fun onStart(

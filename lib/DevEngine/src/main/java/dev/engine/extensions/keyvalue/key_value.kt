@@ -66,14 +66,13 @@ fun String.kv_remove(
 
 /**
  * 移除数组的数据
+ * @receiver 保存的 key 数组
  * @param engine String?
- * @param keys 保存的 key 数组
  */
-fun kv_removeForKeys(
-    engine: String? = null,
-    keys: Array<out String>?
+fun Array<out String>?.kv_removeForKeys(
+    engine: String? = null
 ) {
-    engine.getKeyValueEngine()?.removeForKeys(keys)
+    engine.getKeyValueEngine()?.removeForKeys(this)
 }
 
 /**
