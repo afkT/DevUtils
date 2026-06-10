@@ -60,7 +60,7 @@ object AppHelper {
             .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
-        TAG.log_iTag(message = builder.toString())
+        builder.toString().log_iTag(tag = TAG)
     }
 }
 

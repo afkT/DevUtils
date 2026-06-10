@@ -44,7 +44,7 @@ class ItemStickyFragment : AppFragment<FragmentUiEffectItemStickyBinding, ItemSt
 
                 @SuppressLint("InflateParams")
                 override fun getGroupView(position: Int): View {
-                    TAG.log_dTag(message = position.toString())
+                    position.toString().log_dTag(tag = TAG)
 
                     val view = layoutInflater.inflate(
                         R.layout.adapter_item_recy_sticky_title, null

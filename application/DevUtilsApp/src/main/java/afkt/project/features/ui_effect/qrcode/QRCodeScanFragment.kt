@@ -244,8 +244,8 @@ class QRCodeScanCode(
             // 提示解析成功声音
             mBeepVibrateAssist.playBeepSoundAndVibrate()
             // 打印结果
-            TAG.log_dTag(
-                message = "handleDecode result: $resultStr"
+            "handleDecode result: $resultStr".log_dTag(
+                tag = TAG
             )
             toast_showLong(text = "二维码内容: $resultStr")
 
@@ -278,8 +278,8 @@ class QRCodeScanCode(
             // 记录是否发生异常
             tryError = isError
             // 打印日志
-            TAG.log_eTag(
-                throwable = error,
+            error.log_eTag(
+                tag = TAG,
                 message = "setError"
             )
         }

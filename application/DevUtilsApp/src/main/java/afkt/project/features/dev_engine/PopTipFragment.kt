@@ -8,7 +8,7 @@ import afkt.project.databinding.FragmentDevEnginePopTipBinding
 import android.view.View
 import dev.engine.core.poptip.PopTipConst
 import dev.engine.core.poptip.PopTipItem
-import dev.engine.extensions.poptip.*
+import dev.engine.extensions.poptip.poptip_show
 import dev.engine.extensions.toast.toast_showShort
 import dev.engine.poptip.IPopTipEngine
 

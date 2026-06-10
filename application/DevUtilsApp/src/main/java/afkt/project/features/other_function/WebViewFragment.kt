@@ -33,8 +33,8 @@ class WebViewFragment : AppFragment<FragmentOtherFunctionWebViewBinding, AppView
                 when (result.type) {
                     WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
                         val imgUrl = result.extra
-                        TAG.log_dTag(
-                            message = "SRC_IMAGE_ANCHOR_TYPE $imgUrl"
+                        "SRC_IMAGE_ANCHOR_TYPE $imgUrl".log_dTag(
+                            tag = TAG
                         )
                         return@OnLongClickListener true
                     }
@@ -56,8 +56,8 @@ class WebViewFragment : AppFragment<FragmentOtherFunctionWebViewBinding, AppView
             ) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
-                    TAG.log_dTag(
-                        message = "加载完成"
+                    "加载完成".log_dTag(
+                        tag = TAG
                     )
                 }
                 super.onProgressChanged(view, position)
@@ -111,7 +111,7 @@ class WebViewFragment : AppFragment<FragmentOtherFunctionWebViewBinding, AppView
                 ) {
                     applyListener?.onApply(webViewAssist, builder)
                     // AppContext 也会打印 WebViewAssist Builder onApply
-                    TAG.log_dTag(message = "自定义监听")
+                    "自定义监听".log_dTag(tag = TAG)
                     // 全局配置或者自定义配置以外, 再次配置其他操作
                 }
             })

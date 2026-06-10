@@ -121,7 +121,7 @@ class GlobalOkHttpBuilder : OkHttpBuilder {
                     if (log_isPrintLog()) {
                         // 打印 Http 请求信息
                         val tag = "${key}_http_capture"
-                        tag.log_jsonTag(json = info.toJson())
+                        info.toJson().log_jsonTag(tag = tag)
                     }
                 })
             }

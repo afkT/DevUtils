@@ -305,7 +305,7 @@ class DecodeHandler(
         }
         val handler = mDecodeConfig.getHandler()
         if (rawResult != null) {
-            TAG.log_dTag(message = "解析成功, 发送数据")
+            "解析成功, 发送数据".log_dTag(tag = TAG)
             if (handler != null) {
                 val message = Message.obtain(
                     handler, WHAT_DECODE_SUCCEEDED, rawResult
@@ -316,7 +316,7 @@ class DecodeHandler(
                 message.sendToTarget()
             }
         } else {
-            TAG.log_dTag(message = "解析失败")
+            "解析失败".log_dTag(tag = TAG)
             if (handler != null) {
                 val message = Message.obtain(handler, WHAT_DECODE_FAILED)
                 message.sendToTarget()
@@ -337,7 +337,7 @@ class DecodeHandler(
         width: Int,
         height: Int
     ): PlanarYUVLuminanceSource {
-        TAG.log_dTag(message = "buildLuminanceSource 解析摄像头数据")
+        "buildLuminanceSource 解析摄像头数据".log_dTag(tag = TAG)
         // 判断是否裁减
         return if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {
             // 判断是否出现异常

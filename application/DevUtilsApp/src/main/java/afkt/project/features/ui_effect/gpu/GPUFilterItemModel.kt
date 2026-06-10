@@ -342,9 +342,9 @@ private fun createBlendFilter(filterClass: Class<out GPUImageTwoInputFilter>): G
     try {
         return filterClass.newInstance()
     } catch (e: Exception) {
-        GPUFilterItem.TAG.log_eTag(
-            message = "createBlendFilter",
-            throwable = e
+        e.log_eTag(
+            tag = GPUFilterItem.TAG,
+            message = "createBlendFilter"
         )
     }
     return null

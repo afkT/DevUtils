@@ -89,8 +89,8 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
                 // 停止预览
                 viewModel.cameraAssist.stopPreview()
             } catch (e: Exception) {
-                TAG.log_eTag(
-                    throwable = e,
+                e.log_eTag(
+                    tag = TAG,
                     message = "surfaceDestroyed"
                 )
             }
@@ -125,8 +125,8 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false)
             } catch (e: Exception) {
-                TAG.log_eTag(
-                    throwable = e,
+                e.log_eTag(
+                    tag = TAG,
                     message = "checkPermission startPreview"
                 )
             }

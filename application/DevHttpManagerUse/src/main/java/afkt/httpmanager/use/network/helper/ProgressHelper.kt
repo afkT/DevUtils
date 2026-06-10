@@ -59,10 +59,10 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_dTag(
-            message = "下载中：${progress.getUUID()}，下载速度：${
-                progress.getSpeed().getSpeedFormatSecond()
-            }，下载进度：${progress.getPercent()}%"
+        "下载中：${progress.getUUID()}，下载速度：${
+            progress.getSpeed().getSpeedFormatSecond()
+        }，下载进度：${progress.getPercent()}%".log_dTag(
+            tag = tag
         )
     }
 
@@ -75,9 +75,9 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_dTag(message = "下载成功：${progress.getUUID()}")
+        "下载成功：${progress.getUUID()}".log_dTag(tag = tag)
         val json = progress.toJson(config = jsonConfig)
-        tag.log_jsonTag(json = json)
+        json.log_jsonTag(tag = tag)
     }
 
     /**
@@ -89,9 +89,9 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_eTag(
-            message = "下载失败：${progress.getUUID()}，当前下载进度：${progress.getPercent()}%",
-            throwable = progress.getException()
+        progress.getException().log_eTag(
+            tag = tag,
+            message = "下载失败：${progress.getUUID()}，当前下载进度：${progress.getPercent()}%"
         )
     }
 
@@ -104,7 +104,7 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_vTag(message = "开始下载：${progress.getUUID()}，文件大小：${progress.getTotalSizeFormat()}")
+        "开始下载：${progress.getUUID()}，文件大小：${progress.getTotalSizeFormat()}".log_vTag(tag = tag)
     }
 
     /**
@@ -116,7 +116,7 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_iTag(message = "下载结束：${progress.getUUID()}")
+        "下载结束：${progress.getUUID()}".log_iTag(tag = tag)
     }
 
     // ==============
@@ -132,10 +132,10 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_dTag(
-            message = "上传中：${progress.getUUID()}，上传速度：${
-                progress.getSpeed().getSpeedFormatSecond()
-            }，上传进度：${progress.getPercent()}%"
+        "上传中：${progress.getUUID()}，上传速度：${
+            progress.getSpeed().getSpeedFormatSecond()
+        }，上传进度：${progress.getPercent()}%".log_dTag(
+            tag = tag
         )
     }
 
@@ -148,9 +148,9 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_dTag(message = "上传成功：${progress.getUUID()}")
+        "上传成功：${progress.getUUID()}".log_dTag(tag = tag)
         val json = progress.toJson(config = jsonConfig)
-        tag.log_jsonTag(json = json)
+        json.log_jsonTag(tag = tag)
     }
 
     /**
@@ -162,9 +162,9 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_eTag(
-            message = "上传失败：${progress.getUUID()}，当前上传进度：${progress.getPercent()}%",
-            throwable = progress.getException()
+        progress.getException().log_eTag(
+            tag = tag,
+            message = "上传失败：${progress.getUUID()}，当前上传进度：${progress.getPercent()}%"
         )
     }
 
@@ -177,7 +177,7 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_vTag(message = "开始上传：${progress.getUUID()}，文件大小：${progress.getTotalSizeFormat()}")
+        "开始上传：${progress.getUUID()}，文件大小：${progress.getTotalSizeFormat()}".log_vTag(tag = tag)
     }
 
     /**
@@ -189,6 +189,6 @@ object ProgressHelper {
         tag: String,
         progress: Progress
     ) {
-        tag.log_iTag(message = "上传结束：${progress.getUUID()}")
+        "上传结束：${progress.getUUID()}".log_iTag(tag = tag)
     }
 }

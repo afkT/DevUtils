@@ -79,7 +79,7 @@ class MainViewModel : BaseViewModel() {
             addInterceptor(SimpleInterceptor { info ->
                 // 打印 Http 请求信息
                 val tag = "simple_http_capture"
-                tag.log_jsonTag(json = info.toJson())
+                info.toJson().log_jsonTag(tag = tag)
             })
         })
         // 获取文章列表
@@ -98,7 +98,7 @@ class MainViewModel : BaseViewModel() {
             addInterceptor(object : SimpleInterceptor({ info ->
                 // 打印 Http 请求信息
                 val tag = "simple_filter_http_capture"
-                tag.log_jsonTag(json = info.toJson())
+                info.toJson().log_jsonTag(tag = tag)
             }) {
                 /**
                  * 获取 Http 拦截过滤器
@@ -134,13 +134,13 @@ class MainViewModel : BaseViewModel() {
             headers: Headers
         ): Boolean {
             val tag = "simple_filter_http_capture"
-            tag.log_dTag(
-                message = "进入拦截过滤器: $protocol $method $url",
+            "进入拦截过滤器: $protocol $method $url".log_dTag(
+                tag = tag
             )
             // 如果请求链接中包含 article 则进行拦截
             if (url.toString().contains("article")) {
-                tag.log_dTag(
-                    message = "取消该请求 $url 的抓包逻辑处理，将不会触发 SimpleInterceptor endCall 方法",
+                "取消该请求 $url 的抓包逻辑处理，将不会触发 SimpleInterceptor endCall 方法".log_dTag(
+                    tag = tag
                 )
                 return true
             }
@@ -164,7 +164,7 @@ class MainViewModel : BaseViewModel() {
                 override fun callEnd(info: CaptureInfo) {
                     // 打印 Http 请求信息
                     val tag = "callback_http_capture"
-                    tag.log_jsonTag(json = info.toJson())
+                    info.toJson().log_jsonTag(tag = tag)
                 }
             }))
         })
@@ -185,7 +185,7 @@ class MainViewModel : BaseViewModel() {
                 override fun callEnd(info: CaptureInfo) {
                     // 打印 Http 请求信息
                     val tag = "callback_filter_http_capture"
-                    tag.log_jsonTag(json = info.toJson())
+                    info.toJson().log_jsonTag(tag = tag)
                 }
             }) {
                 /**
@@ -222,13 +222,13 @@ class MainViewModel : BaseViewModel() {
             headers: Headers
         ): Boolean {
             val tag = "callback_filter_http_capture"
-            tag.log_dTag(
-                message = "进入拦截过滤器: $protocol $method $url",
+            "进入拦截过滤器: $protocol $method $url".log_dTag(
+                tag = tag
             )
             // 如果请求链接中包含 article 则进行拦截
             if (url.toString().contains("article")) {
-                tag.log_dTag(
-                    message = "取消该请求 $url 的抓包逻辑处理，将不会触发 CallbackInterceptor endCall 方法",
+                "取消该请求 $url 的抓包逻辑处理，将不会触发 CallbackInterceptor endCall 方法".log_dTag(
+                    tag = tag
                 )
                 return true
             }
@@ -252,7 +252,7 @@ class MainViewModel : BaseViewModel() {
                 override fun callEnd(info: CaptureInfo) {
                     // 打印 Http 请求信息
                     val tag = "callback_event_filter_http_capture"
-                    tag.log_jsonTag(json = info.toJson())
+                    info.toJson().log_jsonTag(tag = tag)
                 }
             }, eventFilter = callbackInterceptorEventFilter))
 
@@ -261,7 +261,7 @@ class MainViewModel : BaseViewModel() {
 //                override fun callEnd(info: CaptureInfo) {
 //                    // 打印 Http 请求信息
 //                    val tag = "callback_event_filter_http_capture"
-//                    tag.log_jsonTag(json = info.toJson())
+//                    info.toJson().log_jsonTag(tag = tag)
 //                }
 //            }, eventFilter = callbackInterceptorEventFilter) {
 //                /**
@@ -372,7 +372,7 @@ class MainViewModel : BaseViewModel() {
         override fun callEnd(info: CaptureInfo) {
             // 打印 Http 请求信息
             val tag = "callback_event_impl_http_capture"
-            tag.log_jsonTag(json = info.toJson())
+            info.toJson().log_jsonTag(tag = tag)
         }
 
         // =

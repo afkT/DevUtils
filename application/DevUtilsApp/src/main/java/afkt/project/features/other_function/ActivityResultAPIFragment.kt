@@ -76,8 +76,8 @@ class ActivityResultAPIViewModel : AppViewModel() {
                 input: Uri?,
                 options: ActivityOptionsCompat?
             ) {
-                TAG.log_dTag(
-                    message = "开始调用 ${ActivityResultAssist.getMethodType(type)} 方法前"
+                "开始调用 ${ActivityResultAssist.getMethodType(type)} 方法前".log_dTag(
+                    tag = TAG
                 )
             }
 
@@ -88,8 +88,8 @@ class ActivityResultAPIViewModel : AppViewModel() {
                 options: ActivityOptionsCompat?,
                 result: Boolean
             ) {
-                TAG.log_dTag(
-                    message = "调用 ${ActivityResultAssist.getMethodType(type)} 方法后, 调用结果: $result"
+                "调用 ${ActivityResultAssist.getMethodType(type)} 方法后, 调用结果: $result".log_dTag(
+                    tag = TAG
                 )
             }
         })

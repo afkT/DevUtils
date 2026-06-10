@@ -205,16 +205,16 @@ class FloatingView(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        TAG.log_dTag(
-            message = "onAttachedToWindow"
+        "onAttachedToWindow".log_dTag(
+            tag = TAG
         )
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        TAG.log_dTag(
-            message = "onDetachedFromWindow"
+        "onDetachedFromWindow".log_dTag(
+            tag = TAG
         )
     }
 }

@@ -27,13 +27,13 @@ public final class CacheUse {
         // 初始化
         CacheVo cacheVo = new CacheVo("测试持久化");
         // 打印信息
-        log_dTag(TAG, null, "保存前: %s", cacheVo.toString());
+        log_dTag("保存前: %s", null, TAG, cacheVo.toString());
         // 保存数据
         DevCache.newCache().put("ctv", cacheVo, -1);
         // 重新获取
         CacheVo ctv = (CacheVo) DevCache.newCache().getSerializable("ctv");
         // 打印获取后的数据
-        log_dTag(TAG, null, "保存后: %s", ctv.toString());
+        log_dTag("保存后: %s", null, TAG, ctv.toString());
         // 设置保存有效时间 5秒
         DevCache.newCache().put("ctva", new CacheVo("测试有效时间"), 1);
 
@@ -50,7 +50,7 @@ public final class CacheUse {
                 // 获取数据
                 CacheVo ctva = (CacheVo) DevCache.newCache().getSerializable("ctva");
                 // 判断是否过期
-                log_dTag(TAG, null, "是否过期: %s", (ctva == null));
+                log_dTag("是否过期: %s", null, TAG, (ctva == null));
             } catch (Exception ignored) {
             }
         }).start();

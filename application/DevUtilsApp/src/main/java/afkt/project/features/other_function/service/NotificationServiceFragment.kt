@@ -36,11 +36,11 @@ class NotificationServiceFragment : AppFragment<FragmentOtherFunctionNotificatio
         // 设置监听事件
         NotificationService.setListener(object : NotificationService.Listener {
             override fun onServiceCreated(service: NotificationService?) {
-                TAG.log_dTag(message = "服务创建通知")
+                "服务创建通知".log_dTag(tag = TAG)
             }
 
             override fun onServiceDestroy() {
-                TAG.log_dTag(message = "服务销毁通知")
+                "服务销毁通知".log_dTag(tag = TAG)
             }
 
             override fun onStartCommand(
@@ -55,7 +55,7 @@ class NotificationServiceFragment : AppFragment<FragmentOtherFunctionNotificatio
                     .append("\nintent: ").append(intent)
                     .append("\nflags: ").append(flags)
                     .append("\nstartId: ").append(startId)
-                TAG.log_dTag(message = builder.toString())
+                builder.toString().log_dTag(tag = TAG)
                 return 0
             }
 
@@ -75,7 +75,7 @@ class NotificationServiceFragment : AppFragment<FragmentOtherFunctionNotificatio
                             )
                         }
                     }
-                    TAG.log_dTag(message = builder.toString())
+                    builder.toString().log_dTag(tag = TAG)
                 }
             }
 
@@ -83,7 +83,7 @@ class NotificationServiceFragment : AppFragment<FragmentOtherFunctionNotificatio
                 val builder = StringBuilder()
                     .append("onNotificationRemoved")
                     .append("\nstatusBarNotification: ").append(sbn)
-                TAG.log_dTag(message = builder.toString())
+                builder.toString().log_dTag(tag = TAG)
             }
         })
     }

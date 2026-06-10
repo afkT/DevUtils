@@ -44,7 +44,7 @@ class MultiEditsFragment : AppFragment<FragmentUiEffectMultiEditsBinding, MultiE
                         .append("evaluateLevel: ").append(item.ratingValue.value)
                         .append(DevFinal.SYMBOL.NEW_LINE)
                 }
-                TAG.log_dTag(message = builder.toString())
+                builder.toString().log_dTag(tag = TAG)
                 toast_showShort(text = "数据已打印, 请查看 Logcat")
             }
         }

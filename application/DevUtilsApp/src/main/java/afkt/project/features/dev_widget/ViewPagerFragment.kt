@@ -33,15 +33,15 @@ class ViewPagerFragment : AppFragment<FragmentDevWidgetViewPagerBinding, ViewPag
                     right: Boolean
                 ) {
                     if (left && !right) {
-                        TAG.log_dTag(message = "往左滑 - 从右往左")
+                        "往左滑 - 从右往左".log_dTag(tag = TAG)
                     } else {
-                        TAG.log_dTag(message = "往右滑 - 从左往右")
+                        "往右滑 - 从左往右".log_dTag(tag = TAG)
                     }
                 }
 
                 override fun onPageSelected(index: Int) {
-                    TAG.log_dTag(
-                        message = "索引变动: $index"
+                    "索引变动: $index".log_dTag(
+                        tag = TAG
                     )
                     if (mLeftScroll) {
                         toast_showShort(text = "往左滑 - 从右往左")

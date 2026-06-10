@@ -88,8 +88,8 @@ private fun use() {
         TAG, "Log Engine 方法调用"
     )
 
-    TAG.log_dTag(
-        message = "Log Engine 方法调用"
+    "Log Engine 方法调用".log_dTag(
+        tag = TAG
     )
 
     // =========================
@@ -111,8 +111,8 @@ private fun use() {
         TAG, "多 Log Engine 方法调用"
     )
 
-    TAG.log_dTag(
+    "多 Log Engine 方法调用".log_dTag(
         engine = KEY,
-        message = "多 Log Engine 方法调用"
+        tag = TAG
     )
 }

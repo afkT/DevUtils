@@ -137,7 +137,9 @@ enum class ButtonEnum(
 
     BTN_DEV_ASSIST_ENGINE_EVENT_BUS("EventBus Engine 事件总线", R.id.EventBusFragment),
 
-    BTN_DEV_ASSIST_ENGINE_IMAGE_COMPRESS("Image Compress Engine 图片压缩", R.id.ImageCompressFragment),
+    BTN_DEV_ASSIST_ENGINE_IMAGE_COMPRESS(
+        "Image Compress Engine 图片压缩", R.id.ImageCompressFragment
+    ),
 
     BTN_DEV_ASSIST_ENGINE_IMAGE("Image Engine 图片加载、下载、转格式等", R.id.ImageFragment),
 
@@ -147,7 +149,9 @@ enum class ButtonEnum(
 
     BTN_DEV_ASSIST_ENGINE_LOG("Log Engine 日志打印", R.id.LogFragment),
 
-    BTN_DEV_ASSIST_ENGINE_MEDIA_SELECTOR("Media Selector Engine 多媒体资源选择", R.id.MediaSelectorFragment),
+    BTN_DEV_ASSIST_ENGINE_MEDIA_SELECTOR(
+        "Media Selector Engine 多媒体资源选择", R.id.MediaSelectorFragment
+    ),
 
     BTN_DEV_ASSIST_ENGINE_PERMISSION("Permission Engine 权限申请", R.id.PermissionFragment),
 

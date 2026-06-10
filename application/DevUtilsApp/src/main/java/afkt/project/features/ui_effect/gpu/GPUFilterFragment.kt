@@ -192,9 +192,9 @@ class GPUFilterViewModel : AppViewModel() {
             )
             filterBitmap.smartUpdateValue(bitmap)
         } catch (e: Exception) {
-            TAG.log_eTag(
-                message = "setFilter",
-                throwable = e
+            e.log_eTag(
+                tag = TAG,
+                message = "setFilter"
             )
         }
     }

@@ -33,7 +33,7 @@ object ResponseHelper {
         tag: String = TAG,
         message: String
     ) {
-        tag.log_dTag(message = message)
+        message.log_dTag(tag = tag)
     }
 
     /**
@@ -58,7 +58,7 @@ object ResponseHelper {
         response: Any?
     ) {
         val json = response?.toJson(config = jsonConfig)
-        tag.log_jsonTag(json = json)
+        json.log_jsonTag(tag = tag)
     }
 
     /**
@@ -70,7 +70,7 @@ object ResponseHelper {
         tag: String,
         error: Throwable
     ) {
-        tag.log_eTag(throwable = error)
+        error.log_eTag(tag = tag)
     }
 
     /**
@@ -80,7 +80,7 @@ object ResponseHelper {
     fun startRequest(
         tag: String
     ) {
-        tag.log_vTag(message = "开始请求")
+        "开始请求".log_vTag(tag = tag)
     }
 
     /**
@@ -90,6 +90,6 @@ object ResponseHelper {
     fun finishRequest(
         tag: String
     ) {
-        tag.log_iTag(message = "请求结束")
+        "请求结束".log_iTag(tag = tag)
     }
 }

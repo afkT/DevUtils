@@ -42,8 +42,8 @@ class BottomSheetFragment : AppFragment<FragmentUiEffectMaterialBottomSheetBindi
                         BottomSheetBehavior.STATE_COLLAPSED -> {
                             // 折叠状态, bottom sheets 只在底部显示一部分布局
                             // 显示高度可以通过 app:behavior_peekHeight 设置
-                            TAG.log_dTag(
-                                message = "STATE_COLLAPSED"
+                            "STATE_COLLAPSED".log_dTag(
+                                tag = TAG
                             )
 
                             ViewUtils.setVisibility(false, binding.vidBgView)
@@ -51,8 +51,8 @@ class BottomSheetFragment : AppFragment<FragmentUiEffectMaterialBottomSheetBindi
 
                         BottomSheetBehavior.STATE_DRAGGING -> {
                             // 过渡状态, 此时用户正在向上或者向下拖动 bottom sheet
-                            TAG.log_dTag(
-                                message = "STATE_DRAGGING"
+                            "STATE_DRAGGING".log_dTag(
+                                tag = TAG
                             )
 
                             ViewUtils.setVisibility(true, binding.vidBgView)
@@ -60,8 +60,8 @@ class BottomSheetFragment : AppFragment<FragmentUiEffectMaterialBottomSheetBindi
 
                         BottomSheetBehavior.STATE_EXPANDED -> {
                             // 完全展开的状态
-                            TAG.log_dTag(
-                                message = "STATE_EXPANDED"
+                            "STATE_EXPANDED".log_dTag(
+                                tag = TAG
                             )
 
                             ViewUtils.setVisibility(true, binding.vidBgView)
@@ -69,8 +69,8 @@ class BottomSheetFragment : AppFragment<FragmentUiEffectMaterialBottomSheetBindi
 
                         BottomSheetBehavior.STATE_HIDDEN -> {
                             // 隐藏状态, 默认是 false 可通过 app:behavior_hideable 属性设置是否能隐藏
-                            TAG.log_dTag(
-                                message = "STATE_HIDDEN"
+                            "STATE_HIDDEN".log_dTag(
+                                tag = TAG
                             )
 
                             ViewUtils.setVisibility(false, binding.vidBgView)
@@ -78,15 +78,15 @@ class BottomSheetFragment : AppFragment<FragmentUiEffectMaterialBottomSheetBindi
 
                         BottomSheetBehavior.STATE_SETTLING -> {
                             // 视图从脱离手指自由滑动到最终停下的这一小段时间
-                            TAG.log_dTag(
-                                message = "STATE_SETTLING"
+                            "STATE_SETTLING".log_dTag(
+                                tag = TAG
                             )
                         }
 
                         BottomSheetBehavior.STATE_HALF_EXPANDED -> {
                             // 显示在某个中间高度 ( 例如屏幕高度的 50% )
-                            TAG.log_dTag(
-                                message = "STATE_HALF_EXPANDED"
+                            "STATE_HALF_EXPANDED".log_dTag(
+                                tag = TAG
                             )
 //                            mBehavior.isFitToContents = false // 必须设为 false
 //                            mBehavior.halfExpandedRatio = 0.5f // 设置展开比例 ( 0.5= 50% 高度 )

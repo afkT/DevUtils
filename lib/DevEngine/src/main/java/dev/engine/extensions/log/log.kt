@@ -173,148 +173,148 @@ fun String?.log_xml(
 
 /**
  * 打印 Log.DEBUG
- * @receiver 日志 TAG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
+ * @param tag 日志 TAG
  * @param args 格式化参数
  */
-fun String.log_dTag(
+fun String?.log_dTag(
     engine: String? = null,
-    message: String?,
+    tag: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.dTag(this, message, *args)
+    engine.getLogEngine()?.dTag(tag, this, *args)
 }
 
 /**
  * 打印 Log.ERROR
- * @receiver 日志 TAG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
+ * @param tag 日志 TAG
  * @param args 格式化参数
  */
-fun String.log_eTag(
+fun String?.log_eTag(
     engine: String? = null,
-    message: String?,
+    tag: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.eTag(this, message, *args)
+    engine.getLogEngine()?.eTag(tag, this, *args)
 }
 
 /**
  * 打印 Log.ERROR
- * @receiver 日志 TAG
+ * @receiver 异常
  * @param engine String?
- * @param throwable 异常
+ * @param tag 日志 TAG
  */
-fun String.log_eTag(
+fun Throwable?.log_eTag(
     engine: String? = null,
-    throwable: Throwable?
+    tag: String?
 ) {
-    engine.getLogEngine()?.eTag(this, throwable)
+    engine.getLogEngine()?.eTag(tag, this)
 }
 
 /**
  * 打印 Log.ERROR
- * @receiver 日志 TAG
+ * @receiver 异常
  * @param engine String?
- * @param throwable 异常
+ * @param tag 日志 TAG
  * @param message 日志信息
  * @param args 格式化参数
  */
-fun String.log_eTag(
+fun Throwable?.log_eTag(
     engine: String? = null,
-    throwable: Throwable?,
+    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.eTag(this, throwable, message, *args)
+    engine.getLogEngine()?.eTag(tag, this, message, *args)
 }
 
 /**
  * 打印 Log.WARN
- * @receiver 日志 TAG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
+ * @param tag 日志 TAG
  * @param args 格式化参数
  */
-fun String.log_wTag(
+fun String?.log_wTag(
     engine: String? = null,
-    message: String?,
+    tag: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.wTag(this, message, *args)
+    engine.getLogEngine()?.wTag(tag, this, *args)
 }
 
 /**
  * 打印 Log.INFO
- * @receiver 日志 TAG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
+ * @param tag 日志 TAG
  * @param args 格式化参数
  */
-fun String.log_iTag(
+fun String?.log_iTag(
     engine: String? = null,
-    message: String?,
+    tag: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.iTag(this, message, *args)
+    engine.getLogEngine()?.iTag(tag, this, *args)
 }
 
 /**
  * 打印 Log.VERBOSE
- * @receiver 日志 TAG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
+ * @param tag 日志 TAG
  * @param args 格式化参数
  */
-fun String.log_vTag(
+fun String?.log_vTag(
     engine: String? = null,
-    message: String?,
+    tag: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.vTag(this, message, *args)
+    engine.getLogEngine()?.vTag(tag, this, *args)
 }
 
 /**
  * 打印 Log.ASSERT
- * @receiver 日志 TAG
+ * @receiver 日志信息
  * @param engine String?
- * @param message 日志信息
+ * @param tag 日志 TAG
  * @param args 格式化参数
  */
-fun String.log_wtfTag(
+fun String?.log_wtfTag(
     engine: String? = null,
-    message: String?,
+    tag: String?,
     vararg args: Any?
 ) {
-    engine.getLogEngine()?.wtfTag(this, message, *args)
+    engine.getLogEngine()?.wtfTag(tag, this, *args)
 }
 
 // =
 
 /**
  * 格式化 JSON 格式数据, 并打印
- * @receiver 日志 TAG
+ * @receiver JSON 格式字符串
  * @param engine String?
- * @param json JSON 格式字符串
+ * @param tag 日志 TAG
  */
-fun String.log_jsonTag(
+fun String?.log_jsonTag(
     engine: String? = null,
-    json: String?
+    tag: String?
 ) {
-    engine.getLogEngine()?.jsonTag(this, json)
+    engine.getLogEngine()?.jsonTag(tag, this)
 }
 
 /**
  * 格式化 XML 格式数据, 并打印
- * @receiver 日志 TAG
+ * @receiver XML 格式字符串
  * @param engine String?
- * @param xml XML 格式字符串
+ * @param tag 日志 TAG
  */
-fun String.log_xmlTag(
+fun String?.log_xmlTag(
     engine: String? = null,
-    xml: String?
+    tag: String?
 ) {
-    engine.getLogEngine()?.xmlTag(this, xml)
+    engine.getLogEngine()?.xmlTag(tag, this)
 }

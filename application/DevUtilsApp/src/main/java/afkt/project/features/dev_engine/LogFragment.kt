@@ -29,35 +29,35 @@ class LogViewModel : AppViewModel() {
     }
 
     val clickLogDebug = View.OnClickListener {
-        TAG.log_dTag(message = "Log Engine debug 日志打印")
+        "Log Engine debug 日志打印".log_dTag(tag = TAG)
         printToast()
     }
 
     val clickLogError = View.OnClickListener {
-        TAG.log_eTag(
-            throwable = RuntimeException("mock error"),
+        RuntimeException("mock error").log_eTag(
+            tag = TAG,
             message = "Log Engine error 日志打印"
         )
         printToast()
     }
 
     val clickLogWarn = View.OnClickListener {
-        TAG.log_wTag(message = "Log Engine warn 日志打印")
+        "Log Engine warn 日志打印".log_wTag(tag = TAG)
         printToast()
     }
 
     val clickLogInfo = View.OnClickListener {
-        TAG.log_iTag(message = "Log Engine info 日志打印")
+        "Log Engine info 日志打印".log_iTag(tag = TAG)
         printToast()
     }
 
     val clickLogJson = View.OnClickListener {
-        TAG.log_jsonTag(json = "{\"name\":\"DevUtils\",\"star\":true}")
+        "{\"name\":\"DevUtils\",\"star\":true}".log_jsonTag(tag = TAG)
         printToast()
     }
 
     val clickLogXml = View.OnClickListener {
-        TAG.log_xmlTag(xml = "<dev><name>DevUtils</name></dev>")
+        "<dev><name>DevUtils</name></dev>".log_xmlTag(tag = TAG)
         printToast()
     }
 

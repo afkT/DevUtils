@@ -60,8 +60,8 @@ class PreviewCallback(
                 mPreviewHandler = null
             }
         } else {
-            TAG.log_dTag(
-                message = "Got preview callback, but no handler or resolution available"
+            "Got preview callback, but no handler or resolution available".log_dTag(
+                tag = TAG
             )
         }
     }
@@ -116,15 +116,15 @@ class CaptureHandler(
         if (message.what == WHAT_RESTART_PREVIEW) {
             restartPreviewAndDecode()
         } else if (message.what == WHAT_DECODE_SUCCEEDED) { // 解析成功
-            TAG.log_dTag(
-                message = "解析成功"
+            "解析成功".log_dTag(
+                tag = TAG
             )
             mState = State.SUCCESS
             val bundle = message.data
             mDecodeResult.handleDecode(message.obj as Result, bundle)
         } else if (message.what == WHAT_DECODE_FAILED) { // 解析失败 ( 解析不出来触发 )
-            TAG.log_dTag(
-                message = "解析失败"
+            "解析失败".log_dTag(
+                tag = TAG
             )
             // 表示预览中
             mState = State.PREVIEW
@@ -147,8 +147,8 @@ class CaptureHandler(
         handler: DecodeHandler?,
         message: Int
     ) {
-        TAG.log_dTag(
-            message = "requestPreviewFrame"
+        "requestPreviewFrame".log_dTag(
+            tag = TAG
         )
         val theCamera = mCameraAssist.camera
         // 不为 null 并且预览中才处理
@@ -162,8 +162,8 @@ class CaptureHandler(
      * 重新设置预览以及解码处理
      */
     fun restartPreviewAndDecode() {
-        TAG.log_dTag(
-            message = "restartPreviewAndDecode"
+        "restartPreviewAndDecode".log_dTag(
+            tag = TAG
         )
         if (mState == State.SUCCESS) {
             mState = State.PREVIEW
@@ -176,8 +176,8 @@ class CaptureHandler(
      * 同步退出解析处理
      */
     fun quitSynchronously() {
-        TAG.log_dTag(
-            message = "退出扫描"
+        "退出扫描".log_dTag(
+            tag = TAG
         )
         // 表示状态为默认
         mState = State.DONE
@@ -277,8 +277,8 @@ class ZXingDecodeAssist(
             // 停止预览
             mCameraAssist.stopPreview()
         } catch (e: Exception) {
-            TAG.log_eTag(
-                throwable = e,
+            e.log_eTag(
+                tag = TAG,
                 message = "stopPreview"
             )
         }
@@ -303,15 +303,15 @@ class ZXingDecodeAssist(
                 // 设置监听
                 mCameraAssist.setPreviewNotify(object : PreviewNotify {
                     override fun stopPreviewNotify() {
-                        TAG.log_dTag(
-                            message = "停止预览通知"
+                        "停止预览通知".log_dTag(
+                            tag = TAG
                         )
                         mPreviewCallback?.setHandler(null, 0)
                     }
 
                     override fun startPreviewNotify() {
-                        TAG.log_dTag(
-                            message = "开始预览通知"
+                        "开始预览通知".log_dTag(
+                            tag = TAG
                         )
                     }
                 })
@@ -335,8 +335,8 @@ class ZXingDecodeAssist(
                     )
                 }
             } catch (e: Exception) {
-                TAG.log_eTag(
-                    throwable = e,
+                e.log_eTag(
+                    tag = TAG,
                     message = "checkPermission startPreview"
                 )
             }

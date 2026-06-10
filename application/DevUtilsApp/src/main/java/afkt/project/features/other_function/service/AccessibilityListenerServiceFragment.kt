@@ -47,22 +47,22 @@ class AccessibilityListenerServiceFragment : AppFragment<FragmentOtherFunctionAc
                     .append("onAccessibilityEvent")
                     .append("\naccessibilityEvent: ")
                     .append(event)
-                TAG.log_dTag(message = builder.toString())
+                builder.toString().log_dTag(tag = TAG)
             }
 
             override fun onInterrupt() {
                 super.onInterrupt()
-                TAG.log_dTag(message = "onInterrupt")
+                "onInterrupt".log_dTag(tag = TAG)
             }
 
             override fun onServiceCreated(service: AccessibilityListenerService?) {
                 super.onServiceCreated(service)
-                TAG.log_dTag(message = "onServiceCreated")
+                "onServiceCreated".log_dTag(tag = TAG)
             }
 
             override fun onServiceDestroy() {
                 super.onServiceDestroy()
-                TAG.log_dTag(message = "onServiceDestroy")
+                "onServiceDestroy".log_dTag(tag = TAG)
             }
         })
     }

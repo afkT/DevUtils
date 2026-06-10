@@ -36,7 +36,7 @@ object ResponseHelper {
         tag: String,
         message: String
     ) {
-        tag.log_dTag(message = message)
+        message.log_dTag(tag = tag)
     }
 
     /**
@@ -49,7 +49,7 @@ object ResponseHelper {
         response: Any?
     ) {
         val json = response?.toJson(config = jsonConfig)
-        tag.log_jsonTag(json = json)
+        json.log_jsonTag(tag = tag)
     }
 
     /**
@@ -61,7 +61,7 @@ object ResponseHelper {
         tag: String,
         error: Throwable
     ) {
-        tag.log_eTag(throwable = error)
+        error.log_eTag(tag = tag)
     }
 
     /**
@@ -71,7 +71,7 @@ object ResponseHelper {
     fun startRequest(
         tag: String
     ) {
-        tag.log_vTag(message = "开始请求")
+        "开始请求".log_vTag(tag = tag)
     }
 
     /**
@@ -81,7 +81,7 @@ object ResponseHelper {
     fun finishRequest(
         tag: String
     ) {
-        tag.log_iTag(message = "请求结束")
+        "请求结束".log_iTag(tag = tag)
     }
 
     // ==========
@@ -104,8 +104,8 @@ object ResponseHelper {
             params: Any?
         ) {
             if (log_isPrintLog()) {
-                TAG.log_vTag(
-                    message = "【全局回调】开始请求：uuid = $uuid, params = $params"
+                "【全局回调】开始请求：uuid = $uuid, params = $params".log_vTag(
+                    tag = TAG
                 )
             }
         }
@@ -116,11 +116,11 @@ object ResponseHelper {
             data: Any?
         ) {
             if (log_isPrintLog()) {
-                TAG.log_dTag(
-                    message = "【全局回调】请求成功：uuid = $uuid, params = $params"
+                "【全局回调】请求成功：uuid = $uuid, params = $params".log_dTag(
+                    tag = TAG
                 )
                 val json = data?.toJson(config = jsonConfig)
-                TAG.log_jsonTag(json = json)
+                json.log_jsonTag(tag = TAG)
             }
         }
 
@@ -130,9 +130,9 @@ object ResponseHelper {
             error: Throwable?
         ) {
             if (log_isPrintLog()) {
-                TAG.log_eTag(
-                    message = "【全局回调】请求异常：uuid = $uuid, params = $params",
-                    throwable = error
+                error.log_eTag(
+                    tag = TAG,
+                    message = "【全局回调】请求异常：uuid = $uuid, params = $params"
                 )
             }
         }
@@ -142,8 +142,8 @@ object ResponseHelper {
             params: Any?
         ) {
             if (log_isPrintLog()) {
-                TAG.log_iTag(
-                    message = "【全局回调】请求结束：uuid = $uuid, params = $params"
+                "【全局回调】请求结束：uuid = $uuid, params = $params".log_iTag(
+                    tag = TAG
                 )
             }
         }
@@ -164,16 +164,16 @@ object ResponseHelper {
         override fun onStart(uuid: UUID) {
             super.onStart(uuid)
 
-            tag.log_vTag(
-                message = "【自定义回调】开始请求：uuid = $uuid, params = ${getParams()}"
+            "【自定义回调】开始请求：uuid = $uuid, params = ${getParams()}".log_vTag(
+                tag = tag
             )
         }
 
         override fun onFinish(uuid: UUID) {
             super.onFinish(uuid)
 
-            tag.log_iTag(
-                message = "【自定义回调】请求结束：uuid = $uuid, params = ${getParams()}"
+            "【自定义回调】请求结束：uuid = $uuid, params = ${getParams()}".log_iTag(
+                tag = tag
             )
         }
 
@@ -181,8 +181,8 @@ object ResponseHelper {
             uuid: UUID,
             data: AppResponse<T>?
         ) {
-            tag.log_dTag(
-                message = "【自定义回调】请求成功：uuid = $uuid, params = ${getParams()}"
+            "【自定义回调】请求成功：uuid = $uuid, params = ${getParams()}".log_dTag(
+                tag = tag
             )
             successResponse(tag, data)
         }
@@ -191,9 +191,9 @@ object ResponseHelper {
             uuid: UUID,
             error: Throwable?
         ) {
-            tag.log_eTag(
-                message = "【自定义回调】请求异常：uuid = $uuid, params = ${getParams()}",
-                throwable = error
+            error.log_eTag(
+                tag = tag,
+                message = "【自定义回调】请求异常：uuid = $uuid, params = ${getParams()}"
             )
         }
     }
@@ -213,16 +213,16 @@ object ResponseHelper {
         override fun onStart(uuid: UUID) {
             super.onStart(uuid)
 
-            tag.log_vTag(
-                message = "【Result 回调】开始请求：uuid = $uuid, params = ${getParams()}"
+            "【Result 回调】开始请求：uuid = $uuid, params = ${getParams()}".log_vTag(
+                tag = tag
             )
         }
 
         override fun onFinish(uuid: UUID) {
             super.onFinish(uuid)
 
-            tag.log_iTag(
-                message = "【Result 回调】请求结束：uuid = $uuid, params = ${getParams()}"
+            "【Result 回调】请求结束：uuid = $uuid, params = ${getParams()}".log_iTag(
+                tag = tag
             )
         }
 
@@ -230,8 +230,8 @@ object ResponseHelper {
             uuid: UUID,
             data: Base.Result<T, AppResponse<T>>
         ) {
-            tag.log_dTag(
-                message = "【Result 回调】请求成功：uuid = $uuid, params = ${getParams()}"
+            "【Result 回调】请求成功：uuid = $uuid, params = ${getParams()}".log_dTag(
+                tag = tag
             )
             successResponse(tag, data)
         }

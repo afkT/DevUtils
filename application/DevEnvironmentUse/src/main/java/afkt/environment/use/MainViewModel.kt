@@ -34,7 +34,7 @@ class MainViewModel : BaseViewModel() {
                 append("\nname: ").append(newEnvironment.name)
                 append("\nvalue: ").append(newEnvironment.value)
                 append("\nalias: ").append(newEnvironment.alias)
-                TAG.log_dTag(message = toString())
+                toString().log_dTag(tag = TAG)
             }
         }
 

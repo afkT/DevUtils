@@ -167,7 +167,7 @@ class FunctionViewModel : AppViewModel() {
     // 打印内存信息
     val clickMemory_print = View.OnClickListener { view ->
         val memoryInfo = MemoryUtils.printMemoryInfoFromProc()
-        TAG.log_dTag(message = memoryInfo)
+        memoryInfo.log_dTag(tag = TAG)
         toast_showShort(text = "数据已打印, 请查看 Logcat")
     }
 
@@ -176,7 +176,7 @@ class FunctionViewModel : AppViewModel() {
         val deviceInfo = DeviceUtils.handlerDeviceInfo(
             DeviceUtils.getDeviceInfo(), ""
         )
-        TAG.log_dTag(message = deviceInfo)
+        deviceInfo.log_dTag(tag = TAG)
         toast_showShort(text = "数据已打印, 请查看 Logcat")
     }
 

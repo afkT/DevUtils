@@ -48,7 +48,7 @@ class DevTimerViewModel : AppViewModel() {
                  * @param end      是否结束
                  * @param infinite 是否无限循环
                  */
-                TAG.log_dTag(message = "触发次数: $number")
+                "触发次数: $number".log_dTag(tag = TAG)
             }
     }
 
@@ -66,8 +66,8 @@ class DevTimerViewModel : AppViewModel() {
             .setLimit(19)       // 触发次数上限 ( 负数为无限循环 )
             .build()            // 构建定时器
         timer.setCallback { _, _, _, _ ->
-            TAG.log_dTag(
-                message = "是否 UI 线程: ${HandlerUtils.isMainThread()}"
+            "是否 UI 线程: ${HandlerUtils.isMainThread()}".log_dTag(
+                tag = TAG
             )
         }
         // 设置了 Handler 则属于 UI 线程触发回调
@@ -118,12 +118,12 @@ class DevTimerViewModel : AppViewModel() {
                 setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
                     // 触发次数
                     if (number == 1) {
-                        TAG.log_dTag(
-                            message = "第一次触发, 0.5 秒延迟"
+                        "第一次触发, 0.5 秒延迟".log_dTag(
+                            tag = TAG
                         )
                     } else {
-                        TAG.log_dTag(
-                            message = "每隔 2 秒触发一次, 触发次数: $number"
+                        "每隔 2 秒触发一次, 触发次数: $number".log_dTag(
+                            tag = TAG
                         )
                     }
                 }

@@ -96,7 +96,7 @@ class PathViewModel : AppViewModel() {
             PathUtils.getInternal().appAudiobooksDir,
             ""
         )
-        TAG.log_dTag(message = builder.toString())
+        builder.toString().log_dTag(tag = TAG)
         toast_showShort(text = "【内部存储路径】信息已打印, 请查看 Logcat")
     }
 
@@ -145,7 +145,7 @@ class PathViewModel : AppViewModel() {
             PathUtils.getAppExternal().appObbDir,
             ""
         )
-        TAG.log_dTag(message = builder.toString())
+        builder.toString().log_dTag(tag = TAG)
         toast_showShort(text = "【应用外部存储路径】信息已打印, 请查看 Logcat")
     }
 
@@ -185,7 +185,7 @@ class PathViewModel : AppViewModel() {
             PathUtils.getSDCard().audiobooksDir,
             ""
         )
-        TAG.log_dTag(message = builder.toString())
+        builder.toString().log_dTag(tag = TAG)
         toast_showShort(text = "【外部存储路径 ( SDCard )】信息已打印, 请查看 Logcat")
     }
 }

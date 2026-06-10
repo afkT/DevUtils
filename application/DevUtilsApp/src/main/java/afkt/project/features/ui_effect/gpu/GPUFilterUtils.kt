@@ -31,8 +31,8 @@ object GPUFilterUtils {
                 filter.setFromCurveFileInputStream(inputStream)
                 return filter
             } catch (e: Exception) {
-                TAG.log_eTag(
-                    throwable = e,
+                e.log_eTag(
+                    tag = TAG,
                     message = "getGPUImageToneCurveFilter"
                 )
             } finally {

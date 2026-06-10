@@ -132,7 +132,7 @@ object HttpCore {
         key: String,
         message: String
     ) {
-        TAG.log_iTag(message = "[${key}] -${message}")
+        "[${key}] -${message}".log_iTag(tag = TAG)
     }
 }
 
