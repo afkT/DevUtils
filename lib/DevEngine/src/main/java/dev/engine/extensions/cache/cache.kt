@@ -131,13 +131,11 @@ fun cache_clearDue(
 /**
  * 清除某个类型的全部数据
  * @param engine String?
- * @param type 类型
  */
-fun cache_clearType(
-    engine: String? = null,
-    type: Int
+fun Int.cache_clearType(
+    engine: String? = null
 ) {
-    engine.getCacheEngine()?.clearType(type)
+    engine.getCacheEngine()?.clearType(this)
 }
 
 /**

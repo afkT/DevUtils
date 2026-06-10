@@ -37,13 +37,11 @@ fun String?.getBarCodeEngine(): IBarCodeEngine<
 /**
  * 初始化方法
  * @param engine String?
- * @param config BarCode Config
  */
-fun <Config : IBarCodeEngine.EngineConfig> barcode_initialize(
-    engine: String? = null,
-    config: Config?
+fun <Config : IBarCodeEngine.EngineConfig> Config?.barcode_initialize(
+    engine: String? = null
 ) {
-    engine.getBarCodeEngine()?.initialize(config)
+    engine.getBarCodeEngine()?.initialize(this)
 }
 
 /**
