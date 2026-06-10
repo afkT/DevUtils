@@ -214,6 +214,19 @@ fun Context.lowMemory(
  * 加载图片并显示到 ImageView
  * @receiver [ImageView]
  * @param engine String?
+ * @param url 图片地址
+ */
+fun ImageView.display(
+    engine: String? = null,
+    url: String?
+) {
+    engine.getImageEngine()?.display(this, url)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @receiver [ImageView]
+ * @param engine String?
  * @param source 数据来源
  */
 fun ImageView.display(
@@ -222,6 +235,20 @@ fun ImageView.display(
 ) {
     if (source.requireSource()) return
     engine.getImageEngine()?.display(this, source)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param url 图片地址
+ * @param config 配置信息
+ */
+fun <Config : IImageEngine.EngineConfig> ImageView.display(
+    engine: String? = null,
+    url: String?,
+    config: Config?
+) {
+    engine.getImageEngine()?.display(this, url, config)
 }
 
 /**
@@ -242,6 +269,20 @@ fun <Config : IImageEngine.EngineConfig> ImageView.display(
 /**
  * 加载图片并显示到 ImageView
  * @param engine String?
+ * @param url 图片地址
+ * @param listener 加载监听
+ */
+fun <T : Any> ImageView.display(
+    engine: String? = null,
+    url: String?,
+    listener: LoadListener<T>?
+) {
+    engine.getImageEngine()?.display(this, url, listener)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
  * @param source 数据来源
  * @param listener 加载监听
  */
@@ -252,6 +293,22 @@ fun <T : Any> ImageView.display(
 ) {
     if (source.requireSource()) return
     engine.getImageEngine()?.display(this, source, listener)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param url 图片地址
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
+fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
+    engine: String? = null,
+    url: String?,
+    config: Config?,
+    listener: LoadListener<T>?
+) {
+    engine.getImageEngine()?.display(this, url, config, listener)
 }
 
 /**
@@ -277,8 +334,23 @@ fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
  * 加载图片并显示到 ImageView
  * @receiver [ImageView]
  * @param engine String?
- * @param source 数据来源
  * @param fragment [Fragment]
+ * @param url 图片地址
+ */
+fun ImageView.display(
+    engine: String? = null,
+    fragment: Fragment?,
+    url: String?
+) {
+    engine.getImageEngine()?.display(fragment, this, url)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @receiver [ImageView]
+ * @param engine String?
+ * @param fragment [Fragment]
+ * @param source 数据来源
  */
 fun ImageView.display(
     engine: String? = null,
@@ -292,9 +364,25 @@ fun ImageView.display(
 /**
  * 加载图片并显示到 ImageView
  * @param engine String?
+ * @param fragment [Fragment]
+ * @param url 图片地址
+ * @param config 配置信息
+ */
+fun <Config : IImageEngine.EngineConfig> ImageView.display(
+    engine: String? = null,
+    fragment: Fragment?,
+    url: String?,
+    config: Config?
+) {
+    engine.getImageEngine()?.display(fragment, this, url, config)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param fragment [Fragment]
  * @param source 数据来源
  * @param config 配置信息
- * @param fragment [Fragment]
  */
 fun <Config : IImageEngine.EngineConfig> ImageView.display(
     engine: String? = null,
@@ -309,9 +397,25 @@ fun <Config : IImageEngine.EngineConfig> ImageView.display(
 /**
  * 加载图片并显示到 ImageView
  * @param engine String?
+ * @param fragment [Fragment]
+ * @param url 图片地址
+ * @param listener 加载监听
+ */
+fun <T : Any> ImageView.display(
+    engine: String? = null,
+    fragment: Fragment?,
+    url: String?,
+    listener: LoadListener<T>?
+) {
+    engine.getImageEngine()?.display(fragment, this, url, listener)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param fragment [Fragment]
  * @param source 数据来源
  * @param listener 加载监听
- * @param fragment [Fragment]
  */
 fun <T : Any> ImageView.display(
     engine: String? = null,
@@ -326,10 +430,28 @@ fun <T : Any> ImageView.display(
 /**
  * 加载图片并显示到 ImageView
  * @param engine String?
+ * @param fragment [Fragment]
+ * @param url 图片地址
+ * @param config 配置信息
+ * @param listener 加载监听
+ */
+fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
+    engine: String? = null,
+    fragment: Fragment?,
+    url: String?,
+    config: Config?,
+    listener: LoadListener<T>?
+) {
+    engine.getImageEngine()?.display(fragment, this, url, config, listener)
+}
+
+/**
+ * 加载图片并显示到 ImageView
+ * @param engine String?
+ * @param fragment [Fragment]
  * @param source 数据来源
  * @param config 配置信息
  * @param listener 加载监听
- * @param fragment [Fragment]
  */
 fun <T : Any, Config : IImageEngine.EngineConfig> ImageView.display(
     engine: String? = null,

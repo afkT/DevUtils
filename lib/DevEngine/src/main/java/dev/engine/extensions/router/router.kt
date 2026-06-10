@@ -198,6 +198,145 @@ fun router_setDefaultNavigationCallback(
 }
 
 /**
+ * 新增 Path 修改器
+ * @param engine String?
+ * @param handle Path 修改器对象
+ */
+fun router_addNavigatorPathFixHandle(
+    engine: String? = null,
+    handle: Any?
+) {
+    engine.getRouterEngine()?.addNavigatorPathFixHandle(handle)
+}
+
+/**
+ * 移除 Path 修改器
+ * @param engine String?
+ * @param handle Path 修改器对象
+ * @return `true` success, `false` fail
+ */
+fun router_removeNavigatorPathFixHandle(
+    engine: String? = null,
+    handle: Any?
+): Boolean {
+    return engine.getRouterEngine()?.removeNavigatorPathFixHandle(handle) ?: false
+}
+
+/**
+ * 新增 Path 替换拦截器
+ * @param engine String?
+ * @param interceptor Path 替换拦截器对象
+ */
+fun router_addPathReplaceInterceptor(
+    engine: String? = null,
+    interceptor: Any?
+) {
+    engine.getRouterEngine()?.addPathReplaceInterceptor(interceptor)
+}
+
+/**
+ * 移除 Path 替换拦截器
+ * @param engine String?
+ * @param interceptor Path 替换拦截器对象
+ * @return `true` success, `false` fail
+ */
+fun router_removePathReplaceInterceptor(
+    engine: String? = null,
+    interceptor: Any?
+): Boolean {
+    return engine.getRouterEngine()?.removePathReplaceInterceptor(interceptor) ?: false
+}
+
+/**
+ * 新增路由替换拦截器
+ * @param engine String?
+ * @param interceptor 路由替换拦截器对象
+ */
+fun router_addRouterReplaceInterceptor(
+    engine: String? = null,
+    interceptor: Any?
+) {
+    engine.getRouterEngine()?.addRouterReplaceInterceptor(interceptor)
+}
+
+/**
+ * 移除路由替换拦截器
+ * @param engine String?
+ * @param interceptor 路由替换拦截器对象
+ * @return `true` success, `false` fail
+ */
+fun router_removeRouterReplaceInterceptor(
+    engine: String? = null,
+    interceptor: Any?
+): Boolean {
+    return engine.getRouterEngine()?.removeRouterReplaceInterceptor(interceptor) ?: false
+}
+
+/**
+ * 新增 Action 拦截器
+ * @param engine String?
+ * @param action Action
+ * @param interceptor Action 拦截器对象
+ */
+fun router_addActionInterceptor(
+    engine: String? = null,
+    action: String?,
+    interceptor: Any?
+) {
+    engine.getRouterEngine()?.addActionInterceptor(action, interceptor)
+}
+
+/**
+ * 移除 Action 拦截器
+ * @param engine String?
+ * @param action Action
+ * @param interceptor Action 拦截器对象
+ */
+fun router_removeActionInterceptor(
+    engine: String? = null,
+    action: String?,
+    interceptor: Any?
+) {
+    engine.getRouterEngine()?.removeActionInterceptor(action, interceptor)
+}
+
+/**
+ * 移除指定 Action 的全部拦截器
+ * @param engine String?
+ * @param action Action
+ */
+fun router_removeAllInterceptorForKey(
+    engine: String? = null,
+    action: String?
+) {
+    engine.getRouterEngine()?.removeAllInterceptorForKey(action)
+}
+
+/**
+ * 移除指定拦截器 ( 所有 Action 共用 )
+ * @param engine String?
+ * @param interceptor Action 拦截器对象
+ */
+fun router_removeAllInterceptorForValue(
+    engine: String? = null,
+    interceptor: Any?
+) {
+    engine.getRouterEngine()?.removeAllInterceptorForValue(interceptor)
+}
+
+/**
+ * 新增 Autowired 注解解析器
+ * @param engine String?
+ * @param parser Autowired 解析器对象
+ */
+fun router_addAutowiredParser(
+    engine: String? = null,
+    parser: Any?
+) {
+    engine.getRouterEngine()?.addAutowiredParser(parser)
+}
+
+/**
  * 手动初始化 Router Engine
  * @param engine String?
  * @param context Context 对象
@@ -223,6 +362,41 @@ fun router_init(
     asyncInitRouterInject: Boolean
 ): Boolean {
     return engine.getRouterEngine()?.init(context, asyncInitRouterInject) ?: false
+}
+
+/**
+ * 设置路由 AOP 拦截器
+ * @param engine String?
+ * @param interceptor 路由 AOP 拦截器对象 ( RouterInterceptor 或 OnRouterInterceptor )
+ */
+fun router_setRouterInterceptor(
+    engine: String? = null,
+    interceptor: Any?
+) {
+    engine.getRouterEngine()?.setRouterInterceptor(interceptor)
+}
+
+/**
+ * 恢复 pending 状态的 Navigator 跳转
+ * @param engine String?
+ */
+fun router_sendPendingNavigator(
+    engine: String? = null
+) {
+    engine.getRouterEngine()?.sendPendingNavigator()
+}
+
+/**
+ * 获取 Navigator 全局 Object 参数
+ * @param engine String?
+ * @param key 参数 key
+ * @return 参数值
+ */
+fun router_optGlobalObject(
+    engine: String? = null,
+    key: String?
+): Any? {
+    return engine.getRouterEngine()?.optGlobalObject(key)
 }
 
 // =================
@@ -281,6 +455,106 @@ fun Any?.router_getUrlWithParams(
     engine: String? = null
 ): String? {
     return engine.getRouterEngine()?.getUrlWithParams(this)
+}
+
+/**
+ * 获取带参数的完整 url
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param paramsFixHandle NavigatorParamsFixHandle 对象
+ * @return 完整 url
+ */
+fun Any?.router_getUrlWithParams(
+    engine: String? = null,
+    paramsFixHandle: Any?
+): String? {
+    return engine.getRouterEngine()?.getUrlWithParams(this, paramsFixHandle)
+}
+
+/**
+ * 获取带参数的完整 url
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param listener Url 参数拼接修正
+ * @return 完整 url
+ */
+fun Any?.router_getUrlWithParams(
+    engine: String? = null,
+    listener: IRouterEngine.OnUrlParamsFixListener?
+): String? {
+    return engine.getRouterEngine()?.getUrlWithParams(this, listener)
+}
+
+/**
+ * 获取 Navigator 当前 url
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return url
+ */
+fun Any?.router_getNavigatorUrl(
+    engine: String? = null
+): String? {
+    return engine.getRouterEngine()?.getNavigatorUrl(this)
+}
+
+/**
+ * 获取 Navigator 原始 url
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return 原始 url
+ */
+fun Any?.router_getOriginalUrl(
+    engine: String? = null
+): String? {
+    return engine.getRouterEngine()?.getOriginalUrl(this)
+}
+
+/**
+ * 获取 Navigator PathFix 后的原始 url
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return PathFix 后的原始 url
+ */
+fun Any?.router_getPathFixOriginalUrl(
+    engine: String? = null
+): String? {
+    return engine.getRouterEngine()?.getPathFixOriginalUrl(this)
+}
+
+/**
+ * 获取 Navigator 简化 url ( 不含 query )
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return 简化 url
+ */
+fun Any?.router_getSimpleUrl(
+    engine: String? = null
+): String? {
+    return engine.getRouterEngine()?.getSimpleUrl(this)
+}
+
+/**
+ * 获取 Navigator 参数 Bundle
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return 参数 Bundle
+ */
+fun Any?.router_getNavigatorExtras(
+    engine: String? = null
+): Bundle? {
+    return engine.getRouterEngine()?.getNavigatorExtras(this)
+}
+
+/**
+ * 获取 Navigator 关联 Intent
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return Intent
+ */
+fun Any?.router_getNavigatorIntent(
+    engine: String? = null
+): Intent? {
+    return engine.getRouterEngine()?.getNavigatorIntent(this)
 }
 
 /**
@@ -502,6 +776,76 @@ fun Any?.router_with(
 }
 
 /**
+ * 批量填充 Navigator 参数 Bundle
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param listener 参数填充监听
+ * @return Navigator 对象
+ */
+fun Any?.router_fillParams(
+    engine: String? = null,
+    listener: IRouterEngine.OnFillParamsListener?
+): Any? {
+    return engine.getRouterEngine()?.fillParams(this, listener)
+}
+
+/**
+ * 设置 Intent Data
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param uri Uri 对象
+ * @return Navigator 对象
+ */
+fun Any?.router_setData(
+    engine: String? = null,
+    uri: Uri?
+): Any? {
+    return engine.getRouterEngine()?.setData(this, uri)
+}
+
+/**
+ * 设置 Intent Identifier
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param identifier Identifier
+ * @return Navigator 对象
+ */
+fun Any?.router_setIdentifier(
+    engine: String? = null,
+    identifier: String?
+): Any? {
+    return engine.getRouterEngine()?.setIdentifier(this, identifier)
+}
+
+/**
+ * 设置 Intent ClipData
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param clipData ClipData 对象
+ * @return Navigator 对象
+ */
+fun Any?.router_setClipData(
+    engine: String? = null,
+    clipData: ClipData?
+): Any? {
+    return engine.getRouterEngine()?.setClipData(this, clipData)
+}
+
+/**
+ * 获取 Navigator Object 参数
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @param key 参数 key
+ * @return 参数值
+ */
+fun Any?.router_optObject(
+    engine: String? = null,
+    key: String?
+): Any? {
+    return engine.getRouterEngine()?.optObject(this, key)
+}
+
+/**
  * 追加 Intent Flags
  * @receiver Navigator 对象
  * @param engine String?
@@ -572,58 +916,6 @@ fun Any?.router_withOutAnimation(
 }
 
 /**
- * 设置 Intent Data
- * @receiver Navigator 对象
- * @param engine String?
- * @param uri Uri 对象
- * @return Navigator 对象
- */
-fun Any?.router_setData(
-    engine: String? = null,
-    uri: Uri?
-): Any? {
-    return engine.getRouterEngine()?.setData(this, uri)
-}
-
-/**
- * 设置 Intent ClipData
- * @receiver Navigator 对象
- * @param engine String?
- * @param clipData ClipData 对象
- * @return Navigator 对象
- */
-fun Any?.router_setClipData(
-    engine: String? = null,
-    clipData: ClipData?
-): Any? {
-    return engine.getRouterEngine()?.setClipData(this, clipData)
-}
-
-/**
- * 获取 Navigator 参数 Bundle
- * @receiver Navigator 对象
- * @param engine String?
- * @return 参数 Bundle
- */
-fun Any?.router_getNavigatorExtras(
-    engine: String? = null
-): Bundle? {
-    return engine.getRouterEngine()?.getNavigatorExtras(this)
-}
-
-/**
- * 获取 Navigator 关联 Intent
- * @receiver Navigator 对象
- * @param engine String?
- * @return Intent
- */
-fun Any?.router_getNavigatorIntent(
-    engine: String? = null
-): Intent? {
-    return engine.getRouterEngine()?.getNavigatorIntent(this)
-}
-
-/**
  * 创建 Intent
  * @receiver Navigator 对象
  * @param engine String?
@@ -688,6 +980,18 @@ fun Any?.router_navigation(
     item: IRouterEngine.EngineItem? = null
 ) {
     engine.getRouterEngine()?.navigation(this, item)
+}
+
+/**
+ * 执行 Action
+ * @receiver Navigator 对象
+ * @param engine String?
+ * @return `true` success, `false` fail
+ */
+fun Any?.router_action(
+    engine: String? = null
+): Boolean {
+    return engine.getRouterEngine()?.action(this) ?: false
 }
 
 /**

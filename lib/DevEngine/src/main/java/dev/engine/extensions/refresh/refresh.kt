@@ -1103,42 +1103,6 @@ fun <Item : IRefreshEngine.EngineItem> Item?.refresh_finishRefreshOrLoad(
 // ==========
 
 /**
- * 是否正在刷新
- * @receiver Refresh Item
- * @param engine String?
- * @return `true` yes, `false` no
- */
-fun <Item : IRefreshEngine.EngineItem> Item?.refresh_isRefreshing(
-    engine: String? = null
-): Boolean {
-    return engine.getRefreshEngine()?.isRefreshing(this) ?: false
-}
-
-/**
- * 是否正在加载
- * @receiver Refresh Item
- * @param engine String?
- * @return `true` yes, `false` no
- */
-fun <Item : IRefreshEngine.EngineItem> Item?.refresh_isLoading(
-    engine: String? = null
-): Boolean {
-    return engine.getRefreshEngine()?.isLoading(this) ?: false
-}
-
-/**
- * 获取当前状态
- * @receiver Refresh Item
- * @param engine String?
- * @return 当前状态
- */
-fun <Item : IRefreshEngine.EngineItem> Item?.refresh_getState(
-    engine: String? = null
-): Any? {
-    return engine.getRefreshEngine()?.getState(this)
-}
-
-/**
  * 获取刷新头
  * @receiver Refresh Item
  * @param engine String?
@@ -1163,6 +1127,18 @@ fun <Item : IRefreshEngine.EngineItem> Item?.refresh_getRefreshFooter(
 }
 
 /**
+ * 获取当前状态
+ * @receiver Refresh Item
+ * @param engine String?
+ * @return 当前状态
+ */
+fun <Item : IRefreshEngine.EngineItem> Item?.refresh_getState(
+    engine: String? = null
+): Any? {
+    return engine.getRefreshEngine()?.getState(this)
+}
+
+/**
  * 获取实体布局视图
  * @receiver Refresh Item
  * @param engine String?
@@ -1172,4 +1148,28 @@ fun <Item : IRefreshEngine.EngineItem> Item?.refresh_getLayout(
     engine: String? = null
 ): ViewGroup? {
     return engine.getRefreshEngine()?.getLayout(this)
+}
+
+/**
+ * 是否正在刷新
+ * @receiver Refresh Item
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun <Item : IRefreshEngine.EngineItem> Item?.refresh_isRefreshing(
+    engine: String? = null
+): Boolean {
+    return engine.getRefreshEngine()?.isRefreshing(this) ?: false
+}
+
+/**
+ * 是否正在加载
+ * @receiver Refresh Item
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun <Item : IRefreshEngine.EngineItem> Item?.refresh_isLoading(
+    engine: String? = null
+): Boolean {
+    return engine.getRefreshEngine()?.isLoading(this) ?: false
 }

@@ -644,94 +644,6 @@ fun Any?.popnotification_setIconSize(
     return engine.getPopNotificationEngine()?.setIconSize(this, iconSize)
 }
 
-/**
- * 设置指定 PopNotification 成功状态图标
- * @receiver PopNotification 对象
- * @param engine String?
- * @return PopNotification 对象
- */
-fun Any?.popnotification_iconSuccess(
-    engine: String? = null
-): Any? {
-    return engine.getPopNotificationEngine()?.iconSuccess(this)
-}
-
-/**
- * 设置指定 PopNotification 警告状态图标
- * @receiver PopNotification 对象
- * @param engine String?
- * @return PopNotification 对象
- */
-fun Any?.popnotification_iconWarning(
-    engine: String? = null
-): Any? {
-    return engine.getPopNotificationEngine()?.iconWarning(this)
-}
-
-/**
- * 设置指定 PopNotification 错误状态图标
- * @receiver PopNotification 对象
- * @param engine String?
- * @return PopNotification 对象
- */
-fun Any?.popnotification_iconError(
-    engine: String? = null
-): Any? {
-    return engine.getPopNotificationEngine()?.iconError(this)
-}
-
-/**
- * 指定 PopNotification 图标是否随明暗模式自动染色
- * @receiver PopNotification 对象
- * @param engine String?
- * @return `true` yes, `false` no
- */
-fun Any?.popnotification_isAutoTintIconInLightOrDarkMode(
-    engine: String? = null
-): Boolean {
-    return engine.getPopNotificationEngine()?.isAutoTintIconInLightOrDarkMode(this) ?: false
-}
-
-/**
- * 设置指定 PopNotification 图标是否随明暗模式自动染色
- * @receiver PopNotification 对象
- * @param engine String?
- * @param autoTint 是否自动染色
- * @return PopNotification 对象
- */
-fun Any?.popnotification_setAutoTintIconInLightOrDarkMode(
-    engine: String? = null,
-    autoTint: Boolean
-): Any? {
-    return engine.getPopNotificationEngine()?.setAutoTintIconInLightOrDarkMode(this, autoTint)
-}
-
-/**
- * 指定 PopNotification 图标是否染色
- * @receiver PopNotification 对象
- * @param engine String?
- * @return `true` yes, `false` no
- */
-fun Any?.popnotification_getTintIcon(
-    engine: String? = null
-): Boolean {
-    return engine.getPopNotificationEngine()?.getTintIcon(this) ?: false
-}
-
-/**
- * 设置指定 PopNotification 图标是否染色
- * @receiver PopNotification 对象
- * @param engine String?
- * @param tintIcon 是否染色
- * @return PopNotification 对象
- */
-fun Any?.popnotification_setTintIcon(
-    engine: String? = null,
-    tintIcon: Boolean
-): Any? {
-    return engine.getPopNotificationEngine()?.setTintIcon(this, tintIcon)
-}
-
 // ==========
 // = 文本设置 =
 // ==========
@@ -842,32 +754,6 @@ fun Any?.popnotification_appendMessage(
     return engine.getPopNotificationEngine()?.appendMessage(this, message)
 }
 
-/**
- * 获取指定 PopNotification 提示文本样式
- * @receiver PopNotification 对象
- * @param engine String?
- * @return 提示文本样式对象
- */
-fun Any?.popnotification_getMessageTextInfo(
-    engine: String? = null
-): Any? {
-    return engine.getPopNotificationEngine()?.getMessageTextInfo(this)
-}
-
-/**
- * 设置指定 PopNotification 提示文本样式
- * @receiver PopNotification 对象
- * @param engine String?
- * @param messageTextInfo 提示文本样式对象
- * @return PopNotification 对象
- */
-fun Any?.popnotification_setMessageTextInfo(
-    engine: String? = null,
-    messageTextInfo: Any?
-): Any? {
-    return engine.getPopNotificationEngine()?.setMessageTextInfo(this, messageTextInfo)
-}
-
 // ==========
 // = 按钮设置 =
 // ==========
@@ -959,6 +845,32 @@ fun Any?.popnotification_setButton(
 }
 
 /**
+ * 获取指定 PopNotification 提示文本样式
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @return 提示文本样式对象
+ */
+fun Any?.popnotification_getMessageTextInfo(
+    engine: String? = null
+): Any? {
+    return engine.getPopNotificationEngine()?.getMessageTextInfo(this)
+}
+
+/**
+ * 设置指定 PopNotification 提示文本样式
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @param messageTextInfo 提示文本样式对象
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_setMessageTextInfo(
+    engine: String? = null,
+    messageTextInfo: Any?
+): Any? {
+    return engine.getPopNotificationEngine()?.setMessageTextInfo(this, messageTextInfo)
+}
+
+/**
  * 获取指定 PopNotification 按钮文本样式
  * @receiver PopNotification 对象
  * @param engine String?
@@ -1014,6 +926,94 @@ fun Any?.popnotification_setOnPopNotificationClickListener(
     listener: IPopNotificationEngine.OnButtonClickListener?
 ): Any? {
     return engine.getPopNotificationEngine()?.setOnPopNotificationClickListener(this, listener)
+}
+
+/**
+ * 指定 PopNotification 图标是否随明暗模式自动染色
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun Any?.popnotification_isAutoTintIconInLightOrDarkMode(
+    engine: String? = null
+): Boolean {
+    return engine.getPopNotificationEngine()?.isAutoTintIconInLightOrDarkMode(this) ?: false
+}
+
+/**
+ * 设置指定 PopNotification 图标是否随明暗模式自动染色
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @param autoTint 是否自动染色
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_setAutoTintIconInLightOrDarkMode(
+    engine: String? = null,
+    autoTint: Boolean
+): Any? {
+    return engine.getPopNotificationEngine()?.setAutoTintIconInLightOrDarkMode(this, autoTint)
+}
+
+/**
+ * 指定 PopNotification 图标是否染色
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun Any?.popnotification_getTintIcon(
+    engine: String? = null
+): Boolean {
+    return engine.getPopNotificationEngine()?.getTintIcon(this) ?: false
+}
+
+/**
+ * 设置指定 PopNotification 图标是否染色
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @param tintIcon 是否染色
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_setTintIcon(
+    engine: String? = null,
+    tintIcon: Boolean
+): Any? {
+    return engine.getPopNotificationEngine()?.setTintIcon(this, tintIcon)
+}
+
+/**
+ * 设置指定 PopNotification 成功状态图标
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_iconSuccess(
+    engine: String? = null
+): Any? {
+    return engine.getPopNotificationEngine()?.iconSuccess(this)
+}
+
+/**
+ * 设置指定 PopNotification 警告状态图标
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_iconWarning(
+    engine: String? = null
+): Any? {
+    return engine.getPopNotificationEngine()?.iconWarning(this)
+}
+
+/**
+ * 设置指定 PopNotification 错误状态图标
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_iconError(
+    engine: String? = null
+): Any? {
+    return engine.getPopNotificationEngine()?.iconError(this)
 }
 
 // ==========
@@ -1480,20 +1480,6 @@ fun Any?.popnotification_onDismiss(
     return engine.getPopNotificationEngine()?.onDismiss(this, runnable)
 }
 
-/**
- * 绑定指定 PopNotification 随 LifecycleOwner 关闭
- * @receiver PopNotification 对象
- * @param engine String?
- * @param owner LifecycleOwner 对象
- * @return PopNotification 对象
- */
-fun Any?.popnotification_bindDismissWithLifecycleOwner(
-    engine: String? = null,
-    owner: LifecycleOwner?
-): Any? {
-    return engine.getPopNotificationEngine()?.bindDismissWithLifecycleOwner(this, owner)
-}
-
 // ============
 // = 动作与数据 =
 // ============
@@ -1554,6 +1540,20 @@ fun Any?.popnotification_setData(
     obj: Any?
 ): Any? {
     return engine.getPopNotificationEngine()?.setData(this, key, obj)
+}
+
+/**
+ * 绑定指定 PopNotification 随 LifecycleOwner 关闭
+ * @receiver PopNotification 对象
+ * @param engine String?
+ * @param owner LifecycleOwner 对象
+ * @return PopNotification 对象
+ */
+fun Any?.popnotification_bindDismissWithLifecycleOwner(
+    engine: String? = null,
+    owner: LifecycleOwner?
+): Any? {
+    return engine.getPopNotificationEngine()?.bindDismissWithLifecycleOwner(this, owner)
 }
 
 // ==========

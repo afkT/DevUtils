@@ -564,94 +564,6 @@ fun Any?.poptip_setIconResId(
     return engine.getPopTipEngine()?.setIconResId(this, iconResId)
 }
 
-/**
- * 设置指定 PopTip 成功状态图标
- * @receiver PopTip 对象
- * @param engine String?
- * @return PopTip 对象
- */
-fun Any?.poptip_iconSuccess(
-    engine: String? = null
-): Any? {
-    return engine.getPopTipEngine()?.iconSuccess(this)
-}
-
-/**
- * 设置指定 PopTip 警告状态图标
- * @receiver PopTip 对象
- * @param engine String?
- * @return PopTip 对象
- */
-fun Any?.poptip_iconWarning(
-    engine: String? = null
-): Any? {
-    return engine.getPopTipEngine()?.iconWarning(this)
-}
-
-/**
- * 设置指定 PopTip 错误状态图标
- * @receiver PopTip 对象
- * @param engine String?
- * @return PopTip 对象
- */
-fun Any?.poptip_iconError(
-    engine: String? = null
-): Any? {
-    return engine.getPopTipEngine()?.iconError(this)
-}
-
-/**
- * 指定 PopTip 图标是否随明暗模式自动染色
- * @receiver PopTip 对象
- * @param engine String?
- * @return `true` yes, `false` no
- */
-fun Any?.poptip_isAutoTintIconInLightOrDarkMode(
-    engine: String? = null
-): Boolean {
-    return engine.getPopTipEngine()?.isAutoTintIconInLightOrDarkMode(this) ?: false
-}
-
-/**
- * 设置指定 PopTip 图标是否随明暗模式自动染色
- * @receiver PopTip 对象
- * @param engine String?
- * @param autoTint 是否自动染色
- * @return PopTip 对象
- */
-fun Any?.poptip_setAutoTintIconInLightOrDarkMode(
-    engine: String? = null,
-    autoTint: Boolean
-): Any? {
-    return engine.getPopTipEngine()?.setAutoTintIconInLightOrDarkMode(this, autoTint)
-}
-
-/**
- * 指定 PopTip 图标是否染色
- * @receiver PopTip 对象
- * @param engine String?
- * @return `true` yes, `false` no
- */
-fun Any?.poptip_isTintIcon(
-    engine: String? = null
-): Boolean {
-    return engine.getPopTipEngine()?.isTintIcon(this) ?: false
-}
-
-/**
- * 设置指定 PopTip 图标是否染色
- * @receiver PopTip 对象
- * @param engine String?
- * @param tintIcon 是否染色
- * @return PopTip 对象
- */
-fun Any?.poptip_setTintIcon(
-    engine: String? = null,
-    tintIcon: Boolean
-): Any? {
-    return engine.getPopTipEngine()?.setTintIcon(this, tintIcon)
-}
-
 // ==========
 // = 文本设置 =
 // ==========
@@ -708,32 +620,6 @@ fun Any?.poptip_appendMessage(
     message: CharSequence?
 ): Any? {
     return engine.getPopTipEngine()?.appendMessage(this, message)
-}
-
-/**
- * 获取指定 PopTip 提示文本样式
- * @receiver PopTip 对象
- * @param engine String?
- * @return 提示文本样式对象
- */
-fun Any?.poptip_getMessageTextInfo(
-    engine: String? = null
-): Any? {
-    return engine.getPopTipEngine()?.getMessageTextInfo(this)
-}
-
-/**
- * 设置指定 PopTip 提示文本样式
- * @receiver PopTip 对象
- * @param engine String?
- * @param messageTextInfo 提示文本样式对象
- * @return PopTip 对象
- */
-fun Any?.poptip_setMessageTextInfo(
-    engine: String? = null,
-    messageTextInfo: Any?
-): Any? {
-    return engine.getPopTipEngine()?.setMessageTextInfo(this, messageTextInfo)
 }
 
 // ==========
@@ -827,6 +713,32 @@ fun Any?.poptip_setButton(
 }
 
 /**
+ * 获取指定 PopTip 提示文本样式
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @return 提示文本样式对象
+ */
+fun Any?.poptip_getMessageTextInfo(
+    engine: String? = null
+): Any? {
+    return engine.getPopTipEngine()?.getMessageTextInfo(this)
+}
+
+/**
+ * 设置指定 PopTip 提示文本样式
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @param messageTextInfo 提示文本样式对象
+ * @return PopTip 对象
+ */
+fun Any?.poptip_setMessageTextInfo(
+    engine: String? = null,
+    messageTextInfo: Any?
+): Any? {
+    return engine.getPopTipEngine()?.setMessageTextInfo(this, messageTextInfo)
+}
+
+/**
  * 获取指定 PopTip 按钮文本样式
  * @receiver PopTip 对象
  * @param engine String?
@@ -882,6 +794,94 @@ fun Any?.poptip_setOnPopTipClickListener(
     listener: IPopTipEngine.OnButtonClickListener?
 ): Any? {
     return engine.getPopTipEngine()?.setOnPopTipClickListener(this, listener)
+}
+
+/**
+ * 指定 PopTip 图标是否随明暗模式自动染色
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun Any?.poptip_isAutoTintIconInLightOrDarkMode(
+    engine: String? = null
+): Boolean {
+    return engine.getPopTipEngine()?.isAutoTintIconInLightOrDarkMode(this) ?: false
+}
+
+/**
+ * 设置指定 PopTip 图标是否随明暗模式自动染色
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @param autoTint 是否自动染色
+ * @return PopTip 对象
+ */
+fun Any?.poptip_setAutoTintIconInLightOrDarkMode(
+    engine: String? = null,
+    autoTint: Boolean
+): Any? {
+    return engine.getPopTipEngine()?.setAutoTintIconInLightOrDarkMode(this, autoTint)
+}
+
+/**
+ * 指定 PopTip 图标是否染色
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @return `true` yes, `false` no
+ */
+fun Any?.poptip_isTintIcon(
+    engine: String? = null
+): Boolean {
+    return engine.getPopTipEngine()?.isTintIcon(this) ?: false
+}
+
+/**
+ * 设置指定 PopTip 图标是否染色
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @param tintIcon 是否染色
+ * @return PopTip 对象
+ */
+fun Any?.poptip_setTintIcon(
+    engine: String? = null,
+    tintIcon: Boolean
+): Any? {
+    return engine.getPopTipEngine()?.setTintIcon(this, tintIcon)
+}
+
+/**
+ * 设置指定 PopTip 成功状态图标
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @return PopTip 对象
+ */
+fun Any?.poptip_iconSuccess(
+    engine: String? = null
+): Any? {
+    return engine.getPopTipEngine()?.iconSuccess(this)
+}
+
+/**
+ * 设置指定 PopTip 警告状态图标
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @return PopTip 对象
+ */
+fun Any?.poptip_iconWarning(
+    engine: String? = null
+): Any? {
+    return engine.getPopTipEngine()?.iconWarning(this)
+}
+
+/**
+ * 设置指定 PopTip 错误状态图标
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @return PopTip 对象
+ */
+fun Any?.poptip_iconError(
+    engine: String? = null
+): Any? {
+    return engine.getPopTipEngine()?.iconError(this)
 }
 
 // ==========
@@ -1322,20 +1322,6 @@ fun Any?.poptip_onDismiss(
     return engine.getPopTipEngine()?.onDismiss(this, runnable)
 }
 
-/**
- * 绑定指定 PopTip 随 LifecycleOwner 关闭
- * @receiver PopTip 对象
- * @param engine String?
- * @param owner LifecycleOwner 对象
- * @return PopTip 对象
- */
-fun Any?.poptip_bindDismissWithLifecycleOwner(
-    engine: String? = null,
-    owner: LifecycleOwner?
-): Any? {
-    return engine.getPopTipEngine()?.bindDismissWithLifecycleOwner(this, owner)
-}
-
 // ============
 // = 动作与数据 =
 // ============
@@ -1396,6 +1382,20 @@ fun Any?.poptip_setData(
     obj: Any?
 ): Any? {
     return engine.getPopTipEngine()?.setData(this, key, obj)
+}
+
+/**
+ * 绑定指定 PopTip 随 LifecycleOwner 关闭
+ * @receiver PopTip 对象
+ * @param engine String?
+ * @param owner LifecycleOwner 对象
+ * @return PopTip 对象
+ */
+fun Any?.poptip_bindDismissWithLifecycleOwner(
+    engine: String? = null,
+    owner: LifecycleOwner?
+): Any? {
+    return engine.getPopTipEngine()?.bindDismissWithLifecycleOwner(this, owner)
 }
 
 // ==========
