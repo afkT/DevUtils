@@ -52,26 +52,22 @@ fun router_getConfig(
 /**
  * 设置 Router Engine Config
  * @param engine String?
- * @param config Router Config
  */
-fun <Config : IRouterEngine.EngineConfig> router_setConfig(
-    engine: String? = null,
-    config: Config?
+fun <Config : IRouterEngine.EngineConfig> Config?.router_setConfig(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.setConfig(config)
+    engine.getRouterEngine()?.setConfig(this)
 }
 
 /**
  * 初始化 Router Engine
  * @param engine String?
- * @param config Router Config
  * @return `true` success, `false` fail
  */
-fun <Config : IRouterEngine.EngineConfig> router_initialize(
-    engine: String? = null,
-    config: Config
+fun <Config : IRouterEngine.EngineConfig> Config.router_initialize(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.initialize(config) ?: false
+    return engine.getRouterEngine()?.initialize(this) ?: false
 }
 
 /**

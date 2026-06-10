@@ -47,13 +47,11 @@ fun poptip_getConfig(
 /**
  * 设置 PopTip Engine Config
  * @param engine String?
- * @param config PopTip Config
  */
-fun <Config : IPopTipEngine.EngineConfig> poptip_setConfig(
-    engine: String? = null,
-    config: Config?
+fun <Config : IPopTipEngine.EngineConfig> Config?.poptip_setConfig(
+    engine: String? = null
 ) {
-    engine.getPopTipEngine()?.setConfig(config)
+    engine.getPopTipEngine()?.setConfig(this)
 }
 
 // ==============

@@ -49,13 +49,11 @@ fun popnotification_getConfig(
 /**
  * 设置 PopNotification Engine Config
  * @param engine String?
- * @param config PopNotification Config
  */
-fun <Config : IPopNotificationEngine.EngineConfig> popnotification_setConfig(
-    engine: String? = null,
-    config: Config?
+fun <Config : IPopNotificationEngine.EngineConfig> Config?.popnotification_setConfig(
+    engine: String? = null
 ) {
-    engine.getPopNotificationEngine()?.setConfig(config)
+    engine.getPopNotificationEngine()?.setConfig(this)
 }
 
 // =======================

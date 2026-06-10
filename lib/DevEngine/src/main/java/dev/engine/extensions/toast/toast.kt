@@ -34,13 +34,11 @@ fun String?.getToastEngine(): IToastEngine<
 /**
  * 初始化方法
  * @param engine String?
- * @param application Application
  */
-fun toast_initialize(
-    engine: String? = null,
-    application: Application
+fun Application.toast_initialize(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.initialize(application)
+    engine.getToastEngine()?.initialize(this)
 }
 
 /**
@@ -67,13 +65,11 @@ fun toast_setDebugMode(
 /**
  * 设置 Toast Config
  * @param engine String?
- * @param config Toast Config
  */
-fun <Config : IToastEngine.EngineConfig> toast_setConfig(
-    engine: String? = null,
-    config: Config?
+fun <Config : IToastEngine.EngineConfig> Config?.toast_setConfig(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.setConfig(config)
+    engine.getToastEngine()?.setConfig(this)
 }
 
 /**

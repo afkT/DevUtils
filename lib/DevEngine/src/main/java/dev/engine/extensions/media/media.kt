@@ -47,13 +47,11 @@ fun media_getConfig(
 /**
  * 设置全局配置
  * @param engine String?
- * @param config 新的配置信息
  */
-fun <Config : IMediaEngine.EngineConfig> media_setConfig(
-    engine: String? = null,
-    config: Config?
+fun <Config : IMediaEngine.EngineConfig> Config?.media_setConfig(
+    engine: String? = null
 ) {
-    engine.getMediaEngine()?.config = config
+    engine.getMediaEngine()?.config = this
 }
 
 // =============
