@@ -1156,15 +1156,14 @@ fun <Item : IWebEngine.EngineItem> Item?.web_createWebMessageChannel(
 
 /**
  * 设置是否开启 WebView 内容调试 ( Chrome inspect )
+ * @receiver 是否开启
  * @param engine String?
- * @param enabled 是否开启
  * @return `true` success, `false` fail
  */
-fun web_setWebContentsDebuggingEnabled(
-    engine: String? = null,
-    enabled: Boolean
+fun Boolean.web_setWebContentsDebuggingEnabled(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setWebContentsDebuggingEnabled(enabled) ?: false
+    return engine.getWebEngine()?.setWebContentsDebuggingEnabled(this) ?: false
 }
 
 /**
@@ -1180,15 +1179,14 @@ fun web_getCurrentWebViewPackage(
 
 /**
  * 清除客户端证书选择偏好
+ * @receiver 清除完成回调
  * @param engine String?
- * @param onCleared 清除完成回调
  * @return `true` success, `false` fail
  */
-fun web_clearClientCertPreferences(
-    engine: String? = null,
-    onCleared: Runnable?
+fun Runnable?.web_clearClientCertPreferences(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.clearClientCertPreferences(onCleared) ?: false
+    return engine.getWebEngine()?.clearClientCertPreferences(this) ?: false
 }
 
 // ==================
@@ -1197,15 +1195,14 @@ fun web_clearClientCertPreferences(
 
 /**
  * 判断 AndroidX WebKit 特性是否支持
+ * @receiver 特性常量 ( WebViewFeature 中定义 )
  * @param engine String?
- * @param feature 特性常量 ( WebViewFeature 中定义 )
  * @return `true` yes, `false` no
  */
-fun web_isWebViewFeatureSupported(
-    engine: String? = null,
-    feature: String?
+fun String?.web_isWebViewFeatureSupported(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.isWebViewFeatureSupported(feature) ?: false
+    return engine.getWebEngine()?.isWebViewFeatureSupported(this) ?: false
 }
 
 /**
@@ -1284,15 +1281,14 @@ fun <Item : IWebEngine.EngineItem> Item?.web_getWebChromeClientCompat(
 
 /**
  * 获取当前 WebView 内核包信息 ( 兼容版 )
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @return 当前 WebView 内核包信息 ( PackageInfo )
  */
-fun web_getCurrentWebViewPackageCompat(
-    engine: String? = null,
-    context: Context?
+fun Context?.web_getCurrentWebViewPackageCompat(
+    engine: String? = null
 ): Any? {
-    return engine.getWebEngine()?.getCurrentWebViewPackageCompat(context)
+    return engine.getWebEngine()?.getCurrentWebViewPackageCompat(this)
 }
 
 /**
@@ -1357,32 +1353,30 @@ fun web_getVariationsHeader(
 
 /**
  * 启动安全浏览 ( 需 START_SAFE_BROWSING 特性 )
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param callback 启动结果回调 ( ValueCallback )
  * @return `true` success, `false` fail
  */
-fun web_startSafeBrowsing(
+fun Context?.web_startSafeBrowsing(
     engine: String? = null,
-    context: Context?,
     callback: Any?
 ): Boolean {
-    return engine.getWebEngine()?.startSafeBrowsing(context, callback) ?: false
+    return engine.getWebEngine()?.startSafeBrowsing(this, callback) ?: false
 }
 
 /**
  * 设置安全浏览白名单 ( 需 SAFE_BROWSING_ALLOWLIST 特性 )
+ * @receiver 白名单 Host
  * @param engine String?
- * @param hosts 白名单 Host
  * @param callback 设置结果回调 ( ValueCallback )
  * @return `true` success, `false` fail
  */
-fun web_setSafeBrowsingAllowlist(
+fun MutableSet<String>?.web_setSafeBrowsingAllowlist(
     engine: String? = null,
-    hosts: MutableSet<String>?,
     callback: Any?
 ): Boolean {
-    return engine.getWebEngine()?.setSafeBrowsingAllowlist(hosts, callback) ?: false
+    return engine.getWebEngine()?.setSafeBrowsingAllowlist(this, callback) ?: false
 }
 
 /**
@@ -1398,19 +1392,18 @@ fun web_getSafeBrowsingPrivacyPolicyUrl(
 
 /**
  * 设置 WebView 代理 ( 需 PROXY_OVERRIDE 特性 )
+ * @receiver 代理配置 ( ProxyConfig )
  * @param engine String?
- * @param proxyConfig 代理配置 ( ProxyConfig )
  * @param executor 回调执行器
  * @param listener 生效回调
  * @return `true` success, `false` fail
  */
-fun web_setProxyOverride(
+fun Any?.web_setProxyOverride(
     engine: String? = null,
-    proxyConfig: Any?,
     executor: Executor?,
     listener: Runnable?
 ): Boolean {
-    return engine.getWebEngine()?.setProxyOverride(proxyConfig, executor, listener) ?: false
+    return engine.getWebEngine()?.setProxyOverride(this, executor, listener) ?: false
 }
 
 /**
@@ -1526,41 +1519,38 @@ fun <Item : IWebEngine.EngineItem> Item?.web_setWebViewMediaIntegrityApiStatus(
 
 /**
  * 根据名称获取或创建 Profile ( 需 MULTI_PROFILE 特性 )
+ * @receiver Profile 名称
  * @param engine String?
- * @param name Profile 名称
  * @return Profile
  */
-fun web_getOrCreateWebProfile(
-    engine: String? = null,
-    name: String?
+fun String?.web_getOrCreateWebProfile(
+    engine: String? = null
 ): Any? {
-    return engine.getWebEngine()?.getOrCreateWebProfile(name)
+    return engine.getWebEngine()?.getOrCreateWebProfile(this)
 }
 
 /**
  * 根据名称获取 Profile ( 需 MULTI_PROFILE 特性 )
+ * @receiver Profile 名称
  * @param engine String?
- * @param name Profile 名称
  * @return Profile ( 不存在返回 null )
  */
-fun web_getWebProfile(
-    engine: String? = null,
-    name: String?
+fun String?.web_getWebProfile(
+    engine: String? = null
 ): Any? {
-    return engine.getWebEngine()?.getWebProfile(name)
+    return engine.getWebEngine()?.getWebProfile(this)
 }
 
 /**
  * 根据名称删除 Profile ( 需 MULTI_PROFILE 特性 )
+ * @receiver Profile 名称
  * @param engine String?
- * @param name Profile 名称
  * @return `true` success, `false` fail
  */
-fun web_deleteWebProfile(
-    engine: String? = null,
-    name: String?
+fun String?.web_deleteWebProfile(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.deleteWebProfile(name) ?: false
+    return engine.getWebEngine()?.deleteWebProfile(this) ?: false
 }
 
 /**
@@ -1576,67 +1566,62 @@ fun web_getAllWebProfileNames(
 
 /**
  * 设置 ServiceWorker 客户端 ( 需 SERVICE_WORKER_BASIC_USAGE 特性 )
+ * @receiver ServiceWorker 客户端 ( ServiceWorkerClientCompat )
  * @param engine String?
- * @param client ServiceWorker 客户端 ( ServiceWorkerClientCompat )
  * @return `true` success, `false` fail
  */
-fun web_setServiceWorkerClient(
-    engine: String? = null,
-    client: Any?
+fun Any?.web_setServiceWorkerClient(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setServiceWorkerClient(client) ?: false
+    return engine.getWebEngine()?.setServiceWorkerClient(this) ?: false
 }
 
 /**
  * 设置 ServiceWorker 是否允许访问 content:// 资源 ( 需 SERVICE_WORKER_CONTENT_ACCESS 特性 )
+ * @receiver 是否允许
  * @param engine String?
- * @param allow 是否允许
  * @return `true` success, `false` fail
  */
-fun web_setServiceWorkerAllowContentAccess(
-    engine: String? = null,
-    allow: Boolean
+fun Boolean.web_setServiceWorkerAllowContentAccess(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setServiceWorkerAllowContentAccess(allow) ?: false
+    return engine.getWebEngine()?.setServiceWorkerAllowContentAccess(this) ?: false
 }
 
 /**
  * 设置 ServiceWorker 是否允许访问文件 ( 需 SERVICE_WORKER_FILE_ACCESS 特性 )
+ * @receiver 是否允许
  * @param engine String?
- * @param allow 是否允许
  * @return `true` success, `false` fail
  */
-fun web_setServiceWorkerAllowFileAccess(
-    engine: String? = null,
-    allow: Boolean
+fun Boolean.web_setServiceWorkerAllowFileAccess(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setServiceWorkerAllowFileAccess(allow) ?: false
+    return engine.getWebEngine()?.setServiceWorkerAllowFileAccess(this) ?: false
 }
 
 /**
  * 设置 ServiceWorker 是否不从网络加载资源 ( 需 SERVICE_WORKER_BLOCK_NETWORK_LOADS 特性 )
+ * @receiver 是否阻止
  * @param engine String?
- * @param block 是否阻止
  * @return `true` success, `false` fail
  */
-fun web_setServiceWorkerBlockNetworkLoads(
-    engine: String? = null,
-    block: Boolean
+fun Boolean.web_setServiceWorkerBlockNetworkLoads(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setServiceWorkerBlockNetworkLoads(block) ?: false
+    return engine.getWebEngine()?.setServiceWorkerBlockNetworkLoads(this) ?: false
 }
 
 /**
  * 设置 ServiceWorker 缓存模式 ( 需 SERVICE_WORKER_CACHE_MODE 特性 )
+ * @receiver 缓存模式
  * @param engine String?
- * @param mode 缓存模式
  * @return `true` success, `false` fail
  */
-fun web_setServiceWorkerCacheMode(
-    engine: String? = null,
-    mode: Int
+fun Int.web_setServiceWorkerCacheMode(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setServiceWorkerCacheMode(mode) ?: false
+    return engine.getWebEngine()?.setServiceWorkerCacheMode(this) ?: false
 }
 
 /**
@@ -1652,15 +1637,14 @@ fun web_isWebViewTracing(
 
 /**
  * 开始性能跟踪 ( 需 TRACING_CONTROLLER_BASIC_USAGE 特性 )
+ * @receiver 跟踪配置 ( TracingConfig )
  * @param engine String?
- * @param config 跟踪配置 ( TracingConfig )
  * @return `true` success, `false` fail
  */
-fun web_startWebViewTracing(
-    engine: String? = null,
-    config: Any?
+fun Any?.web_startWebViewTracing(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.startWebViewTracing(config) ?: false
+    return engine.getWebEngine()?.startWebViewTracing(this) ?: false
 }
 
 /**
@@ -1692,15 +1676,14 @@ fun <Item : IWebEngine.EngineItem> Item?.web_getBackForwardCacheSettings(
 
 /**
  * 设置 WebView 默认流量统计 TAG ( 需 DEFAULT_TRAFFICSTATS_TAGGING 特性 )
+ * @receiver 流量统计 TAG
  * @param engine String?
- * @param tag 流量统计 TAG
  * @return `true` success, `false` fail
  */
-fun web_setDefaultTrafficStatsTag(
-    engine: String? = null,
-    tag: Int
+fun Int.web_setDefaultTrafficStatsTag(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setDefaultTrafficStatsTag(tag) ?: false
+    return engine.getWebEngine()?.setDefaultTrafficStatsTag(this) ?: false
 }
 
 /**
@@ -1832,15 +1815,14 @@ fun web_getCoreType(
 
 /**
  * 获取内核版本
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @return 内核版本 ( 如 System WebView 包版本、X5 TbsVersion、GeckoView buildId )
  */
-fun web_getCoreVersion(
-    engine: String? = null,
-    context: Context?
+fun Context?.web_getCoreVersion(
+    engine: String? = null
 ): String? {
-    return engine.getWebEngine()?.getCoreVersion(context)
+    return engine.getWebEngine()?.getCoreVersion(this)
 }
 
 /**
@@ -1863,60 +1845,56 @@ fun web_isCoreReady(
 
 /**
  * 将 Cookie 设置到 WebView
+ * @receiver 加载的 Url
  * @param engine String?
- * @param url 加载的 Url
  * @param cookie 同步的 cookie
  * @return `true` success, `false` fail
  */
-fun web_setCookie(
+fun String?.web_setCookie(
     engine: String? = null,
-    url: String?,
     cookie: String?
 ): Boolean {
-    return engine.getWebEngine()?.setCookie(url, cookie) ?: false
+    return engine.getWebEngine()?.setCookie(this, cookie) ?: false
 }
 
 /**
  * 将 Cookie 设置到 WebView ( 带设置结果回调 )
+ * @receiver 加载的 Url
  * @param engine String?
- * @param url 加载的 Url
  * @param cookie 同步的 cookie
  * @param callback 设置结果回调 ( ValueCallback )
  * @return `true` success, `false` fail
  */
-fun web_setCookie(
+fun String?.web_setCookie(
     engine: String? = null,
-    url: String?,
     cookie: String?,
     callback: Any?
 ): Boolean {
-    return engine.getWebEngine()?.setCookie(url, cookie, callback) ?: false
+    return engine.getWebEngine()?.setCookie(this, cookie, callback) ?: false
 }
 
 /**
  * 获取指定 Url 的 Cookie
+ * @receiver Url
  * @param engine String?
- * @param url Url
  * @return Cookie
  */
-fun web_getCookie(
-    engine: String? = null,
-    url: String?
+fun String?.web_getCookie(
+    engine: String? = null
 ): String? {
-    return engine.getWebEngine()?.getCookie(url)
+    return engine.getWebEngine()?.getCookie(this)
 }
 
 /**
  * 设置是否接受 Cookie
+ * @receiver 是否接受
  * @param engine String?
- * @param accept 是否接受
  * @return `true` success, `false` fail
  */
-fun web_setAcceptCookie(
-    engine: String? = null,
-    accept: Boolean
+fun Boolean.web_setAcceptCookie(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.setAcceptCookie(accept) ?: false
+    return engine.getWebEngine()?.setAcceptCookie(this) ?: false
 }
 
 /**
@@ -1969,40 +1947,37 @@ fun web_hasCookies(
 
 /**
  * 移除 Cookie ( Session、All )
+ * @receiver 移除回调 ( ValueCallback )
  * @param engine String?
- * @param callback 移除回调 ( ValueCallback )
  */
-fun web_removeCookie(
-    engine: String? = null,
-    callback: Any?
+fun Any?.web_removeCookie(
+    engine: String? = null
 ) {
-    engine.getWebEngine()?.removeCookie(callback)
+    engine.getWebEngine()?.removeCookie(this)
 }
 
 /**
  * 移除 Session Cookie
+ * @receiver 移除回调 ( ValueCallback )
  * @param engine String?
- * @param callback 移除回调 ( ValueCallback )
  * @return `true` success, `false` fail
  */
-fun web_removeSessionCookie(
-    engine: String? = null,
-    callback: Any?
+fun Any?.web_removeSessionCookie(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.removeSessionCookie(callback) ?: false
+    return engine.getWebEngine()?.removeSessionCookie(this) ?: false
 }
 
 /**
  * 移除所有的 Cookie
+ * @receiver 移除回调 ( ValueCallback )
  * @param engine String?
- * @param callback 移除回调 ( ValueCallback )
  * @return `true` success, `false` fail
  */
-fun web_removeAllCookie(
-    engine: String? = null,
-    callback: Any?
+fun Any?.web_removeAllCookie(
+    engine: String? = null
 ): Boolean {
-    return engine.getWebEngine()?.removeAllCookie(callback) ?: false
+    return engine.getWebEngine()?.removeAllCookie(this) ?: false
 }
 
 /**
@@ -2018,13 +1993,12 @@ fun web_flushCookie(
 
 /**
  * 获取指定 Url 全部 Cookie 的完整属性 ( 含 Domain、Path、Expires、Secure 等, 需 GET_COOKIE_INFO 特性 )
+ * @receiver Url
  * @param engine String?
- * @param url Url
  * @return 各条 Cookie 的完整属性字符串列表
  */
-fun web_getCookieInfo(
-    engine: String? = null,
-    url: String?
+fun String?.web_getCookieInfo(
+    engine: String? = null
 ): MutableList<String>? {
-    return engine.getWebEngine()?.getCookieInfo(url)
+    return engine.getWebEngine()?.getCookieInfo(this)
 }

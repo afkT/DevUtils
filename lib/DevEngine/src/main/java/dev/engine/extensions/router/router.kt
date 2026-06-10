@@ -83,14 +83,13 @@ fun router_isInitialized(
 
 /**
  * 设置是否为 Debug 环境
+ * @receiver 是否为 Debug 环境
  * @param engine String?
- * @param debug 是否为 Debug 环境
  */
-fun router_setDebug(
-    engine: String? = null,
-    debug: Boolean
+fun Boolean.router_setDebug(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.setDebug(debug)
+    engine.getRouterEngine()?.setDebug(this)
 }
 
 /**
@@ -106,270 +105,249 @@ fun router_isDebug(
 
 /**
  * 设置日志输出回调
+ * @receiver 日志输出回调
  * @param engine String?
- * @param callback 日志输出回调
  */
-fun router_setLogCallback(
-    engine: String? = null,
-    callback: IRouterEngine.OnLogCallback?
+fun IRouterEngine.OnLogCallback?.router_setLogCallback(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.setLogCallback(callback)
+    engine.getRouterEngine()?.setLogCallback(this)
 }
 
 /**
  * 为 Autowired 注解的变量赋值
+ * @receiver 目标对象
  * @param engine String?
- * @param target 目标对象
  */
-fun router_inject(
-    engine: String? = null,
-    target: Any?
+fun Any?.router_inject(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.inject(target)
+    engine.getRouterEngine()?.inject(this)
 }
 
 /**
  * 判断 url 是否为 TheRouter 的路由 Path
+ * @receiver 路由 url
  * @param engine String?
- * @param url 路由 url
  * @return `true` yes, `false` no
  */
-fun router_isRouterPath(
-    engine: String? = null,
-    url: String?
+fun String?.router_isRouterPath(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.isRouterPath(url) ?: false
+    return engine.getRouterEngine()?.isRouterPath(this) ?: false
 }
 
 /**
  * 判断 url 是否为 TheRouter 的 Action
+ * @receiver 路由 url
  * @param engine String?
- * @param url 路由 url
  * @return `true` yes, `false` no
  */
-fun router_isRouterAction(
-    engine: String? = null,
-    url: String?
+fun String?.router_isRouterAction(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.isRouterAction(url) ?: false
+    return engine.getRouterEngine()?.isRouterAction(this) ?: false
 }
 
 /**
  * 获取跨模块依赖的服务
+ * @receiver 服务类型
  * @param engine String?
- * @param clazz 服务类型
  * @param params 构造参数
  * @return 服务实例
  */
-fun <T : Any> router_getService(
+fun <T : Any> Class<T>.router_getService(
     engine: String? = null,
-    clazz: Class<T>,
     vararg params: Any?
 ): T? {
-    return engine.getRouterEngine()?.getService(clazz, *params)
+    return engine.getRouterEngine()?.getService(this, *params)
 }
 
 /**
  * 执行业务自定义 FlowTask
+ * @receiver 任务名
  * @param engine String?
- * @param taskName 任务名
  */
-fun router_runTask(
-    engine: String? = null,
-    taskName: String?
+fun String?.router_runTask(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.runTask(taskName)
+    engine.getRouterEngine()?.runTask(this)
 }
 
 /**
  * 设置全局默认路由跳转结果回调
+ * @receiver 跳转结果回调
  * @param engine String?
- * @param callback 跳转结果回调
  */
-fun router_setDefaultNavigationCallback(
-    engine: String? = null,
-    callback: IRouterEngine.OnNavigationCallback?
+fun IRouterEngine.OnNavigationCallback?.router_setDefaultNavigationCallback(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.setDefaultNavigationCallback(callback)
+    engine.getRouterEngine()?.setDefaultNavigationCallback(this)
 }
 
 /**
  * 新增 Path 修改器
+ * @receiver Path 修改器对象
  * @param engine String?
- * @param handle Path 修改器对象
  */
-fun router_addNavigatorPathFixHandle(
-    engine: String? = null,
-    handle: Any?
+fun Any?.router_addNavigatorPathFixHandle(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.addNavigatorPathFixHandle(handle)
+    engine.getRouterEngine()?.addNavigatorPathFixHandle(this)
 }
 
 /**
  * 移除 Path 修改器
+ * @receiver Path 修改器对象
  * @param engine String?
- * @param handle Path 修改器对象
  * @return `true` success, `false` fail
  */
-fun router_removeNavigatorPathFixHandle(
-    engine: String? = null,
-    handle: Any?
+fun Any?.router_removeNavigatorPathFixHandle(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.removeNavigatorPathFixHandle(handle) ?: false
+    return engine.getRouterEngine()?.removeNavigatorPathFixHandle(this) ?: false
 }
 
 /**
  * 新增 Path 替换拦截器
+ * @receiver Path 替换拦截器对象
  * @param engine String?
- * @param interceptor Path 替换拦截器对象
  */
-fun router_addPathReplaceInterceptor(
-    engine: String? = null,
-    interceptor: Any?
+fun Any?.router_addPathReplaceInterceptor(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.addPathReplaceInterceptor(interceptor)
+    engine.getRouterEngine()?.addPathReplaceInterceptor(this)
 }
 
 /**
  * 移除 Path 替换拦截器
+ * @receiver Path 替换拦截器对象
  * @param engine String?
- * @param interceptor Path 替换拦截器对象
  * @return `true` success, `false` fail
  */
-fun router_removePathReplaceInterceptor(
-    engine: String? = null,
-    interceptor: Any?
+fun Any?.router_removePathReplaceInterceptor(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.removePathReplaceInterceptor(interceptor) ?: false
+    return engine.getRouterEngine()?.removePathReplaceInterceptor(this) ?: false
 }
 
 /**
  * 新增路由替换拦截器
+ * @receiver 路由替换拦截器对象
  * @param engine String?
- * @param interceptor 路由替换拦截器对象
  */
-fun router_addRouterReplaceInterceptor(
-    engine: String? = null,
-    interceptor: Any?
+fun Any?.router_addRouterReplaceInterceptor(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.addRouterReplaceInterceptor(interceptor)
+    engine.getRouterEngine()?.addRouterReplaceInterceptor(this)
 }
 
 /**
  * 移除路由替换拦截器
+ * @receiver 路由替换拦截器对象
  * @param engine String?
- * @param interceptor 路由替换拦截器对象
  * @return `true` success, `false` fail
  */
-fun router_removeRouterReplaceInterceptor(
-    engine: String? = null,
-    interceptor: Any?
+fun Any?.router_removeRouterReplaceInterceptor(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.removeRouterReplaceInterceptor(interceptor) ?: false
+    return engine.getRouterEngine()?.removeRouterReplaceInterceptor(this) ?: false
 }
 
 /**
  * 新增 Action 拦截器
+ * @receiver Action
  * @param engine String?
- * @param action Action
  * @param interceptor Action 拦截器对象
  */
-fun router_addActionInterceptor(
+fun String?.router_addActionInterceptor(
     engine: String? = null,
-    action: String?,
     interceptor: Any?
 ) {
-    engine.getRouterEngine()?.addActionInterceptor(action, interceptor)
+    engine.getRouterEngine()?.addActionInterceptor(this, interceptor)
 }
 
 /**
  * 移除 Action 拦截器
+ * @receiver Action
  * @param engine String?
- * @param action Action
  * @param interceptor Action 拦截器对象
  */
-fun router_removeActionInterceptor(
+fun String?.router_removeActionInterceptor(
     engine: String? = null,
-    action: String?,
     interceptor: Any?
 ) {
-    engine.getRouterEngine()?.removeActionInterceptor(action, interceptor)
+    engine.getRouterEngine()?.removeActionInterceptor(this, interceptor)
 }
 
 /**
  * 移除指定 Action 的全部拦截器
+ * @receiver Action
  * @param engine String?
- * @param action Action
  */
-fun router_removeAllInterceptorForKey(
-    engine: String? = null,
-    action: String?
+fun String?.router_removeAllInterceptorForKey(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.removeAllInterceptorForKey(action)
+    engine.getRouterEngine()?.removeAllInterceptorForKey(this)
 }
 
 /**
  * 移除指定拦截器 ( 所有 Action 共用 )
+ * @receiver Action 拦截器对象
  * @param engine String?
- * @param interceptor Action 拦截器对象
  */
-fun router_removeAllInterceptorForValue(
-    engine: String? = null,
-    interceptor: Any?
+fun Any?.router_removeAllInterceptorForValue(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.removeAllInterceptorForValue(interceptor)
+    engine.getRouterEngine()?.removeAllInterceptorForValue(this)
 }
 
 /**
  * 新增 Autowired 注解解析器
+ * @receiver Autowired 解析器对象
  * @param engine String?
- * @param parser Autowired 解析器对象
  */
-fun router_addAutowiredParser(
-    engine: String? = null,
-    parser: Any?
+fun Any?.router_addAutowiredParser(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.addAutowiredParser(parser)
+    engine.getRouterEngine()?.addAutowiredParser(this)
 }
 
 /**
  * 手动初始化 Router Engine
+ * @receiver Context 对象
  * @param engine String?
- * @param context Context 对象
  * @return `true` success, `false` fail
  */
-fun router_init(
-    engine: String? = null,
-    context: Context?
+fun Context?.router_init(
+    engine: String? = null
 ): Boolean {
-    return engine.getRouterEngine()?.init(context) ?: false
+    return engine.getRouterEngine()?.init(this) ?: false
 }
 
 /**
  * 手动初始化 Router Engine
+ * @receiver Context 对象
  * @param engine String?
- * @param context Context 对象
  * @param asyncInitRouterInject 是否异步初始化 Autowired 注入表
  * @return `true` success, `false` fail
  */
-fun router_init(
+fun Context?.router_init(
     engine: String? = null,
-    context: Context?,
     asyncInitRouterInject: Boolean
 ): Boolean {
-    return engine.getRouterEngine()?.init(context, asyncInitRouterInject) ?: false
+    return engine.getRouterEngine()?.init(this, asyncInitRouterInject) ?: false
 }
 
 /**
  * 设置路由 AOP 拦截器
+ * @receiver 路由 AOP 拦截器对象 ( RouterInterceptor 或 OnRouterInterceptor )
  * @param engine String?
- * @param interceptor 路由 AOP 拦截器对象 ( RouterInterceptor 或 OnRouterInterceptor )
  */
-fun router_setRouterInterceptor(
-    engine: String? = null,
-    interceptor: Any?
+fun Any?.router_setRouterInterceptor(
+    engine: String? = null
 ) {
-    engine.getRouterEngine()?.setRouterInterceptor(interceptor)
+    engine.getRouterEngine()?.setRouterInterceptor(this)
 }
 
 /**
@@ -384,15 +362,14 @@ fun router_sendPendingNavigator(
 
 /**
  * 获取 Navigator 全局 Object 参数
+ * @receiver 参数 key
  * @param engine String?
- * @param key 参数 key
  * @return 参数值
  */
-fun router_optGlobalObject(
-    engine: String? = null,
-    key: String?
+fun String?.router_optGlobalObject(
+    engine: String? = null
 ): Any? {
-    return engine.getRouterEngine()?.optGlobalObject(key)
+    return engine.getRouterEngine()?.optGlobalObject(this)
 }
 
 // =================
@@ -401,15 +378,14 @@ fun router_optGlobalObject(
 
 /**
  * 通过 Path 构建 Navigator ( 不跳转 )
+ * @receiver 路由 Path / Url
  * @param engine String?
- * @param path 路由 Path / Url
  * @return Navigator 对象
  */
-fun router_build(
-    engine: String? = null,
-    path: String?
+fun String?.router_build(
+    engine: String? = null
 ): Any? {
-    return engine.getRouterEngine()?.build(path)
+    return engine.getRouterEngine()?.build(this)
 }
 
 /**
@@ -426,15 +402,14 @@ fun <Item : IRouterEngine.EngineItem> Item?.router_build(
 
 /**
  * 通过 Intent 构建 Navigator ( 不跳转 )
+ * @receiver Intent
  * @param engine String?
- * @param intent Intent
  * @return Navigator 对象
  */
-fun router_build(
-    engine: String? = null,
-    intent: Intent?
+fun Intent?.router_build(
+    engine: String? = null
 ): Any? {
-    return engine.getRouterEngine()?.build(intent)
+    return engine.getRouterEngine()?.build(this)
 }
 
 // ====================
