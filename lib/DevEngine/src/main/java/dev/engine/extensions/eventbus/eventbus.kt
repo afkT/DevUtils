@@ -33,29 +33,25 @@ fun String?.getEventBusEngine(): IEventBusEngine<in IEventBusEngine.EngineConfig
 /**
  * 初始化方法
  * @param engine String?
- * @param config EventBus Config
  * @return `true` success, `false` fail
  */
-fun <Config : IEventBusEngine.EngineConfig> eventbus_initialize(
-    engine: String? = null,
-    config: Config
+fun <Config : IEventBusEngine.EngineConfig> Config.eventbus_initialize(
+    engine: String? = null
 ): Boolean {
-    return engine.getEventBusEngine()?.initialize(config) ?: false
+    return engine.getEventBusEngine()?.initialize(this) ?: false
 }
 
 /**
  * 应用事件配置
  * @param engine String?
  * @param key key
- * @param config EventBus Config
  * @return `true` success, `false` fail
  */
-fun <Config : IEventBusEngine.EngineConfig> eventbus_config(
+fun <Config : IEventBusEngine.EngineConfig> Config.eventbus_config(
     engine: String? = null,
-    key: String,
-    config: Config
+    key: String
 ): Boolean {
-    return engine.getEventBusEngine()?.config(key, config) ?: false
+    return engine.getEventBusEngine()?.config(key, this) ?: false
 }
 
 // ==========
