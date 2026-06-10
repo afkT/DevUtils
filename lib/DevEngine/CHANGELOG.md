@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 1.1.9 *(2026-06-11)*
+----------------------------
+
+* `[Add]` 实现下拉刷新引擎 SmartRefreshLayout 适配：配置类、弱引用 `RefreshItem`、`release()` 及完整 Kotlin 扩展函数
+
+* `[Add]` 实现事件总线 LiveEventBus 引擎：`EventBusConfig`、空安全校验与扩展函数；重构初始化/配置为接收者扩展
+
+* `[Add]` 实现 WebView 系统引擎：默认性能配置、AndroidX WebKit 特性封装、Cookie 同步落盘；修复销毁与兼容性 API 调用的异常崩溃
+
+* `[Add]` 扩展 Glide 图片引擎与 `image` 扩展函数；修复文件处理返回值及 `ImageConfig` 链式调用
+
+* `[Add]` 实现 DialogX PopTip / PopNotification 引擎及扩展函数：单例管理、对齐常量、安全类型转换与 `LifecycleOwner` 生命周期绑定
+
+* `[Add]` 实现 TheRouter 路由引擎及 `router` 扩展函数：拦截器、导航恢复、参数填充与异步回调
+
+* `[Refactor]` 各引擎 `extensions` 扩展函数统一改为接收者（receiver）风格，配置/初始化方法改为 `Config`、`Application` 等类型扩展；补充 analytics、barcode、cache、web 等模块 KDoc
+
+* `[Upgrade]` 重构模块依赖：DialogX、设备兼容、MVVM 绑定适配器等迁入 DevEngine；调整 Gradle 依赖分组
+
+* `[Chore]` 依赖 DevApp、DevAssist 库同步升级
+
 Version 1.1.8 *(2026-05-20)*
 ----------------------------
 

@@ -33,20 +33,20 @@ ext {
             dev_app_versionName                      : "2.5.3",
 
             // DevAssist - 封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等
-            dev_assist_versionCode                   : 146,
-            dev_assist_versionName                   : "1.4.6",
+            dev_assist_versionCode                   : 147,
+            dev_assist_versionName                   : "1.4.7",
 
             // DevBase - Base ( Activity、Fragment ) MVP、MVVM 基类库
             dev_base_versionCode                     : 123,
             dev_base_versionName                     : "1.2.3",
 
             // DevEngine - 第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
-            dev_engine_versionCode                   : 118,
-            dev_engine_versionName                   : "1.1.8",
+            dev_engine_versionCode                   : 119,
+            dev_engine_versionName                   : "1.1.9",
 
             // DevSimple - 简单敏捷开发库
-            dev_simple_versionCode                   : 107,
-            dev_simple_versionName                   : "1.0.7",
+            dev_simple_versionCode                   : 108,
+            dev_simple_versionName                   : "1.0.8",
 
             // DevWidget - 自定义 View UI 库
             dev_widget_versionCode                   : 128,

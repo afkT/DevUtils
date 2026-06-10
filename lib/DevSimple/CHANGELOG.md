@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.0.8 *(2026-06-11)*
+----------------------------
+
+* `[Update]` `StateIntLiveData` 重命名为 `StateIntMutableLiveData`，并新增加载、刷新、加载更多、保存及断连等状态常量及 `is*` / `set*` / `post*` / `smartUpdate*` 方法
+
+* `[Add]` `StateIntBinding` 补充与上述状态对应的 DataBinding 判断方法；LiveData 绑定方法重命名以支持值过滤
+
+* `[Update]` `WebViewAssist` 与 WebView 引擎能力对齐；`ValueMutableLiveData` 命名与文档同步调整
+
+* `[Chore]` 依赖 DevAssist、DevEngine 等库同步升级
+
 Version 1.0.7 *(2026-05-20)*
 ----------------------------
 

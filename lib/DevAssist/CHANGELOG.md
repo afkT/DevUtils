@@ -1,6 +1,25 @@
 Change Log
 ==========
 
+Version 1.4.7 *(2026-06-11)*
+----------------------------
+
+* `[Add]` 新增下拉刷新上拉加载引擎 `IRefreshEngine`、`DevRefreshEngine`，扩展头部底部尺寸、拖拽动画、开关与状态查询等接口能力；`view()` 改为 `WeakReference<View>` 以降低内存泄漏风险
+
+* `[Add]` 新增事件总线引擎 `IEventBusEngine`、`DevEventBusEngine`，支持 LiveEventBus 初始化配置、跨进程/应用广播；移除 sticky 事件接口
+
+* `[Add]` 新增 WebView 引擎 `IWebEngine`、`DevWebEngine`，集成 AndroidX WebKit（升级至 1.17.0-alpha01），覆盖 postMessage、暗色模式、安全浏览、代理、PaymentRequest、WebAuthn、BFCache 等跨内核能力；扩展页面监听、Cookie 策略、状态保存与缓存模式可空配置
+
+* `[Add]` 扩展 `IImageEngine`：暂停/恢复加载、预加载、缓存清理、低内存回调及多种 `ImageView` 显示与格式转换重载
+
+* `[Add]` 新增 PopTip 引擎 `IPopTipEngine`、`DevPopTipEngine`：非阻断式文本提示，支持主题样式、自定义布局、状态图标、按钮文本/资源 ID、单例句柄与生命周期绑定（`LifecycleOwner`）
+
+* `[Add]` 新增 PopNotification 引擎 `IPopNotificationEngine`、`DevPopNotificationEngine`：非阻断式通知条，支持单例/多例、覆盖动画与位移拦截器配置
+
+* `[Add]` 新增路由引擎 `IRouterEngine`、`DevRouterEngine`：集成 TheRouter，提供页面导航、参数注入、AOP 拦截、异步 Intent/Fragment 创建及跨模块服务获取；接口参数由 `Object` 收紧为 `Context`、`Fragment`、`Uri` 等具体类型
+
+* `[Refactor]` PopTip、PopNotification 配置项按功能分组并补充 DialogX 映射注释；路由引擎接口注释与泛型约束优化
+
 Version 1.4.6 *(2026-05-20)*
 ----------------------------
 
