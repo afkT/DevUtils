@@ -10,7 +10,7 @@ import dev.engine.toast.IToastEngine
 
 /**
  * 通过 Key 获取 Toast Engine
- * @param engine String?
+ * @receiver String?
  * @return IToastEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Toast Engine
  */

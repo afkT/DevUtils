@@ -11,7 +11,7 @@ import dev.engine.eventbus.IEventBusEngine
 
 /**
  * 通过 Key 获取 EventBus Engine
- * @param engine String?
+ * @receiver String?
  * @return IEventBusEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 EventBus Engine
  */

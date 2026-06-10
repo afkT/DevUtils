@@ -10,7 +10,7 @@ import java.lang.reflect.Type
 
 /**
  * 通过 Key 获取 JSON Engine
- * @param engine String?
+ * @receiver String?
  * @return IJSONEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 JSON Engine
  */

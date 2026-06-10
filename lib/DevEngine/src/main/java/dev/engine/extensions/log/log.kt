@@ -9,7 +9,7 @@ import dev.engine.log.ILogEngine
 
 /**
  * 通过 Key 获取 Log Engine
- * @param engine String?
+ * @receiver String?
  * @return ILogEngine
  * 内部做了处理如果匹配不到则返回默认 Log Engine
  */

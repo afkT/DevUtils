@@ -12,7 +12,7 @@ import dev.engine.permission.IPermissionEngine
 
 /**
  * 通过 Key 获取 Permission Engine
- * @param engine String?
+ * @receiver String?
  * @return IPermissionEngine
  * 内部做了处理如果匹配不到则返回默认 Permission Engine
  */

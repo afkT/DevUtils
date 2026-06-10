@@ -11,7 +11,7 @@ import dev.engine.analytics.IAnalyticsEngine
 
 /**
  * 通过 Key 获取 Analytics Engine
- * @param engine String?
+ * @receiver String?
  * @return IAnalyticsEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Analytics Engine
  */

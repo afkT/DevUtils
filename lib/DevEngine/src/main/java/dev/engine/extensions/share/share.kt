@@ -14,7 +14,7 @@ import dev.engine.share.listener.ShareListener
 
 /**
  * 通过 Key 获取 Share Engine
- * @param engine String?
+ * @receiver String?
  * @return IShareEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Share Engine
  */

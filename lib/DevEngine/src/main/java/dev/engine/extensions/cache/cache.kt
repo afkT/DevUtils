@@ -17,7 +17,7 @@ import java.lang.reflect.Type
 
 /**
  * 通过 Key 获取 Cache Engine
- * @param engine String?
+ * @receiver String?
  * @return ICacheEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Cache Engine
  */

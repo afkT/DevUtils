@@ -11,7 +11,7 @@ import dev.engine.push.IPushEngine
 
 /**
  * 通过 Key 获取 Push Engine
- * @param engine String?
+ * @receiver String?
  * @return IPushEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Push Engine
  */

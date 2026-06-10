@@ -14,7 +14,7 @@ import dev.engine.media.IMediaEngine
 
 /**
  * 通过 Key 获取 Media Engine
- * @param engine String?
+ * @receiver String?
  * @return IMediaEngine<EngineConfig, EngineData>
  * 内部做了处理如果匹配不到则返回默认 Media Engine
  */

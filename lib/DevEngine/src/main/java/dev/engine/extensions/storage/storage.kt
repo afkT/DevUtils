@@ -11,7 +11,7 @@ import dev.engine.storage.listener.OnInsertListener
 
 /**
  * 通过 Key 获取 Storage Engine
- * @param engine String?
+ * @receiver String?
  * @return IStorageEngine<EngineItem, EngineResult>
  * 内部做了处理如果匹配不到则返回默认 Storage Engine
  */

@@ -18,7 +18,7 @@ import dev.engine.image.listener.OnConvertListener
 
 /**
  * 通过 Key 获取 Image Engine
- * @param engine String?
+ * @receiver String?
  * @return IImageEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 Image Engine
  */

@@ -12,7 +12,7 @@ import dev.engine.compress.listener.OnRenameListener
 
 /**
  * 通过 Key 获取 Compress Engine
- * @param engine String?
+ * @receiver String?
  * @return ICompressEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 Compress Engine
  */

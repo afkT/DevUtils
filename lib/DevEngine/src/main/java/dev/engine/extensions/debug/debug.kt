@@ -10,7 +10,7 @@ import dev.engine.debug.IDebugEngine
 
 /**
  * 通过 Key 获取 Debug Engine
- * @param engine String?
+ * @receiver String?
  * @return IDebugEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 Debug Engine
  */

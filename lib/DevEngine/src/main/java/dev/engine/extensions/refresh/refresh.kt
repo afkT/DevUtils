@@ -12,7 +12,7 @@ import dev.engine.refresh.IRefreshEngine
 
 /**
  * 通过 Key 获取 Refresh Engine
- * @param engine String?
+ * @receiver String?
  * @return IRefreshEngine<EngineConfig, EngineItem>
  * 内部做了处理如果匹配不到则返回默认 Refresh Engine
  */
