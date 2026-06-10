@@ -62,7 +62,7 @@ class FloatingWindowManagerViewModel : AppViewModel() {
         if (FloatingWindowManagerAssist.canDrawOverlays(AppContext.context())) {
             return true
         }
-        toast_showShort(text = "请先开启悬浮窗权限")
+        "请先开启悬浮窗权限".toast_showShort()
         intentRouter()
         return false
     }
@@ -135,7 +135,7 @@ internal class Utils private constructor() {
                     firstPoint: PointF
                 ): Boolean {
                     if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                        toast_showShort(text = "触发点击")
+                        "触发点击".toast_showShort()
                     }
                     return true
                 }
@@ -146,7 +146,7 @@ internal class Utils private constructor() {
                     firstPoint: PointF
                 ): Boolean {
                     if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                        toast_showShort(text = "触发长按")
+                        "触发长按".toast_showShort()
                     }
                     return true
                 }

@@ -39,23 +39,23 @@ class JSONViewModel : AppViewModel() {
     val clickToJson = View.OnClickListener {
         val json = mockUser.toJson()
         "toJson: $json".log_dTag(tag = TAG)
-        toast_showShort(text = "toJson: $json")
+        "toJson: $json".toast_showShort()
     }
 
     val clickToJsonIndent = View.OnClickListener {
         val json = mockUser.toJsonIndent()
         "toJsonIndent:\n$json".log_dTag(tag = TAG)
-        toast_showShort(text = "toJsonIndent 已打印, 请查看 Logcat")
+        "toJsonIndent 已打印, 请查看 Logcat".toast_showShort()
     }
 
     val clickFromJson = View.OnClickListener {
         val user = MOCK_JSON.fromJson(classOfT = JsonUser::class.java)
-        toast_showShort(text = "fromJson: $user")
+        "fromJson: $user".toast_showShort()
     }
 
     val clickIsJSON = View.OnClickListener {
         val result = MOCK_JSON.isJSON()
-        toast_showShort(text = "isJSON: $result")
+        "isJSON: $result".toast_showShort()
     }
 }
 

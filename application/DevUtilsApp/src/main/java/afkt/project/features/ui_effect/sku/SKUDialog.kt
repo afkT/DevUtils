@@ -146,7 +146,7 @@ class SKUDialog(
                     callback.callback(spec, mNumberAssist.currentNumber, buyType)
                 }
             } else {
-                toast_showShort(text = "请选择规格")
+                "请选择规格".toast_showShort()
             }
         }
 

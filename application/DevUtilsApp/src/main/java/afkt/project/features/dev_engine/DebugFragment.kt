@@ -31,21 +31,21 @@ class DebugViewModel : AppViewModel() {
 
     val clickAttachDebug = View.OnClickListener { view ->
         (ActivityUtils.getActivity(view) as? FragmentActivity)?.debug_attachDebug()
-        toast_showShort(text = "attachDebug 已调用")
+        "attachDebug 已调用".toast_showShort()
     }
 
     val clickDetachDebug = View.OnClickListener { view ->
         (ActivityUtils.getActivity(view) as? FragmentActivity)?.debug_detachDebug()
-        toast_showShort(text = "detachDebug 已调用")
+        "detachDebug 已调用".toast_showShort()
     }
 
     val clickSetDebugFunction = View.OnClickListener {
         true.debug_setDebugFunction()
-        toast_showShort(text = "setDebugFunction(true) 已调用")
+        "setDebugFunction(true) 已调用".toast_showShort()
     }
 
     val clickIsDisplay = View.OnClickListener {
         val display = debug_isDisplayDebugFunction()
-        toast_showShort(text = "isDisplayDebugFunction: $display")
+        "isDisplayDebugFunction: $display".toast_showShort()
     }
 }

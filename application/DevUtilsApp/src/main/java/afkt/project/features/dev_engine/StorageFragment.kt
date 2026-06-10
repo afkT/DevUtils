@@ -39,13 +39,11 @@ class StorageViewModel : AppViewModel() {
                     params: StorageItem?,
                     source: DevSource?
                 ) {
-                    toast_showShort(
-                        text = if (result.isSuccess()) {
-                            "图片已存储至外部相册"
-                        } else {
-                            "图片存储失败"
-                        }
-                    )
+                    if (result.isSuccess()) {
+                        "图片已存储至外部相册"
+                    } else {
+                        "图片存储失败"
+                    }.toast_showShort()
                 }
             }
         )

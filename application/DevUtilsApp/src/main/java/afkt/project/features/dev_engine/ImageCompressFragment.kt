@@ -61,7 +61,7 @@ class ImageCompressViewModel : AppViewModel() {
                     index: Int,
                     count: Int
                 ) {
-                    toast_showShort(text = "压缩失败: ${error?.message}")
+                    "压缩失败: ${error?.message}".toast_showShort()
                 }
 
                 override fun onComplete(
@@ -69,10 +69,10 @@ class ImageCompressViewModel : AppViewModel() {
                     maps: MutableMap<Int, File>?,
                     count: Int
                 ) {
-                    toast_showShort(text = "压缩完成, 共 ${lists?.size ?: 0} 张")
+                    "压缩完成, 共 ${lists?.size ?: 0} 张".toast_showShort()
                 }
             }
         )
-        if (!result) toast_showShort(text = "压缩启动失败")
+        if (!result) "压缩启动失败".toast_showShort()
     }
 }

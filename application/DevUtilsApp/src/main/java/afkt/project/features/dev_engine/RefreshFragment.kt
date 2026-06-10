@@ -60,14 +60,14 @@ class RefreshViewModel : AppViewModel() {
                 override fun onRefresh(refreshView: View) {
                     refreshView.postDelayed({
                         refreshCount++
-                        toast_showShort(text = "刷新成功, 第 $refreshCount 次")
+                        "刷新成功, 第 $refreshCount 次".toast_showShort()
                         item.refresh_finishRefresh()
                     }, mockDelay)
                 }
 
                 override fun onLoadMore(refreshView: View) {
                     refreshView.postDelayed({
-                        toast_showShort(text = "加载更多完成")
+                        "加载更多完成".toast_showShort()
                         item.refresh_finishLoadMore()
                     }, mockDelay)
                 }

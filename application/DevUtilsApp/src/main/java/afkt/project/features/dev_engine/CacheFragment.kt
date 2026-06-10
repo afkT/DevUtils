@@ -33,35 +33,35 @@ class CacheViewModel : AppViewModel() {
 
     val clickPut = View.OnClickListener {
         val result = KEY.cache_put(value = "DevUtils 缓存内容", validTime = VALID_TIME)
-        toast_showShort(text = "put ( 有效期 5 秒 ): $result")
+        "put ( 有效期 5 秒 ): $result".toast_showShort()
     }
 
     val clickGet = View.OnClickListener {
         val value = KEY.cache_getString()
-        toast_showShort(text = "getString: $value")
+        "getString: $value".toast_showShort()
     }
 
     val clickContains = View.OnClickListener {
         val result = KEY.cache_contains()
-        toast_showShort(text = "contains: $result")
+        "contains: $result".toast_showShort()
     }
 
     val clickIsDue = View.OnClickListener {
         val result = KEY.cache_isDue()
-        toast_showShort(text = "isDue 是否过期: $result")
+        "isDue 是否过期: $result".toast_showShort()
     }
 
     val clickInfo = View.OnClickListener {
-        toast_showShort(text = "count: ${cache_getCount()}, size: ${cache_getSize()}")
+        "count: ${cache_getCount()}, size: ${cache_getSize()}".toast_showShort()
     }
 
     val clickClearDue = View.OnClickListener {
         cache_clearDue()
-        toast_showShort(text = "clearDue 清除过期缓存完成")
+        "clearDue 清除过期缓存完成".toast_showShort()
     }
 
     val clickClear = View.OnClickListener {
         cache_clear()
-        toast_showShort(text = "clear 清空全部完成")
+        "clear 清空全部完成".toast_showShort()
     }
 }

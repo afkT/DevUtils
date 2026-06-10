@@ -85,15 +85,14 @@ fun <Item : IPopNotificationEngine.EngineItem> Item?.popnotification_build(
 
 /**
  * 构建 PopNotification ( 不显示 )
+ * @receiver 自定义布局
  * @param engine String?
- * @param onBindView 自定义布局
  * @return PopNotification 对象
  */
-fun popnotification_buildView(
-    engine: String? = null,
-    onBindView: Any?
+fun Any?.popnotification_buildView(
+    engine: String? = null
 ): Any? {
-    return engine.getPopNotificationEngine()?.buildView(onBindView)
+    return engine.getPopNotificationEngine()?.buildView(this)
 }
 
 // =======================
@@ -102,58 +101,54 @@ fun popnotification_buildView(
 
 /**
  * 显示 PopNotification
+ * @receiver 标题文本
  * @param engine String?
- * @param title 标题文本
  * @return PopNotification 对象
  */
-fun popnotification_show(
-    engine: String? = null,
-    title: CharSequence?
+fun CharSequence?.popnotification_show(
+    engine: String? = null
 ): Any? {
-    return engine.getPopNotificationEngine()?.show(title)
+    return engine.getPopNotificationEngine()?.show(this)
 }
 
 /**
  * 显示 PopNotification
+ * @receiver 标题文本资源 id
  * @param engine String?
- * @param titleResId 标题文本资源 id
  * @return PopNotification 对象
  */
-fun popnotification_show(
-    engine: String? = null,
-    titleResId: Int
+fun Int.popnotification_show(
+    engine: String? = null
 ): Any? {
-    return engine.getPopNotificationEngine()?.show(titleResId)
+    return engine.getPopNotificationEngine()?.show(this)
 }
 
 /**
  * 显示 PopNotification
+ * @receiver 标题文本
  * @param engine String?
- * @param title 标题文本
  * @param message 提示文本
  * @return PopNotification 对象
  */
-fun popnotification_show(
+fun CharSequence?.popnotification_show(
     engine: String? = null,
-    title: CharSequence?,
     message: CharSequence?
 ): Any? {
-    return engine.getPopNotificationEngine()?.show(title, message)
+    return engine.getPopNotificationEngine()?.show(this, message)
 }
 
 /**
  * 显示 PopNotification
+ * @receiver 标题文本
  * @param engine String?
  * @param iconResId 图标资源 id
- * @param title 标题文本
  * @return PopNotification 对象
  */
-fun popnotification_show(
+fun CharSequence?.popnotification_show(
     engine: String? = null,
-    iconResId: Int,
-    title: CharSequence?
+    iconResId: Int
 ): Any? {
-    return engine.getPopNotificationEngine()?.show(iconResId, title)
+    return engine.getPopNotificationEngine()?.show(iconResId, this)
 }
 
 /**

@@ -62,7 +62,7 @@ class ActivityResultAPIViewModel : AppViewModel() {
             if (it) {
                 imageUri.updateValue(mAssist?.inputValue?.toSource())
             } else {
-                toast_showShort(text = "非成功操作")
+                "非成功操作".toast_showShort()
             }
         }.setOperateCallback(object : ActivityResultAssist.OperateCallback<Uri>() {
 
@@ -104,7 +104,7 @@ class ActivityResultAPIViewModel : AppViewModel() {
                 if (deniedList.isEmpty()) {
                     mAssist?.launch(MediaStoreUtils.createImageUri())
                 } else {
-                    toast_showShort(text = "拍照需摄像头权限")
+                    "拍照需摄像头权限".toast_showShort()
                 }
             }
         )

@@ -30,16 +30,16 @@ class AnalyticsViewModel : AppViewModel() {
     val clickTrack = View.OnClickListener {
         val item = object : IAnalyticsEngine.EngineItem {}
         val result = item.analytics_track()
-        toast_showShort(text = "track 埋点: $result ( 需配置统计平台实现 )")
+        "track 埋点: $result ( 需配置统计平台实现 )".toast_showShort()
     }
 
     val clickRegister = View.OnClickListener { view ->
         view.context.analytics_register<IAnalyticsEngine.EngineConfig>(config = null)
-        toast_showShort(text = "register 已调用")
+        "register 已调用".toast_showShort()
     }
 
     val clickUnregister = View.OnClickListener { view ->
         view.context.analytics_unregister<IAnalyticsEngine.EngineConfig>(config = null)
-        toast_showShort(text = "unregister 已调用")
+        "unregister 已调用".toast_showShort()
     }
 }

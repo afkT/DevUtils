@@ -200,7 +200,7 @@ class EventBusViewModel : AppViewModel() {
     ) {
         val message = "$source: $event"
         LogPrintUtils.dTag(EVENT_BUS_TAG, message)
-        toast_showShort(text = message)
+        message.toast_showShort()
     }
 }
 

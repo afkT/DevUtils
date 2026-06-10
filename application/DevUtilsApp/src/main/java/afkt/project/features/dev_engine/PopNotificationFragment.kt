@@ -33,12 +33,11 @@ class PopNotificationViewModel : AppViewModel() {
     }
 
     val clickShow = View.OnClickListener {
-        popnotification_show(title = "show 默认 PopNotification")
+        "show 默认 PopNotification".popnotification_show()
     }
 
     val clickShowTitleMessage = View.OnClickListener {
-        popnotification_show(
-            title = "PopNotification 标题",
+        "PopNotification 标题".popnotification_show(
             message = "这是 PopNotification 提示内容"
         )
     }
@@ -69,7 +68,7 @@ class PopNotificationViewModel : AppViewModel() {
                     dialog: Any?,
                     view: View?
                 ): Boolean {
-                    toast_showShort(text = "点击了 PopNotification 按钮")
+                    "点击了 PopNotification 按钮".toast_showShort()
                     return false
                 }
             }).popnotification_show()

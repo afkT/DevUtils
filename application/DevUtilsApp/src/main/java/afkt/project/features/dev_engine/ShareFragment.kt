@@ -32,20 +32,20 @@ class ShareViewModel : AppViewModel() {
         val result = ActivityUtils.getActivity(view)?.share_shareText<IShareEngine.EngineItem>(
             params = null, listener = null
         ) ?: false
-        toast_showShort(text = "shareText: $result ( 需配置分享平台实现 )")
+        "shareText: $result ( 需配置分享平台实现 )".toast_showShort()
     }
 
     val clickShareUrl = View.OnClickListener { view ->
         val result = ActivityUtils.getActivity(view)?.share_shareUrl<IShareEngine.EngineItem>(
             params = null, listener = null
         ) ?: false
-        toast_showShort(text = "shareUrl: $result ( 需配置分享平台实现 )")
+        "shareUrl: $result ( 需配置分享平台实现 )".toast_showShort()
     }
 
     val clickShareImage = View.OnClickListener { view ->
         val result = ActivityUtils.getActivity(view)?.share_shareImage<IShareEngine.EngineItem>(
             params = null, listener = null
         ) ?: false
-        toast_showShort(text = "shareImage: $result ( 需配置分享平台实现 )")
+        "shareImage: $result ( 需配置分享平台实现 )".toast_showShort()
     }
 }

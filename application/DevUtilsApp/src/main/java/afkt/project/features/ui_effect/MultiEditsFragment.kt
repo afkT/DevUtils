@@ -45,7 +45,7 @@ class MultiEditsFragment : AppFragment<FragmentUiEffectMultiEditsBinding, MultiE
                         .append(DevFinal.SYMBOL.NEW_LINE)
                 }
                 builder.toString().log_dTag(tag = TAG)
-                toast_showShort(text = "数据已打印, 请查看 Logcat")
+                "数据已打印, 请查看 Logcat".toast_showShort()
             }
         }
     }

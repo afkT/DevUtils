@@ -85,12 +85,12 @@ class WebViewModel : AppViewModel() {
         if (webItem?.web_canGoBack() == true) {
             webItem?.web_goBack()
         } else {
-            toast_showShort(text = "已经是第一个页面")
+            "已经是第一个页面".toast_showShort()
         }
     }
 
     val clickClearCache = View.OnClickListener {
         webItem?.web_clearCache(includeDiskFiles = true)
-        toast_showShort(text = "clearCache 清除缓存完成")
+        "clearCache 清除缓存完成".toast_showShort()
     }
 }

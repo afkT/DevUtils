@@ -73,114 +73,106 @@ fun <Config : IPushEngine.EngineConfig> Context.push_unregister(
 
 /**
  * 推送进程启动通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param pid Push 进程 ID
  */
-fun push_onReceiveServicePid(
+fun Context?.push_onReceiveServicePid(
     engine: String? = null,
-    context: Context?,
     pid: Int
 ) {
-    engine.getPushEngine()?.onReceiveServicePid(context, pid)
+    engine.getPushEngine()?.onReceiveServicePid(this, pid)
 }
 
 /**
  * 初始化 Client Id 成功通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param clientId 唯一 ID 用于标识当前应用
  */
-fun push_onReceiveClientId(
+fun Context?.push_onReceiveClientId(
     engine: String? = null,
-    context: Context?,
     clientId: String?
 ) {
-    engine.getPushEngine()?.onReceiveClientId(context, clientId)
+    engine.getPushEngine()?.onReceiveClientId(this, clientId)
 }
 
 /**
  * 设备 ( 厂商 ) Token 通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param deviceToken 设备 Token
  */
-fun push_onReceiveDeviceToken(
+fun Context?.push_onReceiveDeviceToken(
     engine: String? = null,
-    context: Context?,
     deviceToken: String?
 ) {
-    engine.getPushEngine()?.onReceiveDeviceToken(context, deviceToken)
+    engine.getPushEngine()?.onReceiveDeviceToken(this, deviceToken)
 }
 
 /**
  * 在线状态变化通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param online 是否在线
  */
-fun push_onReceiveOnlineState(
+fun Context?.push_onReceiveOnlineState(
     engine: String? = null,
-    context: Context?,
     online: Boolean
 ) {
-    engine.getPushEngine()?.onReceiveOnlineState(context, online)
+    engine.getPushEngine()?.onReceiveOnlineState(this, online)
 }
 
 /**
  * 命令回执通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param message Push ( Data、Params ) Item
  */
-fun <Item : IPushEngine.EngineItem> push_onReceiveCommandResult(
+fun <Item : IPushEngine.EngineItem> Context?.push_onReceiveCommandResult(
     engine: String? = null,
-    context: Context?,
     message: Item?
 ) {
-    engine.getPushEngine()?.onReceiveCommandResult(context, message)
+    engine.getPushEngine()?.onReceiveCommandResult(this, message)
 }
 
 /**
  * 推送消息送达通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param message Push ( Data、Params ) Item
  */
-fun <Item : IPushEngine.EngineItem> push_onNotificationMessageArrived(
+fun <Item : IPushEngine.EngineItem> Context?.push_onNotificationMessageArrived(
     engine: String? = null,
-    context: Context?,
     message: Item?
 ) {
-    engine.getPushEngine()?.onNotificationMessageArrived(context, message)
+    engine.getPushEngine()?.onNotificationMessageArrived(this, message)
 }
 
 /**
  * 推送消息点击通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param message Push ( Data、Params ) Item
  */
-fun <Item : IPushEngine.EngineItem> push_onNotificationMessageClicked(
+fun <Item : IPushEngine.EngineItem> Context?.push_onNotificationMessageClicked(
     engine: String? = null,
-    context: Context?,
     message: Item?
 ) {
-    engine.getPushEngine()?.onNotificationMessageClicked(context, message)
+    engine.getPushEngine()?.onNotificationMessageClicked(this, message)
 }
 
 /**
  * 透传消息送达通知
+ * @receiver Context
  * @param engine String?
- * @param context Context
  * @param message Push ( Data、Params ) Item
  */
-fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
+fun <Item : IPushEngine.EngineItem> Context?.push_onReceiveMessageData(
     engine: String? = null,
-    context: Context?,
     message: Item?
 ) {
-    engine.getPushEngine()?.onReceiveMessageData(context, message)
+    engine.getPushEngine()?.onReceiveMessageData(this, message)
 }
 
 // ===============
@@ -189,13 +181,12 @@ fun <Item : IPushEngine.EngineItem> push_onReceiveMessageData(
 
 /**
  * 传入 Object 转换 Engine Message
+ * @receiver Message Object
  * @param engine String?
- * @param message Message Object
  * @return Engine Message
  */
-fun push_convertMessage(
-    engine: String? = null,
-    message: Any?
+fun Any?.push_convertMessage(
+    engine: String? = null
 ): Any? {
-    return engine.getPushEngine()?.convertMessage(message)
+    return engine.getPushEngine()?.convertMessage(this)
 }

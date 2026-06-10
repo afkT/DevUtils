@@ -82,7 +82,7 @@ class ViewAssistCustomViewModel : AppViewModel() {
                 type: Int
             ) {
                 ListenerUtils.setOnClicks(
-                    { toast_showShort(text = "Custom Type") },
+                    { "Custom Type".toast_showShort() },
                     view.findViewById(R.id.vid_cv)
                 )
             }

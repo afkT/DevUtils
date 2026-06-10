@@ -144,7 +144,7 @@ class QRCodeScanFragment : AppFragment<FragmentDevWidgetScanShapeBinding, QRCode
                         // 刷新处理
                         checkPermission()
                     } else {
-                        toast_showShort(text = "需要摄像头权限预览")
+                        "需要摄像头权限预览".toast_showShort()
                     }
                 }
             )
@@ -247,7 +247,7 @@ class QRCodeScanCode(
             "handleDecode result: $resultStr".log_dTag(
                 tag = TAG
             )
-            toast_showLong(text = "二维码内容: $resultStr")
+            "二维码内容: $resultStr".toast_showLong()
 
             // 以下代码只是为了解决停留在此页面可以一直扫码, 实际扫码成功应该回传
             zxingDecodeAssist.captureHandler()?.let {

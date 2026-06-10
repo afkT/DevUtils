@@ -33,6 +33,7 @@ fun String?.getToastEngine(): IToastEngine<
 
 /**
  * 初始化方法
+ * @receiver Application
  * @param engine String?
  */
 fun Application.toast_initialize(
@@ -52,18 +53,18 @@ fun toast_isInit(engine: String? = null): Boolean {
 
 /**
  * 设置是否为调试模式
+ * @receiver 是否为调试模式
  * @param engine String?
- * @param debug 是否为调试模式
  */
-fun toast_setDebugMode(
-    engine: String? = null,
-    debug: Boolean
+fun Boolean.toast_setDebugMode(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.setDebugMode(debug)
+    engine.getToastEngine()?.setDebugMode(this)
 }
 
 /**
  * 设置 Toast Config
+ * @receiver Toast Config
  * @param engine String?
  */
 fun <Config : IToastEngine.EngineConfig> Config?.toast_setConfig(
@@ -95,200 +96,184 @@ fun toast_cancel(engine: String? = null) {
 
 /**
  * 延迟显示 Toast
+ * @receiver 字符串资源 ID
  * @param engine String?
- * @param id 字符串资源 ID
  * @param delayMillis 延迟的毫秒数
  */
-fun toast_delayedShow(
+fun Int.toast_delayedShow(
     engine: String? = null,
-    id: Int,
     delayMillis: Long
 ) {
-    engine.getToastEngine()?.delayedShow(id, delayMillis)
+    engine.getToastEngine()?.delayedShow(this, delayMillis)
 }
 
 /**
  * 延迟显示 Toast
+ * @receiver 要显示的对象
  * @param engine String?
- * @param obj 要显示的对象
  * @param delayMillis 延迟的毫秒数
  */
-fun toast_delayedShow(
+fun Any?.toast_delayedShow(
     engine: String? = null,
-    obj: Any?,
     delayMillis: Long
 ) {
-    engine.getToastEngine()?.delayedShow(obj, delayMillis)
+    engine.getToastEngine()?.delayedShow(this, delayMillis)
 }
 
 /**
  * 延迟显示 Toast
+ * @receiver 要显示的文本
  * @param engine String?
- * @param text 要显示的文本
  * @param delayMillis 延迟的毫秒数
  */
-fun toast_delayedShow(
+fun CharSequence?.toast_delayedShow(
     engine: String? = null,
-    text: CharSequence?,
     delayMillis: Long
 ) {
-    engine.getToastEngine()?.delayedShow(text, delayMillis)
+    engine.getToastEngine()?.delayedShow(this, delayMillis)
 }
 
 /**
  * debug 模式下显示 Toast
+ * @receiver 字符串资源 ID
  * @param engine String?
- * @param id 字符串资源 ID
  */
-fun toast_debugShow(
-    engine: String? = null,
-    id: Int
+fun Int.toast_debugShow(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.debugShow(id)
+    engine.getToastEngine()?.debugShow(this)
 }
 
 /**
  * debug 模式下显示 Toast
+ * @receiver 要显示的对象
  * @param engine String?
- * @param obj 要显示的对象
  */
-fun toast_debugShow(
-    engine: String? = null,
-    obj: Any?
+fun Any?.toast_debugShow(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.debugShow(obj)
+    engine.getToastEngine()?.debugShow(this)
 }
 
 /**
  * debug 模式下显示 Toast
+ * @receiver 要显示的文本
  * @param engine String?
- * @param text 要显示的文本
  */
-fun toast_debugShow(
-    engine: String? = null,
-    text: CharSequence?
+fun CharSequence?.toast_debugShow(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.debugShow(text)
+    engine.getToastEngine()?.debugShow(this)
 }
 
 /**
  * 显示一个短 Toast
+ * @receiver 字符串资源 ID
  * @param engine String?
- * @param id 字符串资源 ID
  */
-fun toast_showShort(
-    engine: String? = null,
-    id: Int
+fun Int.toast_showShort(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.showShort(id)
+    engine.getToastEngine()?.showShort(this)
 }
 
 /**
  * 显示一个短 Toast
+ * @receiver 要显示的对象
  * @param engine String?
- * @param obj 要显示的对象
  */
-fun toast_showShort(
-    engine: String? = null,
-    obj: Any?
+fun Any?.toast_showShort(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.showShort(obj)
+    engine.getToastEngine()?.showShort(this)
 }
 
 /**
  * 显示一个短 Toast
+ * @receiver 要显示的文本
  * @param engine String?
- * @param text 要显示的文本
  */
-fun toast_showShort(
-    engine: String? = null,
-    text: CharSequence?
+fun CharSequence?.toast_showShort(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.showShort(text)
+    engine.getToastEngine()?.showShort(this)
 }
 
 /**
  * 显示一个长 Toast
+ * @receiver 字符串资源 ID
  * @param engine String?
- * @param id 字符串资源 ID
  */
-fun toast_showLong(
-    engine: String? = null,
-    id: Int
+fun Int.toast_showLong(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.showLong(id)
+    engine.getToastEngine()?.showLong(this)
 }
 
 /**
  * 显示一个长 Toast
+ * @receiver 要显示的对象
  * @param engine String?
- * @param obj 要显示的对象
  */
-fun toast_showLong(
-    engine: String? = null,
-    obj: Any?
+fun Any?.toast_showLong(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.showLong(obj)
+    engine.getToastEngine()?.showLong(this)
 }
 
 /**
  * 显示一个长 Toast
+ * @receiver 要显示的文本
  * @param engine String?
- * @param text 要显示的文本
  */
-fun toast_showLong(
-    engine: String? = null,
-    text: CharSequence?
+fun CharSequence?.toast_showLong(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.showLong(text)
+    engine.getToastEngine()?.showLong(this)
 }
 
 /**
  * 显示 Toast
+ * @receiver 字符串资源 ID
  * @param engine String?
- * @param id 字符串资源 ID
  */
-fun toast_show(
-    engine: String? = null,
-    id: Int
+fun Int.toast_show(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.show(id)
+    engine.getToastEngine()?.show(this)
 }
 
 /**
  * 显示 Toast
+ * @receiver 要显示的对象
  * @param engine String?
- * @param obj 要显示的对象
  */
-fun toast_show(
-    engine: String? = null,
-    obj: Any?
+fun Any?.toast_show(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.show(obj)
+    engine.getToastEngine()?.show(this)
 }
 
 /**
  * 显示 Toast
+ * @receiver 要显示的文本
  * @param engine String?
- * @param text 要显示的文本
  */
-fun toast_show(
-    engine: String? = null,
-    text: CharSequence?
+fun CharSequence?.toast_show(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.show(text)
+    engine.getToastEngine()?.show(this)
 }
 
 /**
  * 显示 Toast
+ * @receiver Toast 参数
  * @param engine String?
- * @param item Toast 参数
  */
-fun <Item : IToastEngine.EngineItem> toast_show(
-    engine: String? = null,
-    item: Item
+fun <Item : IToastEngine.EngineItem> Item.toast_show(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.show(item)
+    engine.getToastEngine()?.show(this)
 }
 
 // ============
@@ -297,62 +282,58 @@ fun <Item : IToastEngine.EngineItem> toast_show(
 
 /**
  * 给当前 Toast 设置新的布局
+ * @receiver 布局资源 ID
  * @param engine String?
- * @param id 布局资源 ID
  */
-fun toast_setView(
-    engine: String? = null,
-    id: Int
+fun Int.toast_setView(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.setView(id)
+    engine.getToastEngine()?.setView(this)
 }
 
 /**
  * 设置 Toast 的位置
+ * @receiver 重心
  * @param engine String?
- * @param gravity 重心
  */
-fun toast_setGravity(
-    engine: String? = null,
-    gravity: Int
+fun Int.toast_setGravity(
+    engine: String? = null
 ) {
-    engine.getToastEngine()?.setGravity(gravity)
+    engine.getToastEngine()?.setGravity(this)
 }
 
 /**
  * 设置 Toast 的位置
+ * @receiver 重心
  * @param engine String?
- * @param gravity 重心
  * @param xOffset X 轴偏移量
  * @param yOffset Y 轴偏移量
  */
-fun toast_setGravity(
+fun Int.toast_setGravity(
     engine: String? = null,
-    gravity: Int,
     xOffset: Int,
     yOffset: Int
 ) {
-    engine.getToastEngine()?.setGravity(gravity, xOffset, yOffset)
+    engine.getToastEngine()?.setGravity(this, xOffset, yOffset)
 }
 
 /**
  * 设置 Toast 的位置
+ * @receiver 重心
  * @param engine String?
- * @param gravity 重心
  * @param xOffset X 轴偏移量
  * @param yOffset Y 轴偏移量
  * @param horizontalMargin 水平边距
  * @param verticalMargin 垂直边距
  */
-fun toast_setGravity(
+fun Int.toast_setGravity(
     engine: String? = null,
-    gravity: Int,
     xOffset: Int,
     yOffset: Int,
     horizontalMargin: Float,
     verticalMargin: Float
 ) {
     engine.getToastEngine()?.setGravity(
-        gravity, xOffset, yOffset, horizontalMargin, verticalMargin
+        this, xOffset, yOffset, horizontalMargin, verticalMargin
     )
 }

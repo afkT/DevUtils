@@ -24,24 +24,24 @@ class ToastFragment : AppFragment<FragmentDevEngineToastBinding, ToastViewModel>
 class ToastViewModel : AppViewModel() {
 
     val clickShowShort = View.OnClickListener {
-        toast_showShort(text = "showShort 短吐司")
+        "showShort 短吐司".toast_showShort()
     }
 
     val clickShowLong = View.OnClickListener {
-        toast_showLong(text = "showLong 长吐司")
+        "showLong 长吐司".toast_showLong()
     }
 
     val clickShow = View.OnClickListener {
-        toast_show(text = "show 默认吐司")
+        "show 默认吐司".toast_show()
     }
 
     val clickDelayedShow = View.OnClickListener {
-        toast_delayedShow(text = "delayedShow 延时 2 秒显示", delayMillis = 2000L)
+        "delayedShow 延时 2 秒显示".toast_delayedShow(delayMillis = 2000L)
     }
 
     val clickGravityCenter = View.OnClickListener {
-        toast_setGravity(gravity = Gravity.CENTER, xOffset = 0, yOffset = 0)
-        toast_showShort(text = "setGravity 居中显示")
+        Gravity.CENTER.toast_setGravity(xOffset = 0, yOffset = 0)
+        "setGravity 居中显示".toast_showShort()
     }
 
     val clickCancel = View.OnClickListener {

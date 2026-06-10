@@ -68,6 +68,6 @@ class ImageViewModel : AppViewModel() {
 
     val clickClearMemoryCache = View.OnClickListener {
         imageViewRef?.get()?.context?.clearMemoryCache()
-        toast_showShort(text = "clearMemoryCache 清除内存缓存完成")
+        "clearMemoryCache 清除内存缓存完成".toast_showShort()
     }
 }

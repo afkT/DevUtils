@@ -80,11 +80,9 @@ class CapturePictureFragment : AppFragment<FragmentUiEffectCapturePictureBinding
                         source: DevSource?
                     ) {
                         if (result.isSuccess()) {
-                            toast_showShort(
-                                text = "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}"
-                            )
+                            "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}".toast_showShort()
                         } else {
-                            toast_showShort(text = "保存失败")
+                            "保存失败".toast_showShort()
                         }
                     }
                 }

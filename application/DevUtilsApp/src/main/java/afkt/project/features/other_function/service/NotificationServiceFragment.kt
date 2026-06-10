@@ -94,24 +94,24 @@ class NotificationServiceViewModel : AppViewModel() {
     val clickCheck = View.OnClickListener { view ->
         val check = NotificationService.isNotificationListenerEnabled()
         if (check) {
-            toast_showShort(text = "已开启服务通知")
+            "已开启服务通知".toast_showShort()
         } else {
-            toast_showShort(text = "未开启服务通知")
+            "未开启服务通知".toast_showShort()
         }
     }
 
     val clickRegister = View.OnClickListener { view ->
         if (!NotificationService.checkAndIntentSetting()) {
-            toast_showShort(text = "请先开启服务通知权限")
+            "请先开启服务通知权限".toast_showShort()
         } else {
-            toast_showShort(text = "绑定通知栏监听服务成功, 请查看 Logcat")
+            "绑定通知栏监听服务成功, 请查看 Logcat".toast_showShort()
             // 注册监听
             NotificationService.startService()
         }
     }
 
     val clickUnRegister = View.OnClickListener { view ->
-        toast_showShort(text = "注销通知栏监听服务成功")
+        "注销通知栏监听服务成功".toast_showShort()
         // 注销监听
         NotificationService.stopService()
     }

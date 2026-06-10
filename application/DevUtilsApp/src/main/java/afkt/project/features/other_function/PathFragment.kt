@@ -97,7 +97,7 @@ class PathViewModel : AppViewModel() {
             ""
         )
         builder.toString().log_dTag(tag = TAG)
-        toast_showShort(text = "【内部存储路径】信息已打印, 请查看 Logcat")
+        "【内部存储路径】信息已打印, 请查看 Logcat".toast_showShort()
     }
 
     private fun appExternalPath() {
@@ -146,7 +146,7 @@ class PathViewModel : AppViewModel() {
             ""
         )
         builder.toString().log_dTag(tag = TAG)
-        toast_showShort(text = "【应用外部存储路径】信息已打印, 请查看 Logcat")
+        "【应用外部存储路径】信息已打印, 请查看 Logcat".toast_showShort()
     }
 
     private fun sdCardPath() {
@@ -186,6 +186,6 @@ class PathViewModel : AppViewModel() {
             ""
         )
         builder.toString().log_dTag(tag = TAG)
-        toast_showShort(text = "【外部存储路径 ( SDCard )】信息已打印, 请查看 Logcat")
+        "【外部存储路径 ( SDCard )】信息已打印, 请查看 Logcat".toast_showShort()
     }
 }

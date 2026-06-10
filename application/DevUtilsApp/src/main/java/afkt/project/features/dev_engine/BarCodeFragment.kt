@@ -71,9 +71,9 @@ class BarCodeViewModel : AppViewModel() {
                     imageViewRef?.get()?.apply {
                         post { setImageBitmap(bitmap) }
                     }
-                    toast_showShort(text = "二维码生成成功")
+                    "二维码生成成功".toast_showShort()
                 } else {
-                    toast_showShort(text = "二维码生成失败: ${error?.message}")
+                    "二维码生成失败: ${error?.message}".toast_showShort()
                 }
             }
         )
@@ -82,7 +82,7 @@ class BarCodeViewModel : AppViewModel() {
     val clickDecode = View.OnClickListener {
         val bitmap = lastBitmap
         if (bitmap == null) {
-            toast_showShort(text = "请先生成二维码")
+            "请先生成二维码".toast_showShort()
             return@OnClickListener
         }
         bitmap.barcode_decodeBarCode(
@@ -92,13 +92,11 @@ class BarCodeViewModel : AppViewModel() {
                     result: BarCodeResult?,
                     error: Throwable?
                 ) {
-                    toast_showShort(
-                        text = if (success) {
-                            "解析结果: ${result?.getResultData()}"
-                        } else {
-                            "二维码解析失败: ${error?.message}"
-                        }
-                    )
+                    if (success) {
+                        "解析结果: ${result?.getResultData()}"
+                    } else {
+                        "二维码解析失败: ${error?.message}"
+                    }.toast_showShort()
                 }
             }
         )

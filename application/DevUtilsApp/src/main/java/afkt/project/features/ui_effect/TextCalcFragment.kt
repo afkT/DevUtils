@@ -66,7 +66,7 @@ class TextCalcFragment : AppFragment<FragmentUiEffectTextCalcBinding, AppViewMod
                     )
 
                     val content = builder.toString()
-                    toast_showShort(text = content)
+                    content.toast_showShort()
                 }
             }
         }

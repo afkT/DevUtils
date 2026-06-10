@@ -131,9 +131,9 @@ class DevTimerViewModel : AppViewModel() {
         }
         mTimer?.apply {
             if (isRunning) {
-                toast_showShort(text = "定时器已经启动, 请查看 Logcat")
+                "定时器已经启动, 请查看 Logcat".toast_showShort()
             } else {
-                toast_showShort(text = "定时器启动成功, 请查看 Logcat")
+                "定时器启动成功, 请查看 Logcat".toast_showShort()
                 // 运行定时器
                 start()
             }
@@ -148,34 +148,34 @@ class DevTimerViewModel : AppViewModel() {
     val clickStop = View.OnClickListener { view ->
         val result = mTimer?.isRunning ?: false
         if (result) {
-            toast_showShort(text = "定时器关闭成功")
+            "定时器关闭成功".toast_showShort()
             // 关闭定时器
             mTimer?.stop()
 //            // 回收定时器【可不调用】
 //            TimerManager.recycle()
         } else {
-            toast_showShort(text = "定时器未启动")
+            "定时器未启动".toast_showShort()
         }
     }
 
     // 重启定时器
     val clickReStart = View.OnClickListener { view ->
         if (mTimer != null) {
-            toast_showShort(text = "定时器启动成功, 请查看 Logcat")
+            "定时器启动成功, 请查看 Logcat".toast_showShort()
             // 运行定时器
             mTimer?.start()
             return@OnClickListener
         }
-        toast_showShort(text = "请先初始化定时器")
+        "请先初始化定时器".toast_showShort()
     }
 
     // 定时器是否启动
     val clickCheck = View.OnClickListener { view ->
         val result = mTimer?.isRunning ?: false
         if (result) {
-            toast_showShort(text = "定时器已启动")
+            "定时器已启动".toast_showShort()
         } else {
-            toast_showShort(text = "定时器未启动")
+            "定时器未启动".toast_showShort()
         }
     }
 
@@ -183,9 +183,9 @@ class DevTimerViewModel : AppViewModel() {
     val clickGet = View.OnClickListener { view ->
         val timerTAG = TimerManager.getTimer(TAG)
         if (timerTAG != null) {
-            toast_showShort(text = "获取定时器成功 ${timerTAG}")
+            "获取定时器成功 ${timerTAG}".toast_showShort()
         } else {
-            toast_showShort(text = "暂无该定时器")
+            "暂无该定时器".toast_showShort()
         }
     }
 
@@ -193,9 +193,9 @@ class DevTimerViewModel : AppViewModel() {
     val clickGetNumber = View.OnClickListener { view ->
         val result = mTimer?.isRunning ?: false
         if (result) {
-            toast_showShort(text = "定时器运行次数: ${mTimer?.triggerNumber}")
+            "定时器运行次数: ${mTimer?.triggerNumber}".toast_showShort()
         } else {
-            toast_showShort(text = "定时器未启动")
+            "定时器未启动".toast_showShort()
         }
     }
 }

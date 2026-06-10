@@ -74,7 +74,7 @@ class MainViewModel : BaseViewModel() {
         ).setCancelable(false)
             .setOkButton { baseDialog, v, input ->
                 if (StringUtils.isEmpty(input)) {
-                    toast_showShort(text = "请输入环境配置值")
+                    "请输入环境配置值".toast_showShort()
                     return@setOkButton true
                 }
                 val module = DevEnvironment.getServiceModule()
@@ -86,7 +86,7 @@ class MainViewModel : BaseViewModel() {
                 val result = DevEnvironment.setServiceEnvironment(
                     view.context, custom
                 )
-                toast_showShort(text = (if (result) "设置成功" else "设置失败"))
+                (if (result) "设置成功" else "设置失败").toast_showShort()
                 // 跳转进行查看更新值
                 clickDefaultImpl.onClick(view)
                 return@setOkButton false
@@ -101,7 +101,7 @@ class MainViewModel : BaseViewModel() {
         ).setCancelable(false)
             .setOkButton { baseDialog, v, input ->
                 if (StringUtils.isEmpty(input)) {
-                    toast_showShort(text = "请输入环境配置值")
+                    "请输入环境配置值".toast_showShort()
                     return@setOkButton true
                 }
                 DevEnvironment.getModuleList().forEach { module ->
@@ -122,7 +122,7 @@ class MainViewModel : BaseViewModel() {
                         view.context, custom
                     )
                 }
-                toast_showShort(text = "设置【全部】成功")
+                "设置【全部】成功".toast_showShort()
                 // 跳转进行查看更新值
                 clickCustomImpl.onClick(view)
                 return@setOkButton false
@@ -132,7 +132,7 @@ class MainViewModel : BaseViewModel() {
     // 重置【全部】Selected Environment
     val clickResetAllSelectedEnvironment = View.OnClickListener { view ->
         val result = DevEnvironment.reset(view.context)
-        toast_showShort(text = (if (result) "重置【全部】成功" else "重置【全部】失败"))
+        (if (result) "重置【全部】成功" else "重置【全部】失败").toast_showShort()
         // 跳转进行查看更新值
         clickCustomImpl.onClick(view)
         /**
@@ -144,35 +144,35 @@ class MainViewModel : BaseViewModel() {
     // 是否 releaseAnnotationProcessor、kaptRelease 构建
     val clickReleaseBuild = View.OnClickListener { view ->
         val isRelease = DevEnvironment.isRelease()
-        toast_showShort(text = (if (isRelease) "release build" else "debug build"))
+        (if (isRelease) "release build" else "debug build").toast_showShort()
     }
 
     // 获取【Service】Release Environment
     val clickGetServiceReleaseEnvironment = View.OnClickListener { view ->
         val serviceRelease = DevEnvironment.getServiceReleaseEnvironment()
 //        val serviceReleaseValue = serviceRelease.value
-        toast_showLong(text = "Service【Module】Release Environment：\n$serviceRelease")
+        "Service【Module】Release Environment：\n$serviceRelease".toast_showLong()
     }
 
     // 获取【Service】Selected Environment
     val clickGetServiceSelectedEnvironment = View.OnClickListener { view ->
         val serviceSelected = DevEnvironment.getServiceEnvironment(view.context)
 //        val serviceSelectedValue = DevEnvironment.getServiceEnvironmentValue(view.context)
-        toast_showLong(text = "Service【Module】Selected Environment：\n$serviceSelected")
+        "Service【Module】Selected Environment：\n$serviceSelected".toast_showLong()
     }
 
     // 是否【Service】注解配置 Environment
     val clickCheckServiceAnnotationEnvironment = View.OnClickListener { view ->
         // 判断当前选中的 Environment 是否属于通过 @Environment 注解配置的环境，而不是通过自定义设置
         val isAnnotation = DevEnvironment.isServiceAnnotation(view.context)
-        toast_showShort(text = (if (isAnnotation) "属于注解配置" else "属于自定义配置"))
+        (if (isAnnotation) "属于注解配置" else "属于自定义配置").toast_showShort()
     }
 
     // 重置【Service】Selected Environment
     val clickResetServiceSelectedEnvironment = View.OnClickListener { view ->
         // 重置当前选中的 Environment 默认设置为 Release Environment
         val result = DevEnvironment.resetService(view.context)
-        toast_showShort(text = (if (result) "重置【Service】成功" else "重置【Service】失败"))
+        (if (result) "重置【Service】成功" else "重置【Service】失败").toast_showShort()
         /**
          * 重置不是变更，所以不会触发 EnvironmentChangeListener 事件
          * 可以在调用重置方法后自行实现后续逻辑等同 Listener 通知

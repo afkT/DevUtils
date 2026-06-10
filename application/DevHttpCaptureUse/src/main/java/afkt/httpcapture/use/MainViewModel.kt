@@ -555,18 +555,18 @@ class MainViewModel : BaseViewModel() {
         // 设置抓包库 Toast 实现
         DevHttpCaptureCompiler.setToastImpl(object : DevHttpCaptureToast {
             override fun normal(id: Int) {
-                toast_showShort(id = id)
+                id.toast_showShort()
             }
 
             override fun success(id: Int) {
-                toast_showShort(id = id)
+                id.toast_showShort()
             }
         })
     }
 
     //【自定义】抓包数据可视化
     val clickCustomImpl = View.OnClickListener { view ->
-        toast_showLong(text = "请查看点击事件【注释】")
+        "请查看点击事件【注释】".toast_showLong()
         /**
          * 如果对 [StorageInterceptor] 存储性能以及逻辑实现代码，觉得太过复杂不够简洁优美
          * 可以通过 [IHttpCaptureEnd] 回调信息 [CaptureInfo] 写入本地文件、数据库

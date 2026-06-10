@@ -83,15 +83,14 @@ fun <Item : IPopTipEngine.EngineItem> Item?.poptip_build(
 
 /**
  * 构建 PopTip ( 不显示 )
+ * @receiver 自定义布局
  * @param engine String?
- * @param onBindView 自定义布局
  * @return PopTip 对象
  */
-fun poptip_buildView(
-    engine: String? = null,
-    onBindView: Any?
+fun Any?.poptip_buildView(
+    engine: String? = null
 ): Any? {
-    return engine.getPopTipEngine()?.buildView(onBindView)
+    return engine.getPopTipEngine()?.buildView(this)
 }
 
 // ==============
@@ -100,58 +99,54 @@ fun poptip_buildView(
 
 /**
  * 显示 PopTip
+ * @receiver 提示文本
  * @param engine String?
- * @param text 提示文本
  * @return PopTip 对象
  */
-fun poptip_show(
-    engine: String? = null,
-    text: CharSequence?
+fun CharSequence?.poptip_show(
+    engine: String? = null
 ): Any? {
-    return engine.getPopTipEngine()?.show(text)
+    return engine.getPopTipEngine()?.show(this)
 }
 
 /**
  * 显示 PopTip
+ * @receiver 提示文本资源 id
  * @param engine String?
- * @param textResId 提示文本资源 id
  * @return PopTip 对象
  */
-fun poptip_show(
-    engine: String? = null,
-    textResId: Int
+fun Int.poptip_show(
+    engine: String? = null
 ): Any? {
-    return engine.getPopTipEngine()?.show(textResId)
+    return engine.getPopTipEngine()?.show(this)
 }
 
 /**
  * 显示 PopTip
+ * @receiver 提示文本
  * @param engine String?
- * @param text 提示文本
  * @param buttonText 按钮文本
  * @return PopTip 对象
  */
-fun poptip_show(
+fun CharSequence?.poptip_show(
     engine: String? = null,
-    text: CharSequence?,
     buttonText: CharSequence?
 ): Any? {
-    return engine.getPopTipEngine()?.show(text, buttonText)
+    return engine.getPopTipEngine()?.show(this, buttonText)
 }
 
 /**
  * 显示 PopTip
+ * @receiver 提示文本
  * @param engine String?
  * @param iconResId 图标资源 id
- * @param text 提示文本
  * @return PopTip 对象
  */
-fun poptip_show(
+fun CharSequence?.poptip_show(
     engine: String? = null,
-    iconResId: Int,
-    text: CharSequence?
+    iconResId: Int
 ): Any? {
-    return engine.getPopTipEngine()?.show(iconResId, text)
+    return engine.getPopTipEngine()?.show(iconResId, this)
 }
 
 /**

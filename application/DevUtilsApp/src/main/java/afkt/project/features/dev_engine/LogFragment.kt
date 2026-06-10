@@ -62,6 +62,6 @@ class LogViewModel : AppViewModel() {
     }
 
     private fun printToast() {
-        toast_showShort(text = "数据已打印, 请查看 Logcat")
+        "数据已打印, 请查看 Logcat".toast_showShort()
     }
 }

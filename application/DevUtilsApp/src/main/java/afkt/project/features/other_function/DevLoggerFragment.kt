@@ -23,13 +23,13 @@ class DevLoggerViewModel : AppViewModel() {
 
     // 打印日志
     val clickPrint = View.OnClickListener { view ->
-        toast_showShort(text = "打印成功, 请查看 Logcat")
+        "打印成功, 请查看 Logcat".toast_showShort()
         LoggerUse.tempLog()
     }
 
     // 打印日志耗时测试
     val clickPrintTime = View.OnClickListener { view ->
-        toast_showShort(text = "打印成功, 请查看 Logcat")
+        "打印成功, 请查看 Logcat".toast_showShort()
         LoggerUse.testTime()
     }
 

@@ -138,7 +138,7 @@ class ScanShapeFragment : AppFragment<FragmentDevWidgetScanShapeBinding, ScanSha
                         // 刷新处理
                         checkPermission()
                     } else {
-                        toast_showShort(text = "需要摄像头权限预览")
+                        "需要摄像头权限预览".toast_showShort()
                     }
                 }
             )
@@ -162,7 +162,7 @@ open class ScanShapeViewModel : AppViewModel() {
         if (FlashlightUtils.isFlashlightEnable()) {
             toggleFlashlight()
         } else {
-            toast_showShort(text = "暂不支持开启手电筒")
+            "暂不支持开启手电筒".toast_showShort()
         }
     }
 

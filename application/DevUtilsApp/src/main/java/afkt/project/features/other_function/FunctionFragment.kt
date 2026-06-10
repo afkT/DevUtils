@@ -43,7 +43,7 @@ class FunctionViewModel : AppViewModel() {
     val clickVibrate = View.OnClickListener { view ->
         // 需要震动权限并且开启了通知权限
         val result = VibrationUtils.vibrate(200)
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 铃声 - 播放一小段音频
@@ -56,13 +56,13 @@ class FunctionViewModel : AppViewModel() {
         val result = BeepVibrateAssist(
             activity, mediaPlayer
         ).setVibrate(false).playBeepSoundAndVibrate()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 是否存在通知权限
     val clickNotification_check = View.OnClickListener { view ->
         val result = NotificationUtils.isNotificationEnabled()
-        toast_showShort(text = if (result) "通知权限已开启" else "通知权限未开启")
+        if (result) "通知权限已开启" else "通知权限未开启".toast_showShort()
     }
 
     // 开启通知权限
@@ -73,9 +73,9 @@ class FunctionViewModel : AppViewModel() {
                     AppUtils.getPackageName()
                 )
             )
-            toast_showShort(text = if (result) "操作成功" else "操作失败")
+            if (result) "操作成功" else "操作失败".toast_showShort()
         } else {
-            toast_showShort(text = "操作失败")
+            "操作失败".toast_showShort()
         }
     }
 
@@ -88,19 +88,19 @@ class FunctionViewModel : AppViewModel() {
                 )
             )
         )
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 移除消息
     val clickNotification_remove = View.OnClickListener { view ->
         val result = NotificationUtils.cancel(12)
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 回到桌面
     val clickHOME = View.OnClickListener { view ->
         val result = ActivityUtils.startHomeActivity()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 打开手电筒
@@ -113,9 +113,9 @@ class FunctionViewModel : AppViewModel() {
                     // 非传入 Camera 方式需要注册
                     FlashlightUtils.getInstance().register()
                     val result = FlashlightUtils.getInstance().setFlashlightOn()
-                    toast_showShort(text = if (result) "操作成功" else "操作失败")
+                    if (result) "操作成功" else "操作失败".toast_showShort()
                 } else {
-                    toast_showShort(text = "打开手电筒需摄像头权限")
+                    "打开手电筒需摄像头权限".toast_showShort()
                 }
             }
         )
@@ -124,13 +124,13 @@ class FunctionViewModel : AppViewModel() {
     // 关闭手电筒
     val clickFlashLight_close = View.OnClickListener { view ->
         val result = FlashlightUtils.getInstance().setFlashlightOff()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 是否创建桌面快捷方式
     val clickShortcut_check = View.OnClickListener { view ->
         val result = ShortCutUtils.hasShortcut("Dev 快捷方式")
-        toast_showShort(text = if (result) "存在快捷方式" else "不存在快捷方式")
+        if (result) "存在快捷方式" else "不存在快捷方式".toast_showShort()
     }
 
     // 创建桌面快捷方式
@@ -147,9 +147,9 @@ class FunctionViewModel : AppViewModel() {
                         "Dev 快捷方式",
                         R.mipmap.icon_launcher_round
                     )
-                    toast_showShort(text = if (result) "操作成功" else "操作失败")
+                    if (result) "操作成功" else "操作失败".toast_showShort()
                 } else {
-                    toast_showShort(text = "创建快捷方式需要该权限")
+                    "创建快捷方式需要该权限".toast_showShort()
                 }
             }
         )
@@ -161,14 +161,14 @@ class FunctionViewModel : AppViewModel() {
             MainActivity::class.java,
             "Dev 快捷方式"
         )
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 打印内存信息
     val clickMemory_print = View.OnClickListener { view ->
         val memoryInfo = MemoryUtils.printMemoryInfoFromProc()
         memoryInfo.log_dTag(tag = TAG)
-        toast_showShort(text = "数据已打印, 请查看 Logcat")
+        "数据已打印, 请查看 Logcat".toast_showShort()
     }
 
     // 打印设备信息
@@ -177,30 +177,30 @@ class FunctionViewModel : AppViewModel() {
             DeviceUtils.getDeviceInfo(), ""
         )
         deviceInfo.log_dTag(tag = TAG)
-        toast_showShort(text = "数据已打印, 请查看 Logcat")
+        "数据已打印, 请查看 Logcat".toast_showShort()
     }
 
     // 跳转到 APP 设置详情页面
     val clickAppDetails_settings = View.OnClickListener { view ->
         val result = AppUtils.launchAppDetailsSettings()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 打开 GPS 设置界面
     val clickGPS_settings = View.OnClickListener { view ->
         val result = AppUtils.openGpsSettings()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 打开网络设置界面
     val clickWireless_settings = View.OnClickListener { view ->
         val result = AppUtils.openWirelessSettings()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 
     // 跳转到系统设置页面
     val clickSYS_settings = View.OnClickListener { view ->
         val result = AppUtils.startSysSetting()
-        toast_showShort(text = if (result) "操作成功" else "操作失败")
+        if (result) "操作成功" else "操作失败".toast_showShort()
     }
 }

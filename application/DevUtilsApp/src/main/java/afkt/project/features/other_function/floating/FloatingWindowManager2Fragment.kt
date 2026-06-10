@@ -241,7 +241,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 firstPoint: PointF
             ): Boolean {
                 if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                    toast_showShort(text = "触发点击")
+                    "触发点击".toast_showShort()
                 }
                 return true
             }
@@ -252,7 +252,7 @@ internal class Utils2 private constructor() : IFloatingOperate {
                 firstPoint: PointF
             ): Boolean {
                 if (DevFloatingCommon.isValidEvent(event, firstPoint)) {
-                    toast_showShort(text = "触发长按")
+                    "触发长按".toast_showShort()
                 }
                 return true
             }

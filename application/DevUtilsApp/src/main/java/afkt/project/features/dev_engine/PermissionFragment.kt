@@ -33,9 +33,7 @@ class PermissionViewModel : AppViewModel() {
         ActivityUtils.getActivity(view)?.permission_request(
             permission = PermissionLists.getCameraPermission().toPermissionItem(),
             callback = IPermissionEngine.Callback<PermissionItem> { grantedList, deniedList ->
-                toast_showShort(
-                    text = if (deniedList.isEmpty()) "相机权限申请通过" else "相机权限申请被拒绝"
-                )
+                if (deniedList.isEmpty()) "相机权限申请通过" else "相机权限申请被拒绝".toast_showShort()
             }
         )
     }
@@ -44,6 +42,6 @@ class PermissionViewModel : AppViewModel() {
         val granted = view.context.permission_isGrantedPermission(
             permission = PermissionLists.getCameraPermission().toPermissionItem()
         )
-        toast_showShort(text = "是否已授予相机权限: $granted")
+        "是否已授予相机权限: $granted".toast_showShort()
     }
 }

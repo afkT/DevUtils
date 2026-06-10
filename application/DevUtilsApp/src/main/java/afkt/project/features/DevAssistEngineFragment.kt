@@ -34,7 +34,7 @@ class DevAssistEngineFragment : AppFragment<FragmentRecyclerViewBinding, AppView
                 }
                 val builder = StringBuilder()
                     .append("实现已封装为 DevEngine 库，直接依赖使用")
-                toast_showLong(text = builder.toString())
+                builder.toString().toast_showLong()
             }
             // 追加 TextView
             contentAssist.addContentView(createTextView(), 0)

@@ -36,11 +36,11 @@ class MediaSelectorViewModel : AppViewModel() {
 
     val clickOpenCamera = View.OnClickListener { view ->
         val result = ActivityUtils.getActivity(view)?.media_openCamera() ?: false
-        if (!result) toast_showShort(text = "打开相机失败 ( 需配置 MediaConfig )")
+        if (!result) "打开相机失败 ( 需配置 MediaConfig )".toast_showShort()
     }
 
     val clickDeleteCache = View.OnClickListener { view ->
         view.context.media_deleteAllCacheDirFile()
-        toast_showShort(text = "deleteAllCacheDirFile 清除缓存完成")
+        "deleteAllCacheDirFile 清除缓存完成".toast_showShort()
     }
 }

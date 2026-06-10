@@ -36,21 +36,19 @@ class SKUFragment : AppFragment<FragmentUiEffectSkuBinding, AppViewModel>(
                             number: Int,
                             buyType: BuyType
                         ) {
-                            toast_showShort(
-                                text = StringBuilder().apply {
-                                    append("购买数量: ")
-                                    append(number)
-                                    append(DevFinal.SYMBOL.NEW_LINE)
-                                    append("购买方式: ")
-                                    append(buyType.desc)
-                                    append(DevFinal.SYMBOL.NEW_LINE)
-                                    append("规格名: ")
-                                    append(spec.specName)
-                                    append(DevFinal.SYMBOL.NEW_LINE)
-                                    append("规格 id: ")
-                                    append(spec.specId)
-                                }.toString()
-                            )
+                            StringBuilder().apply {
+                                append("购买数量: ")
+                                append(number)
+                                append(DevFinal.SYMBOL.NEW_LINE)
+                                append("购买方式: ")
+                                append(buyType.desc)
+                                append(DevFinal.SYMBOL.NEW_LINE)
+                                append("规格名: ")
+                                append(spec.specName)
+                                append(DevFinal.SYMBOL.NEW_LINE)
+                                append("规格 id: ")
+                                append(spec.specId)
+                            }.toString().toast_showShort()
                         }
                     }).apply {
                         // 显示 SKU Dialog

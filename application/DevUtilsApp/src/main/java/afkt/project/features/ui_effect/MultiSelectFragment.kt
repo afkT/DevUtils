@@ -59,7 +59,7 @@ class MultiSelectFragment : AppFragment<FragmentUiEffectMultiSelectBinding, Mult
             builder.append("\n是否选中: ").append(adapter.isSelect)
             builder.append("\n选中数量: ").append(adapter.selectSize)
             builder.append("\n总数: ").append(adapter.dataCount)
-            toast_showShort(text = builder.toString())
+            builder.toString().toast_showShort()
             // 清空数据【恢复状态】
             adapter.clearSelectAll()
         }

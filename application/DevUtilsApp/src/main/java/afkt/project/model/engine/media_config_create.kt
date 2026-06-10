@@ -244,7 +244,7 @@ class OnPermissionDeniedListenerImpl : OnPermissionDeniedListener {
                     if (deniedList.isEmpty()) {
                         call?.onCall(true)
                     } else {
-                        toast_showShort(text = "权限打开失败")
+                        "权限打开失败".toast_showShort()
                         call?.onCall(false)
                     }
                 }

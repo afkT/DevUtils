@@ -27,17 +27,17 @@ class PushFragment : AppFragment<FragmentDevEnginePushBinding, PushViewModel>(
 class PushViewModel : AppViewModel() {
 
     val clickClientId = View.OnClickListener { view ->
-        push_onReceiveClientId(context = view.context, clientId = "mock_client_id")
-        toast_showShort(text = "onReceiveClientId 已调用")
+        view.context.push_onReceiveClientId(clientId = "mock_client_id")
+        "onReceiveClientId 已调用".toast_showShort()
     }
 
     val clickDeviceToken = View.OnClickListener { view ->
-        push_onReceiveDeviceToken(context = view.context, deviceToken = "mock_device_token")
-        toast_showShort(text = "onReceiveDeviceToken 已调用")
+        view.context.push_onReceiveDeviceToken(deviceToken = "mock_device_token")
+        "onReceiveDeviceToken 已调用".toast_showShort()
     }
 
     val clickOnlineState = View.OnClickListener { view ->
-        push_onReceiveOnlineState(context = view.context, online = true)
-        toast_showShort(text = "onReceiveOnlineState 已调用")
+        view.context.push_onReceiveOnlineState(online = true)
+        "onReceiveOnlineState 已调用".toast_showShort()
     }
 }

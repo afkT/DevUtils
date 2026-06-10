@@ -75,24 +75,24 @@ class AccessibilityListenerServiceViewModel : AppViewModel() {
             AppUtils.getPackageName()
         )
         if (check) {
-            toast_showShort(text = "已开启无障碍功能")
+            "已开启无障碍功能".toast_showShort()
         } else {
-            toast_showShort(text = "未开启无障碍功能")
+            "未开启无障碍功能".toast_showShort()
         }
     }
 
     val clickRegister = View.OnClickListener { view ->
         if (!AccessibilityListenerService.checkAccessibility()) {
-            toast_showShort(text = "请先开启无障碍功能")
+            "请先开启无障碍功能".toast_showShort()
         } else {
-            toast_showShort(text = "绑定无障碍监听服务成功, 请查看 Logcat")
+            "绑定无障碍监听服务成功, 请查看 Logcat".toast_showShort()
             // 注册监听
             AccessibilityListenerService.startService()
         }
     }
 
     val clickUnRegister = View.OnClickListener { view ->
-        toast_showShort(text = "注销无障碍监听服务成功")
+        "注销无障碍监听服务成功".toast_showShort()
         // 注销监听
         AccessibilityListenerService.stopService()
     }

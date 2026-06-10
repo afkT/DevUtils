@@ -50,35 +50,35 @@ class DevCacheViewModel : AppViewModel() {
     // 存储字符串
     val clickString = View.OnClickListener { view ->
         devCache.put("str", "这是字符串", -1)
-        toast_showShort(text = "存储字符串成功")
+        "存储字符串成功".toast_showShort()
     }
 
     // 存储有效期字符串
     val clickStringTime = View.OnClickListener { view ->
         devCache.put("str", "这是有效期 3 秒字符串", 3000L)
-        toast_showShort(text = "存储有效期字符串成功")
+        "存储有效期字符串成功".toast_showShort()
     }
 
     // 获取字符串
     val clickStringGet = View.OnClickListener { view ->
         val value = devCache.getString("str")
         if (value != null) {
-            toast_showShort(text = "key[str]，value：${value}")
+            "key[str]，value：${value}".toast_showShort()
         } else {
-            toast_showShort(text = "未存储 key 为 str 的字符串")
+            "未存储 key 为 str 的字符串".toast_showShort()
         }
     }
 
     // 存储实体类
     val clickBean = View.OnClickListener { view ->
         devCache.put("bean", CacheVo("这是实体类"), -1)
-        toast_showShort(text = "存储实体类成功")
+        "存储实体类成功".toast_showShort()
     }
 
     // 存储有效期实体类
     val clickBeanTime = View.OnClickListener { view ->
         devCache.put("bean", CacheVo("这是有效期 3 秒实体类"), 3000L)
-        toast_showShort(text = "存储有效期实体类成功")
+        "存储有效期实体类成功".toast_showShort()
     }
 
     // 获取实体类
@@ -86,9 +86,9 @@ class DevCacheViewModel : AppViewModel() {
         val obj = devCache.getSerializable("bean")
         val value = if (obj != null) (obj as CacheVo).toString() else null
         if (value != null) {
-            toast_showShort(text = "key[bean]，value：${value}")
+            "key[bean]，value：${value}".toast_showShort()
         } else {
-            toast_showShort(text = "未存储 key 为 bean 的实体类")
+            "未存储 key 为 bean 的实体类".toast_showShort()
         }
     }
 
@@ -96,16 +96,16 @@ class DevCacheViewModel : AppViewModel() {
     val clickFile = View.OnClickListener { view ->
         // 保存到指定文件夹下
         devCacheCustomPath.put("fileStr", "这是指定位置字符串", -1)
-        toast_showShort(text = "存储到指定位置成功")
+        "存储到指定位置成功".toast_showShort()
     }
 
     // 获取指定位置缓存数据
     val clickFileGet = View.OnClickListener { view ->
         val value = devCacheCustomPath.getString("fileStr")
         if (value != null) {
-            toast_showShort(text = "key[fileStr]，value：${value}")
+            "key[fileStr]，value：${value}".toast_showShort()
         } else {
-            toast_showShort(text = "未存储 key 为 fileStr 的实体类")
+            "未存储 key 为 fileStr 的实体类".toast_showShort()
         }
     }
 
@@ -113,7 +113,7 @@ class DevCacheViewModel : AppViewModel() {
     val clickClear = View.OnClickListener { view ->
         devCache.clear()
         devCacheCustomPath.clear()
-        toast_showShort(text = "清除全部数据成功")
+        "清除全部数据成功".toast_showShort()
     }
 
     // 自定义存储路径

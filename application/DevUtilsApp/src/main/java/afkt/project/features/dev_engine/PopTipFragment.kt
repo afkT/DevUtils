@@ -27,7 +27,7 @@ class PopTipFragment : AppFragment<FragmentDevEnginePopTipBinding, PopTipViewMod
 class PopTipViewModel : AppViewModel() {
 
     val clickShow = View.OnClickListener {
-        poptip_show(text = "show 默认 PopTip")
+        "show 默认 PopTip".poptip_show()
     }
 
     val clickShowSuccess = View.OnClickListener {
@@ -56,7 +56,7 @@ class PopTipViewModel : AppViewModel() {
                     dialog: Any?,
                     view: View?
                 ): Boolean {
-                    toast_showShort(text = "点击了 PopTip 按钮")
+                    "点击了 PopTip 按钮".toast_showShort()
                     return false
                 }
             }).poptip_show()

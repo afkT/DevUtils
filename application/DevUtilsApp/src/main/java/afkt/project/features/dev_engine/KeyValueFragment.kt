@@ -31,36 +31,36 @@ class KeyValueViewModel : AppViewModel() {
 
     val clickPutString = View.OnClickListener {
         val result = KEY_STRING.kv_putString(value = "DevUtils")
-        toast_showShort(text = "putString: $result")
+        "putString: $result".toast_showShort()
     }
 
     val clickGetString = View.OnClickListener {
         val value = KEY_STRING.kv_getString()
-        toast_showShort(text = "getString: $value")
+        "getString: $value".toast_showShort()
     }
 
     val clickPutInt = View.OnClickListener {
         val result = KEY_INT.kv_putInt(value = 99999)
-        toast_showShort(text = "putInt: $result")
+        "putInt: $result".toast_showShort()
     }
 
     val clickGetInt = View.OnClickListener {
         val value = KEY_INT.kv_getInt()
-        toast_showShort(text = "getInt: $value")
+        "getInt: $value".toast_showShort()
     }
 
     val clickContains = View.OnClickListener {
         val result = KEY_STRING.kv_contains()
-        toast_showShort(text = "contains $KEY_STRING: $result")
+        "contains $KEY_STRING: $result".toast_showShort()
     }
 
     val clickRemove = View.OnClickListener {
         KEY_STRING.kv_remove()
-        toast_showShort(text = "remove $KEY_STRING 完成")
+        "remove $KEY_STRING 完成".toast_showShort()
     }
 
     val clickClear = View.OnClickListener {
         kv_clear()
-        toast_showShort(text = "clear 清空完成")
+        "clear 清空完成".toast_showShort()
     }
 }

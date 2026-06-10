@@ -44,19 +44,19 @@ class ViewPagerFragment : AppFragment<FragmentDevWidgetViewPagerBinding, ViewPag
                         tag = TAG
                     )
                     if (mLeftScroll) {
-                        toast_showShort(text = "往左滑 - 从右往左")
+                        "往左滑 - 从右往左".toast_showShort()
                     } else {
-                        toast_showShort(text = "往右滑 - 从左往右")
+                        "往右滑 - 从左往右".toast_showShort()
                     }
                 }
             })
             viewModel.clickEnable = View.OnClickListener {
                 binding.vidVp.isSlide = true
-                toast_showShort(text = "已允许滑动")
+                "已允许滑动".toast_showShort()
             }
             viewModel.clickDisable = View.OnClickListener {
                 binding.vidVp.isSlide = false
-                toast_showShort(text = "已禁止滑动")
+                "已禁止滑动".toast_showShort()
             }
         }
     }

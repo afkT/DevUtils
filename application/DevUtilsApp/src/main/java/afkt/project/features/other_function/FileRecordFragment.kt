@@ -21,6 +21,6 @@ class FileRecordViewModel : AppViewModel() {
 
     val clickFileRecord = View.OnClickListener { view ->
         FileRecordUse.fileRecordUse()
-        toast_showShort(text = "日志、异常文件记录保存成功")
+        "日志、异常文件记录保存成功".toast_showShort()
     }
 }

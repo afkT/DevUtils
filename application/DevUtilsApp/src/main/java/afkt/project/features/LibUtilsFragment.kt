@@ -14,9 +14,9 @@ class LibUtilsFragment : AppFragment<FragmentRecyclerViewBinding, AppViewModel>(
         // 初始化数据并设置点击事件
         frg.buttonAdapter()?.convertItemsLibUtilsMain { btn ->
             if (btn.name.contains("_db_", true)) {
-                toast_showShort(text = "具体查看: 【DevUtils-repo】application/AppDB")
+                "具体查看: 【DevUtils-repo】application/AppDB".toast_showShort()
             } else {
-                toast_showShort(text = "具体搜索: 【DevUtils-repo】local_dev/DevOther ${btn.text}")
+                "具体搜索: 【DevUtils-repo】local_dev/DevOther ${btn.text}".toast_showShort()
             }
         }
     }
