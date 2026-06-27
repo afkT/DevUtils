@@ -1,0 +1,106 @@
+---
+description: >-
+  DevUtils 项目内创建、重命名或重构 Agent Skill 时强制套用的项目专属约定：在通用规范之上叠加本
+  项目的领域前缀体系（gradle- / release- / android- / ui- / binding- / screen- / arch- / data- /
+  nav- / di- / platform- / quality- / infra- / code- / workflow- 以及 project- / feature-）、前缀
+  选择与消歧规则，以及 SKILL.md 内的最少路径锚点约定（如 DEPS_ROOT=、DEVSIMPLE_ROOT=）。当用户说
+  「给我建一个 xxx 功能的 skill」「更新 xxx skill」「这个 skill 该用什么前缀」「项目里的技能命名」等
+  时，必须遵循本规则，即使没有显式点名"规范"。通用命名族（动名词 / 名词）、目录三件套与 SKILL /
+  references 分工见 authoring-agent-skills 规则，本规则不重复，只补充 DevUtils 专属部分。
+alwaysApply: false
+---
+
+# DevUtils Skill 项目专属约定（前缀体系 + 路径锚点）
+
+本规则是 DevUtils 项目对通用规范 `authoring-agent-skills` 的**项目专属补充**，二者配合使用：
+
+- **通用部分**（kebab-case、目录名 == `name`、动名词 / 名词命名族、`scripts/` `references/` `assets/`
+  三件套、SKILL ↔ references 分工、何时拆分、渐进式披露）→ 见 `authoring-agent-skills` 规则，**本规则不重复**。
+- **本规则只规定 DevUtils 专属内容**：① 领域前缀体系；② 前缀选择与消歧；③ SKILL.md 最少路径锚点。
+
+## 适用顺序
+
+在本项目内新建 / 重命名 / 重构 Skill 时：**先按 `authoring-agent-skills` 规范化通用命名与结构，
+再用本规则确定项目领域前缀与路径锚点。**
+
+---
+
+## 1. 领域前缀体系
+
+技能名采用 `<scope-or-domain>-<specific-topic>` 模式，**只用一个主前缀**，topic 通常为 2–4 个具体英文单词。
+本项目的领域前缀清单如下：
+
+```text
+gradle-   release-   android-
+ui-       binding-   screen-
+arch-     data-      nav-      di-
+platform- quality-   infra-    code-    workflow-
+project-  feature-
+```
+
+## 2. 前缀选择
+
+- **可复用 Skill** 使用领域前缀：`gradle-*`、`release-*`、`android-*`、`ui-*`、`binding-*`、`screen-*`、
+  `arch-*`、`data-*`、`nav-*`、`di-*`、`platform-*`、`quality-*`、`infra-*`、`code-*`、`workflow-*`。
+- 与特定项目的私有约定、基类、目录结构、封装组件、依赖配置、团队流程或生成代码契约绑定的 Skill，使用 `project-`。
+- 对项目专用 Skill，如果领域清晰，写作 `project-<domain>-<topic>`，例如 `project-ui-card`、`project-android-dimen`、
+  `project-data-repository` 或 `project-feature-api`。
+- 当规则既是项目专用、又专门针对 feature module 时，使用 `project-feature-<topic>`。
+- 只有当 feature module 约定可在单个项目之外复用时，才使用裸 `feature-<topic>`。
+- 除非用户明确需要在同一套共享 Skill 中区分多个项目族，否则**不要**把仓库、文件夹、产品、团队或组织名称用作前缀。
+
+## 3. 领域指引
+
+| 前缀 | 适用范围 |
+| --- | --- |
+| `gradle-` | 构建文件、依赖坐标、版本升级 |
+| `release-` | 变更日志、发布说明、已发布版本记录 |
+| `android-` | Android SDK 行为、平台资源、资源命名 |
+| `ui-` | 布局、控件、视觉组件、动画、UI 库 |
+| `binding-` | DataBinding、BindingAdapter、XML 绑定属性 |
+| `screen-` | 端到端的页面创建流程 |
+| `arch-` | 架构、模块化、用例、分层 |
+| `data-` | 存储、数据库、网络 API、分页，以及可复用的 repository |
+| `nav-` | 导航、intent、bundle、saved state、deep link |
+| `di-` | 依赖注入模块与配置 |
+| `platform-` | 权限、通知、相机 / 媒体、WebView、后台任务 |
+| `quality-` | 测试、安全、性能、混淆、崩溃处理、错误处理 |
+| `infra-` | 启动、生命周期、运行时日志、应用基础设施 |
+| `code-` | 代码风格、注释、命名、生成约定 |
+| `workflow-` | AI 协作、文档流程、规划或评审流程 |
+
+## 4. 常见消歧
+
+- 发布历史使用 `release-*`；运行时日志使用 `infra-logging`。不要使用裸 `log-*`。
+- 项目本地的变更日志辅助 Skill 使用 `project-release-*`，不要使用由文件夹名派生的前缀。
+- 项目本地的 UI 封装使用 `project-ui-*`，即使它封装的是可复用 UI 库。
+- 项目专用的 Android 资源规则使用 `project-android-*`；可复用的 Android 资源规则使用 `android-*`。
+- 项目专用的 feature API / repository 模式使用 `project-feature-*`；可复用的 feature 分层规则使用 `feature-*` 或 `arch-*`。
+
+---
+
+## 5. SKILL.md 最少路径锚点（DevUtils 专属）
+
+DevUtils 的技能常需引用仓库内固定根路径。约定如下，目的是让 `SKILL.md` 精简、抗漂移：
+
+- 在 `SKILL.md` 顶部用**最少的路径锚点**声明关键根路径，例如：
+  ```text
+  DEPS_ROOT=        # 依赖定义 / 版本目录的根
+  DEVSIMPLE_ROOT=   # DevSimple 模块的根
+  ```
+- 正文其余路径**基于锚点相对表达**，不要散落写一堆绝对 / 全量路径。
+- **完整路径清单、模块契约展开表、全量属性 / 样式表**（如 `ViewTheme.*` 全表、`hl_*` 全表）放入 `references/`，
+  不要堆进 `SKILL.md`；正文最多保留 3–5 行速查 + 一句"完整内容见参考文件"。
+- 参考文件中涉及会随仓库漂移的快照（扫描结果、路径索引）时，附带其维护 / 复核步骤（如 grep 维护步骤）。
+
+> 判定是否拆分参考文件、`references/` 的命名与分工，沿用 `authoring-agent-skills` 规则，本规则不重复。
+
+---
+
+## 项目专属预检清单（叠加在通用预检之上）
+
+- [ ] 名称已先通过 `authoring-agent-skills` 的通用命名预检（kebab-case、目录名 == `name`、命名族正确）。
+- [ ] 名称包含**一个**来自本项目清单的主领域前缀或 `project-` 前缀。
+- [ ] 项目专用行为使用 `project-…`；领域清晰时用 `project-<domain>-<topic>`。
+- [ ] 已按"常见消歧"排除易混前缀（如 `release-` vs `infra-logging`、`project-ui-*` 等）。
+- [ ] `SKILL.md` 顶部仅保留最少路径锚点（如 `DEPS_ROOT=`、`DEVSIMPLE_ROOT=`），全量路径 / 大表已下沉 `references/`。
