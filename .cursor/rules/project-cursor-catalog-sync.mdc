@@ -20,7 +20,7 @@ alwaysApply: true
 
 对 **新增、删除或重命名** `skills/<目录>/` 时，除更新 [`directory-tree.md`](../directory-tree.md) 的目录树与 README §三 skills 表格外，还须：
 
-> 捆绑资源目录的受控集合与命名（`references/`、`scripts/`、`assets/`）以 [authoring-agent-skills.mdc](authoring-agent-skills.mdc) 为准；参考资料一律使用复数 `references/` 目录。
+> 捆绑资源目录的受控集合与命名（`references/`、`scripts/`、`assets/`）以 [agent-skill-conventions.mdc](agent-skill-conventions.mdc) 为准；参考资料一律使用复数 `references/` 目录。
 
 1. **表格与目录树分工**：README §三表格仅维护「目录（链接到 `SKILL.md`）、自动唤起、能做什么」三列，**不**为是否含 `references/`/`scripts/`/`assets/` 等捆绑目录单设列（这些多会按规范生成、价值低）；某 Skill 实际存在的受控子目录由 `directory-tree.md` 的**目录树**体现——列出 `SKILL.md` 及现有子目录，顺序与文件系统一致。
 2. **Skill 互链**：在 `.cursor/skills/` 内检索指向其它 Skill 的相对路径（如 `../<skill-name>/SKILL.md`、`../<skill-name>/references/<file>.md`）。重命名或删除目录后，**同一轮**修正所有仍引用旧目录名的链接；新增互链时目标目录须已存在。

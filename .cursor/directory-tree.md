@@ -11,7 +11,7 @@
 ├── audits/
 │   └── skill-local-path-audit.md
 ├── rules/
-│   ├── authoring-agent-skills.mdc
+│   ├── agent-skill-conventions.mdc
 │   ├── chinese-simplified.mdc
 │   ├── karpathy-guidelines.mdc
 │   ├── project-cursor-catalog-sync.mdc

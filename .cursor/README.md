@@ -32,7 +32,7 @@
 
 | 文件 | alwaysApply | 说明 |
 |------|:-------------:|------|
-| [authoring-agent-skills.mdc](rules/authoring-agent-skills.mdc) | 否 | 创建或重构 Skill 时的通用命名族与目录/文档结构规范。 |
+| [agent-skill-conventions.mdc](rules/agent-skill-conventions.mdc) | 否 | 创建或重构 Skill 时的通用命名族与目录/文档结构规范。 |
 | [chinese-simplified.mdc](rules/chinese-simplified.mdc) | 是 | 助手默认使用简体中文回复。 |
 | [karpathy-guidelines.mdc](rules/karpathy-guidelines.mdc) | 否 | 写码、评审、重构时按需采用的通用行为准则。 |
 | [project-cursor-catalog-sync.mdc](rules/project-cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目后同步 README 与目录树文档。 |

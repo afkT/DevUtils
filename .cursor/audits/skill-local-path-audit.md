@@ -141,7 +141,7 @@ flowchart LR
 | 场景 | 维护动作 |
 |------|----------|
 | 新增 / 删除 / 重命名 Skill 或 `references/` | 按 `.cursor/rules/project-cursor-catalog-sync.mdc` 同步 `.cursor/README.md`、`.cursor/directory-tree.md` 与互链 |
-| SKILL 内出现新的长表、扫描清单、属性全表 | 按 `.cursor/rules/authoring-agent-skills.mdc` 拆入 `references/` |
+| SKILL 内出现新的长表、扫描清单、属性全表 | 按 `.cursor/rules/agent-skill-conventions.mdc` 拆入 `references/` |
 | 新建或重命名 Skill 需定前缀 | 按 `.cursor/rules/project-skill-conventions.mdc` 选用本项目领域前缀 / `project-` |
 | DevSimple / DevWidget / ShadowLayout / DialogX 上游属性或源码变化 | 更新对应 `references/`，SKILL 仅保留流程和关键坑 |
 | Gradle 依赖布局改变 | 更新两个 `project-gradle-*` Skill 的 `DEPS_ROOT` / `DEPS_MANIFEST` 契约 |
@@ -160,7 +160,7 @@ flowchart LR
 | 文档 | 说明 |
 |------|------|
 | [../rules/project-cursor-catalog-sync.mdc](../rules/project-cursor-catalog-sync.mdc) | README / directory-tree 同步、Skill 互链维护 |
-| [../rules/authoring-agent-skills.mdc](../rules/authoring-agent-skills.mdc) | 通用命名族与 `SKILL.md` / `references/` 分工、目录结构 |
+| [../rules/agent-skill-conventions.mdc](../rules/agent-skill-conventions.mdc) | 通用命名族与 `SKILL.md` / `references/` 分工、目录结构 |
 | [../rules/project-skill-conventions.mdc](../rules/project-skill-conventions.mdc) | DevUtils 领域前缀体系、消歧与路径锚点 |
 | [../README.md](../README.md) | 当前 `.cursor` 编目总表 |
 | [../directory-tree.md](../directory-tree.md) | `.cursor/` 完整目录树 |

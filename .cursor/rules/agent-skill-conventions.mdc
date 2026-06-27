@@ -53,7 +53,7 @@ Skill 按三层加载，任何命名与结构决策都服务于"少占上下文�
 当技能描述的是"一段要做的事 / 一套工作方法"时，用动词的 `-ing` 形式开头。
 
 - 模式：`<verb-ing>-<object>[-with-<tool>]` 或 `<verb-ing>-<object>[-for-<purpose>]`。
-- 示例：`authoring-agent-skills`、`triaging-incident-reports`、`writing-release-notes`、`migrating-build-config`、`reviewing-pull-requests`、`performing-dependency-audit`。
+- 示例：`authoring-api-docs`、`triaging-incident-reports`、`writing-release-notes`、`migrating-build-config`、`reviewing-pull-requests`、`performing-dependency-audit`。
 
 > 为什么用动名词：技能本质是"让 Agent 会做某事"，动名词让 `name` 与触发判断天然呼应（用户想做 X → 触发 X-ing 技能），也避免与工具名词混淆。拿不准用哪族时，**默认动名词**。
 
