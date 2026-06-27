@@ -1,6 +1,6 @@
 # DevUtils：Cursor 工作区说明（`.cursor`）
 
-本目录汇总本仓库与 Cursor Agent 相关的 **Project Rules** 与 **工程向 Skills**，便于快速了解「能做什么、何时会用到」。具体步骤、路径与表格以各 `SKILL.md` 及其捆绑参考文件（`references/`，或早期 Skill 的遗留 `reference.md`）为准。
+本目录汇总本仓库与 Cursor Agent 相关的 **Project Rules** 与 **工程向 Skills**，便于快速了解「能做什么、何时会用到」。具体步骤、路径与表格以各 `SKILL.md` 及其捆绑参考文件（`references/`）为准。
 
 维护 `.cursor/` 增删改后请同步本文件；格式与顺序见 [rules/cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc)。
 
@@ -12,7 +12,7 @@
 |----------|------|------------------|
 | `audits/` | `.cursor` 维护审计报告 | 1 |
 | `rules/` | Project Rules（`.mdc`） | 5 |
-| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `reference.md`） | 13 个 Skill + 9 份 reference |
+| `skills/` | 工程向 Agent Skills（`SKILL.md`，部分含 `references/`） | 13 个 Skill + 9 份 references |
 
 ### 目录树
 
@@ -31,34 +31,43 @@
     ├── android-dimen-dp-sp/SKILL.md
     ├── android-version-platform-adapt/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── android-xml-resource/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── code-method-normalize/SKILL.md
     ├── project-binding-adapter-from-source/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── project-devengine-implementation/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── project-gradle-central-deps/SKILL.md
     ├── project-gradle-third-party-version-upgrade/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── release-changelog-update/SKILL.md
     ├── ui-devsimple-viewtheme/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── ui-devwidget-round/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     ├── ui-dialogx-dialog/
     │   ├── SKILL.md
-    │   └── reference.md
+    │   └── references/
+    │       └── reference.md
     └── ui-shadowlayout/
         ├── SKILL.md
-        └── reference.md
+        └── references/
+            └── reference.md
 ```
 
 ---
@@ -85,25 +94,25 @@
 
 ## 三、`skills/`（工程向 Skills）
 
-任务匹配时 Agent 应 **Read** 对应 [SKILL.md](skills/)；含 `reference.md` 的 Skill 在需要全表或扫描清单时再读 reference。
+任务匹配时 Agent 应 **Read** 对应 [SKILL.md](skills/)；含 `references/` 的 Skill 在需要全表或扫描清单时再读其中文档。
 
 **自动唤起**：下表「自动唤起」为 **关** 的 Skill 在 YAML 中设置了 `disable-model-invocation: true`，需用户明确提到相关任务时再加载；**默认** 表示未设置该字段。
 
 | 目录 | `name` | 自动唤起 | reference | 能做什么 |
 |------|--------|:--------:|:---------:|----------|
 | [android-dimen-dp-sp](skills/android-dimen-dp-sp/SKILL.md) | `android-dimen-dp-sp` | 默认 | — | 将硬编码 dp/sp 改为 `@dimen/dp_*`、`@dimen/sp_*` 与 `R.dimen.*`。 |
-| [android-version-platform-adapt](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | 关 | [有](skills/android-version-platform-adapt/reference.md) | 按官方版本文档做行为变更与新 API 适配、targetSdk 升级与工具封装。 |
-| [android-xml-resource](skills/android-xml-resource/SKILL.md) | `android-xml-resource` | 默认 | [有](skills/android-xml-resource/reference.md) | 统一 layout/drawable/color/values/id 命名，selector 与状态色单文件整合。 |
+| [android-version-platform-adapt](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | 关 | [有](skills/android-version-platform-adapt/references/reference.md) | 按官方版本文档做行为变更与新 API 适配、targetSdk 升级与工具封装。 |
+| [android-xml-resource](skills/android-xml-resource/SKILL.md) | `android-xml-resource` | 默认 | [有](skills/android-xml-resource/references/reference.md) | 统一 layout/drawable/color/values/id 命名，selector 与状态色单文件整合。 |
 | [code-method-normalize](skills/code-method-normalize/SKILL.md) | `code-method-normalize` | 默认 | — | 统一 Java/Kotlin 方法注释与写法（JavaDoc/KDoc、final、安全返回等）。 |
-| [project-binding-adapter-from-source](skills/project-binding-adapter-from-source/SKILL.md) | `project-binding-adapter-from-source` | 默认 | [有](skills/project-binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局自定义属性。 |
-| [project-devengine-implementation](skills/project-devengine-implementation/SKILL.md) | `project-devengine-implementation` | 默认 | [有](skills/project-devengine-implementation/reference.md) | 新增或维护 DevAssist + DevEngine 的功能 Engine 实现、默认初始化、extensions 与 README。 |
+| [project-binding-adapter-from-source](skills/project-binding-adapter-from-source/SKILL.md) | `project-binding-adapter-from-source` | 默认 | [有](skills/project-binding-adapter-from-source/references/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局自定义属性。 |
+| [project-devengine-implementation](skills/project-devengine-implementation/SKILL.md) | `project-devengine-implementation` | 默认 | [有](skills/project-devengine-implementation/references/reference.md) | 新增或维护 DevAssist + DevEngine 的功能 Engine 实现、默认初始化、extensions 与 README。 |
 | [project-gradle-central-deps](skills/project-gradle-central-deps/SKILL.md) | `project-gradle-central-deps` | 默认 | — | 在集中 Gradle 配置中新增或引用依赖坐标，写入 deps 清单。 |
-| [project-gradle-third-party-version-upgrade](skills/project-gradle-third-party-version-upgrade/SKILL.md) | `project-gradle-third-party-version-upgrade` | 关 | [有](skills/project-gradle-third-party-version-upgrade/reference.md) | 查证并升级第三方库版本，对齐仓库与官方发布。 |
+| [project-gradle-third-party-version-upgrade](skills/project-gradle-third-party-version-upgrade/SKILL.md) | `project-gradle-third-party-version-upgrade` | 关 | [有](skills/project-gradle-third-party-version-upgrade/references/reference.md) | 查证并升级第三方库版本，对齐仓库与官方发布。 |
 | [release-changelog-update](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | 关 | — | 按既有版式用 git 提交说明更新 CHANGELOG / 发版记录。 |
-| [ui-devsimple-viewtheme](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | [有](skills/ui-devsimple-viewtheme/reference.md) | 为布局控件补全 DevSimple `ViewTheme` 样式引用。 |
-| [ui-devwidget-round](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | [有](skills/ui-devwidget-round/reference.md) | 用 DevWidget Round 做圆角、描边，减少 shape drawable。 |
-| [ui-dialogx-dialog](skills/ui-dialogx-dialog/SKILL.md) | `ui-dialogx-dialog` | 默认 | [有](skills/ui-dialogx-dialog/reference.md) | 用 DialogX 做对话框、菜单、加载、提示、通知，替代系统弹窗。 |
-| [ui-shadowlayout](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | [有](skills/ui-shadowlayout/reference.md) | 用 ShadowLayout 做阴影、圆角、背景与状态效果，少写 selector/shape。 |
+| [ui-devsimple-viewtheme](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | [有](skills/ui-devsimple-viewtheme/references/reference.md) | 为布局控件补全 DevSimple `ViewTheme` 样式引用。 |
+| [ui-devwidget-round](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | [有](skills/ui-devwidget-round/references/reference.md) | 用 DevWidget Round 做圆角、描边，减少 shape drawable。 |
+| [ui-dialogx-dialog](skills/ui-dialogx-dialog/SKILL.md) | `ui-dialogx-dialog` | 默认 | [有](skills/ui-dialogx-dialog/references/reference.md) | 用 DialogX 做对话框、菜单、加载、提示、通知，替代系统弹窗。 |
+| [ui-shadowlayout](skills/ui-shadowlayout/SKILL.md) | `ui-shadowlayout` | 默认 | [有](skills/ui-shadowlayout/references/reference.md) | 用 ShadowLayout 做阴影、圆角、背景与状态效果，少写 selector/shape。 |
 
 ---
 

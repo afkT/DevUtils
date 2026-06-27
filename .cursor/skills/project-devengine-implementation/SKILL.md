@@ -8,7 +8,7 @@ description: >-
 
 # Project DevEngine Implementation
 
-用于 DevUtils 私人工具库中新增或维护某类 Engine 实现。详情路径与同步点见 [reference.md](reference.md)。
+用于 DevUtils 私人工具库中新增或维护某类 Engine 实现。详情路径与同步点见 [references/reference.md](references/reference.md)。
 
 ## 路径锚点
 

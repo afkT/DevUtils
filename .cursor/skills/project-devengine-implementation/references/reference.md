@@ -1,6 +1,6 @@
 # AFKT Project DevEngine Implementation Reference
 
-本文件记录 DevEngine 实现工作流的路径清单、命名契约和同步点。常规执行顺序以 [SKILL.md](SKILL.md) 为准。
+本文件记录 DevEngine 实现工作流的路径清单、命名契约和同步点。常规执行顺序以 [SKILL.md](../SKILL.md) 为准。
 
 ## 目标路径
 

@@ -1,6 +1,6 @@
 # Android XML 资源命名 — 参考
 
-与 [SKILL.md](SKILL.md) 配套：各资源类型的前缀全表、drawable 值编码族语法、values 命名细则、配置限定符顺序、示例与反例、完整校验清单。流程与重点（单文件 selector 范式）见 SKILL。
+与 [SKILL.md](../SKILL.md) 配套：各资源类型的前缀全表、drawable 值编码族语法、values 命名细则、配置限定符顺序、示例与反例、完整校验清单。流程与重点（单文件 selector 范式）见 SKILL。
 
 ## layout 命名
 
@@ -113,7 +113,7 @@ MCC/MNC → 语言_地区(zh-rCN) → 布局方向(ldrtl) → 最小宽度(sw600
 - **图标 selector**：`<item android:drawable="@mipmap/..." android:state_xxx="true"/>`，默认项放末尾。
 - **顺序**：具体/优先 state 在前（`state_checked`/`state_pressed`/`state_selected`/`state_focused`…），默认兜底项放最后。
 
-范式 XML 见 [SKILL.md § 状态资源单文件整合](SKILL.md#状态资源单文件整合强约束--重点)。
+范式 XML 见 [SKILL.md § 状态资源单文件整合](../SKILL.md#状态资源单文件整合强约束--重点)。
 
 ## 模块化资源目录
 

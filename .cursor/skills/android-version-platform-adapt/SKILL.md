@@ -24,7 +24,7 @@ disable-model-invocation: true
 |------|-------------------|------|
 | `DEVAPP_ROOT` | `lib/DevApp` | Android 平台工具类与版本判断封装的优先落点 |
 
-新增平台 API 封装或行为变更缓解时，先在 `{DEVAPP_ROOT}` 按领域关键词检索同类 `*Utils` / `*Version*`，再决定扩展现有类或新增文件；**不要**在 SKILL 正文固定依赖某个历史类名。扫描示例、关键词与历史对照入口见 [reference.md §仓库落点发现](reference.md#仓库落点发现非固定类名锚点)。
+新增平台 API 封装或行为变更缓解时，先在 `{DEVAPP_ROOT}` 按领域关键词检索同类 `*Utils` / `*Version*`，再决定扩展现有类或新增文件；**不要**在 SKILL 正文固定依赖某个历史类名。扫描示例、关键词与历史对照入口见 [references/reference.md §仓库落点发现](references/reference.md#仓库落点发现非固定类名锚点)。
 
 ## 版本参数
 
@@ -59,11 +59,11 @@ disable-model-invocation: true
 ## 执行原则
 
 1. **先读再写**：每个子步骤对应 URL 必须用 **WebFetch**（失败则 **WebSearch** + 重试）拉取正文后再归纳。
-2. **扫描子目录**：主站导航不会列出全部深度页；在步骤 1、2 完成后，对 **版本首页、两条 behavior 页、features 页、migration 页** 提取指向 `/about/versions/{N}/` 的链接，去重后按 [reference.md](reference.md) 分类补读。
+2. **扫描子目录**：主站导航不会列出全部深度页；在步骤 1、2 完成后，对 **版本首页、两条 behavior 页、features 页、migration 页** 提取指向 `/about/versions/{N}/` 的链接，去重后按 [references/reference.md](references/reference.md) 分类补读。
 3. **区分受众**：
    - **所有应用**：设备跑在 N 上即可能受影响（与 `targetSdkVersion` 无关）。
    - **target N**：仅 `targetSdkVersion >= N` 时强制或默认生效。
-4. **落地范围**：只改任务相关模块；工具类优先扩展 `{DEVAPP_ROOT}` 下同领域 `*Utils`，落点不明确时先用 Glob / 内容检索找相近封装；类级或方法级 `<pre>` 可链官方页（历史扫描示例见 [reference.md](reference.md)）。
+4. **落地范围**：只改任务相关模块；工具类优先扩展 `{DEVAPP_ROOT}` 下同领域 `*Utils`，落点不明确时先用 Glob / 内容检索找相近封装；类级或方法级 `<pre>` 可链官方页（历史扫描示例见 [references/reference.md](references/reference.md)）。
 5. **API 引用**：新 API 以 [Android API reference](https://developer.android.com/reference) 为准；features 页仅作索引，实现前核对方法签名与 `@RequiresApi`。
 
 ## 工作流
@@ -91,7 +91,7 @@ disable-model-invocation: true
 
 - 对步骤 1.1–1.2 及 **migration** 正文中出现的  
   `/about/versions/{N}/changes/*` **逐页 WebFetch**。
-- Android 17 已知子页见 [reference.md § Android 17 扫描结果](reference.md#android-17-扫描结果)；其它 N 以扫描为准。
+- Android 17 已知子页见 [references/reference.md § Android 17 扫描结果](references/reference.md#android-17-扫描结果)；其它 N 以扫描为准。
 
 #### 1.4 行为变更相关参考子页
 
@@ -195,4 +195,4 @@ done | sort -u
 
 - 页面以 **英文** 为主时，`?hl=zh-cn` 可能仍部分英文；以正文为准，**链接用官方路径**。
 - 官方页「Note: 详见 release notes」→ 必须打开 **release-notes** 补全。
-- 更多 Android 17 已扫描路径与 API 对照见 [reference.md](reference.md)。
+- 更多 Android 17 已扫描路径与 API 对照见 [references/reference.md](references/reference.md)。

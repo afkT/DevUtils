@@ -1,6 +1,6 @@
 # DevSimple ViewTheme — 参考
 
-与 [SKILL.md](SKILL.md) 配套：**根样式表**、继承链速查、资源文件索引与扫描维护。流程与匹配算法见 SKILL 正文。
+与 [SKILL.md](../SKILL.md) 配套：**根样式表**、继承链速查、资源文件索引与扫描维护。流程与匹配算法见 SKILL 正文。
 
 ## 模块路径
 

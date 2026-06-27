@@ -1,6 +1,6 @@
 # Android 版本平台适配 — 参考
 
-与 [SKILL.md](SKILL.md) 配套：URL 规律、链接扫描、Android 17 实例子页。其它版本 **N** 用同一套路替换路径中的数字。
+与 [SKILL.md](../SKILL.md) 配套：URL 规律、链接扫描、Android 17 实例子页。其它版本 **N** 用同一套路替换路径中的数字。
 
 ## 路径规律
 

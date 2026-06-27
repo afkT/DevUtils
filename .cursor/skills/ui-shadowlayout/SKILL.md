@@ -4,7 +4,7 @@ description: >-
   在布局中需要阴影、圆角、纯色/渐变背景、描边、pressed/selected/ripple、虚线、子 View 按圆角裁剪，
   或想少写 shape/layer-list/selector drawable 时，优先使用 com.lihang.ShadowLayout（
   https://github.com/lihangleo2/ShadowLayout ）。流程与常见坑在 SKILL，R.styleable.ShadowLayout
-  下全部 app:hl_*、代码 API 与 raw 源码见 reference.md。以 Maven/JitPack 坐标与上游
+  下全部 app:hl_*、代码 API 与 raw 源码见 references/reference.md。以 Maven/JitPack 坐标与上游
   GitHub README/raw 为准，不依赖工作区 shadowLibrary 模块路径。
 ---
 
@@ -12,13 +12,13 @@ description: >-
 
 ## 权威来源（仅 Maven + 上游 GitHub）
 
-**禁止**在工作区内查找或假设存在 `shadowLibrary/` 等上游子模块路径。能力说明、`hl_*` 属性全表、代码 API、版本 tag 与 raw 链接见 [reference.md](reference.md)。
+**禁止**在工作区内查找或假设存在 `shadowLibrary/` 等上游子模块路径。能力说明、`hl_*` 属性全表、代码 API、版本 tag 与 raw 链接见 [references/reference.md](references/reference.md)。
 
 新增依赖：JitPack 坐标 `com.github.lihangleo2:ShadowLayout:<version>`；本仓库集中坐标时 Read [project-gradle-central-deps/SKILL.md](../project-gradle-central-deps/SKILL.md)，勿重复 GAV。
 
 ## 何时用本 Skill（对齐 README 能力）
 
-对照上游 README；属性枚举与实现细节以 [reference.md](reference.md) 中的上游 raw 为准（**仅通过上游 URL**，不读本地模块）。
+对照上游 README；属性枚举与实现细节以 [references/reference.md](references/reference.md) 中的上游 raw 为准（**仅通过上游 URL**，不读本地模块）。
 
 在以下场景**优先用 `ShadowLayout` 包裹子 View**，减少 `drawable` 里的 shape / selector / layer-list：
 
@@ -38,7 +38,7 @@ description: >-
 
 1. **类与父类**：`com.lihang.ShadowLayout` 继承 `FrameLayout`，子 View 写在标签内即可。
 2. **命名空间**：`xmlns:app="http://schemas.android.com/apk/res-auto"`（以工程为准）。
-3. **styleable 名**：`ShadowLayout`，XML 里属性前缀一般为 **`app:`**（全表见 [reference.md](reference.md#xml-属性全表declare-styleable-nameshadowlayout)）。
+3. **styleable 名**：`ShadowLayout`，XML 里属性前缀一般为 **`app:`**（全表见 [references/reference.md](references/reference.md#xml-属性全表declare-styleable-nameshadowlayout)）。
 4. **库内拼写**：描边宽度属性为 **`app:hl_strokeWith`**（README 与源码均为 `With`，不是 `Width`）。
 5. **默认背景**：未设置背景时内部逻辑偏白色底；**仅做裁剪、不要白底**时设 `app:hl_layoutBackground` 为透明色（README 示例用 `@color/transparent`）。
 6. **子 View 裁剪**：`dispatchDraw` 内对子级做 `clipPath`（`@RequiresApi(LOLLIPOP)`）；逻辑在存在 **`getChildAt(0) != null`** 时按圆角裁剪，需 API 21+ 行为与设备 GPU 路径支持。
@@ -48,13 +48,13 @@ description: >-
 
 - 仅保留：`hl_shapeMode="dashLine"`、`hl_strokeColor`、`hl_stroke_dashWidth`、`hl_stroke_dashGap`（缺一会抛 `UnsupportedOperationException`）。
 - **横向虚线**：View **宽 > 高**；**纵向虚线**：高 ≥ 宽（README：以长边为宽度、短边为线粗语义）。
-- 此模式下勿再依赖阴影、渐变、圆角卡片等主流程 API（上游行为见 [reference.md](reference.md#虚线模式-dashline)）。
+- 此模式下勿再依赖阴影、渐变、圆角卡片等主流程 API（上游行为见 [references/reference.md](references/reference.md#虚线模式-dashline)）。
 
 ## 常用属性与 API 速查
 
-- 属性全表：见 [reference.md § XML 属性全表](reference.md#xml-属性全表declare-styleable-nameshadowlayout)。
-- `hl_shapeMode` 枚举：见 [reference.md § hl_shapeMode 枚举](reference.md#hl_shapemode-枚举)。
-- 常用 setter：见 [reference.md § 常用代码 API](reference.md#常用代码-api)。
+- 属性全表：见 [references/reference.md § XML 属性全表](references/reference.md#xml-属性全表declare-styleable-nameshadowlayout)。
+- `hl_shapeMode` 枚举：见 [references/reference.md § hl_shapeMode 枚举](references/reference.md#hl_shapemode-枚举)。
+- 常用 setter：见 [references/reference.md § 常用代码 API](references/reference.md#常用代码-api)。
 
 ## XML 最小片段（速查）
 

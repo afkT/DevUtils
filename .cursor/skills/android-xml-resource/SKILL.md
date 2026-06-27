@@ -11,7 +11,7 @@ description: >-
 
 # Android XML 资源命名规范（多项目通用）
 
-让新建的 `layout`、`drawable`、`mipmap`、`color`、`values` 资源命名一致、可预测、可被工具校验。本 Skill 自包含，不依赖任何外部文档；全量表格、示例与反例见 [reference.md](reference.md)。
+让新建的 `layout`、`drawable`、`mipmap`、`color`、`values` 资源命名一致、可预测、可被工具校验。本 Skill 自包含，不依赖任何外部文档；全量表格、示例与反例见 [references/reference.md](references/reference.md)。
 
 ## 何时用本 Skill
 
@@ -24,7 +24,7 @@ description: >-
 
 1. 基于文件的资源名（`layout/`、`drawable/`、`color/`、`mipmap/`、`anim/`…目录下文件）**只能用小写 `a-z`、数字 `0-9`、下划线 `_`**；大写、空格、连字符、中文都非法。
 2. 资源只能放进 **预定义类型目录**（`drawable/`、`mipmap/`、`layout/`、`values/`、`color/`、`anim/`、`menu/`、`xml/`、`raw/`、`font/`…），不能放 `res/` 根，也不能自造目录基名。
-3. 配置限定符以 **短横线 `-`** 追加到目录基名（`drawable-night-hdpi`、`values-zh-rCN`、`layout-land`），并按官方优先级排序；目录不可嵌套。限定符顺序见 [reference.md](reference.md#配置限定符顺序)。
+3. 配置限定符以 **短横线 `-`** 追加到目录基名（`drawable-night-hdpi`、`values-zh-rCN`、`layout-land`），并按官方优先级排序；目录不可嵌套。限定符顺序见 [references/reference.md](references/reference.md#配置限定符顺序)。
 
 ## 命名总则
 
@@ -34,11 +34,11 @@ description: >-
 4. **语义优先、缩写克制**；宁可长而清晰。
 5. **模块化前缀**：若工程按模块拆资源目录（如 `res-<module>/`），文件名以模块/功能域起头（`main_tab_*`、`learning_word_*`）规避跨模块同名。
 
-各类型的前缀表与 `name` 规则（layout / drawable 两族 / colors / dimens / styles / ids）见 [reference.md](reference.md)。
+各类型的前缀表与 `name` 规则（layout / drawable 两族 / colors / dimens / styles / ids）见 [references/reference.md](references/reference.md)。
 
 ## drawable 命名两族（摘要）
 
-按用途二选一，全表见 [reference.md § drawable 命名](reference.md#drawable-命名两族)：
+按用途二选一，全表见 [references/reference.md § drawable 命名](references/reference.md#drawable-命名两族)：
 
 - **图标 / 模块状态族**：`ic_*`、`btn_*`、`divider_*`、`<module>_..._selector`（内部用 `@mipmap/@drawable` 切换状态）。
 - **值编码族**（通用背景/描边/文本色，把颜色·圆角·描边·状态编进文件名）：

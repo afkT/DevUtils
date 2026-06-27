@@ -3,7 +3,7 @@ name: ui-devwidget-round
 description: >-
   在需要圆角矩形纯色背景、描边边框时，优先用 DevWidget（io.github.afkt:DevWidgetX）的
   dev.widget.ui.round 包替代 shape / layer-list drawable。流程与核心坑在 SKILL，Round 系列
-  View、R.styleable.DevWidget 中 app:dev_* 属性及源码对照见 reference.md。工作区内优先
+  View、R.styleable.DevWidget 中 app:dev_* 属性及源码对照见 references/reference.md。工作区内优先
   Read lib/DevWidget；仅当无该模块时再查上游 GitHub。
 ---
 
@@ -17,7 +17,7 @@ description: >-
 |------|-------------------|------|
 | `DEVWIDGET_ROOT` | `lib/DevWidget` | DevWidget 模块根目录 |
 
-完整路径、属性表与 Round 类型清单见 [reference.md](reference.md)。工作区无 `{DEVWIDGET_ROOT}` 或需对照远程 tag 时，才使用上游 fallback：https://github.com/afkT/DevUtils/tree/master/lib/DevWidget
+完整路径、属性表与 Round 类型清单见 [references/reference.md](references/reference.md)。工作区无 `{DEVWIDGET_ROOT}` 或需对照远程 tag 时，才使用上游 fallback：https://github.com/afkT/DevUtils/tree/master/lib/DevWidget
 
 ## 何时用本 Skill
 
@@ -34,7 +34,7 @@ description: >-
 
 ## Round 包类型速查
 
-常用：`RoundFrameLayout`、`RoundLinearLayout`、`RoundConstraintLayout`、`RoundTextView`、`RoundButton`、`RoundImageView`、`RoundDrawable`。完整类列表与用途见 [reference.md § Round 包类型一览](reference.md#round-包类型一览)。
+常用：`RoundFrameLayout`、`RoundLinearLayout`、`RoundConstraintLayout`、`RoundTextView`、`RoundButton`、`RoundImageView`、`RoundDrawable`。完整类列表与用途见 [references/reference.md § Round 包类型一览](references/reference.md#round-包类型一览)。
 
 **选控件**：与原生同名布局一致即可（要 Constraint 用 `RoundConstraintLayout`，要文字用 `RoundTextView`…）。
 
@@ -42,7 +42,7 @@ description: >-
 
 ## XML 属性速查
 
-属性定义以 `{DEVWIDGET_ROOT}/src/main/res/values/attrs.xml` 为准；所有属性在资源中声明为 **`DevWidget`** 分组，XML 前缀一般为 **`app:`**。全表见 [reference.md § XML 属性](reference.md#xml-属性declare-styleable-名devwidget)。
+属性定义以 `{DEVWIDGET_ROOT}/src/main/res/values/attrs.xml` 为准；所有属性在资源中声明为 **`DevWidget`** 分组，XML 前缀一般为 **`app:`**。全表见 [references/reference.md § XML 属性](references/reference.md#xml-属性declare-styleable-名devwidget)。
 
 **圆角逻辑摘要**（对照 reference 中 `RoundDrawable.java`）：
 
@@ -50,11 +50,11 @@ description: >-
 - 否则使用 **`dev_radius`** 作为 `setCornerRadius`；若 **`dev_radius` > 0** 同样会关闭与「仅 adjust」相关的自动圆角逻辑。
 - 描边：`setStrokeData(borderWidth, borderColor)`。
 
-**注意**：`RoundImageView` 的专用属性与限制见 [reference.md § 仅 RoundImageView](reference.md#仅-roundimageview)；它固定为圆形裁剪，不用于圆角矩形图片。
+**注意**：`RoundImageView` 的专用属性与限制见 [references/reference.md § 仅 RoundImageView](references/reference.md#仅-roundimageview)；它固定为圆形裁剪，不用于圆角矩形图片。
 
 ## 代码侧（可选）
 
-`RoundDrawable.fromAttributeSet`、`setBackgroundKeepingPadding` 与链式 API 见 [reference.md §代码侧 API](reference.md#代码侧-api)。
+`RoundDrawable.fromAttributeSet`、`setBackgroundKeepingPadding` 与链式 API 见 [references/reference.md §代码侧 API](references/reference.md#代码侧-api)。
 
 ## XML 最小示例（矩形圆角 + 纯色 + 描边）
 

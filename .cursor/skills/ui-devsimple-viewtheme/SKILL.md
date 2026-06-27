@@ -4,7 +4,7 @@ description: >-
   为布局 XML 中的控件默认补全 DevSimple（lib/DevSimple）的 ViewTheme 样式引用：
   按控件继承链匹配 ViewTheme.&lt;类名&gt;，ImageView/AppCompatImageView 使用
   ViewTheme.ImageView.FIT_XY，无匹配则用 ViewTheme.View。工作区内优先 Read
-  lib/DevSimple；根样式清单见同目录 reference.md。在编写或批量整理 layout XML、
+  lib/DevSimple；根样式清单见同目录 references/reference.md。在编写或批量整理 layout XML、
   引入 ViewTheme、迁移旧布局、或用户提到 DevSimple/ViewTheme 时使用。
 ---
 
@@ -17,7 +17,7 @@ description: >-
 | `DEVSIMPLE_ROOT` | `lib/DevSimple` |
 | `DEVSIMPLE_VALUES` | `{DEVSIMPLE_ROOT}/src/main/res/values` |
 
-存在 `{DEVSIMPLE_ROOT}` 时 **Read 本地 XML**，勿用 WebFetch 代替。根样式全表、继承链、资源文件索引与 grep 维护步骤 → [reference.md](reference.md)。
+存在 `{DEVSIMPLE_ROOT}` 时 **Read 本地 XML**，勿用 WebFetch 代替。根样式全表、继承链、资源文件索引与 grep 维护步骤 → [references/reference.md](references/reference.md)。
 
 ## 何时应用
 
@@ -27,7 +27,7 @@ description: >-
 ## 前置假设
 
 - 模块已依赖 DevSimple，R 中可解析 `@style/ViewTheme.*`。
-- 样式名是否存在：以 [reference.md §根样式表](reference.md#根样式表控件向可直接作默认-style) 为准；若存疑或久未同步，在 `{DEVSIMPLE_VALUES}` **grep** `name="ViewTheme.` 后更新 reference（见 reference §扫描与更新）。
+- 样式名是否存在：以 [references/reference.md §根样式表](references/reference.md#根样式表控件向可直接作默认-style) 为准；若存疑或久未同步，在 `{DEVSIMPLE_VALUES}` **grep** `name="ViewTheme.` 后更新 reference（见 reference §扫描与更新）。
 
 ## 核心规则（按顺序执行）
 
@@ -44,7 +44,7 @@ description: >-
 6. **无匹配**：`style="@style/ViewTheme.View"`。
 7. **写法**：`style` 放在标签属性前列（与项目现有 XML 风格一致）。
 
-继承链与常见标签对照 → [reference.md §继承链速查](reference.md#继承链速查xml-标签--语义类名)。需要 Match / Gravity / 子样式时 → [reference.md §子样式命名规律](reference.md#子样式命名规律按需拼接)。
+继承链与常见标签对照 → [references/reference.md §继承链速查](references/reference.md#继承链速查xml-标签--语义类名)。需要 Match / Gravity / 子样式时 → [references/reference.md §子样式命名规律](references/reference.md#子样式命名规律按需拼接)。
 
 ## 示例
 
@@ -76,7 +76,7 @@ description: >-
 
 ## 执行清单
 
-- [ ] 已 Read [reference.md](reference.md) 根样式表（或已 grep `{DEVSIMPLE_VALUES}` 核对）。
+- [ ] 已 Read [references/reference.md](references/reference.md) 根样式表（或已 grep `{DEVSIMPLE_VALUES}` 核对）。
 - [ ] 未覆盖用户已有 `style`（除非明确要求）。
 - [ ] ImageView / ViewPager2 特例已套用。
 - [ ] DevSimple 有新增 `ViewTheme` 时，按 reference §扫描与更新 同步 reference，勿只改 SKILL。

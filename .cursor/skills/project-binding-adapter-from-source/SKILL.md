@@ -2,7 +2,7 @@
 name: project-binding-adapter-from-source
 description: >-
   根据用户给出的 Java/Kotlin 工具类或 View 相关源码，设计并实现 androidx.databinding.BindingAdapter。
-  工作区内优先 Read lib/DevSimple 下 bindingadapters；范例文件表见 reference.md。
+  工作区内优先 Read lib/DevSimple 下 bindingadapters；范例文件表见 references/reference.md。
   过滤不适合 XML 的 API；Long? 时间戳、Boolean? 三态、attribute 合并（参照 XYI）；成稿按 code-method-normalize。
   在用户要求生成 BindingAdapter、补全 DataBinding 属性、或评审 DevSimple bindingadapters 时使用。
 ---
@@ -17,7 +17,7 @@ description: >-
 | `BINDING_VIEW_DIR` | `{DEVSIMPLE_ROOT}/src/main/java/dev/simple/bindingadapters/view` |
 | `BINDING_ATTR_DIR` | `{DEVSIMPLE_ROOT}/src/main/java/dev/simple/bindingadapters/view/attribute` |
 
-存在 `{DEVSIMPLE_ROOT}` 时 **Read 本地 `*.kt`**，勿用 WebFetch 代替。生成前在 `{BINDING_VIEW_DIR}` 下列出并对照现有实现；**优先范例文件名、前缀惯例、判定表** → [reference.md](reference.md)。
+存在 `{DEVSIMPLE_ROOT}` 时 **Read 本地 `*.kt`**，勿用 WebFetch 代替。生成前在 `{BINDING_VIEW_DIR}` 下列出并对照现有实现；**优先范例文件名、前缀惯例、判定表** → [references/reference.md](references/reference.md)。
 
 **上游 fallback**（仅工作区无模块时）：https://github.com/afkT/DevUtils/tree/master/lib/DevSimple
 
@@ -31,7 +31,7 @@ description: >-
 
 ## 风格对齐（执行要点）
 
-1. **Read** `{BINDING_VIEW_DIR}` 下与目标控件相关的 `*.kt`（至少一份同族文件 + [reference.md §优先范例](reference.md#优先范例文件按主题选读) 中对应行）。
+1. **Read** `{BINDING_VIEW_DIR}` 下与目标控件相关的 `*.kt`（至少一份同族文件 + [references/reference.md §优先范例](references/reference.md#优先范例文件按主题选读) 中对应行）。
 2. 合并参数实体放在 `{BINDING_ATTR_DIR}`；`XYI` 等写法对照同目录 `XYI.kt`。
 3. 文件头「不适合 BindingAdapter」的说明以 **`View.kt`** 为准（路径见 reference）。
 
@@ -159,7 +159,7 @@ fun Long?.qualifiesBindingAction(): Boolean = this != null && this > 0L
 5. **Read** `code-method-normalize` 并整理文档与返回类型。
 6. 自检：`@BindingAdapter` 不与 `{BINDING_VIEW_DIR}` 内已有属性名冲突；`try/catch` 与日志风格参照 reference 中 **TextView** / **ImageViewLoadNative** 范例。
 
-判定表、XML 示例、`binding_*` 前缀表见 [reference.md](reference.md)。
+判定表、XML 示例、`binding_*` 前缀表见 [references/reference.md](references/reference.md)。
 
 ## 执行清单
 

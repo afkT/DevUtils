@@ -1,6 +1,6 @@
 # DevWidget Round — 参考
 
-与 [SKILL.md](SKILL.md) 配套：本地模块路径、Round 类型清单、`DevWidget` 属性表与源码对照。流程、取舍与最小示例见 SKILL。
+与 [SKILL.md](../SKILL.md) 配套：本地模块路径、Round 类型清单、`DevWidget` 属性表与源码对照。流程、取舍与最小示例见 SKILL。
 
 ## 模块路径（本地优先）
 

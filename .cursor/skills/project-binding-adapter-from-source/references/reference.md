@@ -1,6 +1,6 @@
 # BindingAdapter 生成 — 参考
 
-与 [SKILL.md](SKILL.md) 配套：模块路径、**优先范例文件表**、判定速查、XML 示例与 `binding_*` 前缀。流程与规则见 SKILL。
+与 [SKILL.md](../SKILL.md) 配套：模块路径、**优先范例文件表**、判定速查、XML 示例与 `binding_*` 前缀。流程与规则见 SKILL。
 
 ## 模块路径
 

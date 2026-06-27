@@ -104,4 +104,4 @@ disable-model-invocation: true
 - **网络工具**：查证阶段应使用 **WebSearch / WebFetch**（或等价）访问上述 API 与 HTML 页面；注意 GitHub API **匿名速率限制**，失败时改用 Release 页 WebFetch。
 - **验证**：若仓库内可运行 `./gradlew :模块:dependencies` 或 CI 任务，在重大升级后可建议用户本地做一次依赖解析验证（本 Skill不强制改 CI）。
 
-更多 API 与示例见 [reference.md](reference.md)。
+更多 API 与示例见 [references/reference.md](references/reference.md)。

@@ -1,6 +1,6 @@
 # DialogX 速查全表（reference）
 
-配套 [SKILL.md](SKILL.md)。流程与避坑在 SKILL，此处放**全量表**：组件工厂、链式 setter、全局配置、数据类型、枚举、主题包。版本以工程依赖 `com.github.kongzue.DialogX:DialogX:0.0.51.beta3` 为准；有疑义时对照同 tag 上游源码（见文末维护步骤）。
+配套 [SKILL.md](../SKILL.md)。流程与避坑在 SKILL，此处放**全量表**：组件工厂、链式 setter、全局配置、数据类型、枚举、主题包。版本以工程依赖 `com.github.kongzue.DialogX:DialogX:0.0.51.beta3` 为准；有疑义时对照同 tag 上游源码（见文末维护步骤）。
 
 包名：`com.kongzue.dialogx`（组件在 `…dialogx.dialogs`，回调接口在 `…dialogx.interfaces`，工具类在 `…dialogx.util`）。
 
@@ -254,7 +254,7 @@
 
 ## 主题包与全局风格
 
-核心模块仅含 `MaterialStyle`。其他主题需**额外引入主题包**，再 `DialogX.globalStyle = new XxxStyle()`（或 `XxxStyle.style()`）。引入走 [project-gradle-central-deps](../project-gradle-central-deps/SKILL.md)。
+核心模块仅含 `MaterialStyle`。其他主题需**额外引入主题包**，再 `DialogX.globalStyle = new XxxStyle()`（或 `XxxStyle.style()`）。引入走 [project-gradle-central-deps](../../project-gradle-central-deps/SKILL.md)。
 
 | 主题 | MavenCentral 坐标（group `com.kongzue.dialogx.style`） | JitPack 坐标（group `com.github.kongzue.DialogX`） | 风格类 |
 |------|------|------|------|
@@ -296,4 +296,4 @@ curl -s "$api/DialogX/src/main/java/com/kongzue/dialogx/DialogX.java?ref=$v"
 curl -s "$api/DialogX/src/main/java/com/kongzue/dialogx/dialogs/MessageDialog.java?ref=$v"
 ```
 
-升级版本或属性存疑时，对照上述源码核对本表，并按需更新；同时按 [cursor-catalog-sync.mdc](../../rules/cursor-catalog-sync.mdc) 维护 `.cursor/README.md`。
+升级版本或属性存疑时，对照上述源码核对本表，并按需更新；同时按 [cursor-catalog-sync.mdc](../../../rules/cursor-catalog-sync.mdc) 维护 `.cursor/README.md`。
