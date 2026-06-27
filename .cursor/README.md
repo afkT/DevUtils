@@ -2,7 +2,7 @@
 
 本目录汇总本仓库与 Cursor Agent 相关的 **Project Rules** 与 **工程向 Skills**，便于快速了解「能做什么、何时会用到」。具体步骤、路径与表格以各 `SKILL.md` 及其捆绑参考文件（`references/`）为准。
 
-维护 `.cursor/` 增删改后请同步本文件；格式与顺序见 [rules/cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc)。
+维护 `.cursor/` 增删改后请同步本文件与 [directory-tree.md](directory-tree.md)；格式与顺序见 [rules/project-cursor-catalog-sync.mdc](rules/project-cursor-catalog-sync.mdc)。
 
 ---
 
@@ -16,59 +16,7 @@
 
 ### 目录树
 
-```
-.cursor/
-├── README.md
-├── audits/
-│   └── skill-local-path-audit.md
-├── rules/
-│   ├── authoring-agent-skills.mdc
-│   ├── chinese-simplified.mdc
-│   ├── cursor-catalog-sync.mdc
-│   ├── karpathy-guidelines.mdc
-│   └── project-skill-conventions.mdc
-└── skills/
-    ├── android-dimen-dp-sp/SKILL.md
-    ├── android-version-platform-adapt/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── android-xml-resource/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── code-method-normalize/SKILL.md
-    ├── project-binding-adapter-from-source/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── project-devengine-implementation/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── project-gradle-central-deps/SKILL.md
-    ├── project-gradle-third-party-version-upgrade/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── release-changelog-update/SKILL.md
-    ├── ui-devsimple-viewtheme/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── ui-devwidget-round/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    ├── ui-dialogx-dialog/
-    │   ├── SKILL.md
-    │   └── references/
-    │       └── reference.md
-    └── ui-shadowlayout/
-        ├── SKILL.md
-        └── references/
-            └── reference.md
-```
+完整目录树见 [directory-tree.md](directory-tree.md)（随 `.cursor/` 结构变更同步维护）。
 
 ---
 
@@ -86,8 +34,8 @@
 |------|:-------------:|------|
 | [authoring-agent-skills.mdc](rules/authoring-agent-skills.mdc) | 否 | 创建或重构 Skill 时的通用命名族与目录/文档结构规范。 |
 | [chinese-simplified.mdc](rules/chinese-simplified.mdc) | 是 | 助手默认使用简体中文回复。 |
-| [cursor-catalog-sync.mdc](rules/cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目后同步本 README。 |
 | [karpathy-guidelines.mdc](rules/karpathy-guidelines.mdc) | 否 | 写码、评审、重构时按需采用的通用行为准则。 |
+| [project-cursor-catalog-sync.mdc](rules/project-cursor-catalog-sync.mdc) | 是 | 变更 `.cursor/` 编目后同步 README 与目录树文档。 |
 | [project-skill-conventions.mdc](rules/project-skill-conventions.mdc) | 否 | DevUtils 专属 Skill 约定：领域前缀体系、消歧与路径锚点。 |
 
 ---

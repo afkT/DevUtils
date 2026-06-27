@@ -296,4 +296,4 @@ curl -s "$api/DialogX/src/main/java/com/kongzue/dialogx/DialogX.java?ref=$v"
 curl -s "$api/DialogX/src/main/java/com/kongzue/dialogx/dialogs/MessageDialog.java?ref=$v"
 ```
 
-升级版本或属性存疑时，对照上述源码核对本表，并按需更新；同时按 [cursor-catalog-sync.mdc](../../../rules/cursor-catalog-sync.mdc) 维护 `.cursor/README.md`。
+升级版本或属性存疑时，对照上述源码核对本表，并按需更新；同时按 [project-cursor-catalog-sync.mdc](../../../rules/project-cursor-catalog-sync.mdc) 维护 `.cursor/README.md`。
