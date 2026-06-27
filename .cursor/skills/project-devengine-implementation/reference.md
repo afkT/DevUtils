@@ -11,7 +11,7 @@
 | `lib/DevEngine/src/main/java/dev/engine/extensions/<domain>` | Kotlin extension 调用入口 | `json/json.kt` |
 | `lib/DevEngine/src/main/java/dev/engine/DevEngine.kt` | 默认初始化、创建实现、set/get/assist 统一入口 | `defaultGsonEngineImpl()`、`newGsonEngineImpl()` |
 | `lib/DevEngine/README.md` | 目录结构、依赖实现信息、可选实现方案与链接 | `### JSON 映射` |
-| `file/gradle/config*.gradle`、`file/deps/*.gradle` | 第三方依赖坐标与模块引用 | 通过 `gradle-central-deps` 维护 |
+| `file/gradle/config*.gradle`、`file/deps/*.gradle` | 第三方依赖坐标与模块引用 | 通过 `project-gradle-central-deps` 维护 |
 
 ## 命名契约
 

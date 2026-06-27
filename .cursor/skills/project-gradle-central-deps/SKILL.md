@@ -1,5 +1,5 @@
 ---
-name: gradle-central-deps
+name: project-gradle-central-deps
 description: >-
   在 DevUtils 工程（仓库布局契约 DEPS_ROOT=file/gradle、DEPS_MANIFEST=file/deps）中
   新增或引用 Gradle 依赖时，先查 {DEPS_ROOT}/config.gradle、config_kotlin.gradle、
@@ -33,7 +33,7 @@ description: >-
 
 `{DEPS_ROOT}/config.gradle` 首部依次 `apply` 了 `config_kotlin.gradle`（`ext.deps_kotlin`）、`config_androidx.gradle`（`ext.deps_androidx`）、`config_libs.gradle`（`ext.deps_lib`），再定义 `ext.deps`（仅 `build` / `dev`）；根工程 `build.gradle` 只需 `apply` `config.gradle` 即可加载全部 `ext.deps*`。**任何新依赖必须先查是否已存在，禁止重复定义同一坐标。**
 
-> 升级已有 GAV 版本、多源校验写回 → Read [gradle-third-party-version-upgrade/SKILL.md](../gradle-third-party-version-upgrade/SKILL.md)（沿用同一 `DEPS_ROOT` / `DEPS_MANIFEST`）。
+> 升级已有 GAV 版本、多源校验写回 → Read [project-gradle-third-party-version-upgrade/SKILL.md](../project-gradle-third-party-version-upgrade/SKILL.md)（沿用同一 `DEPS_ROOT` / `DEPS_MANIFEST`）。
 
 ## 0. 官方 Android 库检索（新增依赖前建议查阅）
 

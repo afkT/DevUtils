@@ -254,7 +254,7 @@
 
 ## 主题包与全局风格
 
-核心模块仅含 `MaterialStyle`。其他主题需**额外引入主题包**，再 `DialogX.globalStyle = new XxxStyle()`（或 `XxxStyle.style()`）。引入走 [gradle-central-deps](../gradle-central-deps/SKILL.md)。
+核心模块仅含 `MaterialStyle`。其他主题需**额外引入主题包**，再 `DialogX.globalStyle = new XxxStyle()`（或 `XxxStyle.style()`）。引入走 [project-gradle-central-deps](../project-gradle-central-deps/SKILL.md)。
 
 | 主题 | MavenCentral 坐标（group `com.kongzue.dialogx.style`） | JitPack 坐标（group `com.github.kongzue.DialogX`） | 风格类 |
 |------|------|------|------|

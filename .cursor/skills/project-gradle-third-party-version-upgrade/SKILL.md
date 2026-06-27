@@ -1,5 +1,5 @@
 ---
-name: gradle-third-party-version-upgrade
+name: project-gradle-third-party-version-upgrade
 description: >-
   对 DevUtils 工程（DEPS_ROOT=file/gradle、DEPS_MANIFEST=file/deps）中定义的第三方库
   GAV 依赖做版本查证与升级；结合 Maven Central、Google Maven、Gradle Plugin Portal、
@@ -11,9 +11,9 @@ disable-model-invocation: true
 
 # Gradle 第三方依赖版本升级（中心化配置）
 
-## 仓库布局契约（与 gradle-central-deps 对齐）
+## 仓库布局契约（与 project-gradle-central-deps 对齐）
 
-本 Skill 与 [gradle-central-deps/SKILL.md](../gradle-central-deps/SKILL.md) 使用同一套路径符号；**路径只通过本表展开**。
+本 Skill 与 [project-gradle-central-deps/SKILL.md](../project-gradle-central-deps/SKILL.md) 使用同一套路径符号；**路径只通过本表展开**。
 
 | 符号 | 当前值（DevUtils） | 说明 |
 |------|-------------------|------|
@@ -28,7 +28,7 @@ disable-model-invocation: true
 | `{DEPS_ROOT}/config_libs.gradle`（`ext.deps_lib`） | 是：第三方库主战场 |
 | 其它 `{DEPS_ROOT}/config_*.gradle` | **仅当**文件内定义 Maven/Gradle **坐标字符串**（`group:artifact:version` 或 `...:${versions.xxx}` 且 `versions` 在本仓库维护）时纳入；**纯路径映射**（如 `config_files.gradle` 的 `files` map）默认**不**做版本升级 |
 
-与「新增依赖、分组归属」相关时，先读并按 [gradle-central-deps/SKILL.md](../gradle-central-deps/SKILL.md) 执行；本 Skill 专注**查证版本 + 写回配置**。
+与「新增依赖、分组归属」相关时，先读并按 [project-gradle-central-deps/SKILL.md](../project-gradle-central-deps/SKILL.md) 执行；本 Skill 专注**查证版本 + 写回配置**。
 
 ## 执行原则
 
@@ -92,12 +92,12 @@ disable-model-invocation: true
 - [ ] 回复中汇总：库名、旧→新、依据 URL、若有 major 升级则注明风险
 ```
 
-## 与 `gradle-central-deps` 的分工
+## 与 `project-gradle-central-deps` 的分工
 
 | 场景 | 使用 |
 |------|------|
 | 升级已有 key 的版本号、修正坐标、补链接 | 本 Skill |
-| 新库写入 `deps`/`deps_lib`、选分组、`{DEPS_MANIFEST}/*.gradle` 引用 | `gradle-central-deps` |
+| 新库写入 `deps`/`deps_lib`、选分组、`{DEPS_MANIFEST}/*.gradle` 引用 | `project-gradle-central-deps` |
 
 ## 附加说明
 

@@ -13,7 +13,7 @@
 | 运行时行为、setter、边界逻辑 | https://raw.githubusercontent.com/lihangleo2/ShadowLayout/master/shadowLibrary/src/main/java/com/lihang/ShadowLayout.java |
 
 - **版本对齐**：模块已声明的 `com.github.lihangleo2:ShadowLayout:x.y.z` 与上游 Git tag `x.y.z` 应对齐；核对 attrs/API 时用 `https://raw.githubusercontent.com/lihangleo2/ShadowLayout/{tag}/shadowLibrary/...` 替换上表中的 `master`。
-- **新增依赖**：JitPack 坐标 `com.github.lihangleo2:ShadowLayout:<version>`；本仓库集中坐标时 Read [../gradle-central-deps/SKILL.md](../gradle-central-deps/SKILL.md)。
+- **新增依赖**：JitPack 坐标 `com.github.lihangleo2:ShadowLayout:<version>`；本仓库集中坐标时 Read [../project-gradle-central-deps/SKILL.md](../project-gradle-central-deps/SKILL.md)。
 
 ## `hl_shapeMode` 枚举
 

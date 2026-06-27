@@ -14,7 +14,7 @@ description: >-
 
 **禁止**在工作区内查找或假设存在 `shadowLibrary/` 等上游子模块路径。能力说明、`hl_*` 属性全表、代码 API、版本 tag 与 raw 链接见 [reference.md](reference.md)。
 
-新增依赖：JitPack 坐标 `com.github.lihangleo2:ShadowLayout:<version>`；本仓库集中坐标时 Read [gradle-central-deps/SKILL.md](../gradle-central-deps/SKILL.md)，勿重复 GAV。
+新增依赖：JitPack 坐标 `com.github.lihangleo2:ShadowLayout:<version>`；本仓库集中坐标时 Read [project-gradle-central-deps/SKILL.md](../project-gradle-central-deps/SKILL.md)，勿重复 GAV。
 
 ## 何时用本 Skill（对齐 README 能力）
 

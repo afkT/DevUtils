@@ -1,5 +1,5 @@
 ---
-name: binding-adapter-from-source
+name: project-binding-adapter-from-source
 description: >-
   根据用户给出的 Java/Kotlin 工具类或 View 相关源码，设计并实现 androidx.databinding.BindingAdapter。
   工作区内优先 Read lib/DevSimple 下 bindingadapters；范例文件表见 reference.md。

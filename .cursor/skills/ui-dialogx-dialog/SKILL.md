@@ -15,7 +15,7 @@ description: >-
 
 ## 依赖与初始化
 
-- 坐标已集中声明：`DEPS_ROOT=file/gradle/config_libs.gradle` 中 `dialogX`，由 `file/deps/deps_project.gradle` 以 `api deps_lib.common_widget.dialogX` 启用。**勿重复写 GAV**；改版本走 [gradle-central-deps](../gradle-central-deps/SKILL.md)。
+- 坐标已集中声明：`DEPS_ROOT=file/gradle/config_libs.gradle` 中 `dialogX`，由 `file/deps/deps_project.gradle` 以 `api deps_lib.common_widget.dialogX` 启用。**勿重复写 GAV**；改版本走 [project-gradle-central-deps](../project-gradle-central-deps/SKILL.md)。
 - 当前仅引入**核心模块**（默认 Material 主题）。需 iOS/MIUI/Kongzue/MaterialYou 主题时，须额外引入主题包（坐标见 [reference.md § 主题包](reference.md#主题包与全局风格)）。
 - `Application.onCreate` 一般无需手动 `DialogX.init(context)`（库会自动初始化）；全局风格/亮暗/默认文字样式在此处设置（见 [reference.md § 全局配置](reference.md#全局配置-dialogx)）。
 

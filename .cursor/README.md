@@ -28,9 +28,6 @@
 │   ├── karpathy-guidelines.mdc
 │   └── project-skill-conventions.mdc
 └── skills/
-    ├── afkt-project-devengine-implementation/
-    │   ├── SKILL.md
-    │   └── reference.md
     ├── android-dimen-dp-sp/SKILL.md
     ├── android-version-platform-adapt/
     │   ├── SKILL.md
@@ -38,12 +35,15 @@
     ├── android-xml-resource/
     │   ├── SKILL.md
     │   └── reference.md
-    ├── binding-adapter-from-source/
+    ├── code-method-normalize/SKILL.md
+    ├── project-binding-adapter-from-source/
     │   ├── SKILL.md
     │   └── reference.md
-    ├── code-method-normalize/SKILL.md
-    ├── gradle-central-deps/SKILL.md
-    ├── gradle-third-party-version-upgrade/
+    ├── project-devengine-implementation/
+    │   ├── SKILL.md
+    │   └── reference.md
+    ├── project-gradle-central-deps/SKILL.md
+    ├── project-gradle-third-party-version-upgrade/
     │   ├── SKILL.md
     │   └── reference.md
     ├── release-changelog-update/SKILL.md
@@ -91,14 +91,14 @@
 
 | 目录 | `name` | 自动唤起 | reference | 能做什么 |
 |------|--------|:--------:|:---------:|----------|
-| [afkt-project-devengine-implementation](skills/afkt-project-devengine-implementation/SKILL.md) | `afkt-project-devengine-implementation` | 默认 | [有](skills/afkt-project-devengine-implementation/reference.md) | 新增或维护 DevAssist + DevEngine 的功能 Engine 实现、默认初始化、extensions 与 README。 |
 | [android-dimen-dp-sp](skills/android-dimen-dp-sp/SKILL.md) | `android-dimen-dp-sp` | 默认 | — | 将硬编码 dp/sp 改为 `@dimen/dp_*`、`@dimen/sp_*` 与 `R.dimen.*`。 |
 | [android-version-platform-adapt](skills/android-version-platform-adapt/SKILL.md) | `android-version-platform-adapt` | 关 | [有](skills/android-version-platform-adapt/reference.md) | 按官方版本文档做行为变更与新 API 适配、targetSdk 升级与工具封装。 |
 | [android-xml-resource](skills/android-xml-resource/SKILL.md) | `android-xml-resource` | 默认 | [有](skills/android-xml-resource/reference.md) | 统一 layout/drawable/color/values/id 命名，selector 与状态色单文件整合。 |
-| [binding-adapter-from-source](skills/binding-adapter-from-source/SKILL.md) | `binding-adapter-from-source` | 默认 | [有](skills/binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局自定义属性。 |
 | [code-method-normalize](skills/code-method-normalize/SKILL.md) | `code-method-normalize` | 默认 | — | 统一 Java/Kotlin 方法注释与写法（JavaDoc/KDoc、final、安全返回等）。 |
-| [gradle-central-deps](skills/gradle-central-deps/SKILL.md) | `gradle-central-deps` | 默认 | — | 在集中 Gradle 配置中新增或引用依赖坐标，写入 deps 清单。 |
-| [gradle-third-party-version-upgrade](skills/gradle-third-party-version-upgrade/SKILL.md) | `gradle-third-party-version-upgrade` | 关 | [有](skills/gradle-third-party-version-upgrade/reference.md) | 查证并升级第三方库版本，对齐仓库与官方发布。 |
+| [project-binding-adapter-from-source](skills/project-binding-adapter-from-source/SKILL.md) | `project-binding-adapter-from-source` | 默认 | [有](skills/project-binding-adapter-from-source/reference.md) | 从 Java/Kotlin 源码设计 BindingAdapter 与布局自定义属性。 |
+| [project-devengine-implementation](skills/project-devengine-implementation/SKILL.md) | `project-devengine-implementation` | 默认 | [有](skills/project-devengine-implementation/reference.md) | 新增或维护 DevAssist + DevEngine 的功能 Engine 实现、默认初始化、extensions 与 README。 |
+| [project-gradle-central-deps](skills/project-gradle-central-deps/SKILL.md) | `project-gradle-central-deps` | 默认 | — | 在集中 Gradle 配置中新增或引用依赖坐标，写入 deps 清单。 |
+| [project-gradle-third-party-version-upgrade](skills/project-gradle-third-party-version-upgrade/SKILL.md) | `project-gradle-third-party-version-upgrade` | 关 | [有](skills/project-gradle-third-party-version-upgrade/reference.md) | 查证并升级第三方库版本，对齐仓库与官方发布。 |
 | [release-changelog-update](skills/release-changelog-update/SKILL.md) | `release-changelog-update` | 关 | — | 按既有版式用 git 提交说明更新 CHANGELOG / 发版记录。 |
 | [ui-devsimple-viewtheme](skills/ui-devsimple-viewtheme/SKILL.md) | `ui-devsimple-viewtheme` | 默认 | [有](skills/ui-devsimple-viewtheme/reference.md) | 为布局控件补全 DevSimple `ViewTheme` 样式引用。 |
 | [ui-devwidget-round](skills/ui-devwidget-round/SKILL.md) | `ui-devwidget-round` | 默认 | [有](skills/ui-devwidget-round/reference.md) | 用 DevWidget Round 做圆角、描边，减少 shape drawable。 |

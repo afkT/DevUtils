@@ -188,8 +188,8 @@ done | sort -u
 |------|--------|
 | 平台行为变更、新 API、targetSdk 适配 | 本 Skill |
 | 方法 JavaDoc/KDoc、`final`、安全返回 | `code-method-normalize` |
-| 新增 Maven 依赖、AndroidX 版本 | `gradle-central-deps` / `gradle-third-party-version-upgrade` |
-| DataBinding `app:binding_*` | `binding-adapter-from-source` |
+| 新增 Maven 依赖、AndroidX 版本 | `project-gradle-central-deps` / `project-gradle-third-party-version-upgrade` |
+| DataBinding `app:binding_*` | `project-binding-adapter-from-source` |
 
 ## 附加说明
 
