@@ -15,7 +15,8 @@ alwaysApply: false
 本规则是 DevUtils 项目对通用规范 `authoring-agent-skills` 的**项目专属补充**，二者配合使用：
 
 - **通用部分**（kebab-case、目录名 == `name`、动名词 / 名词命名族、`scripts/` `references/` `assets/`
-  三件套、SKILL ↔ references 分工、何时拆分、渐进式披露）→ 见 `authoring-agent-skills` 规则，**本规则不重复**。
+  三件套及其例外、SKILL ↔ references 分工、正文写法模式、多文件「参考文件」索引、何时拆分、渐进式披露）
+  → 见 `authoring-agent-skills` 规则，**本规则不重复**。
 - **本规则只规定 DevUtils 专属内容**：① 领域前缀体系；② 前缀选择与消歧；③ SKILL.md 最少路径锚点。
 
 ## 适用顺序
