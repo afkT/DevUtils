@@ -16,8 +16,8 @@ alwaysApply: true
 
 对 **新增、删除或重命名** `skills/<目录>/` 时，除更新本 README 的目录树与 §2 表格外，还须：
 
-> 捆绑资源目录的受控集合与命名（`references/`、`scripts/`、`assets/`）以 [authoring-agent-skills.mdc](authoring-agent-skills.mdc) 为准。**新 Skill 一律使用复数 `references/` 目录**；仓库中早期 Skill 可能仍是单数顶层 `reference.md`，属遗留写法，编目时按其实际形态登记即可，触碰到时再顺手迁移。
+> 捆绑资源目录的受控集合与命名（`references/`、`scripts/`、`assets/`）以 [authoring-agent-skills.mdc](authoring-agent-skills.mdc) 为准；参考资料一律使用复数 `references/` 目录。
 
-1. **「伴随 reference」列**：按该 Skill 目录的实际形态登记——存在 `references/` 目录则链到该目录（或其代表性文件，如 `skills/<目录>/references/`）；仅有遗留单数 `reference.md` 则链到 `skills/<目录>/reference.md`；两者皆无则填 `—`。目录树子项须列出 `SKILL.md` 及实际存在的受控子目录 / 文件（`references/`、`scripts/`、`assets/`，或遗留 `reference.md`），顺序与文件系统一致。
-2. **Skill 互链**：在 `.cursor/skills/` 内检索指向其它 Skill 的相对路径（如 `../<skill-name>/SKILL.md`、`../<skill-name>/references/<file>.md` 或遗留 `reference.md`）。重命名或删除目录后，**同一轮**修正所有仍引用旧目录名的链接；新增互链时目标目录须已存在。
+1. **「伴随 references」列**：存在 `references/` 目录则链到该目录（或其代表性文件，如 `skills/<目录>/references/`）；无则填 `—`。目录树子项须列出 `SKILL.md` 及实际存在的受控子目录（`references/`、`scripts/`、`assets/`），顺序与文件系统一致。
+2. **Skill 互链**：在 `.cursor/skills/` 内检索指向其它 Skill 的相对路径（如 `../<skill-name>/SKILL.md`、`../<skill-name>/references/<file>.md`）。重命名或删除目录后，**同一轮**修正所有仍引用旧目录名的链接；新增互链时目标目录须已存在。
 3. **重命名自检**：对变更过的 `skills/**` 执行等价于 `grep -r '\.\./' .cursor/skills --include='*.md'`，逐条确认 `../` 链接仍有效；勿保留指向已删除目录或曾用目录名的路径。
