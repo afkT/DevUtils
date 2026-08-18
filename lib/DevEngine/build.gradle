@@ -1,5 +1,5 @@
 apply from: rootProject.file(files.lib_app_gradle)
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.legacy-kapt'
 
 android {
     namespace "dev.engine"
