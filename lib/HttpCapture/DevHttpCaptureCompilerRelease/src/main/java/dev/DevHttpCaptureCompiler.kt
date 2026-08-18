@@ -1,6 +1,7 @@
 package dev
 
 import android.content.Context
+import dev.capture.DevHttpCaptureToast
 import dev.capture.UrlFunctionGet
 
 /**
@@ -87,4 +88,19 @@ object DevHttpCaptureCompiler {
      * @param moduleName 模块名 ( 要求唯一性 )
      */
     fun removeUrlFunction(moduleName: String) {}
+
+    // ===============
+    // = 抓包库 Toast =
+    // ===============
+
+    /**
+     * 设置抓包库 Toast 实现
+     * @param toast DevHttpCaptureToast
+     */
+    fun setToastImpl(toast: DevHttpCaptureToast) {}
+
+    /**
+     * 重置抓包库 Toast 实现
+     */
+    fun resetToastImpl() {}
 }
