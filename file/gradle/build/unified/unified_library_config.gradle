@@ -8,6 +8,8 @@ allprojects {
 
             // 排除 kotlin-android-extensions-runtime 以避免与 kotlin-parcelize-runtime 的冲突
             exclude group: 'org.jetbrains.kotlin', module: 'kotlin-android-extensions-runtime'
+            // 关闭 Jetifier 后，旧 Support 库会与 AndroidX 撞类
+            exclude group: 'com.android.support'
 
             // 强制统一版本 => 可通过 file/json/deps.gradle 获取, 视情况选择
             resolutionStrategy.force(
