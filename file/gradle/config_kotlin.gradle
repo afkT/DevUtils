@@ -21,7 +21,7 @@ ext {
             // ================
 
             // https://mvnrepository.com/artifact/androidx.core/core-ktx
-            core                          : "androidx.core:core-ktx:1.18.0",
+            core                          : "androidx.core:core-ktx:1.19.0",
             // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime-ktx
             // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-ktx
             // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
@@ -30,32 +30,32 @@ ext {
             // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-process
             // Lifecycles only ( without ViewModel or LiveData )
             // https://developer.android.com/jetpack/androidx/releases/lifecycle
-            lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.11.0-beta01",
+            lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime-ktx:2.11.0",
             // ViewModel
-            lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0-beta01",
+            lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0",
             // LiveData
-            lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.11.0-beta01",
+            lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.11.0",
             // Saved state module for ViewModel
-            lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.11.0-beta01",
+            lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.11.0",
             // LifecycleService: 让 Service 也成为 LifecycleOwner ( 在 Service 内使用生命周期感知组件 )
-            lifecycle_service             : "androidx.lifecycle:lifecycle-service:2.11.0-beta01",
+            lifecycle_service             : "androidx.lifecycle:lifecycle-service:2.11.0",
             // ProcessLifecycleOwner: 监听整个 App 进程的前台 / 后台切换
-            lifecycle_process             : "androidx.lifecycle:lifecycle-process:2.11.0-beta01",
+            lifecycle_process             : "androidx.lifecycle:lifecycle-process:2.11.0",
             // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
             // https://developer.android.com/jetpack/androidx/releases/activity
             activity                      : "androidx.activity:activity-ktx:1.13.0",
             // https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
-            fragment                      : "androidx.fragment:fragment-ktx:1.8.9",
+            fragment                      : "androidx.fragment:fragment-ktx:1.9.0",
             // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
             // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
             // https://developer.android.com/guide/navigation
             // https://developer.android.com/jetpack/androidx/releases/navigation
-            navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.10.0-alpha04",
-            navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.10.0-alpha04",
+            navigation_fragment           : "androidx.navigation:navigation-fragment-ktx:2.10.0-rc01",
+            navigation_ui                 : "androidx.navigation:navigation-ui-ktx:2.10.0-rc01",
             // https://mvnrepository.com/artifact/androidx.paging/paging-runtime
             // Paging 3 分页加载 ( Kotlin 优先, Flow / PagingData; -ktx 已并入 runtime )
             // https://developer.android.com/topic/libraries/architecture/paging/v3-overview
-            paging                        : "androidx.paging:paging-runtime:3.5.0",
+            paging                        : "androidx.paging:paging-runtime:3.5.1",
             // https://mvnrepository.com/artifact/androidx.room/room-runtime
             // https://mvnrepository.com/artifact/androidx.room/room-compiler
             // https://mvnrepository.com/artifact/androidx.room/room-ktx
@@ -66,8 +66,8 @@ ext {
             // https://mvnrepository.com/artifact/androidx.room3/room3-runtime
             // https://mvnrepository.com/artifact/androidx.room3/room3-compiler
             // Room 3.0 ( KMP, Kotlin only, 强制 KSP, DAO 全 suspend/Flow, 无 SupportSQLite )
-            room3_runtime                 : "androidx.room3:room3-runtime:3.0.0-alpha01",
-            room3_compiler                : "androidx.room3:room3-compiler:3.0.0-alpha01",
+            room3_runtime                 : "androidx.room3:room3-runtime:3.0.1",
+            room3_compiler                : "androidx.room3:room3-compiler:3.0.1",
             // https://mvnrepository.com/artifact/androidx.work/work-runtime-ktx
             // WorkManager Kotlin + coroutines
             work_runtime                  : "androidx.work:work-runtime-ktx:2.11.2",

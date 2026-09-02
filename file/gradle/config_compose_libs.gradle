@@ -30,10 +30,10 @@ ext {
 
                     // https://github.com/mikepenz/multiplatform-markdown-renderer
                     // Markdown 渲染 ( -android 为核心, 另需 -m3 提供 Material3 默认样式 )
-                    markdown_core  : "com.mikepenz:multiplatform-markdown-renderer-android:0.41.0",
-                    markdown_m3    : "com.mikepenz:multiplatform-markdown-renderer-m3:0.41.0",
+                    markdown_core  : "com.mikepenz:multiplatform-markdown-renderer-android:0.45.0",
+                    markdown_m3    : "com.mikepenz:multiplatform-markdown-renderer-m3:0.45.0",
                     // Compose WebView ( 已废弃的 Accompanist WebView 的延续 fork ) https://github.com/KevinnZou/compose-webview
-                    compose_webview: "io.github.KevinnZou:compose-webview:0.33.3",
+                    compose_webview: "io.github.kevinnzou:compose-webview:0.33.6",
             ],
 
             "feature_widget": [
@@ -43,7 +43,7 @@ ext {
                     // ===============
 
                     // 图表库 ( compose-m3 为 Material3 主题; 另有 compose / compose-m2 ) https://github.com/patrykandpatrick/vico
-                    vico_compose_m3 : "com.patrykandpatrick.vico:compose-m3:3.1.0",
+                    vico_compose_m3 : "com.patrykandpatrick.vico:compose-m3:3.3.1",
                     // 高度可定制日历 ( 月 / 周 / 年, View 版 CalendarView 的 Compose 替代 ) https://github.com/kizitonwose/Calendar
                     calendar_compose: "com.kizitonwose.calendar:compose:2.10.1",
             ],
@@ -55,9 +55,9 @@ ext {
                     // =============
 
                     // Shimmer 流光占位效果 https://github.com/valentinilk/compose-shimmer
-                    compose_shimmer: "com.valentinilk.shimmer:compose-shimmer:1.4.0",
+                    compose_shimmer: "com.valentinilk.shimmer:compose-shimmer:1.5.0",
                     // 取色器 ( 从图片 / 色盘取色 ) https://github.com/skydoves/colorpicker-compose
-                    colorpicker    : "com.github.skydoves:colorpicker-compose:1.1.4",
+                    colorpicker    : "com.github.skydoves:colorpicker-compose:1.2.0",
                     // LazyList / Grid 拖拽排序 https://github.com/Calvin-LL/Reorderable
                     reorderable    : "sh.calvin.reorderable:reorderable:3.1.0",
             ],
@@ -80,16 +80,16 @@ ext {
 
                     // https://github.com/coil-kt/coil
                     // Coil 3 图片加载 ( Compose AsyncImage / rememberAsyncImagePainter )
-                    coil_compose       : "io.coil-kt.coil3:coil-compose:3.4.0",
+                    coil_compose       : "io.coil-kt.coil3:coil-compose:3.6.1",
                     // Coil 网络层 ( OkHttp, 加载网络图片必需 )
-                    coil_network_okhttp: "io.coil-kt.coil3:coil-network-okhttp:3.4.0",
+                    coil_network_okhttp: "io.coil-kt.coil3:coil-network-okhttp:3.6.1",
                     // Coil GIF 解码 ( 按需 )
-                    coil_gif           : "io.coil-kt.coil3:coil-gif:3.4.0",
+                    coil_gif           : "io.coil-kt.coil3:coil-gif:3.6.1",
                     // Coil SVG 解码 ( 按需 )
-                    coil_svg           : "io.coil-kt.coil3:coil-svg:3.4.0",
+                    coil_svg           : "io.coil-kt.coil3:coil-svg:3.6.1",
                     // Glide 的 Compose 集成 GlideImage ( 配合 deps_lib.common.glide, 官方仍为 beta )
                     // https://github.com/bumptech/glide
-                    glide_compose      : "com.github.bumptech.glide:compose:1.0.0-beta09",
+                    glide_compose      : "com.github.bumptech.glide:compose:1.0.0-beta010",
                     // 大图缩放 / 平移 ( 适配 Coil3, View 版 PhotoView 的 Compose 替代 ) https://github.com/saket/telephoto
                     telephoto          : "me.saket.telephoto:zoomable-image-coil3:0.19.0",
             ],

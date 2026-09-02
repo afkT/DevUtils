@@ -28,9 +28,9 @@ buildscript {
 
     dependencies {
         // https://mvnrepository.com/artifact/com.android.tools.build/gradle
-        classpath 'com.android.tools.build:gradle:9.4.0-rc01'
+        classpath 'com.android.tools.build:gradle:9.4.0'
         // AGP 内置 Kotlin 下替代 kotlin-kapt（提供 com.android.legacy-kapt 插件）
-        classpath 'com.android.tools.build:gradle-kotlin:9.4.0-rc01'
+        classpath 'com.android.tools.build:gradle-kotlin:9.4.0'
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath rootProject.ext.deps.build.kotlin_gradle_plugin
         // https://mvnrepository.com/artifact/com.vanniktech/gradle-maven-publish-plugin
@@ -73,5 +73,5 @@ tasks.withType(JavaCompile).configureEach {
 
 // 第三方库版本强制统一处理
 apply from: rootProject.file(files.unified_library_config_gradle)
-//// 生成依赖库 deps 文件信息任务【升级全部第三方库后才放开打印依赖信息】
+// 生成依赖库 deps 文件信息任务【升级全部第三方库后才放开打印依赖信息】
 //apply from: rootProject.file(files.task_generate_deps_file_gradle)

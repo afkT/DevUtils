@@ -17,98 +17,164 @@ allprojects {
                     // = kotlin =
 
                     // metadata
-                    "org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.0-RC",
+                    "org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.20-RC2",
                     // stdlib
-                    "org.jetbrains.kotlin:kotlin-stdlib:2.4.0-RC",
-                    // core
-                    "androidx.core:core-ktx:1.18.0",
+                    "org.jetbrains.kotlin:kotlin-stdlib:2.4.20-RC2",
                     // coroutines
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
+                    // core
+                    "androidx.core:core-ktx:1.19.0",
                     // lifecycle_runtime
-                    "androidx.lifecycle:lifecycle-runtime-ktx:2.11.0-beta01",
+                    "androidx.lifecycle:lifecycle-runtime-ktx:2.11.0",
                     // lifecycle_viewmodel
-                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0-beta01",
+                    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0",
                     // lifecycle_livedata
-                    "androidx.lifecycle:lifecycle-livedata-ktx:2.11.0-beta01",
+                    "androidx.lifecycle:lifecycle-livedata-ktx:2.11.0",
                     // lifecycle_viewmodel_savedstate
-                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.11.0-beta01",
-                    // lifecycle_common_java8
-                    "androidx.lifecycle:lifecycle-common-java8:2.11.0-beta01",
+                    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.11.0",
+                    // lifecycle_service
+                    "androidx.lifecycle:lifecycle-service:2.11.0",
+                    // lifecycle_process
+                    "androidx.lifecycle:lifecycle-process:2.11.0",
                     // activity
                     "androidx.activity:activity-ktx:1.13.0",
                     // fragment
-                    "androidx.fragment:fragment-ktx:1.8.9",
+                    "androidx.fragment:fragment-ktx:1.9.0",
                     // navigation_fragment
-                    "androidx.navigation:navigation-fragment-ktx:2.10.0-alpha04",
+                    "androidx.navigation:navigation-fragment-ktx:2.10.0-rc01",
                     // navigation_ui
-                    "androidx.navigation:navigation-ui-ktx:2.10.0-alpha04",
-                    // work_runtime
-                    "androidx.work:work-runtime-ktx:2.11.2",
+                    "androidx.navigation:navigation-ui-ktx:2.10.0-rc01",
+                    // paging
+                    "androidx.paging:paging-runtime:3.5.1",
                     // room_runtime
                     "androidx.room:room-runtime:2.8.4",
                     // room_compiler
                     "androidx.room:room-compiler:2.8.4",
                     // room
                     "androidx.room:room-ktx:2.8.4",
-                    // palette
-                    "androidx.palette:palette-ktx:1.0.0",
+                    // room3_runtime
+                    "androidx.room3:room3-runtime:3.0.1",
+                    // room3_compiler
+                    "androidx.room3:room3-compiler:3.0.1",
+                    // work_runtime
+                    "androidx.work:work-runtime-ktx:2.11.2",
+                    // concurrent_futures
+                    "androidx.concurrent:concurrent-futures-ktx:1.3.0",
                     // datastore_preferences
                     "androidx.datastore:datastore-preferences:1.2.1",
+                    // security_crypto
+                    "androidx.security:security-crypto-ktx:1.1.0",
+                    // transition
+                    "androidx.transition:transition-ktx:1.7.0",
+                    // dynamicanimation
+                    "androidx.dynamicanimation:dynamicanimation-ktx:1.1.0",
+                    // palette
+                    "androidx.palette:palette-ktx:1.0.0",
 
                     // = androidx =
 
-                    // multidex
-                    "androidx.multidex:multidex:2.0.1",
                     // appcompat
-                    "androidx.appcompat:appcompat:1.8.0-alpha01",
+                    "androidx.appcompat:appcompat:1.8.0",
                     // appcompat_resources
-                    "androidx.appcompat:appcompat-resources:1.8.0-alpha01",
-                    // cardview
-                    "androidx.cardview:cardview:1.0.0",
-                    // constraint_layout
-                    "androidx.constraintlayout:constraintlayout:2.2.1",
+                    "androidx.appcompat:appcompat-resources:1.8.0",
                     // recyclerview
                     "androidx.recyclerview:recyclerview:1.4.0",
                     // viewpager2
                     "androidx.viewpager2:viewpager2:1.1.0",
-                    // activity
-                    "androidx.activity:activity:1.13.0",
-                    // fragment
-                    "androidx.fragment:fragment:1.8.9",
-                    // navigation_fragment
-                    "androidx.navigation:navigation-fragment:2.10.0-alpha04",
-                    // navigation_ui
-                    "androidx.navigation:navigation-ui:2.10.0-alpha04",
-                    // work_runtime
-                    "androidx.work:work-runtime:2.11.2",
+                    // constraint_layout
+                    "androidx.constraintlayout:constraintlayout:2.2.2",
+                    // cardview
+                    "androidx.cardview:cardview:1.0.0",
                     // sqlite
-                    "androidx.sqlite:sqlite:2.7.0-alpha04",
-                    // palette
-                    "androidx.palette:palette:1.0.0",
-                    // design
-                    "com.google.android.material:material:1.14.0",
-                    // flexbox
-                    "com.google.android.flexbox:flexbox:3.0.0",
-                    // startup
-                    "androidx.startup:startup-runtime:1.2.0",
-                    // exifinterface
-                    "androidx.exifinterface:exifinterface:1.4.2",
-                    // localbroadcastManager
-                    "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
-                    // camerax
-                    "androidx.camera:camera-camera2:1.7.0-alpha01",
-                    // camerax_lifecycle
-                    "androidx.camera:camera-lifecycle:1.7.0-alpha01",
-                    // webkit
-                    "androidx.webkit:webkit:1.17.0-alpha01",
-                    // hilt_android
-                    "com.google.dagger:hilt-android:2.59.2",
-                    // hilt_android_compiler
-                    "com.google.dagger:hilt-android-compiler:2.59.2",
+                    "androidx.sqlite:sqlite:2.7.0",
+                    // collection
+                    "androidx.collection:collection:1.6.0",
                     // annotation
                     "androidx.annotation:annotation:1.10.0",
                     // annotation_experimental
                     "androidx.annotation:annotation-experimental:1.6.0",
+                    // camerax
+                    "androidx.camera:camera-camera2:1.7.0-alpha03",
+                    // camerax_lifecycle
+                    "androidx.camera:camera-lifecycle:1.7.0-alpha03",
+                    // camerax_core
+                    "androidx.camera:camera-core:1.7.0-alpha03",
+                    // camerax_view
+                    "androidx.camera:camera-view:1.7.0-alpha03",
+                    // camerax_video
+                    "androidx.camera:camera-video:1.7.0-alpha03",
+                    // camerax_extensions
+                    "androidx.camera:camera-extensions:1.7.0-alpha03",
+                    // media3_exoplayer
+                    "androidx.media3:media3-exoplayer:1.11.0",
+                    // media3_ui
+                    "androidx.media3:media3-ui:1.11.0",
+                    // media3_session
+                    "androidx.media3:media3-session:1.11.0",
+                    // media3_common
+                    "androidx.media3:media3-common:1.11.0",
+                    // bluetooth
+                    "androidx.bluetooth:bluetooth:1.0.0-alpha02",
+                    // exifinterface
+                    "androidx.exifinterface:exifinterface:1.4.2",
+                    // biometric
+                    "androidx.biometric:biometric:1.1.0",
+                    // credentials
+                    "androidx.credentials:credentials:1.6.0",
+                    // credentials_play_services
+                    "androidx.credentials:credentials-play-services-auth:1.6.0",
+                    // webkit
+                    "androidx.webkit:webkit:1.17.0",
+                    // browser
+                    "androidx.browser:browser:1.10.0",
+                    // mediarouter
+                    "androidx.mediarouter:mediarouter:1.8.1",
+                    // window
+                    "androidx.window:window:1.5.1",
+                    // startup
+                    "androidx.startup:startup-runtime:1.2.0",
+                    // core_splashscreen
+                    "androidx.core:core-splashscreen:1.2.0",
+                    // documentfile
+                    "androidx.documentfile:documentfile:1.1.0",
+                    // interpolator
+                    "androidx.interpolator:interpolator:1.0.0",
+                    // asynclayoutinflater
+                    "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0",
+                    // coordinatorlayout
+                    "androidx.coordinatorlayout:coordinatorlayout:1.3.0",
+                    // drawerlayout
+                    "androidx.drawerlayout:drawerlayout:1.2.0",
+                    // slidingpanelayout
+                    "androidx.slidingpanelayout:slidingpanelayout:1.2.0",
+                    // draganddrop
+                    "androidx.draganddrop:draganddrop:1.0.0",
+                    // emoji2
+                    "androidx.emoji2:emoji2:1.6.0",
+                    // emoji2_views
+                    "androidx.emoji2:emoji2-views:1.6.0",
+                    // emoji2_views_helper
+                    "androidx.emoji2:emoji2-views-helper:1.6.0",
+                    // pdf_viewer_fragment
+                    "androidx.pdf:pdf-viewer-fragment:1.0.0-alpha19",
+                    // hilt_android
+                    "com.google.dagger:hilt-android:2.60.1",
+                    // hilt_android_compiler
+                    "com.google.dagger:hilt-android-compiler:2.60.1",
+                    // hilt_navigation_fragment
+                    "androidx.hilt:hilt-navigation-fragment:1.4.0",
+                    // hilt_work
+                    "androidx.hilt:hilt-work:1.4.0",
+                    // hilt_ext_compiler
+                    "androidx.hilt:hilt-compiler:1.4.0",
+                    // design
+                    "com.google.android.material:material:1.14.0",
+                    // flexbox
+                    "com.google.android.flexbox:flexbox:3.0.0",
+                    // localbroadcastManager
+                    "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0",
+                    // multidex
+                    "androidx.multidex:multidex:2.0.1",
             )
         }
     }

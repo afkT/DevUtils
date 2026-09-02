@@ -19,12 +19,10 @@ ext {
 
                     // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
                     kotlin_gradle_plugin       : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_version}",
-                    // https://mvnrepository.com/artifact/com.vanniktech/gradle-maven-publish-plugin
-                    gradle_maven_publish_plugin: "com.vanniktech:gradle-maven-publish-plugin:0.36.0",
+                    // Maven Publish Plugin https://github.com/vanniktech/gradle-maven-publish-plugin
+                    gradle_maven_publish_plugin: "com.vanniktech:gradle-maven-publish-plugin:0.37.0",
                     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
                     dokka_gradle_plugin        : "org.jetbrains.dokka:dokka-gradle-plugin:2.2.0",
-                    // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
-                    android_maven_gradle_plugin: "com.github.dcendents:android-maven-gradle-plugin:2.1",
             ],
 
             // ================
