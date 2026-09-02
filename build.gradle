@@ -40,6 +40,19 @@ buildscript {
 
 allprojects {
     repositories { // 该 repositories 用于 app、module dependencies 第三方库 implementation 等依赖加载
+
+        // io.github.afkt 仅从阿里云 Central 仓库解析，不参与其它仓库查找
+        exclusiveContent {
+            forRepository {
+                maven {
+                    url = uri("https://maven.aliyun.com/repository/central")
+                }
+            }
+            filter {
+                includeGroup("io.github.afkt")
+            }
+        }
+
         google()
         mavenCentral()
 
