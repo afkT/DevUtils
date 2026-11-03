@@ -10,15 +10,15 @@ android {
         // 混淆配置
         consumerProguardFiles 'proguard-rules.pro'
         // 开启 multidex
-        multiDexEnabled true
+        multiDexEnabled = true
     }
 
     buildFeatures {
-        buildConfig true
+        buildConfig = true
     }
 
     lintOptions {
-        abortOnError false
+        abortOnError = false
     }
 
     compileOptions {

@@ -3,7 +3,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'com.android.legacy-kapt'
 
 android {
-    namespace "dev.simple"
+    namespace = "dev.simple"
 
     defaultConfig {
         versionCode versions.dev_simple_versionCode

@@ -6,8 +6,8 @@ java {
 }
 
 compileJava {
-    sourceCompatibility versions.javaVersion_str
-    targetCompatibility versions.javaVersion_str
+    sourceCompatibility = versions.javaVersion_str
+    targetCompatibility = versions.javaVersion_str
 }
 
 // 编码设置

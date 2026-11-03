@@ -1,7 +1,7 @@
 apply from: rootProject.file(files.build_app_gradle)
 
 android {
-    namespace "afkt.httpmanager.use"
+    namespace = "afkt.httpmanager.use"
 
     defaultConfig {
         applicationId "afkt.httpmanager.use"

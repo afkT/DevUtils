@@ -2,7 +2,7 @@ apply from: rootProject.file(files.lib_app_gradle)
 apply plugin: 'com.android.legacy-kapt'
 
 android {
-    namespace "dev.engine"
+    namespace = "dev.engine"
 
     defaultConfig {
         versionCode versions.dev_engine_versionCode

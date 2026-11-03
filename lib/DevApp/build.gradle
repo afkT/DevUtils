@@ -1,7 +1,7 @@
 apply from: rootProject.file(files.lib_app_java_gradle)
 
 android {
-    namespace "dev.utils"
+    namespace = "dev.utils"
 
     defaultConfig {
         versionCode versions.dev_app_versionCode

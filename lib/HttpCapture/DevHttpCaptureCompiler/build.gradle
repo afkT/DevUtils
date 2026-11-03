@@ -1,7 +1,7 @@
 apply from: rootProject.file(files.lib_app_gradle)
 
 android {
-    namespace "dev.capture.compiler"
+    namespace = "dev.capture.compiler"
 
     defaultConfig {
         versionCode versions.dev_http_capture_versionCode

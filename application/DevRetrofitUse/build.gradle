@@ -1,7 +1,7 @@
 apply from: rootProject.file(files.build_app_gradle)
 
 android {
-    namespace "afkt.retrofit.use"
+    namespace = "afkt.retrofit.use"
 
     defaultConfig {
         applicationId "afkt.retrofit.use"

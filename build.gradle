@@ -9,21 +9,21 @@ buildscript {
         mavenCentral()
 
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
-        maven { url "https://maven.aliyun.com/repository/central" }
-        maven { url "https://maven.aliyun.com/repository/public" }
-        maven { url "https://maven.aliyun.com/repository/google" }
-        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
-        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
-        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url = "https://maven.aliyun.com/repository/central" }
+        maven { url = "https://maven.aliyun.com/repository/public" }
+        maven { url = "https://maven.aliyun.com/repository/google" }
+        maven { url = "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url = "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven { url = "https://maven.aliyun.com/repository/jcenter" }
 
         // jitpack maven
-        maven { url "https://jitpack.io" }
+        maven { url = "https://jitpack.io" }
 
-        maven { url "https://plugins.gradle.org/m2" }
+        maven { url = "https://plugins.gradle.org/m2" }
 
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots" }
 
-        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url = "https://repo1.maven.org/maven2/" }
     }
 
     dependencies {
@@ -36,6 +36,13 @@ buildscript {
         // https://mvnrepository.com/artifact/com.vanniktech/gradle-maven-publish-plugin
         classpath rootProject.ext.deps.build.gradle_maven_publish_plugin
     }
+}
+
+// 子项目各自声明 ext，避免隐式使用根项目属性
+subprojects {
+    // ext.deps、ext.deps_*
+    apply from: rootProject.file("file/gradle/config.gradle")
+    apply from: rootProject.file("file/gradle/config_files.gradle")
 }
 
 allprojects {
@@ -57,21 +64,21 @@ allprojects {
         mavenCentral()
 
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
-        maven { url "https://maven.aliyun.com/repository/central" }
-        maven { url "https://maven.aliyun.com/repository/public" }
-        maven { url "https://maven.aliyun.com/repository/google" }
-        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
-        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
-        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url = "https://maven.aliyun.com/repository/central" }
+        maven { url = "https://maven.aliyun.com/repository/public" }
+        maven { url = "https://maven.aliyun.com/repository/google" }
+        maven { url = "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url = "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven { url = "https://maven.aliyun.com/repository/jcenter" }
 
         // jitpack maven
-        maven { url "https://jitpack.io" }
+        maven { url = "https://jitpack.io" }
 
-        maven { url "https://plugins.gradle.org/m2" }
+        maven { url = "https://plugins.gradle.org/m2" }
 
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots" }
 
-        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url = "https://repo1.maven.org/maven2/" }
     }
 }
 

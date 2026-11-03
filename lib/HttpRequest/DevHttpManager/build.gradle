@@ -2,7 +2,7 @@ apply from: rootProject.file(files.lib_app_gradle)
 apply plugin: 'kotlin-parcelize'
 
 android {
-    namespace "dev.http"
+    namespace = "dev.http"
 
     defaultConfig {
         versionCode versions.dev_http_manager_versionCode

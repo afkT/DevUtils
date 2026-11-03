@@ -15,11 +15,11 @@ android {
         versionName versions.versionName
 
         // 开启 multidex
-        multiDexEnabled true
+        multiDexEnabled = true
     }
 
     buildFeatures {
-        buildConfig true
+        buildConfig = true
         // View Binding
         viewBinding = true
         // Data Binding
@@ -27,8 +27,8 @@ android {
     }
 
     lintOptions {
-        abortOnError false
-        checkReleaseBuilds false
+        abortOnError = false
+        checkReleaseBuilds = false
     }
 
     compileOptions {
@@ -56,13 +56,13 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.release
+            signingConfig = signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             debuggable true
             minifyEnabled false
-            signingConfig signingConfigs.debug
+            signingConfig = signingConfigs.debug
         }
     }
 }

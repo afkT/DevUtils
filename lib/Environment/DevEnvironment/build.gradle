@@ -1,7 +1,7 @@
 apply from: rootProject.file(files.lib_app_java_gradle)
 
 android {
-    namespace "dev.environment"
+    namespace = "dev.environment"
 
     defaultConfig {
         versionCode versions.dev_environment_versionCode

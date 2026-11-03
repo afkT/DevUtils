@@ -1,7 +1,7 @@
 apply from: rootProject.file(files.lib_app_gradle)
 
 android {
-    namespace "dev.assist"
+    namespace = "dev.assist"
 
     defaultConfig {
         versionCode versions.dev_assist_versionCode
